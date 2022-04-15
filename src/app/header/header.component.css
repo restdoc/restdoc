@@ -1,0 +1,513 @@
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+  transition: 0.3s;
+}
+
+a#logo {
+  user-select: none;
+}
+
+a#logo img {
+  user-select: none;
+}
+
+.logo {
+  width: 190px;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+.logo-area {
+  user-select: none;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.logo-area div {
+  display: flex;
+  line-height: 40px;
+  align-items: center;
+  height: 40px;
+  padding: 0 2px 0 2px;
+}
+
+.logo-area .product-name {
+  padding-left: 10px;
+  color: var(--logo-grey-color);
+  font-size: 16px;
+}
+
+.logo-image {
+  /*
+  background-color: #fff0b3;
+  border-radius: 10px;
+  border: 3px solid #7e7e7e;
+  */
+}
+
+.navbar {
+  padding: 0 10px 0 10px;
+  background-color: var(--panel-bg-color);
+  border: none;
+  border-radius: 0;
+  font-size: 13px/27px Roboto, RobotoDraft, Arial, sans-serif !important;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100%;
+  width: 100%;
+  height: 100%;
+  max-height: 65px;
+  min-height: 65px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.24);
+}
+
+.nav-left {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  /* width: 80%; */
+}
+
+.navbar-btn {
+  cursor: pointer;
+  box-shadow: none;
+  outline: none !important;
+  border: none;
+  padding: 12px;
+  align-content: center;
+  border-radius: 50%;
+  margin-left: 4px;
+  transition: 0.3s;
+  background-color: transparent;
+}
+
+.navbar-btn.active.focus,
+.navbar-btn.active:focus,
+.navbar-btn.focus,
+.navbar-btn:active.focus,
+.navbar-btn:active:focus,
+.navbar-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 30px 0;
+}
+
+.logo {
+  /* width: 40px; */
+  min-width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-text {
+  color: #5f6368;
+  opacity: 1;
+  font-family: "Product Sans", Arial, sans-serif;
+  font-size: 22px;
+  position: relative;
+  text-decoration: none;
+  padding-left: 7px;
+}
+
+.todaybtn {
+  margin: 0 12px 0 55px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 1;
+  color: #3c4043;
+  line-height: 20px;
+  transition: 0.3s;
+}
+
+.todaybtn:hover {
+  background: #f5f5f5;
+}
+
+#left-arrow,
+#right-arrow,
+#searchbtn,
+#supportbtn,
+#settingsbtn,
+#appsbtn,
+#profilebtn {
+  box-shadow: none;
+  outline: none !important;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  transition: 0.1s;
+  color: #5f6368;
+  margin: 5px;
+  background: transparent;
+}
+
+#settingsbtn {
+}
+
+.nav-end {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: right;
+  align-content: center;
+  width: 15%;
+  flex-wrap: nowrap;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.nav-buttons {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-field {
+  user-select: none;
+  display: flex;
+  padding: 0;
+  margin: 0 0 15px 0;
+  width: 100%;
+}
+
+.form-field span {
+  display: flex;
+}
+
+.form-field span.field-name {
+  font-size: 14px;
+  color: #999999;
+  min-width: 100px;
+  max-width: 120px;
+  margin-right: 30px;
+  padding: 10px 0 0px 0;
+}
+
+.field-filter {
+  margin: 0 20px 0 0;
+  padding: 0;
+  height: 36px;
+}
+
+.field-filter .filter {
+  padding: 10px;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.field-filter .filter:hover {
+  cursor: pointer;
+  color: #868686;
+  border: none;
+  background: #e6e6e6;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.header-notice {
+  padding: 5px;
+  height: 30px;
+  line-height: 24px;
+  display: inline-flex;
+}
+
+.header-notice i {
+  cursor: pointer;
+}
+
+.header-notice span.notice {
+  margin-left: 5px;
+}
+
+.disabled {
+  color: #cccccc !important;
+}
+
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate {
+  background: #666666cc;
+}
+
+.desc span {
+  user-select: none;
+}
+
+.filter-actions tr {
+  display: block;
+  padding: 5px;
+}
+
+.filter-actions tr:hover checkbox {
+}
+
+.apply-labels {
+  display: inline-flex;
+  width: 120px;
+}
+
+.form-field span.field-input {
+  width: 100%;
+  margin: 0;
+}
+
+.form-field .size-select {
+  display: flex;
+  flex-basis: 50%;
+  max-width: 212px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.form-field span select {
+  width: 100%;
+  border: none !important;
+  border-bottom: 1px solid rgba(100, 121, 143, 0.122) !important;
+}
+
+.form-field span select option {
+  margin: 40px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.form-field .size-input {
+  display: flex;
+  flex-basis: 25%;
+  max-width: 180px;
+  min-width: 150px;
+  padding: 0 10px 0 10px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.form-field input.size {
+  outline: 0;
+  border: none !important;
+  border-bottom: 1px solid rgba(100, 121, 143, 0.122) !important;
+}
+
+.form-field .size-unit {
+  display: flex;
+  flex-basis: 25%;
+  max-width: 150px;
+  margin: 0;
+}
+
+mat-form-field.date-picker {
+  width: 100% !important;
+}
+
+:host ::ng-deep .mat-form-field {
+  width: 100%;
+}
+
+:host
+  ::ng-deep
+  .mat-form-field-appearance-legacy
+  .mat-form-field-suffix
+  .mat-icon-button {
+  font-size: 18px !important;
+}
+
+mat-select {
+  padding: 0 !important;
+}
+
+.navbar-btn {
+  margin-bottom: 2px;
+}
+
+.navbar-btn i {
+  text-align: center;
+  vertical-align: middle;
+  color: #5f6368;
+}
+
+.navbar-btn:hover {
+  cursor: pointer;
+  background: rgb(240, 238, 238);
+}
+
+.navbar-active {
+  background: rgb(240, 238, 238);
+}
+
+.brand {
+  width: 235px;
+  display: flex;
+}
+
+.brand-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.brand-title {
+  padding-left: 10px;
+  color: #808080;
+}
+
+.project-logo {
+  width: 72px;
+}
+
+.project-logo span i {
+  display: flex;
+  align-items: center;
+  font-size: 70px;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-sizing: border-box;
+}
+
+.menu-panel {
+  display: flex;
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.display-style {
+  color: red;
+  padding: 2px 0 0 0;
+}
+
+.project-info {
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-name {
+  user-select: none;
+  display: flex;
+  font-size: 24px;
+  line-height: 1.5;
+  height: 100%;
+  align-items: center;
+}
+
+.project-icon {
+  display: flex;
+  align-items: center;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+}
+
+.menu-item div i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.menu-item-line {
+  display: flex;
+  align-items: center;
+}
+
+.selector {
+  user-select: none;
+  display: flex;
+  margin: 0;
+  height: 27px;
+  justify-content: flex-start;
+}
+
+:host ::ng-deep .mat-tab-labels .mat-tab-label {
+  height: 25px !important;
+  padding: 0 4px;
+  min-width: 60px;
+}
+
+::ng-deep .mat-tab-list {
+  transition: none !important;
+  transform: none !important;
+}
+
+::ng-deep .mat-ripple:not(:empty) {
+  transition: none !important;
+  transform: none !important;
+}
+
+:host ::ng-deep .mat-ink-bar {
+  background-color: var(--main-bg-color) !important;
+}
+
+.app-menu {
+  width: 280px;
+}
+
+.app-list {
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.app-item {
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.app-item:hover {
+  background-color: var(--panel-bg-color);
+  cursor: pointer;
+}
+
+.app-item i {
+  font-size: 60px;
+}
+
+.app-item div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-item .app-logo img {
+  width: 60px;
+  height: 60px;
+}
+
+.app-item .app-name span {
+  font-size: 14px;
+}

@@ -1,0 +1,572 @@
+{
+    "077e90416bdae39a40441d0b94c5a9e8fcad4514": {
+        "id": "077e90416bdae39a40441d0b94c5a9e8fcad4514",
+        "source": "Normal",
+        "target": "Normal"
+    },
+    "0cfcadd46f4a4aa6c275dd2397ce3e888f1f5751": {
+        "id": "0cfcadd46f4a4aa6c275dd2397ce3e888f1f5751",
+        "source": "due",
+        "target": "due"
+    },
+    "0d92cf09770da83f63865250a7e71dad032d04f3": {
+        "id": "0d92cf09770da83f63865250a7e71dad032d04f3",
+        "source": "Select font",
+        "target": "Select font"
+    },
+    "12a870d1f07e5d449a97def5e921b19e59fae245": {
+        "id": "12a870d1f07e5d449a97def5e921b19e59fae245",
+        "source": "Redo (⌘Y) ",
+        "target": "Redo (⌘Y) "
+    },
+    "18ad6b6a675e862bbc67ecc861357c3a09bad488": {
+        "id": "18ad6b6a675e862bbc67ecc861357c3a09bad488",
+        "source": "color",
+        "target": "color"
+    },
+    "1921705487297512327": {
+        "id": "1921705487297512327",
+        "source": "Failed to rename project.",
+        "target": "Failed to rename project."
+    },
+    "1964a5b9150be0cf0586c0fd0a17772e0f7bc258": {
+        "id": "1964a5b9150be0cf0586c0fd0a17772e0f7bc258",
+        "source": "Expand top",
+        "target": "Expand top"
+    },
+    "1a505cdde8f200719dd8c98ef91886cd81ecc1f2": {
+        "id": "1a505cdde8f200719dd8c98ef91886cd81ecc1f2",
+        "source": "New Project",
+        "target": "New Project"
+    },
+    "1b36789a000b204694eb1672b42b5b86271e5bf0": {
+        "id": "1b36789a000b204694eb1672b42b5b86271e5bf0",
+        "source": "Board",
+        "target": "Board"
+    },
+    "21c90659439eedb2ca4804e53ba8d835d0e1d138": {
+        "id": "21c90659439eedb2ca4804e53ba8d835d0e1d138",
+        "source": "Open in Fullscreen",
+        "target": "Open in Fullscreen"
+    },
+    "23397e5ef7208d189c3dc91e182838b510b82772": {
+        "id": "23397e5ef7208d189c3dc91e182838b510b82772",
+        "source": "Numbered List (Ctrl+⇧7) ",
+        "target": "Numbered List (Ctrl+⇧7) "
+    },
+    "2500f65e4509b21647f82f27d139e239e2dde8d3": {
+        "id": "2500f65e4509b21647f82f27d139e239e2dde8d3",
+        "source": "Board name",
+        "target": "Board name"
+    },
+    "2577ecff08aded569e08817d7e91123d34c14474": {
+        "id": "2577ecff08aded569e08817d7e91123d34c14474",
+        "source": "Bulleted List (⌘⇧8) ",
+        "target": "Bulleted List (⌘⇧8) "
+    },
+    "2743b8b0750f425cdde79042e7b8fb617334ad6e": {
+        "id": "2743b8b0750f425cdde79042e7b8fb617334ad6e",
+        "source": "JustifyCenter (Ctrl+⇧C) ",
+        "target": "JustifyCenter (Ctrl+⇧C) "
+    },
+    "2840102566590804226": {
+        "id": "2840102566590804226",
+        "source": "the label ",
+        "target": "the label "
+    },
+    "2a4286f37b98997f1077b5ffda06e62bf0f9b281": {
+        "id": "2a4286f37b98997f1077b5ffda06e62bf0f9b281",
+        "source": "Add task",
+        "target": "Add task"
+    },
+    "2af7efecfae8d7fed3b07f718a623eca1ad8163f": {
+        "id": "2af7efecfae8d7fed3b07f718a623eca1ad8163f",
+        "source": "Labels",
+        "target": "Labels"
+    },
+    "2b05381e3169aef84104591a5765a82e47b4ec50": {
+        "id": "2b05381e3169aef84104591a5765a82e47b4ec50",
+        "source": "JustifyRight (Ctrl+⇧R) ",
+        "target": "JustifyRight (Ctrl+⇧R) "
+    },
+    "2c0ccb826dddf1f5241e4bda372af3e14b48b119": {
+        "id": "2c0ccb826dddf1f5241e4bda372af3e14b48b119",
+        "source": "Italic (Ctrl+U)",
+        "target": "Italic (Ctrl+U)"
+    },
+    "2d3b26d8f4f832038e8d464bdb42b149a8a4efb8": {
+        "id": "2d3b26d8f4f832038e8d464bdb42b149a8a4efb8",
+        "source": "JustifyLeft (⌘⇧L) ",
+        "target": "JustifyLeft (⌘⇧L) "
+    },
+    "30bafdf61a1bb3e01508d2bdbdce1196ce3e4f19": {
+        "id": "30bafdf61a1bb3e01508d2bdbdce1196ce3e4f19",
+        "source": "status",
+        "target": "status"
+    },
+    "3226d87abb40b9e64b9b50b6797c3d30269c1e17": {
+        "id": "3226d87abb40b9e64b9b50b6797c3d30269c1e17",
+        "source": "Large",
+        "target": "Large"
+    },
+    "349910f945df0dddfdf90c3e3eb07fab99bc0467": {
+        "id": "349910f945df0dddfdf90c3e3eb07fab99bc0467",
+        "source": "Maximize",
+        "target": "Maximize"
+    },
+    "37ef120a18d7b87854cbc1f2ecdfb0abc4ec1fdb": {
+        "id": "37ef120a18d7b87854cbc1f2ecdfb0abc4ec1fdb",
+        "source": "Logout",
+        "target": "Logout"
+    },
+    "39a1ae6cdac02c326d839eb8b6d3ac7671da313b": {
+        "id": "39a1ae6cdac02c326d839eb8b6d3ac7671da313b",
+        "source": "Trash",
+        "target": "Trash"
+    },
+    "3b88757380c3f452c8ad22fe97ac678f90e91107": {
+        "id": "3b88757380c3f452c8ad22fe97ac678f90e91107",
+        "source": "Default full screen",
+        "target": "Default full screen"
+    },
+    "3f688bb68b290efc10e83d94650e5aa44bef31df": {
+        "id": "3f688bb68b290efc10e83d94650e5aa44bef31df",
+        "source": "Mail",
+        "target": "Mail"
+    },
+    "43b986ded647fa32224b3d8057637b637bc81d62": {
+        "id": "43b986ded647fa32224b3d8057637b637bc81d62",
+        "source": "Mark complete",
+        "target": "Mark complete"
+    },
+    "4879437342633482392": {
+        "id": "4879437342633482392",
+        "source": "The label ",
+        "target": "The label "
+    },
+    "4df6f726a512cf8846e5ead65423bb4121d3d379": {
+        "id": "4df6f726a512cf8846e5ead65423bb4121d3d379",
+        "source": "Small",
+        "target": "Small"
+    },
+    "4f1ab26b90572c70a8ff1f74b3c06029f040a148": {
+        "id": "4f1ab26b90572c70a8ff1f74b3c06029f040a148",
+        "source": "Clear Formatting (Ctrl+\\) ",
+        "target": "Clear Formatting (Ctrl+\\) "
+    },
+    "52c9a103b812f258bcddc3d90a6e3f46871d25fe": {
+        "id": "52c9a103b812f258bcddc3d90a6e3f46871d25fe",
+        "source": "Save",
+        "target": "Save"
+    },
+    "5523e54a8ac119dd11b7f2d8da5ca9b0081c23ac": {
+        "id": "5523e54a8ac119dd11b7f2d8da5ca9b0081c23ac",
+        "source": "Delete project",
+        "target": "Delete project"
+    },
+    "556b779d931891e5fd0cd1891fa32b5f43b80fb3": {
+        "id": "556b779d931891e5fd0cd1891fa32b5f43b80fb3",
+        "source": "Numbered List (⌘⇧7) ",
+        "target": "Numbered List (⌘⇧7) "
+    },
+    "5bc42965f78abc2921404c7c130541c95f6036b3": {
+        "id": "5bc42965f78abc2921404c7c130541c95f6036b3",
+        "source": "Delete",
+        "target": "Delete"
+    },
+    "5f4781d33cd7876a0d40454463440867a1502506": {
+        "id": "5f4781d33cd7876a0d40454463440867a1502506",
+        "source": "Discard draft",
+        "target": "Discard draft"
+    },
+    "60998e05beba46a5e8e71e525030f1767bffedec": {
+        "id": "60998e05beba46a5e8e71e525030f1767bffedec",
+        "source": "Redo (Ctrl+Y) ",
+        "target": "Redo (Ctrl+Y) "
+    },
+    "60c4585826625180654133ded4c024ec76779d2a": {
+        "id": "60c4585826625180654133ded4c024ec76779d2a",
+        "source": "Mark incomplete",
+        "target": "Mark incomplete"
+    },
+    "63deab8bfa0f747bd4b551585dace6f71db598ee": {
+        "id": "63deab8bfa0f747bd4b551585dace6f71db598ee",
+        "source": "Label as",
+        "target": "Label as"
+    },
+    "641011852617b256dac8b531056f96e6d2554ee8": {
+        "id": "641011852617b256dac8b531056f96e6d2554ee8",
+        "source": "Text color",
+        "target": "Text color"
+    },
+    "6469924bbf31d442a5573b9b2493eaa0469914b2": {
+        "id": "6469924bbf31d442a5573b9b2493eaa0469914b2",
+        "source": "Create new label",
+        "target": "Create new label"
+    },
+    "6474618044693731316": {
+        "id": "6474618044693731316",
+        "source": "Failed to create project.",
+        "target": "Failed to create project."
+    },
+    "6490b3960cc7c4a789cdbd29575d93abad081e07": {
+        "id": "6490b3960cc7c4a789cdbd29575d93abad081e07",
+        "source": "List",
+        "target": "List"
+    },
+    "6626fe446026465965181b95dbd803f971178b23": {
+        "id": "6626fe446026465965181b95dbd803f971178b23",
+        "source": "Blockquote (⌘]) ",
+        "target": "Blockquote (⌘]) "
+    },
+    "6662194194841211875": {
+        "id": "6662194194841211875",
+        "source": "The project has been created successfully.",
+        "target": "The project has been created successfully."
+    },
+    "6747221987886772067": {
+        "id": "6747221987886772067",
+        "source": "Failed to rename the project",
+        "target": "Failed to rename the project"
+    },
+    "6799392314344997033": {
+        "id": "6799392314344997033",
+        "source": "The project has been renamed successfully.",
+        "target": "The project has been renamed successfully."
+    },
+    "6b255b0a15470c12476b10e37423cc9b9b1a471d": {
+        "id": "6b255b0a15470c12476b10e37423cc9b9b1a471d",
+        "source": "Undo (Ctrl+Z) ",
+        "target": "Undo (Ctrl+Z) "
+    },
+    "70a67e04629f6d412db0a12d51820b480788d795": {
+        "id": "70a67e04629f6d412db0a12d51820b480788d795",
+        "source": "Create",
+        "target": "Create"
+    },
+    "722510ccde80130cf49fc42476e7bf477f95dde9": {
+        "id": "722510ccde80130cf49fc42476e7bf477f95dde9",
+        "source": "Fold top",
+        "target": "Fold top"
+    },
+    "72fa3ce914e0ee4ee9d95da0a85fabd133cf5046": {
+        "id": "72fa3ce914e0ee4ee9d95da0a85fabd133cf5046",
+        "source": "Undo (⌘Z) ",
+        "target": "Undo (⌘Z) "
+    },
+    "76b612f808a462e63286428206dc90b81f728470": {
+        "id": "76b612f808a462e63286428206dc90b81f728470",
+        "source": "Label as :",
+        "target": "Label as :"
+    },
+    "789c2a12bd55001f71209875da217ddd1d541acc": {
+        "id": "789c2a12bd55001f71209875da217ddd1d541acc",
+        "source": "Cancel",
+        "target": "Cancel"
+    },
+    "78a3d563dba654a956f35d4bed5d12dbc572d139": {
+        "id": "78a3d563dba654a956f35d4bed5d12dbc572d139",
+        "source": "Please enter the new name",
+        "target": "Please enter the new name"
+    },
+    "81e6a374a0647e97f28810fb027775e1e938b89c": {
+        "id": "81e6a374a0647e97f28810fb027775e1e938b89c",
+        "source": "Underline (⌘U)",
+        "target": "Underline (⌘U)"
+    },
+    "83817603cf504156b852cdb860795fcb497e9623": {
+        "id": "83817603cf504156b852cdb860795fcb497e9623",
+        "source": "Indent less (Ctrl+[) ",
+        "target": "Indent less (Ctrl+[) "
+    },
+    "848488385451394868": {
+        "id": "848488385451394868",
+        "source": "Failed to create the label",
+        "target": "Failed to create the label"
+    },
+    "84d002eda2585b11c0009e348b8cadd4f723ffcd": {
+        "id": "84d002eda2585b11c0009e348b8cadd4f723ffcd",
+        "source": "Assignee",
+        "target": "Assignee"
+    },
+    "8553291d04c4cbd53ce5158a831a8bbd1ac8e6ad": {
+        "id": "8553291d04c4cbd53ce5158a831a8bbd1ac8e6ad",
+        "source": "New Project",
+        "target": "New Project"
+    },
+    "8692407eaffa8d5f48f74bcbcacfb11fd2779c60": {
+        "id": "8692407eaffa8d5f48f74bcbcacfb11fd2779c60",
+        "source": "Blockquote (Ctrl+⇧9) ",
+        "target": "Blockquote (Ctrl+⇧9) "
+    },
+    "886852b3b6e96778d9cba57a9f5fe93dfaecd98e": {
+        "id": "886852b3b6e96778d9cba57a9f5fe93dfaecd98e",
+        "source": "Hedwi Kanban",
+        "target": "Hedwi Kanban"
+    },
+    "8a1442613527e86e65846f304c936308812a052f": {
+        "id": "8a1442613527e86e65846f304c936308812a052f",
+        "source": "Expand left",
+        "target": "Expand left"
+    },
+    "8a6b1fd18712b06ff2b943fe0d0f78f7860cf51b": {
+        "id": "8a6b1fd18712b06ff2b943fe0d0f78f7860cf51b",
+        "source": "Less",
+        "target": "Less"
+    },
+    "8ad3126263db3a04ac7749ac8d5d790c68f539c6": {
+        "id": "8ad3126263db3a04ac7749ac8d5d790c68f539c6",
+        "source": "More",
+        "target": "More"
+    },
+    "92f52a56cc11e0b387cc09eac6989d6babfac759": {
+        "id": "92f52a56cc11e0b387cc09eac6989d6babfac759",
+        "source": "Kanban",
+        "target": "Kanban"
+    },
+    "93f30cc1737f35cc0e51d10264b381387211f08a": {
+        "id": "93f30cc1737f35cc0e51d10264b381387211f08a",
+        "source": "Bold (⌘B) ",
+        "target": "Bold (⌘B) "
+    },
+    "97ae762ad31375040331ff60a0d1995b16562388": {
+        "id": "97ae762ad31375040331ff60a0d1995b16562388",
+        "source": "Big",
+        "target": "Big"
+    },
+    "98409c174a767737fe8948bc4be00e62663123f0": {
+        "id": "98409c174a767737fe8948bc4be00e62663123f0",
+        "source": "Edit",
+        "target": "Edit"
+    },
+    "9b8c69d59111f0d13ae9e009f0cb0a5c3841e7cd": {
+        "id": "9b8c69d59111f0d13ae9e009f0cb0a5c3841e7cd",
+        "source": "Strikethrough (Ctrl+⇧X) ",
+        "target": "Strikethrough (Ctrl+⇧X) "
+    },
+    "a1ac03fdeab2feff85760ab7989b08688a596c4a": {
+        "id": "a1ac03fdeab2feff85760ab7989b08688a596c4a",
+        "source": "Task name",
+        "target": "Task name"
+    },
+    "a24fe5b4b02e18383d0fc2da09f7ab88eec32838": {
+        "id": "a24fe5b4b02e18383d0fc2da09f7ab88eec32838",
+        "source": "description",
+        "target": "description"
+    },
+    "a3143e2f06b8b219b6bcb573543b0d7aaff0ea91": {
+        "id": "a3143e2f06b8b219b6bcb573543b0d7aaff0ea91",
+        "source": "  ",
+        "target": "  "
+    },
+    "a405dc6676ec65a0f4a3b1ff057b60ef11a33400": {
+        "id": "a405dc6676ec65a0f4a3b1ff057b60ef11a33400",
+        "source": "close",
+        "target": "close"
+    },
+    "a5a30e63d1ddccf7f53c55fa4088b3017dfee79d": {
+        "id": "a5a30e63d1ddccf7f53c55fa4088b3017dfee79d",
+        "source": "Italic (⌘I) ",
+        "target": "Italic (⌘I) "
+    },
+    "a75f56bab27113eebeeca8838314147043f4656f": {
+        "id": "a75f56bab27113eebeeca8838314147043f4656f",
+        "source": "Progress",
+        "target": "Progress"
+    },
+    "ac0f81713a84217c9bd1d9bb460245d8190b073f": {
+        "id": "ac0f81713a84217c9bd1d9bb460245d8190b073f",
+        "source": "More",
+        "target": "More"
+    },
+    "acdef561684d8f8ab446ef7d115c23f604f32ab6": {
+        "id": "acdef561684d8f8ab446ef7d115c23f604f32ab6",
+        "source": "More options",
+        "target": "More options"
+    },
+    "b17e279fa442520b9b367c7e4e6da75b003c3f14": {
+        "id": "b17e279fa442520b9b367c7e4e6da75b003c3f14",
+        "source": "Bulleted List (Ctrl+⇧8) ",
+        "target": "Bulleted List (Ctrl+⇧8) "
+    },
+    "b5136ac1a548e8454350f835aabbfccd1315ad97": {
+        "id": "b5136ac1a548e8454350f835aabbfccd1315ad97",
+        "source": "Indent more (Ctrl+]) ",
+        "target": "Indent more (Ctrl+]) "
+    },
+    "b7dc15cf67308e60ceda57712e4e9e0d09ed35c0": {
+        "id": "b7dc15cf67308e60ceda57712e4e9e0d09ed35c0",
+        "source": "Contacts",
+        "target": "Contacts"
+    },
+    "bd15b8d5c0fa160161728eefbbb585710414d471": {
+        "id": "bd15b8d5c0fa160161728eefbbb585710414d471",
+        "source": "New name",
+        "target": "New name"
+    },
+    "be4602f66a9ca8ec2d131d1bc1ecccc8d69126d3": {
+        "id": "be4602f66a9ca8ec2d131d1bc1ecccc8d69126d3",
+        "source": "Fold left",
+        "target": "Fold left"
+    },
+    "c00cfdcb95ffdf23f9199cef383f40d98162fcb2": {
+        "id": "c00cfdcb95ffdf23f9199cef383f40d98162fcb2",
+        "source": "Clear Formatting (⌘\\) ",
+        "target": "Clear Formatting (⌘\\) "
+    },
+    "c6c250a5949fdfd3fdfc51ce9701132e66f11a52": {
+        "id": "c6c250a5949fdfd3fdfc51ce9701132e66f11a52",
+        "source": "Background color",
+        "target": "Background color"
+    },
+    "c8258c2bec39978d609b57aacc71c525accd88d0": {
+        "id": "c8258c2bec39978d609b57aacc71c525accd88d0",
+        "source": "Fold this board",
+        "target": "Fold this board"
+    },
+    "cb4f37f948f373a4eaf3e7c6e8c6096cbe594227": {
+        "id": "cb4f37f948f373a4eaf3e7c6e8c6096cbe594227",
+        "source": "Save",
+        "target": "Save"
+    },
+    "cd0729ec91d7c8d7c30f98b8242de85356fe648a": {
+        "id": "cd0729ec91d7c8d7c30f98b8242de85356fe648a",
+        "source": "Bold (Ctrl+B)",
+        "target": "Bold (Ctrl+B)"
+    },
+    "cee3de564208644b6809d705658a05ef10e1d573": {
+        "id": "cee3de564208644b6809d705658a05ef10e1d573",
+        "source": "StrikeThrough (⌘⇧X) ",
+        "target": "StrikeThrough (⌘⇧X) "
+    },
+    "cf800f6850b71dad3b7c016a86dff104c86e42d9": {
+        "id": "cf800f6850b71dad3b7c016a86dff104c86e42d9",
+        "source": "Expand this board",
+        "target": "Expand this board"
+    },
+    "d29639f78d22983e5fc36ae8407ffb1b833d81e0": {
+        "id": "d29639f78d22983e5fc36ae8407ffb1b833d81e0",
+        "source": "Indent less (⌘]) ",
+        "target": "Indent less (⌘]) "
+    },
+    "d4d0c635f527ec37cea868ef9d3bdc15dc6fd9d3": {
+        "id": "d4d0c635f527ec37cea868ef9d3bdc15dc6fd9d3",
+        "source": "Fold right",
+        "target": "Fold right"
+    },
+    "d713eff7f7b8d5c666b4725e6a1b95dfbaf00cf8": {
+        "id": "d713eff7f7b8d5c666b4725e6a1b95dfbaf00cf8",
+        "source": "Minimize",
+        "target": "Minimize"
+    },
+    "d7b35c384aecd25a516200d6921836374613dfe7": {
+        "id": "d7b35c384aecd25a516200d6921836374613dfe7",
+        "source": "Cancel",
+        "target": "Cancel"
+    },
+    "d9dcbcc9045b3046fb226cca17ee5a96191f4e17": {
+        "id": "d9dcbcc9045b3046fb226cca17ee5a96191f4e17",
+        "source": "Select color",
+        "target": "Select color"
+    },
+    "db764bbb0015643498cddfe99d9dfd1423153911": {
+        "id": "db764bbb0015643498cddfe99d9dfd1423153911",
+        "source": "JustifyLeft (Ctrl+⇧L) ",
+        "target": "JustifyLeft (Ctrl+⇧L) "
+    },
+    "de03ac613e5fb41fa9a0582c8f321d24623764ab": {
+        "id": "de03ac613e5fb41fa9a0582c8f321d24623764ab",
+        "source": "Edit",
+        "target": "Edit"
+    },
+    "e7cbafcd3bd89781ddd05f3eb79b86d745289e3c": {
+        "id": "e7cbafcd3bd89781ddd05f3eb79b86d745289e3c",
+        "source": "JustifyRight (⌘⇧R) ",
+        "target": "JustifyRight (⌘⇧R) "
+    },
+    "e8a2be6a1d52fbdc282c4314be00749e1825ba0e": {
+        "id": "e8a2be6a1d52fbdc282c4314be00749e1825ba0e",
+        "source": "Indent more (⌘[) ",
+        "target": "Indent more (⌘[) "
+    },
+    "e8df9839607cc2d5804343ccc3d6f12fe9bb1695": {
+        "id": "e8df9839607cc2d5804343ccc3d6f12fe9bb1695",
+        "source": "Expand bottom",
+        "target": "Expand bottom"
+    },
+    "e95ae009d0bdb45fcc656e8b65248cf7396080d5": {
+        "id": "e95ae009d0bdb45fcc656e8b65248cf7396080d5",
+        "source": "Overview",
+        "target": "Overview"
+    },
+    "e9a2a8256f7f04b63446782ccd0cddcacf20387d": {
+        "id": "e9a2a8256f7f04b63446782ccd0cddcacf20387d",
+        "source": "Select fontsize",
+        "target": "Select fontsize"
+    },
+    "ea2eb5e9a745758ff75331b25893ad9527be7ea5": {
+        "id": "ea2eb5e9a745758ff75331b25893ad9527be7ea5",
+        "source": "Close Fullscreen",
+        "target": "Close Fullscreen"
+    },
+    "ebf5ccc4221d3e73f199d0a27553062efaf23da6": {
+        "id": "ebf5ccc4221d3e73f199d0a27553062efaf23da6",
+        "source": "  ",
+        "target": "  "
+    },
+    "ef9f85de82a4a41817dc51f43db3f990405c2a9e": {
+        "id": "ef9f85de82a4a41817dc51f43db3f990405c2a9e",
+        "source": "Fold bottom",
+        "target": "Fold bottom"
+    },
+    "f19949583d9a89760a47f6a1efc4f1a137be8c06": {
+        "id": "f19949583d9a89760a47f6a1efc4f1a137be8c06",
+        "source": "Due date",
+        "target": "Due date"
+    },
+    "f2f26b498fad13968ec2c1e5b41f21b2ca0ebf7a": {
+        "id": "f2f26b498fad13968ec2c1e5b41f21b2ca0ebf7a",
+        "source": "JustifyCenter (⌘⇧C) ",
+        "target": "JustifyCenter (⌘⇧C) "
+    },
+    "f3ec1c0205f71708b4e079b18d21a16a3b80e899": {
+        "id": "f3ec1c0205f71708b4e079b18d21a16a3b80e899",
+        "source": "All",
+        "target": "All"
+    },
+    "f7859e8dd4c571a9d6f47aaf669468f598ec09d4": {
+        "id": "f7859e8dd4c571a9d6f47aaf669468f598ec09d4",
+        "source": "Please Enter a new project name",
+        "target": "Please Enter a new project name"
+    },
+    "f7d899d985ec7629dc81f99ebe71df2f6b175407": {
+        "id": "f7d899d985ec7629dc81f99ebe71df2f6b175407",
+        "source": "Expand right",
+        "target": "Expand right"
+    },
+    "fa736482371cfaff4fcf80c3ab3a00e6cb1fac10": {
+        "id": "fa736482371cfaff4fcf80c3ab3a00e6cb1fac10",
+        "source": "Duplicate",
+        "target": "Duplicate"
+    },
+    "facdc6c98daeb0a34f858e5f0a7c40876dc4edf9": {
+        "id": "facdc6c98daeb0a34f858e5f0a7c40876dc4edf9",
+        "source": "Label",
+        "target": "Label"
+    },
+    "fb40d5591b45699bcac1f9c90bf3b89e68005b64": {
+        "id": "fb40d5591b45699bcac1f9c90bf3b89e68005b64",
+        "source": "Save",
+        "target": "Save"
+    },
+    "fe027a3d85214af3d076540bcdd87a56161a333c": {
+        "id": "fe027a3d85214af3d076540bcdd87a56161a333c",
+        "source": "Manage project",
+        "target": "Manage project"
+    },
+    "febdefcc6f6f35b035db0cbff9b863d445fc562d": {
+        "id": "febdefcc6f6f35b035db0cbff9b863d445fc562d",
+        "source": "All",
+        "target": "All"
+    }
+}

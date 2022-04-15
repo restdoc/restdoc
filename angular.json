@@ -1,0 +1,182 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "restdoc": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "zh-hans": "src/locale/messages.zh-hans.xlf"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/restdoc",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            //"localize": true,
+            "localize": ["zh-hans"],
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min/vs",
+                "output": "/lib/vs"
+              }
+            ],
+            "styles": [
+              "src/styles.css",
+              "node_modules/@ctrl/ngx-emoji-mart/picker.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "aot": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "tsConfig": "tsconfig.json",
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "300kb",
+                  "maximumError": "300kb"
+                }
+              ],
+              "baseHref": "/restdoc/"
+            },
+            "zh-hans": {
+              "localize": ["zh-hans"],
+              "aot": true,
+              "outputPath": "dist/restdoc/zh-hans",
+              "i18nFile": "src/locale/messages.zh-hans.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "zh-hans",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/restdoc/"
+            },
+            "en-us": {
+              "localize": ["en-us"],
+              "aot": true,
+              "outputPath": "dist/restdoc/en-us",
+              "i18nFile": "src/locale/messages.en-us.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en-us",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/restdoc/"
+            },
+            "ja": {
+              "localize": ["ja"],
+              "aot": true,
+              "outputPath": "dist/restdoc/ja",
+              "i18nFile": "src/locale/messages.ja.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ja",
+              "i18nMissingTranslation": "error",
+              "baseHref": "/restdoc/"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "restdoc:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "restdoc:build:production"
+            },
+            "zh-hans": {
+              "browserTarget": "restdoc:build:zh-hans"
+            },
+            "en-us": {
+              "browserTarget": "restdoc:build:en-us"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "restdoc:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min/vs",
+                "output": "/lib/vs"
+              }
+            ],
+            "styles": [
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/@ctrl/ngx-emoji-mart/picker.css",
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "restdoc:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "restdoc:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "restdoc"
+}

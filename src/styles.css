@@ -1,0 +1,278 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~ngx-toastr/toastr";
+@import "~@ctrl/ngx-emoji-mart/picker";
+@import "~codemirror/lib/codemirror";
+@import '~codemirror/theme/mdn-like.css';
+@import '~codemirror/addon/fold/foldgutter.css';
+
+
+
+:root {
+  --caret-color: #000000;
+  --logo-grey-color: #808080;
+  --line-br-color: #ddd;
+  --main-bg-color: #427fed;
+  --panel-bg-color: #ffffff; /* 面板背景色 */
+  --panel-br-color: #80808040; /* #e5e5e5; 面板边框色 */
+  --main-btn-bg-color: #427fed; /* 主按钮背景色 */
+  --main-btn-text-color: #ffffff; /* 主按钮文本颜色*/
+  --selected-bg-color: #f1f1f1; /*  */
+  --selected-text-color: #000000; /*  */
+  --selected-br-color: #dd9e9e; /*  */
+  --clicked-bg-color: #427fed; /*  */
+  --panel-btn-color: #f8f8f8; /*  */
+  --mat-icon-color: #606060; /*  */
+  --hovered-icon-color: #adadad; /*  */
+  --normal-btn-bg-color: #f8f8f8; /*  */
+  --normal-btn-color: #808080; /*  */
+  --chkbox-color: #66666660; /*  */
+  --chkbox-border-color: #66666660; /*  */
+  --chkbox-selected-color: #666666cc; /*  */
+  --toast-bg-color: #202020; /*  */
+  --toast-text-color: #808080; /*  */
+  --star-color: #ffca7a; /*  */
+  --star-hover-color: #ffb84b; /*  */
+  --select-icon-color: #66666660; /*  */
+  --select-icon-hover-color: #00000060; /*  */
+  --menu-bg-color: #ffffff; /*  */
+  --menu-selected-bg-color: #ececec; /*  */
+  --input-underline-br-color: #427fed;
+  --input-br-color: #80808040;
+  --input-hover-br-color: #808080;
+  --hover-bg-color: #3c40431a;
+  --card-br-color: #c3c3c3; /*  */
+  --fold-br-color: #e5e5e5;
+  --fold-bg-color: #fbfbfb;
+  --color-br-color: #939393;
+}
+
+@media (prefers-color-scheme: dark) {
+  /*
+  * {
+    filter: invert(1) hue-rotate(180deg);
+  }
+	*/
+  :root {
+    --caret-color: #000000;
+    --logo-grey-color: #808080;
+    --line-br-color: #ddd;
+    --main-bg-color: #427fed;
+    --panel-bg-color: #ffffff;
+    --panel-br-color: #80808040;
+    --main-btn-bg-color: #427fed;
+    --main-btn-text-color: #ffffff;
+    --selected-bg-color: #f1f1f1;
+    --selected-text-color: #000000;
+    --selected-br-color: #dd9e9e;
+    --clicked-bg-color: #427fed;
+    --panel-btn-color: #f8f8f8;
+    --mat-icon-color: #606060;
+    --hovered-icon-color: #adadad; /*  */
+    --normal-btn-bg-color: #f8f8f8;
+    --normal-btn-color: #808080;
+    --chkbox-color: #66666660;
+    --chkbox-border-color: #66666660;
+    --chkbox-selected-color: #666666cc;
+    --toast-bg-color: #202020;
+    --toast-text-color: #808080;
+    --star-color: #ffca7a;
+    --star-hover-color: #ffb84b;
+    --select-icon-color: #66666660;
+    --select-icon-hover-color: #00000060;
+    --menu-bg-color: #ffffff;
+    --menu-selected-bg-color: #ececec;
+    --input-underline-br-color: #427fed;
+    --input-br-color: #80808040;
+    --input-hover-br-color: #808080;
+    --hover-bg-color: #3c40431a;
+    --card-br-color: #c3c3c3; /*  */
+    --fold-br-color: #e5e5e5;
+    --fold-bg-color: #fbfbfb;
+    --color-br-color: #939393;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+.mat-menu-panel {
+  min-width: 250px !important;
+}
+
+.ck-editor__main {
+  height: 38vh;
+}
+
+.ck-editor__editable {
+  height: 100%;
+  outline: none;
+}
+
+.ck-content {
+  padding: 0px !important;
+  height: 32vh;
+  box-shadow: none;
+}
+
+.ck-content p {
+  margin: 0px !important;
+  padding: 0px !important;
+  border: none;
+}
+
+.ck-focused {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.material-icons {
+  user-select: none;
+}
+
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: local("Material Icons"), local("MaterialIcons-Regular"),
+    url("https://fonts.gstatic.com/s/materialicons/v121/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2")
+      format("woff2"),
+    url("/mail/en-US/assets/fonts/MaterialIcons-Regular.woff2") format("woff2"),
+    url("/assets/fonts/MaterialIcons-Regular.woff2") format("woff2");
+}
+
+.material-icons {
+  font-family: "Material Icons" !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga" !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+::ng-deep .mat-checkbox-input {
+  color: rgba(128, 128, 128, 0.562) !important;
+}
+
+.mat-pseudo-checkbox {
+  color: #adadad !important;
+}
+
+.mat-pseudo-checkbox::after {
+  color: #adadad !important;
+}
+
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate {
+  background: transparent !important;
+}
+
+.mat-pseudo-checkbox.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox.mat-pseudo-checkbox-indeterminate {
+  border-color: #adadad !important;
+}
+
+.toast-container .ngx-toastr {
+  background-color: #202020;
+  color: #808080;
+  padding: 15px;
+}
+
+.toast-info {
+  background-image: none;
+  color: #808080;
+}
+
+.toast-warning {
+  background-image: none;
+  color: #808080;
+}
+
+.toast-error {
+  background-image: none;
+  color: #808080;
+}
+
+.toast-success {
+  background-image: none;
+  color: #808080;
+}
+
+/*
+.mat-tab-labels .mat-tab-label {
+    height: 24px !important;
+    padding: 0 4px;
+    min-width: 60px;
+}
+*/
+
+.app-loading {
+  user-select: none;
+  background: #ffffff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loading-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.loading-title {
+  user-select: none;
+  margin: 0 auto;
+  text-align: center;
+  width: 50%;
+  font-size: 40px;
+  color: #7e7e7e;
+}
+
+.logo-icon {
+  display: flex;
+  width: 100px;
+  height: 100px;
+}
+
+.logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.logo-title {
+  display: flex;
+  width: 300px;
+  height: 100px;
+}
+
+.logo-title svg {
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep .mat-input-element {
+  caret-color: #cccccc !important;
+}

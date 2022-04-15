@@ -1,0 +1,322 @@
+/*fav button */
+
+.fab {
+  user-select: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  height: 40px;
+  background-color: var(--panel-bg-color);
+  transition: 0.1s;
+  display: flex;
+  flex-direction: row;
+  align-items: center !important;
+  align-content: flex-start !important;
+  text-align: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  border: 1px solid var(--panel-br-color);
+}
+
+#compose-button {
+  padding: 5px 10px 5px 10px;
+  box-sizing: border-box;
+}
+
+#compose-button:hover {
+  cursor: pointer;
+}
+
+.fav-active {
+  width: 50px;
+  transition: 0.5s;
+}
+
+.fab:hover {
+  opacity: 1;
+  box-shadow: 1px 1px 1px 1px var(--panel-br-color);
+}
+
+.fab:hover .fab-buttons {
+  visibility: visible;
+}
+
+.fab-action-button:hover + .fab-buttons .fab-buttons__link:before {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: right center 0;
+  transition-delay: 0.1s;
+}
+
+.fab-action-button {
+  /* border-radius: 50px; */
+  transition: 0.2s;
+  position: relative;
+  display: inline;
+  position: relative;
+  padding-left: 5px;
+  color: #666666;
+}
+
+.compose {
+  cursor: pointer;
+  padding-left: 5px;
+  font-size: 0.875rem;
+  font-family: "Google Sans", "Roboto,RobotoDraft", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: #3c4043;
+  opacity: 1;
+}
+
+.fab-action-button svg {
+  align-self: center !important;
+}
+
+#create-text {
+  display: block;
+  transition: 800ms;
+  word-wrap: none !important;
+}
+
+.hide {
+  display: none !important;
+  transition: 800ms !important;
+}
+
+.this-will-not-be-read {
+  display: none !important;
+}
+
+.text-active {
+  display: none;
+}
+
+.fab-action-button__icon {
+  width: 36px;
+  height: 36px;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
+}
+
+/*fab end*/
+
+#sidebar {
+  flex: 1 100%;
+  background: transparent;
+  transition: all 0.3s;
+  /* height: 100%; */
+  width: 250px;
+  /* margin-top: 78px; */
+  overflow: hidden;
+}
+
+.planner {
+  overflow-y: scroll;
+  /* overflow: auto; */
+  overflow-x: hidden;
+  max-height: 550px;
+  user-select: none;
+}
+
+.planner.more {
+  overflow-y: scroll;
+  height: 200px;
+  border-top: 1px solid var(--panel-br-color);
+}
+
+.planner ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 0em !important;
+  margin-block-end: 0em !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px !important;
+}
+
+.noscroll::-webkit-scrollbar {
+  /* display: none; */
+}
+
+::-webkit-scrollbar {
+  width: 8px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+
+.noscroll::-webkit-scrollbar-thumb {
+  visibility: hidden;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #66666622;
+  border: 0.5px solid #66666633;
+}
+
+::-moz-scrollbar {
+  width: 8px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+
+::-moz-scrollbar-thumb {
+  background: #66666622;
+  border: 0.5px solid #66666633;
+}
+
+:root {
+  scrollbar-color: #66666622 #66666633 !important;
+  scrollbar-width: 8px !important;
+}
+
+::scrollbar {
+  width: 8px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+
+::scrollbar-thumb {
+  background: #66666622;
+  border: 0.5px solid #66666633;
+}
+
+.planner ul li {
+  align-items: flex-start;
+  cursor: pointer;
+  /* width: 100%; */
+  width: 200px;
+}
+
+.planner ul li a {
+  display: flex;
+  /*
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+     */
+  letter-spacing: 0;
+  font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #202124;
+  align-items: center;
+}
+
+.planner ul li a:hover span {
+  color: var(--main-btn-bg-color);
+}
+
+.planner ul li a:hover i {
+  color: var(--main-btn-bg-color);
+}
+
+ul li a {
+  text-decoration: none;
+}
+
+.planner ul li a:link {
+  text-decoration: none;
+}
+
+.planner ul li a:hover {
+  text-decoration: none;
+}
+.planner ul li a span {
+  color: #141414;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.planner ul li a i {
+  color: #666666;
+  padding: 0px 18px;
+  letter-spacing: 0;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.25rem;
+  margin-left: 8px;
+}
+
+.planner ul li a:hover {
+  background: #20212418;
+}
+
+.restdoc-nav-active {
+  /* background: #e8f0fe; */
+  background-color: transparent;
+}
+
+.restdoc-nav-active span {
+  /* color: #1a73e8 !important; */
+  color: var(--main-btn-bg-color) !important;
+  font-weight: bold;
+}
+.restdoc-nav-active small {
+  /* color: #1a73e8 !important; */
+}
+
+.restdoc-nav-active i {
+  color: var(--main-btn-bg-color) !important;
+}
+
+#sidebar.active {
+  width: 70px;
+}
+
+nav#sidebar {
+  padding-top: 0px;
+}
+
+.span {
+  display: inline;
+  transition: all 0.5s;
+}
+
+.hide {
+  display: none;
+  transition: all 0.5s;
+}
+
+#sidebar .planner ul li {
+  display: flex;
+  height: 32px;
+  max-height: 32px;
+  min-height: 32px;
+  width: 100%;
+}
+
+#sidebar .planner ul li a {
+  height: 32px;
+  width: 100%;
+  webkit-font-smoothing: antialiased;
+  /* font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif; */
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  color: #202124;
+  text-shadow: none;
+}
+
+.sidebar {
+  height: 100%;
+  background-color: var(--panel-bg-color);
+}

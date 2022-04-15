@@ -1,0 +1,10 @@
+<app-header (click)="emptyClick($event);">
+</app-header>
+<div class="wrapper main-page" style="width: 100%; z-index: 1;" (click)="emptyClick($event);">
+    <!-- Sidebar Holder -->
+    <hotkeys-cheatsheet></hotkeys-cheatsheet>
+    <app-sidebar (click)="emptyClick($event);"></app-sidebar>
+    <div class="router-outlet" (keydown)="OnKeydown($event)">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="title-bar">
+    <span class="title-text" i18n="New-project">New Project</span>
+    <span [mat-dialog-close] cdkFocusInitial class="close-btn"><i class="material-icons">close</i></span>
+</div>
+<div mat-dialog-content>
+    <form class="label-form" [formGroup]="labelForm">
+        <span i18n="Please-enter-a-new-label-name">Please Enter a new project name</span>
+        <input formControlName="name" class="labelName">
+        <!--
+        <input style="margin-top: 10px;" (click)="checkbox()" [checked]="labelFrom.get('selectedLabel').value" formControlName="labelCheck"  type="checkbox" id="check" name="check" value="Nest label under"> &#32;
+        <label style="padding-left: 3px;" for="check">&#32;Nest label under:</label><br>
+        <select style="width: 100%;" formControlName="selectedLabel">
+            <option value="0" [selected]="labelFrom.get('labelCheck').value == true">Pleae select a parent</option>
+            <option value="[lamp]/Trash">[lamp]/Trash</option>
+            <option value="Junk">Junk</option>
+            <option value="Junk E-mail">Junk E-mail</option>
+            <option value="Unwanted">Unwanted</option>
+        </select>
+      -->
+        <div class="board group-box-table" *ngFor="let team of teams">
+            <span (click)="select(team)">{{ team.name }} </span>
+        </div>
+        <div>
+            <div><span>API endpoints</span></div>
+            <div formArrayName="endpoints">
+                <div class="board group-box-table" *ngFor="let endpoint of getEndpoints().controls; let i = index">
+                    <div [formGroupName]="i">
+                        <span> <input formControlName="name" /></span>
+                        <span> <input formControlName="value" /></span>
+                        <span (click)="removeEndpoint(i)">Remove</span>
+                    </div>
+                </div>
+            </div>
+            <div class="adding">
+                <span> <input type="text" formControlName="newEndpointName" /></span>
+                <span> <input type="text" formControlName="newEndpointValue" /></span>
+                <span (click)="addEndpoint()">Add</span>
+            </div>
+        </div>
+        <div mat-dialog-actions class="actions">
+            <button mat-button (click)="onNoClick()" class="cancelButton" i18n="Cancel">Cancel</button>
+            <button mat-button type="submit" (click)="onCreate()" class="btn btn-primary" class="createButton" i18n="Create">Create</button>
+        </div>
+    </form>
+</div>

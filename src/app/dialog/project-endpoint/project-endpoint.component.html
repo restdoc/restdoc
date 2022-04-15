@@ -1,0 +1,26 @@
+<div class="title-bar">
+	<span class="title-text" i18n="Edit endpoints">Edit endpoints</span>
+	<span [mat-dialog-close] cdkFocusInitial class="close-btn"><i class="material-icons">close</i></span>
+</div>
+<div mat-dialog-content>
+	<form class="label-form" [formGroup]="labelForm">
+		<div>
+			<div><span>API endpoints</span></div>
+			<div formArrayName="endpoints">
+				<div class="board group-box-table" *ngFor="let endpoint of getEndpoints().controls; let i = index">
+					<div [formGroupName]="i">
+						<span> <input formControlName="name" /></span>
+						<span> <input formControlName="value" /></span>
+						<span (click)="updateEndpoint(i)">Update</span>
+						<span (click)="removeEndpoint(i)">Remove</span>
+					</div>
+				</div>
+			</div>
+			<div class="adding">
+				<span> <input type="text" formControlName="newEndpointName" /></span>
+				<span> <input type="text" formControlName="newEndpointValue" /></span>
+				<span (click)="addEndpoint()">Add</span>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,14 @@
+<div class="title-bar">
+	<span class="title-text" i18n="New-name">New name</span>
+	<span [mat-dialog-close] cdkFocusInitial class="close-btn"><i class="material-icons">close</i></span>
+</div>
+<div mat-dialog-content>
+	<form class="label-form" [formGroup]="labelFrom">
+		<span i18n="Please-enter-the-new-name">Please enter the new name</span>
+		<input formControlName="name" class="labelName">
+		<div mat-dialog-actions class="actions">
+			<button mat-button (click)="onNoClick()" class="cancelButton" i18n="Cancel">Cancel</button>
+			<button mat-button type="submit" (click)="onSave()" class="btn btn-primary" class="createButton" i18n="Save">Save</button>
+		</div>
+	</form>
+</div>

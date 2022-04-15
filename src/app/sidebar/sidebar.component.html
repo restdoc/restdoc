@@ -1,0 +1,84 @@
+<div class="sidebar">
+    <div id="compose-button">
+        <div class="fab d-flex justify-content-center" (click)="createProject()" [class.fav-active]="activeSidebar">
+            <span class="fab-action-button d-flex justify-content-center">
+                <i class="material-icons" style="font-size: 24px;">add</i>
+            </span>
+            <span class="compose" id="create-text" [class.hide]="activeSidebar" i18n="siderbar|new-project">New Project</span>
+        </div>
+    </div>
+    <div class="nav">
+        <nav id="sidebar" [class.active]="activeSidebar" (mouseenter)="hoverSidebar(true)" (mouseleave)="hoverSidebar(false)">
+            <div class="planner" [ngClass]="{'noscroll': !hovered}">
+                <ul *ngIf="activeSidebar">
+                    <li (click)="onAll()">
+                        <a [class.restdoc-nav-active]="selectedId == '0'">
+                            <i class="material-icons">view_list</i>
+                            <span class="hide" i18n="sidebar|all">All</span>
+                        </a>
+                    </li>
+                    <!-- <mat-divider></mat-divider> -->
+                    <li (click)="onLabel(lab)" *ngFor="let lab of labels" class="">
+                        <a [class.restdoc-nav-active]="selectedId == lab.id">
+                            <i class="material-icons">label</i>
+                            <span class="hide"> {{lab.name}} </span>
+                        </a>
+                    </li>
+                </ul>
+                <ul *ngIf="!activeSidebar">
+                    <li (click)="onAll()">
+                        <a [class.restdoc-nav-active]="selectedId == '0'">
+                            <i class="material-icons">view_list</i>
+                            <span class="" i18n="sidebar|all">All</span>
+                        </a>
+                    </li>
+                    <!-- <mat-divider></mat-divider> -->
+                    <li (click)="onLabel(lab)" *ngFor="let lab of labels" class="">
+                        <a [class.restdoc-nav-active]="selectedId == lab.id">
+                            <i class="material-icons">label</i>
+                            <span> {{lab.name}} </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="planner more">
+                <ul>
+                    <li>
+                        <a (click)="labelShowing()">
+                            <i *ngIf="lable" class="material-icons">expand_less</i>
+                            <i *ngIf="!lable" class="material-icons">expand_more</i>
+                            <span *ngIf="lable" [class.hide]="activeSidebar" i18n="sidebar|less">Less</span>
+                            <span *ngIf="!lable" [class.hide]="activeSidebar" i18n="sidebar|more">More</span>
+                        </a>
+                    </li>
+                    <ng-container *ngIf="lable">
+                        <li>
+                            <a style="display: flex; justify-content: space-between;" [class.restdoc-nav-active]="selectedLabel == 'trash'">
+                                <span>
+                                    <i style="position: relative; top: 5px;" class="material-icons">delete</i>
+                                    <span [class.hide]="activeSidebar" i18n="sidebar|Trash">Trash</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li (click)="manageProject()">
+                            <a style="display: flex; justify-content: space-between;" [class.restdoc-nav-active]="selectedLabel == '_manageLabel'">
+                                <span>
+                                    <i style="position: relative; top: 5px;" class="material-icons">settings</i>
+                                    <span [class.hide]="activeSidebar" i18n="sidebar|manager-project">Manage project</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li (click)="createProject()">
+                            <a style="display: flex; justify-content: space-between;" [class.restdoc-nav-active]="selectedLabel == '_createLabel'">
+                                <span>
+                                    <i style="position: relative; top: 5px;" class="material-icons">add</i>
+                                    <span [class.hide]="activeSidebar" i18n="sidebar|create-new-label">Create new label</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ng-container>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

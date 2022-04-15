@@ -1,0 +1,1448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1a505cdde8f200719dd8c98ef91886cd81ecc1f2" datatype="html">
+        <trans-unit></trans-unit>
+        <source>New Project</source>
+        <target>新项目</target>
+        <note>New-project</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f7859e8dd4c571a9d6f47aaf669468f598ec09d4" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Please Enter a new project name</source>
+        <target>请输入新的项目名称</target>
+        <note>Please-enter-a-new-label-name</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>Cancel</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="70a67e04629f6d412db0a12d51820b480788d795" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Create</source>
+        <target>新建</target>
+        <note>Create</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4879437342633482392" datatype="html">
+        <trans-unit></trans-unit>
+        <source>The label </source>
+        <target>标签</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6662194194841211875" datatype="html">
+        <trans-unit></trans-unit>
+        <source>The project has been created successfully.</source>
+        <target>项目创建成功</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6474618044693731316" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to create project.</source>
+        <target>创建项目失败</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2840102566590804226" datatype="html">
+        <trans-unit></trans-unit>
+        <source>the label </source>
+        <target>标签</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="848488385451394868" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to create the label</source>
+        <target>创建标签失败</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bd15b8d5c0fa160161728eefbbb585710414d471" datatype="html">
+        <trans-unit></trans-unit>
+        <source>New name</source>
+        <target>新名称</target>
+        <note>New-name</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="78a3d563dba654a956f35d4bed5d12dbc572d139" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Please enter the new name</source>
+        <target>请输入新名称</target>
+        <note>Please-enter-the-new-name</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Save</source>
+        <target>保存</target>
+        <note>Save</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6799392314344997033" datatype="html">
+        <trans-unit></trans-unit>
+        <source>The project has been renamed successfully.</source>
+        <target>重命名成功</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1921705487297512327" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to rename project.</source>
+        <target>重命名失败</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6747221987886772067" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to rename the project</source>
+        <target>重命名失败</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c6c250a5949fdfd3fdfc51ce9701132e66f11a52" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Background color</source>
+        <target>背景颜色</target>
+        <note>background-color</note>
+        <note>editor</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="641011852617b256dac8b531056f96e6d2554ee8" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Text color</source>
+        <target>文字颜色</target>
+        <note>text-color</note>
+        <note>editor</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="72fa3ce914e0ee4ee9d95da0a85fabd133cf5046" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Undo (⌘Z) </source>
+        <target>撤销 (⌘Z) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="12a870d1f07e5d449a97def5e921b19e59fae245" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Redo (⌘Y) </source>
+        <target>重做 (⌘Y) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d92cf09770da83f63865250a7e71dad032d04f3" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Select font</source>
+        <target>选择字体</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e9a2a8256f7f04b63446782ccd0cddcacf20387d" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Select fontsize</source>
+        <target>选择字体大小</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="93f30cc1737f35cc0e51d10264b381387211f08a" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Bold (⌘B) </source>
+        <target>加粗 (⌘B) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a5a30e63d1ddccf7f53c55fa4088b3017dfee79d" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Italic (⌘I) </source>
+        <target>斜体 (⌘I) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="81e6a374a0647e97f28810fb027775e1e938b89c" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Underline (⌘U)</source>
+        <target>下划线 (⌘U)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d9dcbcc9045b3046fb226cca17ee5a96191f4e17" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Select color</source>
+        <target>选择颜色</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2577ecff08aded569e08817d7e91123d34c14474" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Bulleted List (⌘⇧8) </source>
+        <target>符号列表 (⌘⇧8) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="556b779d931891e5fd0cd1891fa32b5f43b80fb3" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Numbered List (⌘⇧7) </source>
+        <target>数字列表 (⌘⇧7) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d29639f78d22983e5fc36ae8407ffb1b833d81e0" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Indent less (⌘]) </source>
+        <target>减少缩进 (⌘]) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e8a2be6a1d52fbdc282c4314be00749e1825ba0e" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Indent more (⌘[) </source>
+        <target>增加缩进 (⌘[) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6626fe446026465965181b95dbd803f971178b23" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Blockquote (⌘]) </source>
+        <target>引用 (⌘]) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2d3b26d8f4f832038e8d464bdb42b149a8a4efb8" datatype="html">
+        <trans-unit></trans-unit>
+        <source>JustifyLeft (⌘⇧L) </source>
+        <target>左对齐 (⌘⇧L) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f2f26b498fad13968ec2c1e5b41f21b2ca0ebf7a" datatype="html">
+        <trans-unit></trans-unit>
+        <source>JustifyCenter (⌘⇧C) </source>
+        <target>居中对齐 (⌘⇧C) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e7cbafcd3bd89781ddd05f3eb79b86d745289e3c" datatype="html">
+        <trans-unit></trans-unit>
+        <source>JustifyRight (⌘⇧R) </source>
+        <target>右对齐 (⌘⇧R) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cee3de564208644b6809d705658a05ef10e1d573" datatype="html">
+        <trans-unit></trans-unit>
+        <source>StrikeThrough (⌘⇧X) </source>
+        <target>删除线 (⌘⇧X) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c00cfdcb95ffdf23f9199cef383f40d98162fcb2" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Clear Formatting (⌘\) </source>
+        <target>清除格式 (⌘\) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6b255b0a15470c12476b10e37423cc9b9b1a471d" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Undo (Ctrl+Z) </source>
+        <target>撤销 (Ctrl+Z) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="60998e05beba46a5e8e71e525030f1767bffedec" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Redo (Ctrl+Y) </source>
+        <target>重做 (Ctrl+Y) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cd0729ec91d7c8d7c30f98b8242de85356fe648a" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Bold (Ctrl+B)</source>
+        <target>加粗 (Ctrl+B)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2c0ccb826dddf1f5241e4bda372af3e14b48b119" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Italic (Ctrl+U)</source>
+        <target>斜体 (Ctrl+I)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b17e279fa442520b9b367c7e4e6da75b003c3f14" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Bulleted List (Ctrl+⇧8) </source>
+        <target>符号列表 (Ctrl+⇧8) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="23397e5ef7208d189c3dc91e182838b510b82772" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Numbered List (Ctrl+⇧7) </source>
+        <target>数字列表 (Ctrl+⇧7) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="83817603cf504156b852cdb860795fcb497e9623" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Indent less (Ctrl+[) </source>
+        <target>减少缩进 (Ctrl+[) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b5136ac1a548e8454350f835aabbfccd1315ad97" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Indent more (Ctrl+]) </source>
+        <target>增加缩进 (Ctrl+]) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8692407eaffa8d5f48f74bcbcacfb11fd2779c60" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Blockquote (Ctrl+⇧9) </source>
+        <target>引用 (Ctrl+⇧9) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="db764bbb0015643498cddfe99d9dfd1423153911" datatype="html">
+        <trans-unit></trans-unit>
+        <source>JustifyLeft (Ctrl+⇧L) </source>
+        <target>左对齐 (Ctrl+⇧L) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2743b8b0750f425cdde79042e7b8fb617334ad6e" datatype="html">
+        <trans-unit></trans-unit>
+        <source>JustifyCenter (Ctrl+⇧C) </source>
+        <target>居中对齐 (Ctrl+⇧C) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2b05381e3169aef84104591a5765a82e47b4ec50" datatype="html">
+        <trans-unit></trans-unit>
+        <source>JustifyRight (Ctrl+⇧R) </source>
+        <target>右对齐 (Ctrl+⇧R) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9b8c69d59111f0d13ae9e009f0cb0a5c3841e7cd" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Strikethrough (Ctrl+⇧X) </source>
+        <target>删除线 (Ctrl+⇧X)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4f1ab26b90572c70a8ff1f74b3c06029f040a148" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Clear Formatting (Ctrl+\) </source>
+        <target>清除格式 (Ctrl+\) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4df6f726a512cf8846e5ead65423bb4121d3d379" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Small</source>
+        <target>小</target>
+        <note>Small</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="077e90416bdae39a40441d0b94c5a9e8fcad4514" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Normal</source>
+        <target>正常</target>
+        <note>Normal</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="97ae762ad31375040331ff60a0d1995b16562388" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Big</source>
+        <target>大</target>
+        <note>Big</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3226d87abb40b9e64b9b50b6797c3d30269c1e17" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Large</source>
+        <target>超大</target>
+        <note>Large</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="886852b3b6e96778d9cba57a9f5fe93dfaecd98e" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Hedwi Kanban</source>
+        <target>海未看板</target>
+        <note>kanban</note>
+        <note>Header</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f3ec1c0205f71708b4e079b18d21a16a3b80e899" datatype="html">
+        <trans-unit></trans-unit>
+        <source>All</source>
+        <target>所有项目</target>
+        <note>All</note>
+        <note>Headers</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e95ae009d0bdb45fcc656e8b65248cf7396080d5" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Overview</source>
+        <target>概览</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6490b3960cc7c4a789cdbd29575d93abad081e07" datatype="html">
+        <trans-unit></trans-unit>
+        <source>List</source>
+        <target>列表</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1b36789a000b204694eb1672b42b5b86271e5bf0" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Board</source>
+        <target>看板</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="98409c174a767737fe8948bc4be00e62663123f0" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Edit</source>
+        <target>编辑</target>
+        <note>editProjectDetail</note>
+        <note>Header</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5523e54a8ac119dd11b7f2d8da5ca9b0081c23ac" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Delete project</source>
+        <target>删除项目</target>
+        <note>deleteProject</note>
+        <note>Header</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="37ef120a18d7b87854cbc1f2ecdfb0abc4ec1fdb" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Logout</source>
+        <target>注销</target>
+        <note>Logout</note>
+        <note>Header</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3f688bb68b290efc10e83d94650e5aa44bef31df" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Mail</source>
+        <target>邮箱</target>
+        <note>Mail</note>
+        <note>Header</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b7dc15cf67308e60ceda57712e4e9e0d09ed35c0" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Contacts</source>
+        <target>通讯录</target>
+        <note>Contacts</note>
+        <note>Header</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="92f52a56cc11e0b387cc09eac6989d6babfac759" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Kanban</source>
+        <target>看板</target>
+        <note>Kanban</note>
+        <note>Header</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a75f56bab27113eebeeca8838314147043f4656f" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Progress</source>
+        <target>进展</target>
+        <note>Progress</note>
+        <note>BoardList</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a1ac03fdeab2feff85760ab7989b08688a596c4a" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Task name</source>
+        <target>任务名称</target>
+        <note>task-name</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="84d002eda2585b11c0009e348b8cadd4f723ffcd" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Assignee</source>
+        <target>负责人</target>
+        <note>Assignee</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f19949583d9a89760a47f6a1efc4f1a137be8c06" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Due date</source>
+        <target>到期时间</target>
+        <note>due-date</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2af7efecfae8d7fed3b07f718a623eca1ad8163f" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Labels</source>
+        <target>标签</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cb4f37f948f373a4eaf3e7c6e8c6096cbe594227" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Save</source>
+        <target>保存</target>
+        <note>Save</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="789c2a12bd55001f71209875da217ddd1d541acc" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Cancel</source>
+        <target>取消</target>
+        <note>Cancel</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2500f65e4509b21647f82f27d139e239e2dde8d3" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Board name</source>
+        <target>列表名称</target>
+        <note>Board-name</note>
+        <note>boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="de03ac613e5fb41fa9a0582c8f321d24623764ab" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Edit</source>
+        <target>编辑</target>
+        <note>edit</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="43b986ded647fa32224b3d8057637b637bc81d62" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Mark complete</source>
+        <target>标为完成</target>
+        <note>apply</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="60c4585826625180654133ded4c024ec76779d2a" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Mark incomplete</source>
+        <target>标为未完成</target>
+        <note>apply</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa736482371cfaff4fcf80c3ab3a00e6cb1fac10" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Duplicate</source>
+        <target>克隆</target>
+        <note>apply</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5bc42965f78abc2921404c7c130541c95f6036b3" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Delete</source>
+        <target>删除</target>
+        <note>apply</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2a4286f37b98997f1077b5ffda06e62bf0f9b281" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Add task</source>
+        <target>添加任务</target>
+        <note>edit</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cf800f6850b71dad3b7c016a86dff104c86e42d9" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Expand this board</source>
+        <target>展开当前列表</target>
+        <note>expand this board</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c8258c2bec39978d609b57aacc71c525accd88d0" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Fold this board</source>
+        <target>折叠当前列表</target>
+        <note>fold this board</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="722510ccde80130cf49fc42476e7bf477f95dde9" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Fold top</source>
+        <target>折叠顶部</target>
+        <note>fold top</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1964a5b9150be0cf0586c0fd0a17772e0f7bc258" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Expand top</source>
+        <target>展开顶部</target>
+        <note>expand left</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ef9f85de82a4a41817dc51f43db3f990405c2a9e" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Fold bottom</source>
+        <target>折叠底部</target>
+        <note>fold bottom</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e8df9839607cc2d5804343ccc3d6f12fe9bb1695" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Expand bottom</source>
+        <target>展开底部</target>
+        <note>expand bottom board</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="be4602f66a9ca8ec2d131d1bc1ecccc8d69126d3" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Fold left</source>
+        <target>折叠左侧</target>
+        <note>fold left</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8a1442613527e86e65846f304c936308812a052f" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Expand left</source>
+        <target>展开左侧</target>
+        <note>expand left</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d4d0c635f527ec37cea868ef9d3bdc15dc6fd9d3" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Fold right</source>
+        <target>折叠右侧</target>
+        <note>fold right</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f7d899d985ec7629dc81f99ebe71df2f6b175407" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Expand right</source>
+        <target>展开右侧</target>
+        <note>expand right</note>
+        <note>Boardlist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ac0f81713a84217c9bd1d9bb460245d8190b073f" datatype="html">
+        <trans-unit></trans-unit>
+        <source>More</source>
+        <target>更多</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ebf5ccc4221d3e73f199d0a27553062efaf23da6" datatype="html">
+        <trans-unit></trans-unit>
+        <source>  </source>
+        <target>  </target>
+        <note>new-message</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d713eff7f7b8d5c666b4725e6a1b95dfbaf00cf8" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Minimize</source>
+        <target>最小化</target>
+        <note>minimize</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="349910f945df0dddfdf90c3e3eb07fab99bc0467" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Maximize</source>
+        <target>最大化</target>
+        <note>maximize</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ea2eb5e9a745758ff75331b25893ad9527be7ea5" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Close Fullscreen</source>
+        <target>关闭全屏</target>
+        <note>close-fullscreen</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="21c90659439eedb2ca4804e53ba8d835d0e1d138" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Open in Fullscreen</source>
+        <target>在全屏窗口中打开</target>
+        <note>open-in-fullscreen</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a405dc6676ec65a0f4a3b1ff057b60ef11a33400" datatype="html">
+        <trans-unit></trans-unit>
+        <source>close</source>
+        <target>关闭</target>
+        <note>close</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="30bafdf61a1bb3e01508d2bdbdce1196ce3e4f19" datatype="html">
+        <trans-unit></trans-unit>
+        <source>status</source>
+        <target>状态</target>
+        <note>Status</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0cfcadd46f4a4aa6c275dd2397ce3e888f1f5751" datatype="html">
+        <trans-unit></trans-unit>
+        <source>due</source>
+        <target>到期时间</target>
+        <note>Due</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="18ad6b6a675e862bbc67ecc861357c3a09bad488" datatype="html">
+        <trans-unit></trans-unit>
+        <source>color</source>
+        <target>颜色</target>
+        <note>Color</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a24fe5b4b02e18383d0fc2da09f7ab88eec32838" datatype="html">
+        <trans-unit></trans-unit>
+        <source>description</source>
+        <target>描述</target>
+        <note>Description</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fb40d5591b45699bcac1f9c90bf3b89e68005b64" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Save</source>
+        <target>保存</target>
+        <note>save</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="acdef561684d8f8ab446ef7d115c23f604f32ab6" datatype="html">
+        <trans-unit></trans-unit>
+        <source>More options</source>
+        <target>更多选项</target>
+        <note>more-options</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5f4781d33cd7876a0d40454463440867a1502506" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Discard draft</source>
+        <target>删除草稿</target>
+        <note>discard-draft</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="63deab8bfa0f747bd4b551585dace6f71db598ee" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Label as</source>
+        <target>标签</target>
+        <note>label-as</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="facdc6c98daeb0a34f858e5f0a7c40876dc4edf9" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Label</source>
+        <target>标签</target>
+        <note>label</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a3143e2f06b8b219b6bcb573543b0d7aaff0ea91" datatype="html">
+        <trans-unit></trans-unit>
+        <source>  </source>
+        <target>  </target>
+        <note>new-message</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3b88757380c3f452c8ad22fe97ac678f90e91107" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Default full screen</source>
+        <target>默认全屏</target>
+        <note>default-full-screen</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="76b612f808a462e63286428206dc90b81f728470" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Label as :</source>
+        <target>标签为: </target>
+        <note>label-as</note>
+        <note>Compose</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8553291d04c4cbd53ce5158a831a8bbd1ac8e6ad" datatype="html">
+        <trans-unit></trans-unit>
+        <source>New Project</source>
+        <target>新项目</target>
+        <note>new-project</note>
+        <note>siderbar</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="febdefcc6f6f35b035db0cbff9b863d445fc562d" datatype="html">
+        <trans-unit></trans-unit>
+        <source>All</source>
+        <target>所有</target>
+        <note>all</note>
+        <note>sidebar</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8a6b1fd18712b06ff2b943fe0d0f78f7860cf51b" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Less</source>
+        <target>隐藏部分标签</target>
+        <note>less</note>
+        <note>sidebar</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8ad3126263db3a04ac7749ac8d5d790c68f539c6" datatype="html">
+        <trans-unit></trans-unit>
+        <source>More</source>
+        <target>显示更多标签</target>
+        <note>more</note>
+        <note>sidebar</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="39a1ae6cdac02c326d839eb8b6d3ac7671da313b" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Trash</source>
+        <target>回收站</target>
+        <note>Trash</note>
+        <note>sidebar</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fe027a3d85214af3d076540bcdd87a56161a333c" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Manage project</source>
+        <target>管理项目</target>
+        <note>manager-project</note>
+        <note>sidebar</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6469924bbf31d442a5573b9b2493eaa0469914b2" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Create new label</source>
+        <target>创建新标签</target>
+        <note>create-new-label</note>
+        <note>sidebar</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
