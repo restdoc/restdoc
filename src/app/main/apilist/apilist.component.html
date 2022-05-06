@@ -23,11 +23,9 @@
                         </div>
                     </div>
                     <div class="group-more">
-                        <div>
-                            <span #labelMenuTrigger="matMenuTrigger" [matMenuTriggerFor]="boardMenu" [matMenuTriggerData]="{board: board}" (menuOpened)="boardMenuOpened(board);" (menuClosed)="boardMenuClosed(board)" class="restdoc-header-btn" i18n-matTooltip matTooltip="Labels">
-                                <i class="material-icons">more_horiz</i>
-                            </span>
-                        </div>
+                        <span #labelMenuTrigger="matMenuTrigger" [matMenuTriggerFor]="boardMenu" [matMenuTriggerData]="{board: board}" (menuOpened)="boardMenuOpened(board);" (menuClosed)="boardMenuClosed(board)" class="restdoc-header-btn" i18n-matTooltip matTooltip="Labels">
+                            <i class="material-icons">more_horiz</i>
+                        </span>
                     </div>
                 </div>
                 <div class="adding-table" *ngIf="topAddingAPI == board.info.id">
@@ -47,8 +45,13 @@
                             <div (click)="emptyClick()" (contextmenu)="onContextMenu($event, board, item)" class="card-container-table" [ngClass]="{'composed': composeId == item.id}">
                                 <div class="card-info-table">
                                     <div [id]="item.id" class="card-item-table" draggable="false" (click)="detail($event, board, item)">
-                                        <div class="card-title-table">
-                                            {{ item.name }}
+                                        <div class="card-title-table ">
+                                            <div class="api-method">
+                                                {{item.method}}
+                                            </div>
+                                            <div class="api-name">
+                                                {{ item.name }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -414,13 +417,13 @@
                 <mat-tab [id]="request.id" class="tab-item" [label]=" request.name" *ngFor="let request of requests">
                     <ng-template mat-tab-label class="request-tabs-label">
                         <div class="request-label" (mouseenter)="hoverTab(request, true)" (mouseleave)="hoverTab(request, false)">
-                            <div>
+                            <div class="request-title">
                                 <span>{{ request.name }}</span>
                             </div>
-                            <div *ngIf="hoveredRequestId == request.id" (click)="closeRequest(request)" class="close-icon">
+                            <div *ngIf="hoveredRequestId == request.id" (click)="closeRequest(request)" class="request-close close-icon">
                                 <i class="material-icons">close</i>
                             </div>
-                            <div *ngIf="hoveredRequestId != request.id" class="close-icon-placeholder">
+                            <div *ngIf="hoveredRequestId != request.id" (click)="emptyClick()" class="request-close close-icon-placeholder">
                                 <i class="material-icons">close</i>
                             </div>
                         </div>
@@ -463,7 +466,7 @@
                                     <mat-tab-group class="request-option" [selectedIndex]="0" animationDuration="0ms">
                                         <mat-tab label="params">
                                             <div class="params">
-                                                <div class="param-item normal-param-item" *ngFor="let param of request.params">
+                                                <div class="param-item normal-param-item" *ngFor="let param of request.params; let i = index">
                                                     <div class="field-enabled">
                                                         <div *ngIf="param.enabled" (click)="toggleParam(param)">
                                                             <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
@@ -471,6 +474,9 @@
                                                         <div *ngIf="!param.enabled" (click)="toggleParam(param)">
                                                             <mat-pseudo-checkbox> </mat-pseudo-checkbox>
                                                         </div>
+                                                    </div>
+                                                    <div class="delete-param" (click)="deleteParam(request, i)">
+                                                        <i class="material-icons">delete_outline</i>
                                                     </div>
                                                     <div class="field-key">
                                                         <input [(ngModel)]="param.key" class="field-key-input" placeholder="key" />
@@ -490,6 +496,9 @@
                                                         <div *ngIf="!defaultParamStatus" (click)="toggleDefaultParamStatus()">
                                                             <mat-pseudo-checkbox> </mat-pseudo-checkbox>
                                                         </div>
+                                                    </div>
+                                                    <div class="delete-param disabled">
+                                                        <i class="material-icons">delete_outline</i>
                                                     </div>
                                                     <div class="field-key">
                                                         <input [(ngModel)]="defaultParamKey" (keyup)="addParam($event, request, 'key')" />
@@ -533,7 +542,7 @@
                                         <mat-tab label="settings"> </mat-tab>
                                     </mat-tab-group>
                                 </div>
-                                <div class="response">
+                                <div class="response-parts">
                                     <mat-tab-group class="request-response" [selectedIndex]="0" animationDuration="0ms">
                                         <mat-tab label="response">
                                             <div>
@@ -563,13 +572,30 @@
                         </mat-tab>
                         <mat-tab label="test">
                             <div>
-                                <div class="methods">
-                                    <div> GET </div>
-                                    <div>
-                                        <input [(ngModel)]="request.url" />
+                                <div class="url-parts">
+                                    <div class="methods">
+                                        <mat-form-field appearance="fill" class="methods-form">
+                                            <mat-select [(value)]="request.method">
+                                                <mat-option *ngFor="let method of methods" [value]="method">
+                                                    {{method}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
                                     </div>
-                                    <div>
-                                        <button> Send </button>
+                                    <div class="endpoints">
+                                        <mat-form-field appearance="fill" class="endpoints-form">
+                                            <mat-select [(value)]="currentEndpoint">
+                                                <mat-option *ngFor="let endpoint of projectEndpoints" [value]="endpoint">
+                                                    {{endpoint.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="path">
+                                        <input [(ngModel)]="request.path" (ngModelChange)="updateAPIPath(request)" [ngModelOptions]="{updateOn: 'blur'}" spellcheck="false" />
+                                    </div>
+                                    <div class="send">
+                                        <button mat-button class="send-button" (click)="Send(request)">Send</button>
                                     </div>
                                 </div>
                                 <div class="">

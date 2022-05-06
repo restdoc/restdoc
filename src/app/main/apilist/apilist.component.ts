@@ -77,9 +77,6 @@ import {
 
 } from "../main.component";
 import { UtilsService  } from "../main.service";
-import { createBindingElement, isTemplateExpression } from "typescript";
-import { P } from "@angular/cdk/keycodes";
-import { color } from "@milkdown/theme-nord";
 
 @Component({
   selector: "app-apilist",
@@ -773,8 +770,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
     if (
       (charCode > 47 && charCode < 58) ||
       (charCode > 64 && charCode < 91) ||
-      (charCode > 96 && charCode < 123) ||
-      charCode == 8
+      (charCode > 96 && charCode < 123)
     )
       return true;
     else return false;
@@ -794,10 +790,16 @@ export class APIlistComponent implements OnInit, OnDestroy {
     }, 0);
   }
 
+
   addParam(event, request, type) {
+    if (event.keyCode) {
+      console.log(event.keyCode);
+    }
     if (!this.isValidInput(event.keyCode)) {
       return;
     }
+
+
 
     if (event.key && event.key != "") {
       var param = { key: "", value: "", desc: "", disabled: false };
@@ -823,9 +825,16 @@ export class APIlistComponent implements OnInit, OnDestroy {
         default:
           return;
       }
+      param["enabled"] = true;
       request.params.push(param);
       this.cdr.markForCheck();
       this.focusNode(parentName, childName);
+    }
+  }
+
+  deleteParam(request: APIElement, i: number) {
+    if (request) {
+      request.params.splice(i, 1);
     }
   }
 

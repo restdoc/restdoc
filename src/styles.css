@@ -46,6 +46,8 @@
   --fold-br-color: #e5e5e5;
   --fold-bg-color: #fbfbfb;
   --color-br-color: #939393;
+  --group-bg-color: #f9f9f9;
+  --active-panel-bg-color: #f9f9f9;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -91,6 +93,8 @@
     --fold-br-color: #e5e5e5;
     --fold-bg-color: #fbfbfb;
     --color-br-color: #939393;
+    --group-bg-color: #f9f9f9;
+    --active-panel-bg-color: #f9f9f9;
   }
 }
 
@@ -103,6 +107,10 @@ body {
 body {
   margin: 0;
   font-family: "Helvetica Neue", sans-serif;
+}
+
+input:focus-visible {
+    outline: var(--main-btn-bg-color) auto 1px;
 }
 
 .mat-menu-panel {
@@ -172,23 +180,23 @@ body {
 }
 
 .mat-pseudo-checkbox {
-  color: #adadad !important;
+  color: var(--main-btn-bg-color) !important;
 }
 
 .mat-pseudo-checkbox::after {
-  color: #adadad !important;
+  color: var(--main-btn-text-color) !important;
 }
 
 .mat-pseudo-checkbox-checked,
 .mat-pseudo-checkbox-indeterminate,
 .mat-accent .mat-pseudo-checkbox-checked,
 .mat-accent .mat-pseudo-checkbox-indeterminate {
-  background: transparent !important;
+  background: var(--main-btn-bg-color) !important;
 }
 
 .mat-pseudo-checkbox.mat-pseudo-checkbox-checked,
 .mat-pseudo-checkbox.mat-pseudo-checkbox-indeterminate {
-  border-color: #adadad !important;
+  border-color: var(--main-btn-bg-color) !important;
 }
 
 .toast-container .ngx-toastr {
