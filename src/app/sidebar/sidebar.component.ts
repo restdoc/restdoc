@@ -208,7 +208,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.selectedLabel = label;
     const dialogRef = this.dialog.open(ProjectCreateComponent, {
       width: "600px",
-      scrollStrategy: new NoopScrollStrategy()
+      scrollStrategy: new NoopScrollStrategy(),
     });
 
     dialogRef.afterClosed().subscribe((result) => {});
