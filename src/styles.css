@@ -2,7 +2,6 @@
 
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "~ngx-toastr/toastr";
-@import "~@ctrl/ngx-emoji-mart/picker";
 @import "~codemirror/lib/codemirror";
 @import '~codemirror/theme/mdn-like.css';
 @import '~codemirror/addon/fold/foldgutter.css';
@@ -155,7 +154,7 @@ input:focus-visible {
   src: local("Material Icons"), local("MaterialIcons-Regular"),
     url("https://fonts.gstatic.com/s/materialicons/v121/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2")
       format("woff2"),
-    url("/mail/en-US/assets/fonts/MaterialIcons-Regular.woff2") format("woff2"),
+    url("/restdoc/zh-hans/assets/fonts/MaterialIcons-Regular.woff2") format("woff2"),
     url("/assets/fonts/MaterialIcons-Regular.woff2") format("woff2");
 }
 

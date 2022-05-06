@@ -1047,10 +1047,3 @@ table.header tr {
 blockquote:focus {
     outline: none !important;
 }
-
-:host ::ng-deep .emoji-menu {
-    max-width: none !important;
-    max-height: 300px !important;
-    overflow-x: hidden !important;
-    overflow-y: hidden !important;
-}

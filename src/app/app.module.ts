@@ -13,15 +13,11 @@ import { MatTableModule } from "@angular/material/table";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { MatInputModule } from "@angular/material/input";
 
-import { PickerModule } from "@ctrl/ngx-emoji-mart";
-import { EmojiModule } from "@ctrl/ngx-emoji-mart/ngx-emoji";
-
 import { APP_BASE_HREF, DatePipe } from "@angular/common";
 import { from } from "rxjs";
 
 import { NgxIndexedDBModule, DBConfig } from "ngx-indexed-db";
 import { ToastrModule } from "ngx-toastr";
-import { MilkdownPlugin } from "@milkdown/core";
 import { CodemirrorModule } from "@ctrl/ngx-codemirror";
 
 import { MainComponent, TruncatePipe } from "./main/main.component";
@@ -89,7 +85,6 @@ var hotkeyOption: IHotkeyOptions = {
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    PickerModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

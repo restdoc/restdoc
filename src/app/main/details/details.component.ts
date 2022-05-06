@@ -34,9 +34,6 @@ import { Observable, of, Subscription, Subject } from "rxjs";
 import { delay, map, startWith, tap } from "rxjs/operators";
 
 import { ToastrService } from "ngx-toastr";
-import { PickerModule } from "@ctrl/ngx-emoji-mart";
-
-import { ParsedMailbox, parseOneAddress } from "email-addresses";
 
 import { environment } from "src/environments/environment";
 import { SidebarService } from "./../../sidebar/sidebar.service";

@@ -29,16 +29,10 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "node_modules/monaco-editor/min/vs",
-                "output": "/lib/vs"
-              }
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/@ctrl/ngx-emoji-mart/picker.css"
+              "src/styles.css"
             ],
             "scripts": []
           },

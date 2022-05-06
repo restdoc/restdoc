@@ -7,7 +7,8 @@ i18n:
 pack:
 	#ng build --prod --aot --build-optimizer --localize --base-href=/mail/
 	ng build --prod --aot --optimization --build-optimizer --localize
-	#rm -rf ../restdoc-server/restdoc/*
+	mv dist/restdoc/en-US dist/restdoc/en-us  # rename
+	rm -rf ../restdoc-server/restdoc/*
 	cp -r dist/restdoc/* ../restdoc-server/restdoc/
 	#rm -rf ../restdoc-server/static/restdoc/assets  && cp -r dist/restdoc/en-US/assets ../restdoc-server/static/restdoc/assets
 	#cp -r dist/restdoc/en-US/assets ../restdoc-server/static/restdoc/assets
