@@ -10,9 +10,19 @@
       "sourceRoot": "src",
       "prefix": "app",
       "i18n": {
-        "sourceLocale": "en-US",
         "locales": {
-          "zh-hans": "src/locale/messages.zh-hans.xlf"
+          "zh-hans": {
+            "translation": "src/locale/messages.zh-hans.xlf",
+            "baseHref": "/restdoc/"
+          },
+          "en-us": {
+            "translation": "src/locale/messages.en-us.xlf",
+            "baseHref": "/restdoc/"
+          },
+          "ja": {
+            "translation": "src/locale/messages.ja.xlf",
+            "baseHref": "/restdoc/"
+          }
         }
       },
       "architect": {
@@ -34,7 +44,13 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -70,34 +86,23 @@
             "zh-hans": {
               "localize": ["zh-hans"],
               "aot": true,
-              "outputPath": "dist/restdoc/zh-hans",
-              "i18nFile": "src/locale/messages.zh-hans.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "zh-hans",
-              "i18nMissingTranslation": "error",
-              "baseHref": "/restdoc/"
+              "outputPath": "dist/restdoc",
+              "i18nMissingTranslation": "error"
             },
             "en-us": {
               "localize": ["en-us"],
               "aot": true,
-              "outputPath": "dist/restdoc/en-us",
-              "i18nFile": "src/locale/messages.en-us.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "en-us",
-              "i18nMissingTranslation": "error",
-              "baseHref": "/restdoc/"
+              "outputPath": "dist/restdoc",
+              "i18nMissingTranslation": "error"
             },
             "ja": {
               "localize": ["ja"],
               "aot": true,
-              "outputPath": "dist/restdoc/ja",
-              "i18nFile": "src/locale/messages.ja.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "ja",
-              "i18nMissingTranslation": "error",
-              "baseHref": "/restdoc/"
+              "outputPath": "dist/restdoc",
+              "i18nMissingTranslation": "error"
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
