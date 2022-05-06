@@ -13,15 +13,15 @@
         "locales": {
           "zh-hans": {
             "translation": "src/locale/messages.zh-hans.xlf",
-            "baseHref": "/restdoc/"
+            "baseHref": "/zh-hans/"
           },
           "en-us": {
             "translation": "src/locale/messages.en-us.xlf",
-            "baseHref": "/restdoc/"
+            "baseHref": "/en-us/"
           },
           "ja": {
             "translation": "src/locale/messages.ja.xlf",
-            "baseHref": "/restdoc/"
+            "baseHref": "/ja/"
           }
         }
       },
