@@ -10,7 +10,6 @@ import { ajax } from "rxjs/ajax";
 import { filter, map, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 import { environment } from "./../../environments/environment";
-import { identifierModuleUrl } from "@angular/compiler";
 
 class HttpUrlPercentEncodingCodec implements HttpParameterCodec {
   encodeKey(key: string): string {

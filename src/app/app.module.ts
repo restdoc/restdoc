@@ -16,7 +16,6 @@ import { MatInputModule } from "@angular/material/input";
 import { APP_BASE_HREF, DatePipe } from "@angular/common";
 import { from } from "rxjs";
 
-import { NgxIndexedDBModule, DBConfig } from "ngx-indexed-db";
 import { ToastrModule } from "ngx-toastr";
 import { CodemirrorModule } from "@ctrl/ngx-codemirror";
 
@@ -37,20 +36,6 @@ import { IHotkeyOptions } from "./third/angular2-hotkeys/hotkey.options";
 import { ProjectRenameComponent } from "./dialog/project-rename/project-rename.component";
 import { ProjectEndpointComponent } from "./dialog/project-endpoint/project-endpoint.component";
 
-const dbConfig: DBConfig = {
-  name: "hedwiDb",
-  version: 1,
-  objectStoresMeta: [
-    {
-      store: "labels",
-      storeConfig: { keyPath: "id", autoIncrement: false },
-      storeSchema: [
-        { name: "id", keypath: "id", options: { unique: true } },
-        { name: "labelIds", keypath: "labelIds", options: { unique: false } },
-      ],
-    },
-  ],
-};
 
 var hotkeyOption: IHotkeyOptions = {
   disableCheatSheet: false,
@@ -95,7 +80,6 @@ var hotkeyOption: IHotkeyOptions = {
         MatInputModule,
         CodemirrorModule,
         // [RouterModule.forRoot(appRoutes)],
-        NgxIndexedDBModule.forRoot(dbConfig),
         ToastrModule.forRoot({
             timeOut: 3000,
             positionClass: "toast-bottom-left",

@@ -37,7 +37,6 @@ import { MatMenuTrigger } from "@angular/material/menu";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormGroup, FormBuilder } from "@angular/forms";
-import { NgxIndexedDBService } from "ngx-indexed-db";
 import { from, Subscription, Observable, of, Subject } from "rxjs";
 import { ajax } from "rxjs/ajax";
 import {
@@ -237,7 +236,6 @@ export class APIlistComponent implements OnInit, OnDestroy {
     private headerService: HeaderService,
     private sharedService: SharedService,
     private cdr: ChangeDetectorRef,
-    private dbService: NgxIndexedDBService,
     private utilsService: UtilsService,
     private datepipe: DatePipe
   ) {}
