@@ -64,9 +64,9 @@ export class UtilsService {
         ps.push({ key: "x", value: "y", desc: "", enabled: false, required: true });
 
         var headers: HeaderElement[] = [];
-        headers.push({ key: "x", value: "y", desc: "" });
+        headers.push({ key: "x", value: "y", desc: "" , enabled: true});
 
-        let resp: ResponseElement = { body: "", headers: [] };
+        let resp: ResponseElement = { body: "", headers: [] , contentType: "", responseUrl: ""};
 
         let card: APIElement = {
           id: id,
@@ -84,6 +84,51 @@ export class UtilsService {
           response: resp,
         };
         return card
+  }
+
+  formatContentType(_contentType: string) : string {
+    var contentType = ""
+    if (_contentType == "") {
+      return contentType
+    }
+
+    var trimed = _contentType.trim().toLowerCase();
+    let arr = _contentType.split(";");
+    if (arr.length > 1) {
+      trimed = arr[0];
+    }
+    switch (trimed) {
+      case "application/json":
+        contentType = "json";
+        break;
+      case "application/javascript":
+        contentType = "json";
+        break;
+      case "application/xml":
+        contentType = "xml";
+        break;
+      case "text/javascript":
+        contentType = "json";
+        break;
+      case "text/html":
+        contentType = "html";
+        break;
+      case "text/css":
+        contentType = "plain";
+        break;
+      case "text/csv":
+        contentType = "plain";
+        break;
+      case "text/plain":
+        contentType = "plain";
+        break;
+      case "text/xml":
+        contentType = "plain";
+        break;
+      default:
+        break;
+    }
+    return contentType;
   }
 
   

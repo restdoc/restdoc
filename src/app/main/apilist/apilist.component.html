@@ -515,6 +515,17 @@
                                         <mat-tab label="auth"> </mat-tab>
                                         <mat-tab label="headers">
                                             <div class="header-item normal-header-item" *ngFor="let header of request.headers">
+                                                <div class="field-enabled">
+                                                    <div *ngIf="header.enabled" (click)="toggleParam(header)">
+                                                        <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                    </div>
+                                                    <div *ngIf="!header.enabled" (click)="toggleParam(header)">
+                                                        <mat-pseudo-checkbox> </mat-pseudo-checkbox>
+                                                    </div>
+                                                </div>
+                                                <div class="delete-param" (click)="deleteHeader(request, i)">
+                                                    <i class="material-icons">delete_outline</i>
+                                                </div>
                                                 <div class="field-key">
                                                     <input [(ngModel)]="header.key" class="field-key-input" />
                                                 </div>
@@ -544,16 +555,19 @@
                                 </div>
                                 <div class="response-parts">
                                     <mat-tab-group class="request-response" [selectedIndex]="0" animationDuration="0ms">
-                                        <mat-tab label="response">
-                                            <div>
-                                                <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-                                                    <mat-button-toggle value="json">Json</mat-button-toggle>
-                                                    <mat-button-toggle value="raw">Raw</mat-button-toggle>
-                                                </mat-button-toggle-group>
-                                            </div>
-                                            <div class="body">
-                                                <ng-container *ngIf="request.response != null">
-                                                    <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
+                                        <mat-tab label="response" class="response-tab">
+                                            <div class="response-container">
+                                                <div class="format-type">
+                                                    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                                                        <mat-button-toggle value="json">JSON</mat-button-toggle>
+                                                        <mat-button-toggle value="xml">XML</mat-button-toggle>
+                                                        <mat-button-toggle value="raw">Raw</mat-button-toggle>
+                                                    </mat-button-toggle-group>
+                                                </div>
+                                                <div class="response-body">
+                                                    <ng-container *ngIf="request.response != null">
+                                                        <ng-container *ngIf="request.response.contentType == 'json'">
+                                                            <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
                                                         lineNumbers: true,
                                                         lineWrapping: true,
                                                         styleActiveLine: true,
@@ -561,11 +575,39 @@
                                                         foldGutter: true,
                                                         theme: 'mdn-like',
                                                         mode: 'javascript' }"></ngx-codemirror>
-                                                </ng-container>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="request.response.contentType == 'xml'">
+                                                            <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
+                                                        lineNumbers: true,
+                                                        lineWrapping: true,
+                                                        styleActiveLine: true,
+                                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                                        foldGutter: true,
+                                                        theme: 'mdn-like',
+                                                        mode: 'xml' }"></ngx-codemirror>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="request.response.contentType == 'html'">
+                                                            <!--
+                                                        <div [innerHTML]="request.response.body"></div>
+                                                        -->
+                                                            <iframe class="response-html" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" [src]="request.response.responseUrl | safe"></iframe>
+                                                        </ng-container>
+                                                    </ng-container>
+                                                </div>
                                             </div>
                                         </mat-tab>
                                         <mat-tab label="cookies"> </mat-tab>
-                                        <mat-tab label="headers"> </mat-tab>
+                                        <mat-tab label="headers">
+                                            <ng-container *ngIf="request.response != null">
+                                                <ul>
+                                                    <li *ngFor="let h of request.response.headers">
+                                                        <div>
+                                                            {{ h.key}} - {{ h.value}}
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </ng-container>
+                                        </mat-tab>
                                     </mat-tab-group>
                                 </div>
                             </div>

@@ -2,11 +2,17 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 import { DOCUMENT, PlatformLocation, DatePipe } from "@angular/common";
 import {
   Router,
+  UrlTree,
+  UrlSegment,
+  UrlSegmentGroup,
   ActivatedRoute,
+  PRIMARY_OUTLET,
+  DefaultUrlSerializer,
   Resolve,
   ActivatedRouteSnapshot,
   NavigationStart,
   NavigationEnd,
+  UrlSerializer,
 } from "@angular/router";
 import { HttpParams } from "@angular/common/http";
 import {
@@ -76,6 +82,7 @@ import {
 
 } from "../main.component";
 import { UtilsService  } from "../main.service";
+import { ValueConverter } from "@angular/compiler/src/render3/view/template";
 
 @Component({
   selector: "app-apilist",
@@ -164,7 +171,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   defaultParamKey = "";
   defaultParamValue = "";
   defaultParamDesc = "";
-  defaultParamStatus = true;
+  defaultParamStatus = false;
   defaultHeaderKey = "";
   defaultHeaderValue = "";
   defaultHeaderDesc = "";
@@ -196,9 +203,43 @@ export class APIlistComponent implements OnInit, OnDestroy {
         console.log("current request");
         console.log(request);
 
-        var resp: ResponseElement = { body: "", headers: [] };
-        resp.body = JSON.stringify(event.data.response.data, null, 4);
-        console.log(resp.body);
+        var resp: ResponseElement = { body: "", headers: [] , contentType: "", responseUrl: ""};
+        console.log(event.data);
+       
+        //
+        let _headers = event.data.response.headers;
+        let rawContentType = _headers["content-type"];
+        let contentType = this.utilsService.formatContentType(rawContentType);
+        resp.contentType = contentType
+        switch (contentType) {
+          case "json":
+            resp.body = JSON.stringify(event.data.response.data, null, 4);
+            console.log(resp.body);
+            break;
+          case "xml":
+            let formated = this.prettifyXml(event.data.response.data)
+            console.log(formated);
+            resp.body = formated;
+            break;
+          default:
+        }
+
+        let respUrl = event.data.response.responseURL;
+        resp.responseUrl = respUrl;
+        console.log(respUrl);
+
+        var headers = [];
+        for (let key in _headers) {
+          let value = _headers[key];
+          let header = {"key": key, "value": value};
+          
+          headers.push(header);
+        }
+
+        
+        console.log(headers);
+        console.log(resp);
+        resp.headers = headers;
         request.response = resp;
         //this.cdr.markForCheck();
       }
@@ -212,10 +253,16 @@ export class APIlistComponent implements OnInit, OnDestroy {
         console.log("current request");
         console.log(request);
 
-        var resp: ResponseElement = { body: "", headers: [] };
-        resp.body = JSON.stringify(event.data.error, null, 4);
+        let response = event.data.error;
+        
+        var resp: ResponseElement = { body: "", headers: [] , contentType: "", responseUrl: ""};
+        resp.body = JSON.stringify(response, null, 4);
         console.log(resp.body);
+
         request.response = resp;
+        let respUrl = response.response.config.url;
+        console.log(respUrl);
+        resp.responseUrl = respUrl;
         //this.cdr.markForCheck();
 
         //this.
@@ -357,6 +404,30 @@ export class APIlistComponent implements OnInit, OnDestroy {
     event.stopPropagation();
   }
 
+
+  prettifyXml(sourceXml: string) : string {
+    var xmlDoc = new DOMParser().parseFromString(sourceXml, 'application/xml');
+    var xsltDoc = new DOMParser().parseFromString([
+        // describes how we want to modify the XML - indent everything
+        '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform">',
+        '  <xsl:strip-space elements="*"/>',
+        '  <xsl:template match="para[content-style][not(text())]">', // change to just text() to strip space in text nodes
+        '    <xsl:value-of select="normalize-space(.)"/>',
+        '  </xsl:template>',
+        '  <xsl:template match="node()|@*">',
+        '    <xsl:copy><xsl:apply-templates select="node()|@*"/></xsl:copy>',
+        '  </xsl:template>',
+        '  <xsl:output indent="yes"/>',
+        '</xsl:stylesheet>',
+    ].join('\n'), 'application/xml');
+
+    var xsltProcessor = new XSLTProcessor();    
+    xsltProcessor.importStylesheet(xsltDoc);
+    var resultDoc = xsltProcessor.transformToDocument(xmlDoc);
+    var resultXml = new XMLSerializer().serializeToString(resultDoc);
+    return resultXml;
+  }
+
   
   progress(board: BoardElement): string {
     //return this.firstName + this.lastName;
@@ -445,7 +516,36 @@ export class APIlistComponent implements OnInit, OnDestroy {
   updateAPIPath(request: APIElement) {
     console.log(request);
 
-    let params = {"id": request.id, "path": request.path};
+
+    //check if is url
+    //
+
+    var path = "";
+    var uri = new URL(request.path);
+    if (uri) {
+      console.log(uri);
+      path = uri.pathname;
+      if (uri.search != "") {
+        var searchParams = new URLSearchParams(uri.search);
+        console.log(searchParams);
+      }
+      request.path = path;
+    }
+
+
+    
+    const tree: UrlTree = this.router.parseUrl(uri.search);
+    console.log(tree);
+    const ps = tree.queryParams;
+    for (var k in ps) {
+      console.log([k, ps[k]]);
+      let value = ps[k];
+      let param: ParamElement = {key: k, value: value, desc: "", enabled: true, required: false };
+      request.params.push(param)
+      //
+    }
+
+    let params = {"id": request.id, "path": path};
 
     this.sharedService.updateAPI(params).subscribe((data: any) => {
       this.sharedService.checkResponse(location, data);
@@ -892,7 +992,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
     card.params = ps;
 
     var headers: HeaderElement[] = [];
-    headers.push({ key: "x", value: "y", desc: "" });
+    headers.push({ key: "x", value: "y", desc: "", enabled: true });
     card.headers = headers;
 
     var exist = false;
@@ -1965,6 +2065,11 @@ export class APIlistComponent implements OnInit, OnDestroy {
   toggleDefaultParamStatus() {
     this.defaultParamStatus = !this.defaultParamStatus;
   }
+
+toggleHeader(header: HeaderElement) {
+    header.enabled = !header.enabled;
+  }
+
 
   hoverTab(request: APIElement, hovered: boolean) {
 

@@ -19,7 +19,7 @@ import { from } from "rxjs";
 import { ToastrModule } from "ngx-toastr";
 import { CodemirrorModule } from "@ctrl/ngx-codemirror";
 
-import { MainComponent, TruncatePipe } from "./main/main.component";
+import { MainComponent, TruncatePipe, SafePipe } from "./main/main.component";
 import { MaterialModule } from "./material.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
@@ -63,6 +63,7 @@ var hotkeyOption: IHotkeyOptions = {
         UploadFileComponent,
         SnoozeDateTimeComponent,
         TruncatePipe,
+        SafePipe,
         ProjectRenameComponent,
         ProjectEndpointComponent,
     ],

@@ -7,6 +7,8 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Subscription, from } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
+import { DomSanitizer } from "@angular/platform-browser"; 
+
 
 import { SidebarService } from "../sidebar/sidebar.service";
 import { Hotkey } from "./../third/angular2-hotkeys/hotkey.model";
@@ -78,6 +80,7 @@ export interface HeaderElement {
   key: string;
   value: string;
   desc: string;
+  enabled: boolean;
 }
 
 export interface ParamElement {
@@ -90,7 +93,9 @@ export interface ParamElement {
 
 export interface ResponseElement {
   body: string;
+  contentType: string;
   headers: HeaderElement[];
+  responseUrl: string;
 }
 
 export interface BoardInfo {
@@ -126,6 +131,24 @@ export const CardColors: string[] = [
   "#FFB72B",
   "#427fed",
 ];
+
+
+@Pipe({
+  name: 'safe'
+})
+
+export class SafePipe implements PipeTransform {
+
+  constructor(private sanitizer: DomSanitizer) { }
+
+  transform(url) {
+
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
+  }
+
+}
+
 
 
 @Pipe({

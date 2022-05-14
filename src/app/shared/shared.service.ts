@@ -103,7 +103,7 @@ export class SharedService {
   }
 
   createProject(data) {
-    let apiEndpoints = "api/restdoc/project/add";
+    let apiEndpoints = "api/restdoc/project/create";
     let params = this.formatParams(data);
     return this.http.post(
       this.baseurl + apiEndpoints,
@@ -145,7 +145,7 @@ export class SharedService {
   }
 
   addAPIToGroup(data) {
-    let apiEndpoints = "api/restdoc/api/add";
+    let apiEndpoints = "api/restdoc/api/create";
     let params = this.formatParams(data);
     return this.http.post(
       this.baseurl + apiEndpoints,
@@ -175,7 +175,7 @@ export class SharedService {
   }
 
   addGroupToProject(data) {
-    let apiEndpoints = "api/restdoc/group/add";
+    let apiEndpoints = "api/restdoc/group/create";
     let params = this.formatParams(data);
     return this.http.post(
       this.baseurl + apiEndpoints,
