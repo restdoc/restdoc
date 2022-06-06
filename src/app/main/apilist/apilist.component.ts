@@ -63,6 +63,8 @@ import {
 } from "@angular/cdk/drag-drop";
 import { MatInputModule } from "@angular/material/input";
 
+import { ToastrService } from "ngx-toastr";
+
 import { HeaderService } from "../../header/header.service";
 import { SharedService } from "../../shared/shared.service";
 import { SidebarService } from "../../sidebar/sidebar.service";
@@ -113,6 +115,8 @@ export class APIlistComponent implements OnInit, OnDestroy {
   private sidebarLabelSubscription: Subscription;
   private styleSubscription: Subscription;
 
+
+  pathUpdateSucceed = $localize`The path has been updated successfully.`;
   listMode = true;
   viewType = "overview";
   keyword = "";
@@ -172,9 +176,18 @@ export class APIlistComponent implements OnInit, OnDestroy {
   defaultParamValue = "";
   defaultParamDesc = "";
   defaultParamStatus = false;
+  defaultFormDataKey = "";
+  defaultFormDataValue = "";
+  defaultFormDataDesc = "";
+  defaultFormDataStatus = false;
+  defaultFormUrlencodedKey = "";
+  defaultFormUrlencodedValue = "";
+  defaultFormUrlencodedDesc = "";
+  defaultFormUrlencodedStatus = false;
   defaultHeaderKey = "";
   defaultHeaderValue = "";
   defaultHeaderDesc = "";
+  defaultHeaderStatus = false;
   editorOptions = { theme: "vs-dark", language: "javascript" };
   code: string = 'function x() {\nconsole.log("Hello world!");\n}';
   originalCode: string = "function x() { // TODO }";
@@ -255,15 +268,20 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
         let response = event.data.error;
         
-        var resp: ResponseElement = { body: "", headers: [] , contentType: "", responseUrl: ""};
+        var resp: ResponseElement = { body: "", headers: [] , contentType: "json", responseUrl: ""};
         resp.body = JSON.stringify(response, null, 4);
         console.log(resp.body);
 
-        request.response = resp;
-        let respUrl = response.response.config.url;
+        console.log(response);
+        console.log(event.data);
+        let respUrl = event.data.data.url;
         console.log(respUrl);
         resp.responseUrl = respUrl;
-        //this.cdr.markForCheck();
+
+        console.log(resp);
+        request.response = resp;
+
+        this.cdr.markForCheck();
 
         //this.
         //chrome.runtime.sendMessage(event.data); // broadcasts it to rest of extension, or could just broadcast event.data.payload...
@@ -284,7 +302,8 @@ export class APIlistComponent implements OnInit, OnDestroy {
     private sharedService: SharedService,
     private cdr: ChangeDetectorRef,
     private utilsService: UtilsService,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -521,9 +540,24 @@ export class APIlistComponent implements OnInit, OnDestroy {
     //
 
     var path = "";
-    var uri = new URL(request.path);
+    var uri: URL = {
+      pathname: request.path,
+      hash: "",
+      host: "",
+      hostname: "",
+      href: "",
+      origin: "",
+      password: "",
+      port: "",
+      protocol: "",
+      search: "",
+      searchParams: undefined,
+      username: "",
+      toJSON: function (): string {
+        throw new Error("Function not implemented.");
+      }
+    };
     if (uri) {
-      console.log(uri);
       path = uri.pathname;
       if (uri.search != "") {
         var searchParams = new URLSearchParams(uri.search);
@@ -557,6 +591,11 @@ export class APIlistComponent implements OnInit, OnDestroy {
         //board.apis.push(api);
         //this.bottomAddingAPI = "";
         //this.newBottomAPI = "";
+
+        let message = this.pathUpdateSucceed
+        this.toastr.success(message);
+
+        
         this.cdr.markForCheck();
       }
     });
@@ -936,13 +975,33 @@ export class APIlistComponent implements OnInit, OnDestroy {
     }
   }
 
+  deleteFormData(request: APIElement, i: number) {
+    if (request) {
+      request.formData.splice(i, 1);
+    }
+  }
+
+
+  deleteFormUrlencoded(request: APIElement, i: number) {
+    if (request) {
+      request.formUrlencoded.splice(i, 1);
+    }
+  }
+
+
+  deleteHeader(request: APIElement, i: number) {
+    if (request) {
+      request.headers.splice(i, 1);
+    }
+  }
+
   addHeader(event, request, type) {
     if (!this.isValidInput(event.keyCode)) {
       return;
     }
 
     if (event.key && event.key != "") {
-      var header = { key: "", value: "", desc: "" };
+      var header = { key: "", value: "", desc: "", enabled: false };
 
       let parentName = "normal-header-item";
       var childName = "field-key-input";
@@ -965,11 +1024,95 @@ export class APIlistComponent implements OnInit, OnDestroy {
         default:
           return;
       }
+      header.enabled = true;
       request.headers.push(header);
       this.cdr.markForCheck();
       this.focusNode(parentName, childName);
     }
   }
+
+    addFormData(event, request, type) {
+    if (event.keyCode) {
+      console.log(event.keyCode);
+    }
+    if (!this.isValidInput(event.keyCode)) {
+      return;
+    }
+
+
+
+    if (event.key && event.key != "") {
+      var param = { key: "", value: "", desc: "", disabled: false };
+
+      let parentName = "normal-param-item";
+      var childName = "field-key-input";
+      switch (type) {
+        case "key":
+          param[type] = event.key;
+          this.defaultFormDataKey = "";
+          childName = "field-" + type + "-input";
+          break;
+        case "value":
+          param[type] = event.key;
+          this.defaultFormDataValue = "";
+          childName = "field-" + type + "-input";
+          break;
+        case "desc":
+          param[type] = event.key;
+          this.defaultFormDataDesc = "";
+          childName = "field-" + type + "-input";
+          break;
+        default:
+          return;
+      }
+      param["enabled"] = true;
+      request.formData.push(param);
+      this.cdr.markForCheck();
+      this.focusNode(parentName, childName);
+    }
+  }
+
+addFormUrlencoded(event, request, type) {
+    if (event.keyCode) {
+      console.log(event.keyCode);
+    }
+    if (!this.isValidInput(event.keyCode)) {
+      return;
+    }
+
+
+
+    if (event.key && event.key != "") {
+      var param = { key: "", value: "", desc: "", disabled: false };
+
+      let parentName = "normal-param-item";
+      var childName = "field-key-input";
+      switch (type) {
+        case "key":
+          param[type] = event.key;
+          this.defaultFormUrlencodedKey = "";
+          childName = "field-" + type + "-input";
+          break;
+        case "value":
+          param[type] = event.key;
+          this.defaultFormUrlencodedValue = "";
+          childName = "field-" + type + "-input";
+          break;
+        case "desc":
+          param[type] = event.key;
+          this.defaultFormUrlencodedDesc = "";
+          childName = "field-" + type + "-input";
+          break;
+        default:
+          return;
+      }
+      param["enabled"] = true;
+      request.formUrlencoded.push(param);
+      this.cdr.markForCheck();
+      this.focusNode(parentName, childName);
+    }
+  }
+
 
 
   expandBoard(board: BoardElement) {}
@@ -982,8 +1125,6 @@ export class APIlistComponent implements OnInit, OnDestroy {
     this.updateAPIContextMenu(false);
 
     var mailId = card.id;
-
-    console.log(card);
 
     this.getCurrentEndpoint();
 
@@ -1326,11 +1467,31 @@ export class APIlistComponent implements OnInit, OnDestroy {
       ps[k] = v;
     }
 
-    console.log(url);
+
+    var formData = [];
+    var config = { method: request.method, url: url, params: ps, formData: formData };
+
+    if (request.method == "POST") {
+      for (let param of request.formData) {
+        let k = param.key;
+        let v = param.value;
+        formData.push({ key: k, value: v });
+      }
+
+      switch (request.post_type) {
+        case "form_data":
+          config.formData = formData;
+          break;
+        case "":
+        default:
+      }
+
+    }
+
     window.postMessage(
       {
         type: "__RESTDOC_EXTENSION_REQUEST__",
-        config: { url: url, params: ps },
+        config: config,
         text: "Hello from the webpage!",
       },
       "*"
@@ -2056,7 +2217,16 @@ export class APIlistComponent implements OnInit, OnDestroy {
     event.stopPropagation();
   }
 
-  
+
+  toggleDefaultFormUrlencodedStatus() {
+    this.defaultFormUrlencodedStatus = !this.defaultFormUrlencodedStatus;
+  }
+
+  toggleDefaultFormDataStatus() {
+    this.defaultFormDataStatus = !this.defaultFormDataStatus;
+  }
+
+
 
   toggleParam(param: ParamElement) {
     param.enabled = !param.enabled;
@@ -2066,9 +2236,15 @@ export class APIlistComponent implements OnInit, OnDestroy {
     this.defaultParamStatus = !this.defaultParamStatus;
   }
 
-toggleHeader(header: HeaderElement) {
+
+  toggleHeader(header: HeaderElement) {
     header.enabled = !header.enabled;
   }
+
+  toggleDefaultHeaderStatus() {
+    this.defaultHeaderStatus = !this.defaultHeaderStatus;
+  }
+
 
 
   hoverTab(request: APIElement, hovered: boolean) {
@@ -2083,6 +2259,12 @@ toggleHeader(header: HeaderElement) {
         this.hoveredRequestId = "";
     }
 
+  }
+
+  onPostTypeChanged(event, request: APIElement) {
+    //console.log(event);
+    let label = event.tab.textLabel;
+    request.post_type = label;
   }
 
 }

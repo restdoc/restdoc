@@ -112,6 +112,17 @@ export class SharedService {
     );
   }
 
+  createEndpoint(data) {
+    let apiEndpoints = "api/restdoc/endpoint/create";
+    let params = this.formatParams(data);
+    return this.http.post(
+      this.baseurl + apiEndpoints,
+      params,
+      this.httpOptions
+    );
+  }
+
+
   getAPIs(params: Map<string, string>) {
     let apiEndpoints = "api/restdoc/api/list";
     var options = { ...this.httpOptions };

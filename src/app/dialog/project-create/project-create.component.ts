@@ -116,6 +116,23 @@ export class ProjectCreateComponent implements OnInit {
         name: name,
         value: value,
     })
+
+    let params = { name: name, value: value};
+    this.labelSubscription = this.sharedService
+      .createEndpoint(params)
+      .subscribe((data: any) => {
+        console.log(data);
+        this.sharedService.checkResponse(location, data);
+
+        if (!data || data.code != 0) {
+          //let message = this.labelCreateFailure;
+          let message = "add endpoint error";
+          this.toastr.success(message, "");
+          return;
+        }
+      })
+
+
     var endpoints = this.getEndpoints();  //ref 
     endpoints.push(endPoint);
 
@@ -130,6 +147,7 @@ export class ProjectCreateComponent implements OnInit {
     var name = this.labelForm.get("name");
     var label = name.value;
     console.log(name);
+    console.log(this.selectedTeamId);
     if (this.selectedTeamId == "") {
       return;
     }

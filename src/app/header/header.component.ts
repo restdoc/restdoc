@@ -264,7 +264,8 @@ export class HeaderComponent implements OnInit {
 
     let label = "_createLabel";
     const dialogRef = this.dialog.open(ProjectEndpointComponent, {
-      width: "500px",
+      width: "800px",
+      height: "600px",
       scrollStrategy: new NoopScrollStrategy()
     });
     dialogRef.componentInstance.projectId = this.projectId;

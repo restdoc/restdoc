@@ -47,6 +47,10 @@ export class UtilsService {
         let color = detail.color;
         let path = detail.path;
         let host = detail.host;
+      var post_type = detail.post_type;
+      if (!post_type) {
+        post_type = "form_data";
+      }
 
         let principal_id = detail.principal_id;
         let desc = "";
@@ -66,7 +70,12 @@ export class UtilsService {
         var headers: HeaderElement[] = [];
         headers.push({ key: "x", value: "y", desc: "" , enabled: true});
 
+      var formData: ParamElement[] = [];
+      formData.push({ key: "x", value: "j" , desc: "", enabled: true, required: true});
+
         let resp: ResponseElement = { body: "", headers: [] , contentType: "", responseUrl: ""};
+
+      console.log(formData);
 
         let card: APIElement = {
           id: id,
@@ -80,6 +89,11 @@ export class UtilsService {
           desc: desc,
           disabled: false,
           params: ps,
+          formData: formData,
+          formUrlencoded: [],
+          raw: "",
+          binary: "",
+          post_type: post_type,
           headers: headers,
           response: resp,
         };

@@ -65,3 +65,37 @@
   padding-top: 20px;
   padding-bottom: 30px;
 }
+
+.endpoints {
+  padding: 10px 0 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.endpoint-item {
+  padding: 5px 0 5px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.endpoint-item div.value {
+  flex: 1;
+  padding: 0 10px 0 10px;
+  box-sizing: border-box;
+}
+
+.endpoint-item .value-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.endpoint-item .actions button {
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px 0 0;
+  box-sizing: border-box;
+}

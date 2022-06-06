@@ -512,43 +512,162 @@
                                                 </div>
                                             </div>
                                         </mat-tab>
+                                        <!--
                                         <mat-tab label="auth"> </mat-tab>
+                                        -->
                                         <mat-tab label="headers">
-                                            <div class="header-item normal-header-item" *ngFor="let header of request.headers">
-                                                <div class="field-enabled">
-                                                    <div *ngIf="header.enabled" (click)="toggleParam(header)">
-                                                        <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                            <div class="headers">
+                                                <div class="header-item normal-header-item" *ngFor="let header of request.headers">
+                                                    <div class="field-enabled">
+                                                        <div *ngIf="header.enabled" (click)="toggleHeader(header)">
+                                                            <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                        </div>
+                                                        <div *ngIf="!header.enabled" (click)="toggleHeader(header)">
+                                                            <mat-pseudo-checkbox> </mat-pseudo-checkbox>
+                                                        </div>
                                                     </div>
-                                                    <div *ngIf="!header.enabled" (click)="toggleParam(header)">
-                                                        <mat-pseudo-checkbox> </mat-pseudo-checkbox>
+                                                    <div class="delete-param" (click)="deleteHeader(request, header)">
+                                                        <i class="material-icons">delete_outline</i>
+                                                    </div>
+                                                    <div class="field-key">
+                                                        <input [(ngModel)]="header.key" class="field-key-input" />
+                                                    </div>
+                                                    <div class="field-value">
+                                                        <input [(ngModel)]="header.value" class="field-value-input" />
+                                                    </div>
+                                                    <div class="field-desc">
+                                                        <input [(ngModel)]="header.desc" class="field-desc-input" />
                                                     </div>
                                                 </div>
-                                                <div class="delete-param" (click)="deleteHeader(request, i)">
-                                                    <i class="material-icons">delete_outline</i>
-                                                </div>
-                                                <div class="field-key">
-                                                    <input [(ngModel)]="header.key" class="field-key-input" />
-                                                </div>
-                                                <div class="field-value">
-                                                    <input [(ngModel)]="header.value" class="field-value-input" />
-                                                </div>
-                                                <div class="field-desc">
-                                                    <input [(ngModel)]="header.desc" class="field-desc-input" />
-                                                </div>
-                                            </div>
-                                            <div class="header-item default-header-item">
-                                                <div class="field-key">
-                                                    <input [(ngModel)]="defaultHeaderKey" (keyup)="addHeader($event, request, 'key')" />
-                                                </div>
-                                                <div class="field-value">
-                                                    <input [(ngModel)]="defaultHeaderValue" (keyup)="addHeader($event, request, 'value')" />
-                                                </div>
-                                                <div class="field-desc">
-                                                    <input [(ngModel)]="defaultHeaderDesc" (keyup)="addHeader($event, request, 'desc')" />
+                                                <div class="header-item default-header-item">
+                                                    <div class="field-enabled">
+                                                        <div *ngIf="defaultHeaderStatus" (click)="toggleDefaultHeaderStatus()">
+                                                            <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                        </div>
+                                                        <div *ngIf="!defaultHeaderStatus" (click)="toggleDefaultHeaderStatus()">
+                                                            <mat-pseudo-checkbox> </mat-pseudo-checkbox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="delete-param">
+                                                        <i class="material-icons">delete_outline</i>
+                                                    </div>
+                                                    <div class="field-key">
+                                                        <input [(ngModel)]="defaultHeaderKey" (keyup)="addHeader($event, request, 'key')" />
+                                                    </div>
+                                                    <div class="field-value">
+                                                        <input [(ngModel)]="defaultHeaderValue" (keyup)="addHeader($event, request, 'value')" />
+                                                    </div>
+                                                    <div class="field-desc">
+                                                        <input [(ngModel)]="defaultHeaderDesc" (keyup)="addHeader($event, request, 'desc')" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </mat-tab>
                                         <mat-tab label="body">
+                                            <mat-tab-group class="request-form-params" [selectedIndex]="0" (selectedTabChange)="onPostTypeChanged($event, request);" animationDuration="0ms">
+                                                <mat-tab label="none">
+                                                </mat-tab>
+                                                <mat-tab label="form-data">
+                                                    <div class="form-data">
+                                                        <div class="param-item normal-param-item" *ngFor="let param of request.formData; let i = index">
+                                                            <div class="field-enabled">
+                                                                <div *ngIf="param.enabled" (click)="toggleParam(param)">
+                                                                    <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                                </div>
+                                                                <div *ngIf="!param.enabled" (click)="toggleParam(param)">
+                                                                    <mat-pseudo-checkbox> </mat-pseudo-checkbox>
+                                                                </div>
+                                                            </div>
+                                                            <div class="delete-param" (click)="deleteFormData(request, i)">
+                                                                <i class="material-icons">delete_outline</i>
+                                                            </div>
+                                                            <div class="field-key">
+                                                                <input [(ngModel)]="param.key" class="field-key-input" />
+                                                            </div>
+                                                            <div class="field-value">
+                                                                <input [(ngModel)]="param.value" class="field-value-input" />
+                                                            </div>
+                                                            <div class="field-desc">
+                                                                <input [(ngModel)]="param.desc" class="field-desc-input" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="param-item default-param-item">
+                                                            <div class="field-enabled">
+                                                                <div *ngIf="defaultParamStatus" (click)="toggleDefaultFormDataStatus()">
+                                                                    <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                                </div>
+                                                                <div *ngIf="!defaultParamStatus" (click)="toggleDefaultFormDataStatus()">
+                                                                    <mat-pseudo-checkbox> </mat-pseudo-checkbox>
+                                                                </div>
+                                                            </div>
+                                                            <div class="delete-param disabled">
+                                                                <i class="material-icons">delete_outline</i>
+                                                            </div>
+                                                            <div class="field-key">
+                                                                <input [(ngModel)]="defaultFormDataKey" (keyup)="addFormData($event, request, 'key')" />
+                                                            </div>
+                                                            <div class="field-value">
+                                                                <input [(ngModel)]="defaultFormDataValue" (keyup)="addFormData($event, request, 'value')" />
+                                                            </div>
+                                                            <div class="field-desc">
+                                                                <input [(ngModel)]="defaultFormDataDesc" (keyup)="addFormData($event, request, 'desc')" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </mat-tab>
+                                                <mat-tab label="x-www-form-urlencoded">
+                                                    <div class="form-urlencoded">
+                                                        <div class="param-item normal-param-item" *ngFor="let param of request.formUrlencoded; let i = index">
+                                                            <div class="field-enabled">
+                                                                <div *ngIf="param.enabled" (click)="toggleParam(param)">
+                                                                    <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                                </div>
+                                                                <div *ngIf="!param.enabled" (click)="toggleParam(param)">
+                                                                    <mat-pseudo-checkbox> </mat-pseudo-checkbox>
+                                                                </div>
+                                                            </div>
+                                                            <div class="delete-param" (click)="deleteFormUrlencoded(request, i)">
+                                                                <i class="material-icons">delete_outline</i>
+                                                            </div>
+                                                            <div class="field-key">
+                                                                <input [(ngModel)]="param.key" class="field-key-input" />
+                                                            </div>
+                                                            <div class="field-value">
+                                                                <input [(ngModel)]="param.value" class="field-value-input" />
+                                                            </div>
+                                                            <div class="field-desc">
+                                                                <input [(ngModel)]="param.desc" class="field-desc-input" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="param-item default-param-item">
+                                                            <div class="field-enabled">
+                                                                <div *ngIf="defaultFormUrlencodedStatus" (click)="toggleDefaultFormUrlencodedStatus()">
+                                                                    <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                                </div>
+                                                                <div *ngIf="!defaultFormUrlencodedStatus" (click)="toggleDefaultFormUrlencodedStatus()">
+                                                                    <mat-pseudo-checkbox> </mat-pseudo-checkbox>
+                                                                </div>
+                                                            </div>
+                                                            <div class="delete-param disabled">
+                                                                <i class="material-icons">delete_outline</i>
+                                                            </div>
+                                                            <div class="field-key">
+                                                                <input [(ngModel)]="defaultFormUrlencodedKey" (keyup)="addFormUrlencoded($event, request, 'key')" />
+                                                            </div>
+                                                            <div class="field-value">
+                                                                <input [(ngModel)]="defaultFormUrlencodedValue" (keyup)="addFormUrlencoded($event, request, 'value')" />
+                                                            </div>
+                                                            <div class="field-desc">
+                                                                <input [(ngModel)]="defaultFormUrlencodedDesc" (keyup)="addFormUrlencoded($event, request, 'desc')" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </mat-tab>
+                                                <mat-tab label="raw">
+                                                </mat-tab>
+                                                <mat-tab label="binary">
+                                                </mat-tab>
+                                            </mat-tab-group>
                                         </mat-tab>
                                         <mat-tab label="settings"> </mat-tab>
                                     </mat-tab-group>
@@ -668,7 +787,9 @@
                                                 </div>
                                             </div>
                                         </mat-tab>
+                                        <!--
                                         <mat-tab label="auth"> </mat-tab>
+                                        -->
                                         <mat-tab label="headers"> </mat-tab>
                                         <mat-tab label="body"> </mat-tab>
                                         <mat-tab label="pre-req"> </mat-tab>
@@ -694,7 +815,9 @@
                                                 </div>
                                             </div>
                                         </mat-tab>
+                                        <!--
                                         <mat-tab label="auth"> </mat-tab>
+                                        -->
                                         <mat-tab label="headers"> </mat-tab>
                                         <mat-tab label="body"> </mat-tab>
                                         <mat-tab label="pre-req"> </mat-tab>

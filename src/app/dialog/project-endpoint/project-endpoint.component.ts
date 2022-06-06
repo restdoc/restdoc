@@ -23,6 +23,7 @@ export class ProjectEndpointComponent implements OnInit {
   labelRenameSucceed = $localize`The project has been renamed successfully.`;
   getProjectDetailFailure = $localize`Failed to get project endpoints.`;
   projectUpdateFailure = $localize`Failed to update project endpoints.`;
+  endpointAddFailure = $localize`Failed to add endpoint.`;
   failLabel = $localize`the label `;
   labelRenameFailed = $localize`Failed to rename the project`;
   endpoints: EndpointElement[] = [];
@@ -190,6 +191,31 @@ export class ProjectEndpointComponent implements OnInit {
     var endpoints = this.getEndpoints();  //ref 
     endpoints.push(endPoint);
 
+    this.labelForm.patchValue({
+      newEndpointName: "",
+      newEndpointValue: ""
+    });
+
+    let params = { "project_id": this.projectId, "name": name, "value": value };
+
+    this.sharedService.createEndpoint(params).subscribe((data: any) => {
+      this.sharedService.checkResponse(location, data);
+
+      if (!data || data.code != 0) {
+        let message = this.endpointAddFailure;
+        this.toastr.success(message, "");
+        return;
+      }
+
+      const detail = data.data.detail;
+      console.log(data);
+
+    });
+
+    this.cdr.markForCheck();
+  }
+
+  clearEndpoint() {
     this.labelForm.patchValue({
       newEndpointName: "",
       newEndpointValue: ""
