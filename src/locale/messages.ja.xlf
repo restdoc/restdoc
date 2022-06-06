@@ -74,6 +74,10 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6662194194841211875" datatype="html">
         <trans-unit></trans-unit>
@@ -117,10 +121,77 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
       </trans-unit>
       <trans-unit id="848488385451394868" datatype="html">
         <trans-unit></trans-unit>
         <source>Failed to create the label</source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1bbb4f51625bf24fa6d87d53e30f3f3ba83c9e1c" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Edit endpoints</source>
+        <target></target>
+        <note>Edit endpoints</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6799392314344997033" datatype="html">
+        <trans-unit></trans-unit>
+        <source>The project has been renamed successfully.</source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8240451148809366598" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to get project endpoints.</source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3580103974439627927" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to update project endpoints.</source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8106517399039682477" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to add endpoint.</source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6747221987886772067" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to rename the project</source>
         <target></target>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
@@ -161,405 +232,10 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6799392314344997033" datatype="html">
-        <trans-unit></trans-unit>
-        <source>The project has been renamed successfully.</source>
-        <target></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="1921705487297512327" datatype="html">
         <trans-unit></trans-unit>
         <source>Failed to rename project.</source>
         <target></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6747221987886772067" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Failed to rename the project</source>
-        <target></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="c6c250a5949fdfd3fdfc51ce9701132e66f11a52" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Background color</source>
-        <target>背景色</target>
-        <note>background-color</note>
-        <note>editor</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="641011852617b256dac8b531056f96e6d2554ee8" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Text color</source>
-        <target>テキストの色</target>
-        <note>text-color</note>
-        <note>editor</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="72fa3ce914e0ee4ee9d95da0a85fabd133cf5046" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Undo (⌘Z) </source>
-        <target>取り消す (⌘Z) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="12a870d1f07e5d449a97def5e921b19e59fae245" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Redo (⌘Y) </source>
-        <target>やり直す (⌘Y) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="0d92cf09770da83f63865250a7e71dad032d04f3" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Select font</source>
-        <target></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="e9a2a8256f7f04b63446782ccd0cddcacf20387d" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Select fontsize</source>
-        <target></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="93f30cc1737f35cc0e51d10264b381387211f08a" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Bold (⌘B) </source>
-        <target>太さをつける (⌘B) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a5a30e63d1ddccf7f53c55fa4088b3017dfee79d" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Italic (⌘I) </source>
-        <target>イタリック (⌘I) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="81e6a374a0647e97f28810fb027775e1e938b89c" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Underline (⌘U)</source>
-        <target>アンダースコア (⌘U)</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="d9dcbcc9045b3046fb226cca17ee5a96191f4e17" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Select color</source>
-        <target></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2577ecff08aded569e08817d7e91123d34c14474" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Bulleted List (⌘⇧8) </source>
-        <target>項目記号リスト</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="556b779d931891e5fd0cd1891fa32b5f43b80fb3" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Numbered List (⌘⇧7) </source>
-        <target>番号リスト</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="d29639f78d22983e5fc36ae8407ffb1b833d81e0" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Indent less (⌘]) </source>
-        <target>インデントを少なくする</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="e8a2be6a1d52fbdc282c4314be00749e1825ba0e" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Indent more (⌘[) </source>
-        <target>もっと引っ込める</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6626fe446026465965181b95dbd803f971178b23" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Blockquote (⌘]) </source>
-        <target>ブロッククォート</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2d3b26d8f4f832038e8d464bdb42b149a8a4efb8" datatype="html">
-        <trans-unit></trans-unit>
-        <source>JustifyLeft (⌘⇧L) </source>
-        <target>左揃え (⌘⇧L) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="f2f26b498fad13968ec2c1e5b41f21b2ca0ebf7a" datatype="html">
-        <trans-unit></trans-unit>
-        <source>JustifyCenter (⌘⇧C) </source>
-        <target>居中 (⌘⇧C) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="e7cbafcd3bd89781ddd05f3eb79b86d745289e3c" datatype="html">
-        <trans-unit></trans-unit>
-        <source>JustifyRight (⌘⇧R) </source>
-        <target>右揃え (⌘⇧R) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="cee3de564208644b6809d705658a05ef10e1d573" datatype="html">
-        <trans-unit></trans-unit>
-        <source>StrikeThrough (⌘⇧X) </source>
-        <target>削除線 (⌘⇧X) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="c00cfdcb95ffdf23f9199cef383f40d98162fcb2" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Clear Formatting (⌘\) </source>
-        <target>クリアフォーマット (⌘\) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6b255b0a15470c12476b10e37423cc9b9b1a471d" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Undo (Ctrl+Z) </source>
-        <target>取り消す (Ctrl+Z) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="60998e05beba46a5e8e71e525030f1767bffedec" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Redo (Ctrl+Y) </source>
-        <target>やり直す (Ctrl+Y) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="cd0729ec91d7c8d7c30f98b8242de85356fe648a" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Bold (Ctrl+B)</source>
-        <target>太さをつける (Ctrl+B)</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2c0ccb826dddf1f5241e4bda372af3e14b48b119" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Italic (Ctrl+U)</source>
-        <target>イタリック (Ctrl+U)</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="b17e279fa442520b9b367c7e4e6da75b003c3f14" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Bulleted List (Ctrl+⇧8) </source>
-        <target>項目記号リスト</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="23397e5ef7208d189c3dc91e182838b510b82772" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Numbered List (Ctrl+⇧7) </source>
-        <target>番号リスト</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="83817603cf504156b852cdb860795fcb497e9623" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Indent less (Ctrl+[) </source>
-        <target>インデントを少なくする</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="b5136ac1a548e8454350f835aabbfccd1315ad97" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Indent more (Ctrl+]) </source>
-        <target>もっと引っ込める</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8692407eaffa8d5f48f74bcbcacfb11fd2779c60" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Blockquote (Ctrl+⇧9) </source>
-        <target>ブロッククォート (Ctrl+⇧9) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="db764bbb0015643498cddfe99d9dfd1423153911" datatype="html">
-        <trans-unit></trans-unit>
-        <source>JustifyLeft (Ctrl+⇧L) </source>
-        <target>左揃え (Ctrl+⇧L) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2743b8b0750f425cdde79042e7b8fb617334ad6e" datatype="html">
-        <trans-unit></trans-unit>
-        <source>JustifyCenter (Ctrl+⇧C) </source>
-        <target>居中 (Ctrl+⇧C) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2b05381e3169aef84104591a5765a82e47b4ec50" datatype="html">
-        <trans-unit></trans-unit>
-        <source>JustifyRight (Ctrl+⇧R) </source>
-        <target>右揃え (Ctrl+⇧R) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="9b8c69d59111f0d13ae9e009f0cb0a5c3841e7cd" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Strikethrough (Ctrl+⇧X) </source>
-        <target>削除線 (Ctrl+⇧X) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4f1ab26b90572c70a8ff1f74b3c06029f040a148" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Clear Formatting (Ctrl+\) </source>
-        <target>クリアフォーマット (Ctrl+\) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4df6f726a512cf8846e5ead65423bb4121d3d379" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Small</source>
-        <target></target>
-        <note>Small</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="077e90416bdae39a40441d0b94c5a9e8fcad4514" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Normal</source>
-        <target></target>
-        <note>Normal</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="97ae762ad31375040331ff60a0d1995b16562388" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Big</source>
-        <target></target>
-        <note>Big</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3226d87abb40b9e64b9b50b6797c3d30269c1e17" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Large</source>
-        <target></target>
-        <note>Large</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="886852b3b6e96778d9cba57a9f5fe93dfaecd98e" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Hedwi Kanban</source>
-        <target></target>
-        <note>kanban</note>
-        <note>Header</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -576,38 +252,22 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e95ae009d0bdb45fcc656e8b65248cf7396080d5" datatype="html">
+      <trans-unit id="cd07003d9e88253e7d5cd85545f126a744daa5db" datatype="html">
         <trans-unit></trans-unit>
-        <source>Overview</source>
+        <source>Edit project name</source>
         <target></target>
+        <note>editProjectName</note>
+        <note>Header</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6490b3960cc7c4a789cdbd29575d93abad081e07" datatype="html">
+      <trans-unit id="cdef4d43a66ae78a643a3a3998f002eb1ed8b433" datatype="html">
         <trans-unit></trans-unit>
-        <source>List</source>
+        <source>Edit project endpoints</source>
         <target></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1b36789a000b204694eb1672b42b5b86271e5bf0" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Board</source>
-        <target></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="98409c174a767737fe8948bc4be00e62663123f0" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Edit</source>
-        <target></target>
-        <note>editProjectDetail</note>
+        <note>editProjectEndpoints</note>
         <note>Header</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
@@ -636,91 +296,10 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3f688bb68b290efc10e83d94650e5aa44bef31df" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Mail</source>
-        <target></target>
-        <note>Mail</note>
-        <note>Header</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="b7dc15cf67308e60ceda57712e4e9e0d09ed35c0" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Contacts</source>
-        <target></target>
-        <note>Contacts</note>
-        <note>Header</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="92f52a56cc11e0b387cc09eac6989d6babfac759" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Kanban</source>
-        <target></target>
-        <note>Kanban</note>
-        <note>Header</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a75f56bab27113eebeeca8838314147043f4656f" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Progress</source>
-        <target></target>
-        <note>Progress</note>
-        <note>BoardList</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a1ac03fdeab2feff85760ab7989b08688a596c4a" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Task name</source>
-        <target></target>
-        <note>task-name</note>
-        <note>Boardlist</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="84d002eda2585b11c0009e348b8cadd4f723ffcd" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Assignee</source>
-        <target></target>
-        <note>Assignee</note>
-        <note>Boardlist</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="f19949583d9a89760a47f6a1efc4f1a137be8c06" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Due date</source>
-        <target></target>
-        <note>due-date</note>
-        <note>Boardlist</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="2af7efecfae8d7fed3b07f718a623eca1ad8163f" datatype="html">
         <trans-unit></trans-unit>
         <source>Labels</source>
         <target>标签ラベル</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -732,18 +311,6 @@
         <target></target>
         <note>Save</note>
         <note>Boardlist</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -767,18 +334,6 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
       </trans-unit>
       <trans-unit id="2500f65e4509b21647f82f27d139e239e2dde8d3" datatype="html">
         <trans-unit></trans-unit>
@@ -790,10 +345,6 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
       </trans-unit>
       <trans-unit id="de03ac613e5fb41fa9a0582c8f321d24623764ab" datatype="html">
         <trans-unit></trans-unit>
@@ -801,22 +352,6 @@
         <target></target>
         <note>edit</note>
         <note>Boardlist</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -848,14 +383,6 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
       </trans-unit>
       <trans-unit id="60c4585826625180654133ded4c024ec76779d2a" datatype="html">
         <trans-unit></trans-unit>
@@ -863,14 +390,6 @@
         <target></target>
         <note>apply</note>
         <note>Boardlist</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -894,14 +413,6 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
       </trans-unit>
       <trans-unit id="5bc42965f78abc2921404c7c130541c95f6036b3" datatype="html">
         <trans-unit></trans-unit>
@@ -909,14 +420,6 @@
         <target></target>
         <note>apply</note>
         <note>Boardlist</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -940,14 +443,6 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
       </trans-unit>
       <trans-unit id="cf800f6850b71dad3b7c016a86dff104c86e42d9" datatype="html">
         <trans-unit></trans-unit>
@@ -963,14 +458,6 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
       </trans-unit>
       <trans-unit id="c8258c2bec39978d609b57aacc71c525accd88d0" datatype="html">
         <trans-unit></trans-unit>
@@ -978,14 +465,6 @@
         <target></target>
         <note>fold this board</note>
         <note>Boardlist</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -1049,14 +528,6 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
       </trans-unit>
       <trans-unit id="8a1442613527e86e65846f304c936308812a052f" datatype="html">
         <trans-unit></trans-unit>
@@ -1064,14 +535,6 @@
         <target></target>
         <note>expand left</note>
         <note>Boardlist</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -1087,14 +550,6 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
       </trans-unit>
       <trans-unit id="f7d899d985ec7629dc81f99ebe71df2f6b175407" datatype="html">
         <trans-unit></trans-unit>
@@ -1106,257 +561,11 @@
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
       </trans-unit>
-      <trans-unit id="ac0f81713a84217c9bd1d9bb460245d8190b073f" datatype="html">
+      <trans-unit id="8771153055553265972" datatype="html">
         <trans-unit></trans-unit>
-        <source>More</source>
-        <target>更に</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ebf5ccc4221d3e73f199d0a27553062efaf23da6" datatype="html">
-        <trans-unit></trans-unit>
-        <source>  </source>
+        <source>The path has been updated successfully.</source>
         <target></target>
-        <note>new-message</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="d713eff7f7b8d5c666b4725e6a1b95dfbaf00cf8" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Minimize</source>
-        <target>最小化する</target>
-        <note>minimize</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="349910f945df0dddfdf90c3e3eb07fab99bc0467" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Maximize</source>
-        <target>最大化</target>
-        <note>maximize</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ea2eb5e9a745758ff75331b25893ad9527be7ea5" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Close Fullscreen</source>
-        <target>全画面を閉じる</target>
-        <note>close-fullscreen</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="21c90659439eedb2ca4804e53ba8d835d0e1d138" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Open in Fullscreen</source>
-        <target>全画面のウィンドウで開きます</target>
-        <note>open-in-fullscreen</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a405dc6676ec65a0f4a3b1ff057b60ef11a33400" datatype="html">
-        <trans-unit></trans-unit>
-        <source>close</source>
-        <target>閉じる</target>
-        <note>close</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="30bafdf61a1bb3e01508d2bdbdce1196ce3e4f19" datatype="html">
-        <trans-unit></trans-unit>
-        <source>status</source>
-        <target></target>
-        <note>Status</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="0cfcadd46f4a4aa6c275dd2397ce3e888f1f5751" datatype="html">
-        <trans-unit></trans-unit>
-        <source>due</source>
-        <target></target>
-        <note>Due</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="18ad6b6a675e862bbc67ecc861357c3a09bad488" datatype="html">
-        <trans-unit></trans-unit>
-        <source>color</source>
-        <target></target>
-        <note>Color</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a24fe5b4b02e18383d0fc2da09f7ab88eec32838" datatype="html">
-        <trans-unit></trans-unit>
-        <source>description</source>
-        <target></target>
-        <note>Description</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="fb40d5591b45699bcac1f9c90bf3b89e68005b64" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Save</source>
-        <target></target>
-        <note>save</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="acdef561684d8f8ab446ef7d115c23f604f32ab6" datatype="html">
-        <trans-unit></trans-unit>
-        <source>More options</source>
-        <target>詳細オプション</target>
-        <note>more-options</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5f4781d33cd7876a0d40454463440867a1502506" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Discard draft</source>
-        <target>下書きを削除する</target>
-        <note>discard-draft</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="63deab8bfa0f747bd4b551585dace6f71db598ee" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Label as</source>
-        <target>ラベル付けする</target>
-        <note>label-as</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="facdc6c98daeb0a34f858e5f0a7c40876dc4edf9" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Label</source>
-        <target>ラベル</target>
-        <note>label</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a3143e2f06b8b219b6bcb573543b0d7aaff0ea91" datatype="html">
-        <trans-unit></trans-unit>
-        <source>  </source>
-        <target></target>
-        <note>new-message</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3b88757380c3f452c8ad22fe97ac678f90e91107" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Default full screen</source>
-        <target>デフォルトのフルスクリーン</target>
-        <note>default-full-screen</note>
-        <note>Compose</note>
-        <context-group purpose="location">
-          <context context-type="sourcefile"></context>
-          <context context-type="linenumber"></context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="76b612f808a462e63286428206dc90b81f728470" datatype="html">
-        <trans-unit></trans-unit>
-        <source>Label as :</source>
-        <target>ラベル付けする</target>
-        <note>label-as</note>
-        <note>Compose</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
