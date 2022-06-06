@@ -70,6 +70,11 @@ export interface APIElement {
   desc: string;
   disabled: boolean;
   params: ParamElement[];
+  formData: ParamElement[];
+  formUrlencoded: ParamElement[];
+  raw: string | "";
+  binary: string | "";
+  post_type: string | "";
   headers: HeaderElement[];
   response: ResponseElement | null;
 }

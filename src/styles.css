@@ -3,8 +3,9 @@
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "~ngx-toastr/toastr";
 @import "~codemirror/lib/codemirror";
-@import '~codemirror/theme/mdn-like.css';
+@import 'mdn-like.css';
 @import '~codemirror/addon/fold/foldgutter.css';
+
 
 
 
