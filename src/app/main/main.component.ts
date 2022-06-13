@@ -54,6 +54,7 @@ export interface ProjectElement {
 
 
 export interface EndpointElement {
+  id: string;
   name: string;
   value: string;
 }
@@ -82,6 +83,7 @@ export interface APIElement {
 
 
 export interface HeaderElement {
+  id: string;
   key: string;
   value: string;
   desc: string;
@@ -89,6 +91,7 @@ export interface HeaderElement {
 }
 
 export interface ParamElement {
+  id: string;
   key: string;
   value: string;
   desc: string;
@@ -267,3 +270,4 @@ export class MainComponent implements OnInit, OnDestroy {
   /** The label for the checkbox on the passed row */
   onResize(event) {}
 }
+

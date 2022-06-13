@@ -1,6 +1,8 @@
 <div class="title-bar">
 	<span class="title-text" i18n="Edit endpoints">Edit endpoints</span>
-	<span [mat-dialog-close] cdkFocusInitial class="close-btn"><i class="material-icons">close</i></span>
+	<span cdkFocusInitial mat-dialog-close (click)="onNoClick()" class="close-btn">
+		<i class="material-icons">close</i>
+	</span>
 </div>
 <div mat-dialog-content>
 	<form class="label-form" [formGroup]="labelForm">

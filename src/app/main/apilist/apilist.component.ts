@@ -34,6 +34,8 @@ import {
   HostListener,
   ChangeDetectionStrategy,
 } from "@angular/core";
+import { NoopScrollStrategy } from '@angular/cdk/overlay';
+
 
 import { environment } from "src/environments/environment";
 import { SelectionModel } from "@angular/cdk/collections";
@@ -71,6 +73,8 @@ import { SidebarService } from "../../sidebar/sidebar.service";
 import { APIlistService } from "./apilist.service";
 import { DetailsComponent } from "../details/details.component";
 import { ProjectRenameComponent } from "src/app/dialog/project-rename/project-rename.component";
+import { ProjectEndpointComponent } from "../../dialog/project-endpoint/project-endpoint.component";
+
 import {
   CardColors,
   LabelItem,
@@ -85,6 +89,9 @@ import {
 } from "../main.component";
 import { UtilsService  } from "../main.service";
 import { ValueConverter } from "@angular/compiler/src/render3/view/template";
+import { consoleTestResultsHandler } from "tslint/lib/test";
+
+
 
 @Component({
   selector: "app-apilist",
@@ -116,7 +123,12 @@ export class APIlistComponent implements OnInit, OnDestroy {
   private styleSubscription: Subscription;
 
 
+  
+  hasExtensionInstalled = true;
   pathUpdateSucceed = $localize`The path has been updated successfully.`;
+  pathUpdateFailure = $localize`Failed to update path.`;
+  methodUpdateSucceed = $localize`The method has been updated successfully.`;
+  methodUpdateFailure = $localize`Failed to update method.`;
   listMode = true;
   viewType = "overview";
   keyword = "";
@@ -203,10 +215,19 @@ export class APIlistComponent implements OnInit, OnDestroy {
   messages(event) {
     // We only accept messages from this window to itself [i.e. not from any iframes]
 
-    console.log(event);
     if (event.source != window) return;
 
+
+    console.log("event ");
+    console.log(event);
+
     if (event.data.type) {
+
+      if (event.data.type == "__RESTDOC_EXTENSION_PING__") {
+        console.log("ping")
+        return;
+      }
+
       if (event.data.type == "__RESTDOC_EXTENSION_RESPONSE__") {
 
         console.log(event.data);
@@ -304,12 +325,21 @@ export class APIlistComponent implements OnInit, OnDestroy {
     private utilsService: UtilsService,
     private datepipe: DatePipe,
     private toastr: ToastrService
-  ) {}
+  ) {
+
+  }
 
   ngOnInit() {
     // 如果弹出框没有被阻止且加载完成
 
     // 这行语句没有发送信息出去，即使假设当前页面没有改变location（因为targetOrigin设置不对）
+
+
+
+
+    this.ping();
+
+
 
     this.profileImages.set(
       "343155761318212238",
@@ -322,6 +352,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
     this.getCurrentState(path);
 
     this.getData();
+
 
 
     this.searchForm = this.fb.group({
@@ -402,7 +433,9 @@ export class APIlistComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.checkExtensionInstalled(2000);
+  }
 
   ngOnDestroy() {
     if (this.apisSubscription) {
@@ -421,6 +454,25 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
   stopPropagation(event) {
     event.stopPropagation();
+  }
+
+
+  checkExtensionInstalled(timeout) {
+
+    var that = this;
+    setTimeout(function () {
+      let hook = window["__RESTDOC_EXTENSION_HOOK__"];
+      console.log(hook);
+      if (hook !== undefined) {
+        console.log('true');
+        that.hasExtensionInstalled = true;
+      } else {
+        console.log('false');
+        that.hasExtensionInstalled = false;
+      }
+      that.cdr.markForCheck();
+    }, timeout);
+    return 
   }
 
 
@@ -531,6 +583,34 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
   }
 
+  updateAPIMethod(request: APIElement, method: string) {
+    console.log(method);
+
+    request.method = method;
+    let params = {"id": request.id, "method": method};
+
+    this.sharedService.updateAPI(params).subscribe((data: any) => {
+      this.sharedService.checkResponse(location, data);
+
+      if (data && data.code == 0 && data.data && data.data.detail) {
+        let detail = data.data.detail;
+
+        //let api = this.utilsService.formatRequest(detail);
+        //board.apis.push(api);
+        //this.bottomAddingAPI = "";
+        //this.newBottomAPI = "";
+
+        let message = this.methodUpdateSucceed
+        this.toastr.success(message);
+
+        
+        this.cdr.markForCheck();
+      } else {
+        let message = this.methodUpdateFailure
+        this.toastr.success(message);
+      }
+    });
+}
 
   updateAPIPath(request: APIElement) {
     console.log(request);
@@ -574,7 +654,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
     for (var k in ps) {
       console.log([k, ps[k]]);
       let value = ps[k];
-      let param: ParamElement = {key: k, value: value, desc: "", enabled: true, required: false };
+      let param: ParamElement = {id: "", key: k, value: value, desc: "", enabled: true, required: false };
       request.params.push(param)
       //
     }
@@ -591,12 +671,12 @@ export class APIlistComponent implements OnInit, OnDestroy {
         //board.apis.push(api);
         //this.bottomAddingAPI = "";
         //this.newBottomAPI = "";
-
         let message = this.pathUpdateSucceed
         this.toastr.success(message);
-
-        
         this.cdr.markForCheck();
+      } else {
+        let message = this.pathUpdateFailure
+        this.toastr.success(message);
       }
     });
   }
@@ -621,14 +701,32 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
   }
 
-  getCurrentEndpoint() {
-    if (this.projectEndpoints && this.projectEndpoints.length > 0) {
-      if (this.currentEndpoint == null) {
-        this.currentEndpoint = this.projectEndpoints[0];
+  updateEndpoints() {
+    const dialogRef = this.dialog.open(ProjectEndpointComponent, {
+      width: "800px",
+      height: "600px",
+      scrollStrategy: new NoopScrollStrategy()
+    });
+    dialogRef.componentInstance.projectId = this.currentProjectId;
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      if (result.endpoints) {
+        var newEndpoints:EndpointElement[] = [];
+        //this.projectName = result.name;
+        for (var i = 0; i < result.endpoints; i++){
+          let item = result.endpoints[i];
+          //let endpoint: EndpointElement = {name: item.v}
+
+        }
+        this.projectEndpoints = result.endpoints;
+        this.cdr.markForCheck();
       }
-    }
+    });
+
   }
 
+  
   saveNewBottomAPI(board: BoardElement) {
     let text = this.newBottomAPI;
     let listId = board.info.id;
@@ -686,7 +784,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
     this.editTask(board, item);
 
     let id = item.id + "";
-    let el = this.document.getElementById(id);
+    let el = this.document.getElementById(id) ;
     if (!el) {
       return;
     }
@@ -928,7 +1026,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   }
 
 
-  addParam(event, request, type) {
+  addParam(event, request, type, page) {
     if (event.keyCode) {
       console.log(event.keyCode);
     }
@@ -963,9 +1061,36 @@ export class APIlistComponent implements OnInit, OnDestroy {
           return;
       }
       param["enabled"] = true;
-      request.params.push(param);
-      this.cdr.markForCheck();
-      this.focusNode(parentName, childName);
+
+      //
+      if (page == "document") {
+
+        if (type == "key") {
+
+          let params = {"api_id": request.id, "name": event.key };
+          this.sharedService.addParam(params).subscribe((data: any) => {
+            this.sharedService.checkResponse(location, data);
+
+            if (data && data.code == 0 && data.data && data.data.detail) {
+              let detail = data.data.detail;
+              request.params.push(param);
+              this.cdr.markForCheck();
+              this.focusNode(parentName, childName);
+            }
+          })
+        }
+
+
+
+
+      } else {
+        request.params.push(param);
+        this.cdr.markForCheck();
+        this.focusNode(parentName, childName);
+      }
+
+
+
     }
   }
 
@@ -1031,7 +1156,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
     }
   }
 
-    addFormData(event, request, type) {
+    addFormData(event, request, type, page) {
     if (event.keyCode) {
       console.log(event.keyCode);
     }
@@ -1066,6 +1191,32 @@ export class APIlistComponent implements OnInit, OnDestroy {
           return;
       }
       param["enabled"] = true;
+
+      if (page == "document") {
+
+        if (type == "key") {
+
+          let params = {"api_id": request.id, "name": event.key };
+          this.sharedService.addParam(params).subscribe((data: any) => {
+            this.sharedService.checkResponse(location, data);
+
+            if (data && data.code == 0 && data.data && data.data.detail) {
+              let detail = data.data.detail;
+              request.params.push(param);
+              this.cdr.markForCheck();
+              this.focusNode(parentName, childName);
+            }
+          })
+        }
+
+
+
+
+      } else {
+        request.params.push(param);
+        this.cdr.markForCheck();
+        this.focusNode(parentName, childName);
+      }
       request.formData.push(param);
       this.cdr.markForCheck();
       this.focusNode(parentName, childName);
@@ -1117,39 +1268,60 @@ addFormUrlencoded(event, request, type) {
 
   expandBoard(board: BoardElement) {}
 
-  detail(event: any, board: BoardElement, card: APIElement) {
+  detail(event: any, board: BoardElement, request: APIElement) {
     if (event) {
       event.stopPropagation();
     }
 
+    console.log("detail");
+
     this.updateAPIContextMenu(false);
 
-    var mailId = card.id;
 
-    this.getCurrentEndpoint();
+    let apiId = request.id;
+    this.sharedService.getAPIDetail(apiId).subscribe((data: any) => {
+        this.sharedService.checkResponse(location, data);
+        console.log(data);
+        if (!data || data.code != 0) {
+          return
+        }
+        console.log(data);
 
-    var ps: ParamElement[] = [];
-    ps.push({ key: "x", value: "y", desc: "", enabled: false, required: true });
-    card.params = ps;
+         //var ps: ParamElement[] = [];
+    //ps.push({ key: "x", value: "y", desc: "", enabled: false, required: true });
+        let detail = data.data.detail;
+        console.log("detail");
+        console.log(detail);
+        request.params = detail.get_params;
+        request.formData = detail.form_data_params;
+        request.formUrlencoded = detail.form_urlencoded_params;
 
-    var headers: HeaderElement[] = [];
-    headers.push({ key: "x", value: "y", desc: "", enabled: true });
-    card.headers = headers;
+        var headers: HeaderElement[] = [];
+        headers.push({ id: "", key: "x", value: "y", desc: "", enabled: true });
+        request.headers = headers;
+        this.cdr.markForCheck();
+      })
+
+
+
+    //
+
+ 
 
     var exist = false;
     for (var i = 0; i < this.requests.length; i++) {
       let r = this.requests[i];
-      if (r.id == card.id) {
+      if (r.id == request.id) {
         exist = true;
-        this.composeId = card.id;
+        this.composeId = request.id;
         this.selectedRequestIndex = i;
         break;
       }
     }
 
     if (!exist) {
-      this.requests.push(card);
-      this.composeId = card.id;
+      this.requests.push(request);
+      this.composeId = request.id;
       this.selectedRequestIndex = this.requests.length - 1;
     }
 
@@ -1448,9 +1620,31 @@ addFormUrlencoded(event, request, type) {
     });
   }
 
-  Send(request: APIElement) {
-    let params = request.params;
 
+  ping() {
+     window.postMessage(
+      {
+        type: "__RESTDOC_EXTENSION_PING__",
+      },
+      "*",
+    );
+  }
+
+
+  Download() {
+      window.open("https://restdoc.com/extension", "_target");
+  }
+
+  Send(request: APIElement) {
+
+
+    this.checkExtensionInstalled(0);
+
+    if (!this.hasExtensionInstalled) {
+      return
+    }
+
+    let params = request.params;
 
     if (!this.currentEndpoint || this.currentEndpoint.value == "") {
       //todo toast
@@ -1802,8 +1996,11 @@ addFormUrlencoded(event, request, type) {
           }
           this.boards = data.data.groups;
           if (data.data && data.data.endpoints) {
-            this.projectEndpoints = data.data.endpoints;
+            let projectEndpoints = data.data.endpoints;
+            //localStorage.setItem( environment.projectsKey, JSON.stringify(projectEndpoints)
+            this.projectEndpoints = projectEndpoints;
             this.getCurrentEndpoint();
+            //this.headerService.setEndpoints(JSON.stringify(projectEndpoints));
           }
 
           this.cdr.markForCheck();
@@ -1817,6 +2014,15 @@ addFormUrlencoded(event, request, type) {
         });
     }
   }
+
+  getCurrentEndpoint() {
+    if (this.projectEndpoints && this.projectEndpoints.length > 0) {
+      if (this.currentEndpoint == null) {
+        this.currentEndpoint = this.projectEndpoints[0];
+      }
+    }
+  }
+
 
   changes() {
     this.cdr.markForCheck();

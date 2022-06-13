@@ -123,6 +123,7 @@ export class SharedService {
   }
 
 
+
   getAPIs(params: Map<string, string>) {
     let apiEndpoints = "api/restdoc/api/list";
     var options = { ...this.httpOptions };
@@ -184,6 +185,17 @@ export class SharedService {
       this.httpOptions
     );
   }
+
+   addParam(data) {
+    let apiEndpoints = "api/restdoc/param/create";
+    let params = this.formatParams(data);
+    return this.http.post(
+      this.baseurl + apiEndpoints,
+      params,
+      this.httpOptions
+    );
+  }
+
 
   addGroupToProject(data) {
     let apiEndpoints = "api/restdoc/group/create";

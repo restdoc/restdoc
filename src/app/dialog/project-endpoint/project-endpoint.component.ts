@@ -52,7 +52,7 @@ export class ProjectEndpointComponent implements OnInit {
           newEndpointValue: "y",
           labelCheck: false,
           selectedLabel: "",
-      endpoints: ends,
+          endpoints: ends,
     });
 
 
@@ -66,8 +66,7 @@ export class ProjectEndpointComponent implements OnInit {
         this.toastr.success(message, "");
         return;
       }
-      console.log("data ");
-      console.log(data);
+
       if (data.data && data.data.detail ) {
         let detail = data.data.detail;
         console.log(detail);
@@ -76,7 +75,6 @@ export class ProjectEndpointComponent implements OnInit {
 
         var endpoints = this.getEndpoints();  //ref 
         for (var end of ends) {
-          console.log(end);
           let item = this.fb.group({
             id: end.id,
             name: end.name,
@@ -169,7 +167,19 @@ export class ProjectEndpointComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    //this.dialogRef.close();
+
+    //this.dialogRef.close({event:this.action,data:this.local_data});
+    let items = this.labelForm.get("endpoints") as FormArray;
+    var endpoints:EndpointElement[] = [];
+    for (var i = 0; i < items.controls.length; i++){
+      let item = items.controls[i].value;
+      console.log(item);
+      let endpoint: EndpointElement = { id: item.id, name: item.name, value: item.value };
+      endpoints.push(endpoint);
+    }
+    this.dialogRef.close({ endpoints: endpoints });
+
   }
 
   getEndpoints() : FormArray {
