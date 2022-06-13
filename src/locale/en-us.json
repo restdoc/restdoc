@@ -4,11 +4,6 @@
         "source": "Failed to rename project.",
         "target": "Failed to rename project."
     },
-    "1964a5b9150be0cf0586c0fd0a17772e0f7bc258": {
-        "id": "1964a5b9150be0cf0586c0fd0a17772e0f7bc258",
-        "source": "Expand top",
-        "target": "Expand top"
-    },
     "1a505cdde8f200719dd8c98ef91886cd81ecc1f2": {
         "id": "1a505cdde8f200719dd8c98ef91886cd81ecc1f2",
         "source": "New Project",
@@ -24,15 +19,15 @@
         "source": "Board name",
         "target": "Board name"
     },
+    "28151553689ef01c353f046c64841f14d575ac69": {
+        "id": "28151553689ef01c353f046c64841f14d575ac69",
+        "source": "Endpoints",
+        "target": "Endpoints"
+    },
     "2840102566590804226": {
         "id": "2840102566590804226",
         "source": "the label ",
         "target": "the label "
-    },
-    "2a4286f37b98997f1077b5ffda06e62bf0f9b281": {
-        "id": "2a4286f37b98997f1077b5ffda06e62bf0f9b281",
-        "source": "Add task",
-        "target": "Add task"
     },
     "2af7efecfae8d7fed3b07f718a623eca1ad8163f": {
         "id": "2af7efecfae8d7fed3b07f718a623eca1ad8163f",
@@ -44,6 +39,11 @@
         "source": "Failed to update project endpoints.",
         "target": "Failed to update project endpoints."
     },
+    "35bc68bd793eed6ee0232bfa6c4d72bc8c07fe69": {
+        "id": "35bc68bd793eed6ee0232bfa6c4d72bc8c07fe69",
+        "source": "Endpoints",
+        "target": "Endpoints"
+    },
     "37ef120a18d7b87854cbc1f2ecdfb0abc4ec1fdb": {
         "id": "37ef120a18d7b87854cbc1f2ecdfb0abc4ec1fdb",
         "source": "Logout",
@@ -54,35 +54,40 @@
         "source": "Trash",
         "target": "Trash"
     },
-    "43b986ded647fa32224b3d8057637b637bc81d62": {
-        "id": "43b986ded647fa32224b3d8057637b637bc81d62",
-        "source": "Mark complete",
-        "target": "Mark complete"
-    },
     "4879437342633482392": {
         "id": "4879437342633482392",
         "source": "The label ",
         "target": "The label "
+    },
+    "50dbdbc45d50acd923747d78f7ea04baa0444546": {
+        "id": "50dbdbc45d50acd923747d78f7ea04baa0444546",
+        "source": "Expand left",
+        "target": "Expand left"
     },
     "52c9a103b812f258bcddc3d90a6e3f46871d25fe": {
         "id": "52c9a103b812f258bcddc3d90a6e3f46871d25fe",
         "source": "Save",
         "target": "Save"
     },
+    "5424343859360860734": {
+        "id": "5424343859360860734",
+        "source": "The method has been updated successfully.",
+        "target": "The method has been updated successfully."
+    },
     "5523e54a8ac119dd11b7f2d8da5ca9b0081c23ac": {
         "id": "5523e54a8ac119dd11b7f2d8da5ca9b0081c23ac",
         "source": "Delete project",
         "target": "Delete project"
     },
-    "5bc42965f78abc2921404c7c130541c95f6036b3": {
-        "id": "5bc42965f78abc2921404c7c130541c95f6036b3",
-        "source": "Delete",
-        "target": "Delete"
+    "5769034b772035cb7f10d6902d1ac27a7de7b2f8": {
+        "id": "5769034b772035cb7f10d6902d1ac27a7de7b2f8",
+        "source": "Add task",
+        "target": "Add task"
     },
-    "60c4585826625180654133ded4c024ec76779d2a": {
-        "id": "60c4585826625180654133ded4c024ec76779d2a",
-        "source": "Mark incomplete",
-        "target": "Mark incomplete"
+    "5944419812359756894": {
+        "id": "5944419812359756894",
+        "source": "Failed to update method.",
+        "target": "Failed to update method."
     },
     "6469924bbf31d442a5573b9b2493eaa0469914b2": {
         "id": "6469924bbf31d442a5573b9b2493eaa0469914b2",
@@ -114,20 +119,20 @@
         "source": "Create",
         "target": "Create"
     },
-    "722510ccde80130cf49fc42476e7bf477f95dde9": {
-        "id": "722510ccde80130cf49fc42476e7bf477f95dde9",
-        "source": "Fold top",
-        "target": "Fold top"
-    },
-    "789c2a12bd55001f71209875da217ddd1d541acc": {
-        "id": "789c2a12bd55001f71209875da217ddd1d541acc",
-        "source": "Cancel",
-        "target": "Cancel"
+    "7277976148877234389": {
+        "id": "7277976148877234389",
+        "source": "Failed to update path.",
+        "target": "Failed to update path."
     },
     "78a3d563dba654a956f35d4bed5d12dbc572d139": {
         "id": "78a3d563dba654a956f35d4bed5d12dbc572d139",
         "source": "Please enter the new name",
         "target": "Please enter the new name"
+    },
+    "7ce3aec17fd613e8c975ca9e726d50ae5e16972e": {
+        "id": "7ce3aec17fd613e8c975ca9e726d50ae5e16972e",
+        "source": "Delete",
+        "target": "Delete"
     },
     "8106517399039682477": {
         "id": "8106517399039682477",
@@ -138,6 +143,11 @@
         "id": "8240451148809366598",
         "source": "Failed to get project endpoints.",
         "target": "Failed to get project endpoints."
+    },
+    "834faae2907b3aacf37e0aa448e82a0dae4c1299": {
+        "id": "834faae2907b3aacf37e0aa448e82a0dae4c1299",
+        "source": "Fold right",
+        "target": "Fold right"
     },
     "848488385451394868": {
         "id": "848488385451394868",
@@ -154,11 +164,6 @@
         "source": "The path has been updated successfully.",
         "target": "The path has been updated successfully."
     },
-    "8a1442613527e86e65846f304c936308812a052f": {
-        "id": "8a1442613527e86e65846f304c936308812a052f",
-        "source": "Expand left",
-        "target": "Expand left"
-    },
     "8a6b1fd18712b06ff2b943fe0d0f78f7860cf51b": {
         "id": "8a6b1fd18712b06ff2b943fe0d0f78f7860cf51b",
         "source": "Less",
@@ -169,85 +174,105 @@
         "source": "More",
         "target": "More"
     },
+    "97777d99d68481096a9da009806f74e2d7d02afa": {
+        "id": "97777d99d68481096a9da009806f74e2d7d02afa",
+        "source": "Fold this board",
+        "target": "Fold this board"
+    },
+    "a9613d0f726ad1f99f099fd05cd23814e694c488": {
+        "id": "a9613d0f726ad1f99f099fd05cd23814e694c488",
+        "source": "Fold top",
+        "target": "Fold top"
+    },
+    "ab665d962ecf6da449a2edda3ff88a575a125732": {
+        "id": "ab665d962ecf6da449a2edda3ff88a575a125732",
+        "source": "Duplicate",
+        "target": "Duplicate"
+    },
     "bd15b8d5c0fa160161728eefbbb585710414d471": {
         "id": "bd15b8d5c0fa160161728eefbbb585710414d471",
         "source": "New name",
         "target": "New name"
     },
-    "be4602f66a9ca8ec2d131d1bc1ecccc8d69126d3": {
-        "id": "be4602f66a9ca8ec2d131d1bc1ecccc8d69126d3",
+    "bff14f989562f47ebeb7b8ade2f890d278418727": {
+        "id": "bff14f989562f47ebeb7b8ade2f890d278418727",
         "source": "Fold left",
         "target": "Fold left"
-    },
-    "c8258c2bec39978d609b57aacc71c525accd88d0": {
-        "id": "c8258c2bec39978d609b57aacc71c525accd88d0",
-        "source": "Fold this board",
-        "target": "Fold this board"
-    },
-    "cb4f37f948f373a4eaf3e7c6e8c6096cbe594227": {
-        "id": "cb4f37f948f373a4eaf3e7c6e8c6096cbe594227",
-        "source": "Save",
-        "target": "Save"
     },
     "cd07003d9e88253e7d5cd85545f126a744daa5db": {
         "id": "cd07003d9e88253e7d5cd85545f126a744daa5db",
         "source": "Edit project name",
         "target": "Edit project name"
     },
+    "cd683084368e13236629ceca91d0eada06d8adf5": {
+        "id": "cd683084368e13236629ceca91d0eada06d8adf5",
+        "source": "Fold bottom",
+        "target": "Fold bottom"
+    },
     "cdef4d43a66ae78a643a3a3998f002eb1ed8b433": {
         "id": "cdef4d43a66ae78a643a3a3998f002eb1ed8b433",
         "source": "Edit project endpoints",
         "target": "Edit project endpoints"
     },
-    "cf800f6850b71dad3b7c016a86dff104c86e42d9": {
-        "id": "cf800f6850b71dad3b7c016a86dff104c86e42d9",
-        "source": "Expand this board",
-        "target": "Expand this board"
+    "d2897e5bf21784a9820fc6d13a036b8e56f749f0": {
+        "id": "d2897e5bf21784a9820fc6d13a036b8e56f749f0",
+        "source": "Cancel",
+        "target": "Cancel"
     },
-    "d4d0c635f527ec37cea868ef9d3bdc15dc6fd9d3": {
-        "id": "d4d0c635f527ec37cea868ef9d3bdc15dc6fd9d3",
-        "source": "Fold right",
-        "target": "Fold right"
+    "d390f7efe9746c2e5cb8b1c291325025f5273e0c": {
+        "id": "d390f7efe9746c2e5cb8b1c291325025f5273e0c",
+        "source": "Save",
+        "target": "Save"
     },
     "d7b35c384aecd25a516200d6921836374613dfe7": {
         "id": "d7b35c384aecd25a516200d6921836374613dfe7",
         "source": "Cancel",
         "target": "Cancel"
     },
-    "de03ac613e5fb41fa9a0582c8f321d24623764ab": {
-        "id": "de03ac613e5fb41fa9a0582c8f321d24623764ab",
-        "source": "Edit",
-        "target": "Edit"
+    "e0f974985ff11c6272293cdc45a5ae4b03b8ab35": {
+        "id": "e0f974985ff11c6272293cdc45a5ae4b03b8ab35",
+        "source": "Expand top",
+        "target": "Expand top"
     },
-    "e8df9839607cc2d5804343ccc3d6f12fe9bb1695": {
-        "id": "e8df9839607cc2d5804343ccc3d6f12fe9bb1695",
+    "e6c9c278ab0db5ad4e18287cb52ebbb4bd694d7b": {
+        "id": "e6c9c278ab0db5ad4e18287cb52ebbb4bd694d7b",
         "source": "Expand bottom",
         "target": "Expand bottom"
     },
-    "ef9f85de82a4a41817dc51f43db3f990405c2a9e": {
-        "id": "ef9f85de82a4a41817dc51f43db3f990405c2a9e",
-        "source": "Fold bottom",
-        "target": "Fold bottom"
+    "e92ae1237fa3ea96136c0599cd4a08831b8dc8c2": {
+        "id": "e92ae1237fa3ea96136c0599cd4a08831b8dc8c2",
+        "source": "Mark complete",
+        "target": "Mark complete"
+    },
+    "eb656bc01f771315d821d4807f16917a55128ba3": {
+        "id": "eb656bc01f771315d821d4807f16917a55128ba3",
+        "source": "Expand this board",
+        "target": "Expand this board"
     },
     "f3ec1c0205f71708b4e079b18d21a16a3b80e899": {
         "id": "f3ec1c0205f71708b4e079b18d21a16a3b80e899",
         "source": "All",
         "target": "All"
     },
+    "f554000c451bfc89534229b6e472ea44b7eac6af": {
+        "id": "f554000c451bfc89534229b6e472ea44b7eac6af",
+        "source": "Edit",
+        "target": "Edit"
+    },
     "f7859e8dd4c571a9d6f47aaf669468f598ec09d4": {
         "id": "f7859e8dd4c571a9d6f47aaf669468f598ec09d4",
         "source": "Please Enter a new project name",
         "target": "Please Enter a new project name"
     },
-    "f7d899d985ec7629dc81f99ebe71df2f6b175407": {
-        "id": "f7d899d985ec7629dc81f99ebe71df2f6b175407",
+    "f9727b3194d6e19ec70806e303b719eb676d4a6b": {
+        "id": "f9727b3194d6e19ec70806e303b719eb676d4a6b",
+        "source": "Mark incomplete",
+        "target": "Mark incomplete"
+    },
+    "fa06d33e919b5f7bf6125520c5f5dbff1f7ae33c": {
+        "id": "fa06d33e919b5f7bf6125520c5f5dbff1f7ae33c",
         "source": "Expand right",
         "target": "Expand right"
-    },
-    "fa736482371cfaff4fcf80c3ab3a00e6cb1fac10": {
-        "id": "fa736482371cfaff4fcf80c3ab3a00e6cb1fac10",
-        "source": "Duplicate",
-        "target": "Duplicate"
     },
     "fe027a3d85214af3d076540bcdd87a56161a333c": {
         "id": "fe027a3d85214af3d076540bcdd87a56161a333c",

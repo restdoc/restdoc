@@ -34,8 +34,8 @@
                             <textarea [(ngModel)]='newTopAPI' class="card-text"> </textarea>
                         </div>
                         <div class="adding-actions">
-                            <button mat-button aria-label="Save" (click)="saveNewTopAPI(board)" i18n="Boardlist|Save">Save</button>
-                            <button mat-button (click)="cancel(board, true)" i18n="Boardlist|Cancel">Cancel</button>
+                            <button mat-button aria-label="Save" (click)="saveNewTopAPI(board)" i18n="apilist|Save">Save</button>
+                            <button mat-button (click)="cancel(board, true)" i18n="apilist|Cancel">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -66,8 +66,8 @@
                             <textarea [(ngModel)]='newBottomAPI' class="card-text"> </textarea>
                         </div>
                         <div class="adding-actions-table">
-                            <button mat-button aria-label="Save" (click)="saveNewBottomAPI(board)" i18n="Boardlist|Save">Save</button>
-                            <button mat-button (click)="cancel(board, false)" i18n="Boardlist|Cancel">Cancel</button>
+                            <button mat-button aria-label="Save" (click)="saveNewBottomAPI(board)" i18n="apilist|Save">Save</button>
+                            <button mat-button (click)="cancel(board, false)" i18n="apilist|Cancel">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -106,8 +106,8 @@
                     <input [(ngModel)]='newBoard' class="group-text" placeholder="Board name" i18n-placeholder="boardlist|Board-name" />
                 </div>
                 <div class="group-actions-table">
-                    <button mat-button (click)="saveNewBoard()" i18n="Boardlist|Save">Save</button>
-                    <button mat-button (click)="cancelBoard()" i18n="Boardlist|Cancel">Cancel</button>
+                    <button mat-button (click)="saveNewBoard()" i18n="apilist|Save">Save</button>
+                    <button mat-button (click)="cancelBoard()" i18n="apilist|Cancel">Cancel</button>
                 </div>
             </div>
             <div *ngIf="!addingBoard" (click)="addBoard()" class="addButton-table horizontal-button">
@@ -123,7 +123,7 @@
                 <i class="material-icons">edit</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|edit">Edit</span>
+                <span i18n="apilist|edit">Edit</span>
             </div>
         </div>
         <div class="menu-item" *ngIf="contextAPI && contextAPI.status==0" (click)="updateAPIStatus(contextBoard, contextAPI, 1)" mat-menu-item>
@@ -131,7 +131,7 @@
                 <i class="material-icons">radio_button_checked</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|apply">Mark complete</span>
+                <span i18n="apilist|apply">Mark complete</span>
             </div>
         </div>
         <div class="menu-item" *ngIf="contextAPI && contextAPI.status==1" (click)="updateAPIStatus(contextBoard, contextAPI, 0)" mat-menu-item>
@@ -139,7 +139,7 @@
                 <i class="material-icons">radio_button_unchecked</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|apply">Mark incomplete</span>
+                <span i18n="apilist|apply">Mark incomplete</span>
             </div>
         </div>
         <!--
@@ -148,7 +148,7 @@
                 <i class="material-icons">info</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|apply">View detail</span>
+                <span i18n="apilist|apply">View detail</span>
             </div>
         </div>
         <div class="menu-item" (click)="openInNewTab()" mat-menu-item>
@@ -156,7 +156,7 @@
                 <i class="material-icons">open_in_new</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|apply">Open in new tab</span>
+                <span i18n="apilist|apply">Open in new tab</span>
             </div>
         </div>
         <mat-divider></mat-divider>
@@ -165,7 +165,7 @@
                 <i class="material-icons">link</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|apply">Copy Link</span>
+                <span i18n="apilist|apply">Copy Link</span>
             </div>
         </div>
         -->
@@ -174,7 +174,7 @@
                 <i class="material-icons">content_copy</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|apply">Duplicate</span>
+                <span i18n="apilist|apply">Duplicate</span>
             </div>
         </div>
         <div class="menu-item" (click)="deleteTask(contextBoard, contextAPI)" mat-menu-item>
@@ -182,7 +182,7 @@
                 <i class="material-icons">delete</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|apply">Delete</span>
+                <span i18n="apilist|apply">Delete</span>
             </div>
         </div>
     </div>
@@ -192,7 +192,7 @@
                 <i class="material-icons">edit</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|edit">Edit</span>
+                <span i18n="apilist|edit">Edit</span>
             </div>
         </div>
         <div class="menu-item" (click)="addAPI(contextBoard.info.id, true)" mat-menu-item>
@@ -200,7 +200,7 @@
                 <i class="material-icons">add</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|edit">Add task</span>
+                <span i18n="apilist|edit">Add task</span>
             </div>
         </div>
         <div *ngIf="contextBoard && tableFoldedList.has(contextBoard.info.id)" class="menu-item" (click)="FoldList(contextBoard.info.id)" mat-menu-item>
@@ -208,7 +208,7 @@
                 <i class="material-icons">unfold_more</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|expand this board">Expand this board</span>
+                <span i18n="apilist|expand this board">Expand this board</span>
             </div>
         </div>
         <div *ngIf="contextBoard && !tableFoldedList.has(contextBoard.info.id)" class="menu-item" (click)="FoldList(contextBoard.info.id)" mat-menu-item>
@@ -216,7 +216,7 @@
                 <i class="material-icons">unfold_less</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|fold this board">Fold this board</span>
+                <span i18n="apilist|fold this board">Fold this board</span>
             </div>
         </div>
         <div *ngIf="topHasExpanded" class="menu-item" (click)="foldTop(contextBoard.info.id)" mat-menu-item>
@@ -224,7 +224,7 @@
                 <i class="material-icons">vertical_align_top</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|fold top">Fold top</span>
+                <span i18n="apilist|fold top">Fold top</span>
             </div>
         </div>
         <div *ngIf="topHasFolded" class="menu-item" (click)="expandTop(contextBoard.info.id)" mat-menu-item>
@@ -232,7 +232,7 @@
                 <i class="material-icons">north</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|expand left">Expand top</span>
+                <span i18n="apilist|expand left">Expand top</span>
             </div>
         </div>
         <div *ngIf="bottomHasExpanded" class="menu-item" (click)="foldBottom(contextBoard.info.id)" mat-menu-item>
@@ -240,7 +240,7 @@
                 <i class="material-icons">vertical_align_bottom</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|fold bottom">Fold bottom</span>
+                <span i18n="apilist|fold bottom">Fold bottom</span>
             </div>
         </div>
         <div *ngIf="bottomHasFolded" class="menu-item" (click)="expandBottom(contextBoard.info.id)" mat-menu-item>
@@ -248,7 +248,7 @@
                 <i class="material-icons">south</i>
             </div>
             <div class="menu-item-line">
-                <span i18n="Boardlist|expand bottom board">Expand bottom</span>
+                <span i18n="apilist|expand bottom board">Expand bottom</span>
             </div>
         </div>
     </div>
@@ -259,7 +259,7 @@
                     <i class="material-icons">edit</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|edit">Edit</span>
+                    <span i18n="apilist|edit">Edit</span>
                 </div>
             </div>
             <div class="menu-item" *ngIf="item.status==0" (click)="updateAPIStatus(board, item, 1)" mat-menu-item>
@@ -267,7 +267,7 @@
                     <i class="material-icons">radio_button_checked</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|mark-complete">Mark complete</span>
+                    <span i18n="apilist|mark-complete">Mark complete</span>
                 </div>
             </div>
             <div class="menu-item" *ngIf="item.status==1" (click)="updateAPIStatus(board, item, 0)" mat-menu-item>
@@ -275,7 +275,7 @@
                     <i class="material-icons">radio_button_unchecked</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|mark-incomplete">Mark incomplete</span>
+                    <span i18n="apilist|mark-incomplete">Mark incomplete</span>
                 </div>
             </div>
             <!--
@@ -284,7 +284,7 @@
                     <i class="material-icons">info</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|view-detail">View detail</span>
+                    <span i18n="apilist|view-detail">View detail</span>
                 </div>
             </div>
             <div class="menu-item" (click)="openInNewTab()" mat-menu-item>
@@ -292,7 +292,7 @@
                     <i class="material-icons">open_in_new</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|open-in-new-tab">Open in new tab</span>
+                    <span i18n="apilist|open-in-new-tab">Open in new tab</span>
                 </div>
             </div>
             <mat-divider></mat-divider>
@@ -301,7 +301,7 @@
                     <i class="material-icons">link</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|copy-link">Copy Link</span>
+                    <span i18n="apilist|copy-link">Copy Link</span>
                 </div>
             </div>
             -->
@@ -310,7 +310,7 @@
                     <i class="material-icons">content_copy</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|duplicate">Duplicate</span>
+                    <span i18n="apilist|duplicate">Duplicate</span>
                 </div>
             </div>
             <div class="menu-item" (click)="deleteTask(board, item)" mat-menu-item>
@@ -318,7 +318,7 @@
                     <i class="material-icons">delete</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|delete">Delete</span>
+                    <span i18n="apilist|delete">Delete</span>
                 </div>
             </div>
         </ng-template>
@@ -330,7 +330,7 @@
                     <i class="material-icons">edit</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|edit">Edit</span>
+                    <span i18n="apilist|edit">Edit</span>
                 </div>
             </div>
             <div class="menu-item" (click)="addAPI(board.info.id, true)" mat-menu-item>
@@ -338,7 +338,7 @@
                     <i class="material-icons">add</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|edit">Add task</span>
+                    <span i18n="apilist|edit">Add task</span>
                 </div>
             </div>
             <div *ngIf="tableFoldedList.has(board.info.id)" class="menu-item" (click)="FoldList(board.info.id)" mat-menu-item>
@@ -346,7 +346,7 @@
                     <i class="material-icons">unfold_more</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|expand this board">Expand this board</span>
+                    <span i18n="apilist|expand this board">Expand this board</span>
                 </div>
             </div>
             <div *ngIf="!tableFoldedList.has(board.info.id)" class="menu-item" (click)="FoldList(board.info.id)" mat-menu-item>
@@ -354,7 +354,7 @@
                     <i class="material-icons">unfold_less</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|fold this board">Fold this board</span>
+                    <span i18n="apilist|fold this board">Fold this board</span>
                 </div>
             </div>
             <div *ngIf="leftHasExpanded" class="menu-item" (click)="foldLeft(board.info.id)" mat-menu-item>
@@ -362,7 +362,7 @@
                     <i class="material-icons">first_page</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|fold left">Fold left</span>
+                    <span i18n="apilist|fold left">Fold left</span>
                 </div>
             </div>
             <div *ngIf="leftHasFolded" class="menu-item" (click)="expandLeft(board.info.id)" mat-menu-item>
@@ -370,7 +370,7 @@
                     <i class="material-icons">west</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|expand left">Expand left</span>
+                    <span i18n="apilist|expand left">Expand left</span>
                 </div>
             </div>
             <div *ngIf="rightHasExpanded" class="menu-item" (click)="foldRight(board.info.id)" mat-menu-item>
@@ -378,7 +378,7 @@
                     <i class="material-icons">last_page</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|fold right">Fold right</span>
+                    <span i18n="apilist|fold right">Fold right</span>
                 </div>
             </div>
             <div *ngIf="rightHasFolded" class="menu-item" (click)="expandRight(board.info.id)" mat-menu-item>
@@ -386,7 +386,7 @@
                     <i class="material-icons">east</i>
                 </div>
                 <div class="menu-item-line">
-                    <span i18n="Boardlist|expand right">Expand right</span>
+                    <span i18n="apilist|expand right">Expand right</span>
                 </div>
             </div>
         </ng-template>
@@ -493,7 +493,7 @@
         </div>
         <div class="endpoints">
             <div class="icon">
-                <span>Endpoints</span>
+                <span i18n="apilist|endpoints">Endpoints</span>
             </div>
             <div class="endpoints-select">
                 <mat-button-toggle-group name="endpoints" aria-label="endpoints" [value]="currentEndpoint">
@@ -795,7 +795,7 @@
     <div class="test-body">
         <div class="endpoints">
             <div class="icon">
-                <span>Endpoints</span>
+                <span i18n="">Endpoints</span>
             </div>
             <div class="endpoints-select">
                 <mat-button-toggle-group name="endpoints" aria-label="endpoints">
@@ -841,13 +841,13 @@
                         </div>
                         <div class="param-item default-param-item">
                             <div class="field-key">
-                                <input [(ngModel)]="defaultParamKey" (keyup)="addParam($event, request, 'key')" />
+                                <input [(ngModel)]="defaultParamKey" (keyup)="addParam($event, request, 'key', 'test')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultParamValue" (keyup)="addParam($event, request, 'value')" />
+                                <input [(ngModel)]="defaultParamValue" (keyup)="addParam($event, request, 'value', 'test')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultParamDesc" (keyup)="addParam($event, request, 'desc')" />
+                                <input [(ngModel)]="defaultParamDesc" (keyup)="addParam($event, request, 'desc', 'test')" />
                             </div>
                         </div>
                     </div>
@@ -931,13 +931,13 @@
                         </div>
                         <div class="param-item default-param-item">
                             <div class="field-key">
-                                <input [(ngModel)]="defaultParamKey" (keyup)="addParam($event, request, 'key')" />
+                                <input [(ngModel)]="defaultParamKey" (keyup)="addParam($event, request, 'key', 'test')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultParamValue" (keyup)="addParam($event, request, 'value')" />
+                                <input [(ngModel)]="defaultParamValue" (keyup)="addParam($event, request, 'value', 'test')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultParamDesc" (keyup)="addParam($event, request, 'desc')" />
+                                <input [(ngModel)]="defaultParamDesc" (keyup)="addParam($event, request, 'desc', 'test')" />
                             </div>
                         </div>
                     </div>

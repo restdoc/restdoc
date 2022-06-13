@@ -305,12 +305,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="cb4f37f948f373a4eaf3e7c6e8c6096cbe594227" datatype="html">
+      <trans-unit id="d390f7efe9746c2e5cb8b1c291325025f5273e0c" datatype="html">
         <trans-unit></trans-unit>
         <source>Save</source>
         <target>保存</target>
         <note>Save</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -320,12 +320,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="789c2a12bd55001f71209875da217ddd1d541acc" datatype="html">
+      <trans-unit id="d2897e5bf21784a9820fc6d13a036b8e56f749f0" datatype="html">
         <trans-unit></trans-unit>
         <source>Cancel</source>
         <target>取消</target>
         <note>Cancel</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -346,12 +346,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="de03ac613e5fb41fa9a0582c8f321d24623764ab" datatype="html">
+      <trans-unit id="f554000c451bfc89534229b6e472ea44b7eac6af" datatype="html">
         <trans-unit></trans-unit>
         <source>Edit</source>
         <target>编辑</target>
         <note>edit</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -369,12 +369,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="43b986ded647fa32224b3d8057637b637bc81d62" datatype="html">
+      <trans-unit id="e92ae1237fa3ea96136c0599cd4a08831b8dc8c2" datatype="html">
         <trans-unit></trans-unit>
         <source>Mark complete</source>
         <target>标为完成</target>
         <note>apply</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -384,12 +384,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="60c4585826625180654133ded4c024ec76779d2a" datatype="html">
+      <trans-unit id="f9727b3194d6e19ec70806e303b719eb676d4a6b" datatype="html">
         <trans-unit></trans-unit>
         <source>Mark incomplete</source>
         <target>标为未完成</target>
         <note>apply</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -399,12 +399,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="fa736482371cfaff4fcf80c3ab3a00e6cb1fac10" datatype="html">
+      <trans-unit id="ab665d962ecf6da449a2edda3ff88a575a125732" datatype="html">
         <trans-unit></trans-unit>
         <source>Duplicate</source>
         <target>克隆</target>
         <note>apply</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -414,12 +414,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5bc42965f78abc2921404c7c130541c95f6036b3" datatype="html">
+      <trans-unit id="7ce3aec17fd613e8c975ca9e726d50ae5e16972e" datatype="html">
         <trans-unit></trans-unit>
         <source>Delete</source>
         <target>删除</target>
         <note>apply</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -429,12 +429,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2a4286f37b98997f1077b5ffda06e62bf0f9b281" datatype="html">
+      <trans-unit id="5769034b772035cb7f10d6902d1ac27a7de7b2f8" datatype="html">
         <trans-unit></trans-unit>
         <source>Add task</source>
         <target>添加任务</target>
         <note>edit</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -444,12 +444,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="cf800f6850b71dad3b7c016a86dff104c86e42d9" datatype="html">
+      <trans-unit id="eb656bc01f771315d821d4807f16917a55128ba3" datatype="html">
         <trans-unit></trans-unit>
         <source>Expand this board</source>
-        <target>展开当前列表</target>
+        <target>展开此看板</target>
         <note>expand this board</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -459,12 +459,12 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="c8258c2bec39978d609b57aacc71c525accd88d0" datatype="html">
+      <trans-unit id="97777d99d68481096a9da009806f74e2d7d02afa" datatype="html">
         <trans-unit></trans-unit>
         <source>Fold this board</source>
-        <target>折叠当前列表</target>
+        <target>折叠本看板</target>
         <note>fold this board</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -474,89 +474,109 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="722510ccde80130cf49fc42476e7bf477f95dde9" datatype="html">
+      <trans-unit id="a9613d0f726ad1f99f099fd05cd23814e694c488" datatype="html">
         <trans-unit></trans-unit>
         <source>Fold top</source>
         <target>折叠顶部</target>
         <note>fold top</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1964a5b9150be0cf0586c0fd0a17772e0f7bc258" datatype="html">
+      <trans-unit id="e0f974985ff11c6272293cdc45a5ae4b03b8ab35" datatype="html">
         <trans-unit></trans-unit>
         <source>Expand top</source>
         <target>展开顶部</target>
         <note>expand left</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="ef9f85de82a4a41817dc51f43db3f990405c2a9e" datatype="html">
+      <trans-unit id="cd683084368e13236629ceca91d0eada06d8adf5" datatype="html">
         <trans-unit></trans-unit>
         <source>Fold bottom</source>
         <target>折叠底部</target>
         <note>fold bottom</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e8df9839607cc2d5804343ccc3d6f12fe9bb1695" datatype="html">
+      <trans-unit id="e6c9c278ab0db5ad4e18287cb52ebbb4bd694d7b" datatype="html">
         <trans-unit></trans-unit>
         <source>Expand bottom</source>
         <target>展开底部</target>
         <note>expand bottom board</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="be4602f66a9ca8ec2d131d1bc1ecccc8d69126d3" datatype="html">
+      <trans-unit id="bff14f989562f47ebeb7b8ade2f890d278418727" datatype="html">
         <trans-unit></trans-unit>
         <source>Fold left</source>
         <target>折叠左侧</target>
         <note>fold left</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8a1442613527e86e65846f304c936308812a052f" datatype="html">
+      <trans-unit id="50dbdbc45d50acd923747d78f7ea04baa0444546" datatype="html">
         <trans-unit></trans-unit>
         <source>Expand left</source>
         <target>展开左侧</target>
         <note>expand left</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d4d0c635f527ec37cea868ef9d3bdc15dc6fd9d3" datatype="html">
+      <trans-unit id="834faae2907b3aacf37e0aa448e82a0dae4c1299" datatype="html">
         <trans-unit></trans-unit>
         <source>Fold right</source>
         <target>折叠右侧</target>
         <note>fold right</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f7d899d985ec7629dc81f99ebe71df2f6b175407" datatype="html">
+      <trans-unit id="fa06d33e919b5f7bf6125520c5f5dbff1f7ae33c" datatype="html">
         <trans-unit></trans-unit>
         <source>Expand right</source>
-        <target>展开右侧</target>
+        <target>展开右边</target>
         <note>expand right</note>
-        <note>Boardlist</note>
+        <note>apilist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="28151553689ef01c353f046c64841f14d575ac69" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Endpoints</source>
+        <target>端点</target>
+        <note>endpoints</note>
+        <note>apilist</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="35bc68bd793eed6ee0232bfa6c4d72bc8c07fe69" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Endpoints</source>
+        <target>端点</target>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
@@ -566,6 +586,33 @@
         <trans-unit></trans-unit>
         <source>The path has been updated successfully.</source>
         <target>路径修改成功</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7277976148877234389" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to update path.</source>
+        <target>更新路径失败</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5424343859360860734" datatype="html">
+        <trans-unit></trans-unit>
+        <source>The method has been updated successfully.</source>
+        <target>请求方式已经更新成功</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5944419812359756894" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to update method.</source>
+        <target>更新请求方式失败</target>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>
