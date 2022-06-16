@@ -23,6 +23,7 @@ export class ProjectEndpointComponent implements OnInit {
   labelRenameSucceed = $localize`The project has been renamed successfully.`;
   getProjectDetailFailure = $localize`Failed to get project endpoints.`;
   projectUpdateFailure = $localize`Failed to update project endpoints.`;
+  projectRemoveFailure = $localize`Failed to remove project endpoint.`;
   endpointAddFailure = $localize`Failed to add endpoint.`;
   failLabel = $localize`the label `;
   labelRenameFailed = $localize`Failed to rename the project`;
@@ -131,10 +132,23 @@ export class ProjectEndpointComponent implements OnInit {
 
   removeEndpoint(i: number) {
     var endpoints = this.labelForm.get("endpoints") as FormArray;
-    endpoints.removeAt(i)
-    console.log(endpoints);
-    this.labelForm.controls['endpoints'] = endpoints;
-    //send request
+     let end = endpoints.controls[i];
+    let id = end.get("id").value;
+    let params = { "id": id};
+
+    this.sharedService.removeEndpoint(params).subscribe((data: any) => {
+      this.sharedService.checkResponse(location, data);
+
+      if (!data || data.code != 0) {
+        let message = this.projectRemoveFailure;
+        this.toastr.success(message, "");
+        return;
+      }
+
+      endpoints.removeAt(i)
+      this.labelForm.controls['endpoints'] = endpoints;
+
+    });
   }
 
 
