@@ -497,7 +497,7 @@
             </div>
             <div class="endpoints-select">
                 <mat-button-toggle-group name="endpoints" aria-label="endpoints" [value]="currentEndpoint">
-                    <mat-button-toggle *ngFor="let endpoint of projectEndpoints" [value]="endpoint">{{ endpoint.name }}</mat-button-toggle>
+                    <mat-button-toggle *ngFor="let endpoint of projectEndpoints" [value]="endpoint" (change)="changeEndpoint($event.value)">{{ endpoint.name }}</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
             <div class="endpoints-update" (click)="updateEndpoints()">
@@ -538,6 +538,9 @@
                             <div class="delete-param" (click)="deleteParam(request, i)">
                                 <i class="material-icons">delete_outline</i>
                             </div>
+                            <div class="delete-param" (click)="saveParam(request, param)">
+                                <i class="material-icons">save</i>
+                            </div>
                             <div class="field-key">
                                 <input [(ngModel)]="param.key" class="field-key-input" placeholder="key" />
                             </div>
@@ -560,14 +563,17 @@
                             <div class="delete-param disabled">
                                 <i class="material-icons">delete_outline</i>
                             </div>
+                            <div class="delete-param disabled">
+                                <i class="material-icons">save</i>
+                            </div>
                             <div class="field-key">
-                                <input [(ngModel)]="defaultParamKey" (keyup)="addParam($event, request, 'key', 'document')" />
+                                <input [(ngModel)]="defaultParamKey" (keydown)="addParam($event, request, 'key', 'document')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultParamValue" (keyup)="addParam($event, request, 'value', 'document')" />
+                                <input [(ngModel)]="defaultParamValue" (keydown)="addParam($event, request, 'value', 'document')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultParamDesc" (keyup)="addParam($event, request, 'desc', 'document')" />
+                                <input [(ngModel)]="defaultParamDesc" (keydown)="addParam($event, request, 'desc', 'document')" />
                             </div>
                         </div>
                     </div>
@@ -577,7 +583,7 @@
                                         -->
                 <mat-tab label="headers">
                     <div class="headers">
-                        <div class="header-item normal-header-item" *ngFor="let header of request.headers">
+                        <div class="header-item normal-header-item" *ngFor="let header of request.headers; let i = index">
                             <div class="field-enabled">
                                 <div *ngIf="header.enabled" (click)="toggleHeader(header)">
                                     <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
@@ -586,8 +592,11 @@
                                     <mat-pseudo-checkbox> </mat-pseudo-checkbox>
                                 </div>
                             </div>
-                            <div class="delete-param" (click)="deleteHeader(request, header)">
+                            <div class="delete-param" (click)="deleteHeader(request, i)">
                                 <i class="material-icons">delete_outline</i>
+                            </div>
+                            <div class="delete-param" (click)="saveHeader(request, header)">
+                                <i class="material-icons">save</i>
                             </div>
                             <div class="field-key">
                                 <input [(ngModel)]="header.key" class="field-key-input" />
@@ -611,14 +620,17 @@
                             <div class="delete-param">
                                 <i class="material-icons">delete_outline</i>
                             </div>
+                            <div class="delete-param disabled">
+                                <i class="material-icons">save</i>
+                            </div>
                             <div class="field-key">
-                                <input [(ngModel)]="defaultHeaderKey" (keyup)="addHeader($event, request, 'key')" />
+                                <input [(ngModel)]="defaultHeaderKey" (keydown)="addHeader($event, request, 'key')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultHeaderValue" (keyup)="addHeader($event, request, 'value')" />
+                                <input [(ngModel)]="defaultHeaderValue" (keydown)="addHeader($event, request, 'value')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultHeaderDesc" (keyup)="addHeader($event, request, 'desc')" />
+                                <input [(ngModel)]="defaultHeaderDesc" (keydown)="addHeader($event, request, 'desc')" />
                             </div>
                         </div>
                     </div>
@@ -629,7 +641,7 @@
                         </mat-tab>
                         <mat-tab label="form-data">
                             <div class="form-data">
-                                <div class="param-item normal-param-item" *ngFor="let param of request.formData; let i = index">
+                                <div class="param-item normal-param-item" *ngFor="let param of request.form_data; let i = index">
                                     <div class="field-enabled">
                                         <div *ngIf="param.enabled" (click)="toggleParam(param)">
                                             <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
@@ -641,6 +653,9 @@
                                     <div class="delete-param" (click)="deleteFormData(request, i)">
                                         <i class="material-icons">delete_outline</i>
                                     </div>
+                                    <div class="delete-param" (click)="saveFormData(request, i)">
+                                        <i class="material-icons">save</i>
+                                    </div>
                                     <div class="field-key">
                                         <input [(ngModel)]="param.key" class="field-key-input" />
                                     </div>
@@ -653,31 +668,34 @@
                                 </div>
                                 <div class="param-item default-param-item">
                                     <div class="field-enabled">
-                                        <div *ngIf="defaultParamStatus" (click)="toggleDefaultFormDataStatus()">
+                                        <div *ngIf="defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
                                             <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
                                         </div>
-                                        <div *ngIf="!defaultParamStatus" (click)="toggleDefaultFormDataStatus()">
+                                        <div *ngIf="!defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
                                             <mat-pseudo-checkbox> </mat-pseudo-checkbox>
                                         </div>
                                     </div>
                                     <div class="delete-param disabled">
                                         <i class="material-icons">delete_outline</i>
                                     </div>
+                                    <div class="delete-param">
+                                        <i class="material-icons">save</i>
+                                    </div>
                                     <div class="field-key">
-                                        <input [(ngModel)]="defaultFormDataKey" (keyup)="addFormData($event, request, 'key', 'document')" />
+                                        <input [(ngModel)]="defaultFormDataKey" (keydown)="addFormData($event, request, 'key', 'document')" />
                                     </div>
                                     <div class="field-value">
-                                        <input [(ngModel)]="defaultFormDataValue" (keyup)="addFormData($event, request, 'value', 'document')" />
+                                        <input [(ngModel)]="defaultFormDataValue" (keydown)="addFormData($event, request, 'value', 'document')" />
                                     </div>
                                     <div class="field-desc">
-                                        <input [(ngModel)]="defaultFormDataDesc" (keyup)="addFormData($event, request, 'desc', 'document')" />
+                                        <input [(ngModel)]="defaultFormDataDesc" (keydown)="addFormData($event, request, 'desc', 'document')" />
                                     </div>
                                 </div>
                             </div>
                         </mat-tab>
                         <mat-tab label="x-www-form-urlencoded">
                             <div class="form-urlencoded">
-                                <div class="param-item normal-param-item" *ngFor="let param of request.formUrlencoded; let i = index">
+                                <div class="param-item normal-param-item" *ngFor="let param of request.form_data; let i = index">
                                     <div class="field-enabled">
                                         <div *ngIf="param.enabled" (click)="toggleParam(param)">
                                             <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
@@ -686,8 +704,11 @@
                                             <mat-pseudo-checkbox> </mat-pseudo-checkbox>
                                         </div>
                                     </div>
-                                    <div class="delete-param" (click)="deleteFormUrlencoded(request, i)">
+                                    <div class="delete-param" (click)="deleteFormData(request, i)">
                                         <i class="material-icons">delete_outline</i>
+                                    </div>
+                                    <div class="delete-param" (click)="saveFormData(request, i)">
+                                        <i class="material-icons">save</i>
                                     </div>
                                     <div class="field-key">
                                         <input [(ngModel)]="param.key" class="field-key-input" />
@@ -701,29 +722,47 @@
                                 </div>
                                 <div class="param-item default-param-item">
                                     <div class="field-enabled">
-                                        <div *ngIf="defaultFormUrlencodedStatus" (click)="toggleDefaultFormUrlencodedStatus()">
+                                        <div *ngIf="defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
                                             <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
                                         </div>
-                                        <div *ngIf="!defaultFormUrlencodedStatus" (click)="toggleDefaultFormUrlencodedStatus()">
+                                        <div *ngIf="!defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
                                             <mat-pseudo-checkbox> </mat-pseudo-checkbox>
                                         </div>
                                     </div>
                                     <div class="delete-param disabled">
                                         <i class="material-icons">delete_outline</i>
                                     </div>
+                                    <div class="delete-param disabled">
+                                        <i class="material-icons">save</i>
+                                    </div>
                                     <div class="field-key">
-                                        <input [(ngModel)]="defaultFormUrlencodedKey" (keyup)="addFormUrlencoded($event, request, 'key')" />
+                                        <input [(ngModel)]="defaultFormDataKey" (keydown)="addFormData($event, request, 'key', 'document')" />
                                     </div>
                                     <div class="field-value">
-                                        <input [(ngModel)]="defaultFormUrlencodedValue" (keyup)="addFormUrlencoded($event, request, 'value')" />
+                                        <input [(ngModel)]="defaultFormDataValue" (keydown)="addFormData($event, request, 'value', 'document')" />
                                     </div>
                                     <div class="field-desc">
-                                        <input [(ngModel)]="defaultFormUrlencodedDesc" (keyup)="addFormUrlencoded($event, request, 'desc')" />
+                                        <input [(ngModel)]="defaultFormDataDesc" (keydown)="addFormData($event, request, 'desc', 'document')" />
                                     </div>
                                 </div>
                             </div>
                         </mat-tab>
                         <mat-tab label="raw">
+                            <div class="post-raw-format-type">
+                                <mat-button-toggle-group name="content-type" value="request.response.contentType" (change)="changeRawContentType($event, request)">
+                                    <mat-button-toggle value="html">HTML</mat-button-toggle>
+                                    <mat-button-toggle value="json">JSON</mat-button-toggle>
+                                    <mat-button-toggle value="xml">XML</mat-button-toggle>
+                                    <mat-button-toggle value="raw">Raw</mat-button-toggle>
+                                </mat-button-toggle-group>
+                            </div>
+                            <div class="post-raw">
+                                <ngx-codemirror [(ngModel)]="request.raw" [options]="
+                            { 
+                                lineWrapping: true,
+                                theme: 'mdn-like'
+                            }"></ngx-codemirror>
+                            </div>
                         </mat-tab>
                         <mat-tab label="binary">
                         </mat-tab>
@@ -737,7 +776,9 @@
                 <mat-tab label="response" class="response-tab">
                     <div class="response-container">
                         <div class="format-type">
-                            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                            <mat-button-toggle-group name="content-type" value="request.response.contentType" (change)="changeContentType($event, request)">
+                                <mat-button-toggle value="preview">Preview</mat-button-toggle>
+                                <mat-button-toggle value="html">HTML</mat-button-toggle>
                                 <mat-button-toggle value="json">JSON</mat-button-toggle>
                                 <mat-button-toggle value="xml">XML</mat-button-toggle>
                                 <mat-button-toggle value="raw">Raw</mat-button-toggle>
@@ -765,17 +806,29 @@
                                                         theme: 'mdn-like',
                                                         mode: 'xml' }"></ngx-codemirror>
                                 </ng-container>
-                                <ng-container *ngIf="request.response.contentType == 'html'">
-                                    <!--
-                                                        <div [innerHTML]="request.response.body"></div>
-                                                        -->
+                                <ng-container *ngIf="request.response.contentType == 'preview'">
                                     <iframe class="response-html" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" [src]="request.response.responseUrl | safe"></iframe>
+                                    <!--
+                                    <div [innerHTML]="request.response.body"></div>
+                                    -->
+                                    <!--
+                                    <iframe [src]="request.response.responseUrl | safe" [srcdoc]="request.response.body | sanit"></iframe>
+                                    -->
+                                </ng-container>
+                                <ng-container *ngIf="request.response.contentType == 'html'">
+                                    <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
+                                                        lineNumbers: true,
+                                                        lineWrapping: true,
+                                                        styleActiveLine: true,
+                                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                                        foldGutter: true,
+                                                        theme: 'mdn-like',
+                                                        mode: 'html' }"></ngx-codemirror>
                                 </ng-container>
                             </ng-container>
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="cookies"> </mat-tab>
                 <mat-tab label="headers">
                     <ng-container *ngIf="request.response != null">
                         <ul>
@@ -799,7 +852,7 @@
             </div>
             <div class="endpoints-select">
                 <mat-button-toggle-group name="endpoints" aria-label="endpoints">
-                    <mat-button-toggle *ngFor="let endpoint of projectEndpoints" [value]="endpoint">{{ endpoint.name }}</mat-button-toggle>
+                    <mat-button-toggle *ngFor="let endpoint of projectEndpoints" [value]="endpoint" (change)="changeEndpoint($event.value)">{{ endpoint.name }}</mat-button-toggle>
                 </mat-button-toggle-group>
             </div>
             <div class="endpoints-update" (click)="updateEndpoints()">
@@ -841,13 +894,13 @@
                         </div>
                         <div class="param-item default-param-item">
                             <div class="field-key">
-                                <input [(ngModel)]="defaultParamKey" (keyup)="addParam($event, request, 'key', 'test')" />
+                                <input [(ngModel)]="defaultParamKey" (keydown)="addParam($event, request, 'key', 'test')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultParamValue" (keyup)="addParam($event, request, 'value', 'test')" />
+                                <input [(ngModel)]="defaultParamValue" (keydown)="addParam($event, request, 'value', 'test')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultParamDesc" (keyup)="addParam($event, request, 'desc', 'test')" />
+                                <input [(ngModel)]="defaultParamDesc" (keydown)="addParam($event, request, 'desc', 'test')" />
                             </div>
                         </div>
                     </div>
@@ -931,13 +984,13 @@
                         </div>
                         <div class="param-item default-param-item">
                             <div class="field-key">
-                                <input [(ngModel)]="defaultParamKey" (keyup)="addParam($event, request, 'key', 'test')" />
+                                <input [(ngModel)]="defaultParamKey" (keydown)="addParam($event, request, 'key', 'test')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultParamValue" (keyup)="addParam($event, request, 'value', 'test')" />
+                                <input [(ngModel)]="defaultParamValue" (keydown)="addParam($event, request, 'value', 'test')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultParamDesc" (keyup)="addParam($event, request, 'desc', 'test')" />
+                                <input [(ngModel)]="defaultParamDesc" (keydown)="addParam($event, request, 'desc', 'test')" />
                             </div>
                         </div>
                     </div>

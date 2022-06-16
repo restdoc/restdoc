@@ -1438,7 +1438,7 @@ background-color
 
 .delete-param {
   height:20px;
-  width:20px;
+  width:25px;
 }
 
 .delete-param i {
@@ -1537,4 +1537,13 @@ iframe.response-html {
 
 .test-body {
   padding: 10px 0 0 0;
+}
+
+.post-raw-format-type {
+  padding: 10px 0 10px 0;
+}
+
+.post-raw {
+  border: 1px solid var(--card-br-color);
+  padding: 0;
 }

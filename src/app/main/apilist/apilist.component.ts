@@ -85,7 +85,8 @@ import {
   ParamElement,
   HeaderElement,
   ResponseElement,
-
+  PostType,
+  SanitizeHtmlPipe
 } from "../main.component";
 import { UtilsService  } from "../main.service";
 import { ValueConverter } from "@angular/compiler/src/render3/view/template";
@@ -120,15 +121,14 @@ export class APIlistComponent implements OnInit, OnDestroy {
   private labelChangeSubscription: Subscription;
   private sidebarSubscription: Subscription;
   private sidebarLabelSubscription: Subscription;
-  private styleSubscription: Subscription;
-
-
   
   hasExtensionInstalled = true;
   pathUpdateSucceed = $localize`The path has been updated successfully.`;
   pathUpdateFailure = $localize`Failed to update path.`;
   methodUpdateSucceed = $localize`The method has been updated successfully.`;
   methodUpdateFailure = $localize`Failed to update method.`;
+  noEndpointFailure = $localize`There is not any endpoints.`;
+  paramDeleteFailure = $localize`Failed to delete param.`;
   listMode = true;
   viewType = "overview";
   keyword = "";
@@ -192,10 +192,6 @@ export class APIlistComponent implements OnInit, OnDestroy {
   defaultFormDataValue = "";
   defaultFormDataDesc = "";
   defaultFormDataStatus = false;
-  defaultFormUrlencodedKey = "";
-  defaultFormUrlencodedValue = "";
-  defaultFormUrlencodedDesc = "";
-  defaultFormUrlencodedStatus = false;
   defaultHeaderKey = "";
   defaultHeaderValue = "";
   defaultHeaderDesc = "";
@@ -245,6 +241,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
         let rawContentType = _headers["content-type"];
         let contentType = this.utilsService.formatContentType(rawContentType);
         resp.contentType = contentType
+        console.log(contentType);
         switch (contentType) {
           case "json":
             resp.body = JSON.stringify(event.data.response.data, null, 4);
@@ -255,11 +252,16 @@ export class APIlistComponent implements OnInit, OnDestroy {
             console.log(formated);
             resp.body = formated;
             break;
+          case "html":
+            let body = event.data.response.data;
+            resp.body = body;
+            break;
           default:
         }
 
         let respUrl = event.data.response.responseURL;
         resp.responseUrl = respUrl;
+        console.log(resp);
         console.log(respUrl);
 
         var headers = [];
@@ -361,21 +363,6 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
     this.initUserInfo();
 
-    this.styleSubscription = this.headerService.styleObserable.subscribe(
-      (result) => {
-        switch (result) {
-          case "overview":
-            this.viewType = result;
-            break;
-          case "list":
-            this.viewType = result;
-            break;
-          default:
-        }
-        this.cdr.markForCheck();
-      }
-    );
-
     this.sidebarLabelSubscription = this.sidebarService.labelChange.subscribe(
       (res) => {}
     );
@@ -434,7 +421,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.checkExtensionInstalled(2000);
+    this.checkExtensionInstalled(3000);
   }
 
   ngOnDestroy() {
@@ -449,7 +436,6 @@ export class APIlistComponent implements OnInit, OnDestroy {
     if (this.labelChangeSubscription) {
       this.labelChangeSubscription.unsubscribe();
     }
-    this.styleSubscription.unsubscribe();
   }
 
   stopPropagation(event) {
@@ -1026,6 +1012,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   }
 
 
+
   addParam(event, request, type, page) {
     if (event.keyCode) {
       console.log(event.keyCode);
@@ -1033,8 +1020,6 @@ export class APIlistComponent implements OnInit, OnDestroy {
     if (!this.isValidInput(event.keyCode)) {
       return;
     }
-
-
 
     if (event.key && event.key != "") {
       var param = { key: "", value: "", desc: "", disabled: false };
@@ -1066,57 +1051,86 @@ export class APIlistComponent implements OnInit, OnDestroy {
       if (page == "document") {
 
         if (type == "key") {
-
-          let params = {"api_id": request.id, "name": event.key };
-          this.sharedService.addParam(params).subscribe((data: any) => {
-            this.sharedService.checkResponse(location, data);
-
-            if (data && data.code == 0 && data.data && data.data.detail) {
-              let detail = data.data.detail;
-              request.params.push(param);
-              this.cdr.markForCheck();
-              this.focusNode(parentName, childName);
-            }
-          })
+          request.params.push(param);
+          this.focusNode(parentName, childName);
+          this.cdr.markForCheck();
         }
-
-
-
-
       } else {
         request.params.push(param);
-        this.cdr.markForCheck();
         this.focusNode(parentName, childName);
+        this.cdr.markForCheck();
       }
-
-
 
     }
   }
 
   deleteParam(request: APIElement, i: number) {
     if (request) {
-      request.params.splice(i, 1);
+      let param = request.params[i];
+      if (param.id && param.id != "") {
+        let params = {"id": param.id};
+        this.sharedService.deleteParam(params).subscribe((data: any) => {
+          this.sharedService.checkResponse(location, data);
+
+          if (data && data.code == 0 && data.data && data.data.detail) {
+            let detail = data.data.detail;
+            request.params.splice(i, 1);
+            this.cdr.markForCheck();
+          } else {
+            let message = this.paramDeleteFailure;
+            this.toastr.success(message);
+          }
+        })
+      } else {
+        request.params.splice(i, 1);
+      }
     }
   }
 
   deleteFormData(request: APIElement, i: number) {
     if (request) {
-      request.formData.splice(i, 1);
-    }
-  }
 
+      let param = request.form_data[i];
+      if (param.id && param.id != "") {
+        let params = {"id": param.id};
+        this.sharedService.deleteParam(params).subscribe((data: any) => {
+          this.sharedService.checkResponse(location, data);
 
-  deleteFormUrlencoded(request: APIElement, i: number) {
-    if (request) {
-      request.formUrlencoded.splice(i, 1);
+          if (data && data.code == 0 && data.data && data.data.detail) {
+            let detail = data.data.detail;
+            request.form_data.splice(i, 1);
+            this.cdr.markForCheck();
+          } else {
+            //todo show message
+          }
+        })
+      } else {
+          request.form_data.splice(i, 1);
+      }
     }
   }
 
 
   deleteHeader(request: APIElement, i: number) {
     if (request) {
-      request.headers.splice(i, 1);
+      let param = request.headers[i];
+      if (param.id && param.id != "") {
+        let params = {"id": param.id};
+        this.sharedService.deleteParam(params).subscribe((data: any) => {
+          this.sharedService.checkResponse(location, data);
+
+          if (data && data.code == 0 && data.data && data.data.detail) {
+            let detail = data.data.detail;
+            request.headers.splice(i, 1);
+            this.cdr.markForCheck();
+          } else {
+            let message = this.paramDeleteFailure;
+            this.toastr.success(message);
+          }
+        })
+      } else {
+        request.headers.splice(i, 1);
+      }
     }
   }
 
@@ -1156,112 +1170,182 @@ export class APIlistComponent implements OnInit, OnDestroy {
     }
   }
 
-    addFormData(event, request, type, page) {
-    if (event.keyCode) {
-      console.log(event.keyCode);
-    }
-    if (!this.isValidInput(event.keyCode)) {
-      return;
-    }
+  addFormData(event, request, type, page) {
 
-
-
-    if (event.key && event.key != "") {
-      var param = { key: "", value: "", desc: "", disabled: false };
-
-      let parentName = "normal-param-item";
-      var childName = "field-key-input";
-      switch (type) {
-        case "key":
-          param[type] = event.key;
-          this.defaultFormDataKey = "";
-          childName = "field-" + type + "-input";
-          break;
-        case "value":
-          param[type] = event.key;
-          this.defaultFormDataValue = "";
-          childName = "field-" + type + "-input";
-          break;
-        case "desc":
-          param[type] = event.key;
-          this.defaultFormDataDesc = "";
-          childName = "field-" + type + "-input";
-          break;
-        default:
-          return;
+      if (event.keyCode) {
+        console.log(event.keyCode);
       }
-      param["enabled"] = true;
 
-      if (page == "document") {
+    console.log(event.keyCode);
+      if (!this.isValidInput(event.keyCode)) {
+        return;
+      }
 
-        if (type == "key") {
+    console.log("add form data");
 
-          let params = {"api_id": request.id, "name": event.key };
-          this.sharedService.addParam(params).subscribe((data: any) => {
-            this.sharedService.checkResponse(location, data);
+      if (event.key && event.key != "") {
+        var param = { id: "", key: "", value: "", desc: "", disabled: false };
 
-            if (data && data.code == 0 && data.data && data.data.detail) {
-              let detail = data.data.detail;
-              request.params.push(param);
-              this.cdr.markForCheck();
-              this.focusNode(parentName, childName);
-            }
-          })
+        let parentName = "normal-param-item";
+        var childName = "field-key-input";
+        switch (type) {
+          case "key":
+            param[type] = event.key;
+            this.defaultFormDataKey = "";
+            childName = "field-" + type + "-input";
+            break;
+          case "value":
+            param[type] = event.key;
+            this.defaultFormDataValue = "";
+            childName = "field-" + type + "-input";
+            break;
+          case "desc":
+            param[type] = event.key;
+            this.defaultFormDataDesc = "";
+            childName = "field-" + type + "-input";
+            break;
+          default:
+            return;
         }
+        param["enabled"] = true;
 
+        if (page == "document") {
 
+          if (type == "key") {
 
+            let params = {"api_id": request.id, "name": event.key };
+            /*
+            this.sharedService.addParam(params).subscribe((data: any) => {
+              this.sharedService.checkResponse(location, data);
 
-      } else {
-        request.params.push(param);
+              if (data && data.code == 0 && data.data && data.data.detail) {
+                let detail = data.data.detail;
+                request.form_data.push(param);
+                this.cdr.markForCheck();
+                this.focusNode(parentName, childName);
+              }
+            })
+            */
+            request.form_data.push(param);
+            this.cdr.markForCheck();
+            this.focusNode(parentName, childName);
+
+          }
+
+        } else {
+          request.form_data.push(param);
+          this.cdr.markForCheck();
+          this.focusNode(parentName, childName);
+        }
         this.cdr.markForCheck();
         this.focusNode(parentName, childName);
       }
-      request.formData.push(param);
-      this.cdr.markForCheck();
-      this.focusNode(parentName, childName);
+  }
+
+  saveParam(request, param) {
+    if (param.id && param.id != "") {
+      let params = {"id": param.id, "name": param.key, "type": "get" };
+      this.sharedService.updateParam(params).subscribe((data: any) => {
+        this.sharedService.checkResponse(location, data);
+
+        if (data && data.code == 0 && data.data && data.data.detail) {
+          let detail = data.data.detail;
+          this.cdr.markForCheck();
+        }
+      })
+
+
+    } else {
+      let params = {"api_id": request.id, "name": param.key, "type": "get" };
+      this.sharedService.addParam(params).subscribe((data: any) => {
+        this.sharedService.checkResponse(location, data);
+
+        if (data && data.code == 0 && data.data && data.data.detail) {
+          let detail = data.data.detail;
+          this.cdr.markForCheck();
+        }
+      })
     }
   }
 
-addFormUrlencoded(event, request, type) {
-    if (event.keyCode) {
-      console.log(event.keyCode);
+  saveHeader(request, param) {
+    if (param.id && param.id != "") {
+      let params = {"id": param.id, "name": param.key, "type": "header" };
+      this.sharedService.updateParam(params).subscribe((data: any) => {
+        this.sharedService.checkResponse(location, data);
+
+        if (data && data.code == 0 && data.data && data.data.detail) {
+          let detail = data.data.detail;
+          this.cdr.markForCheck();
+        }
+      })
+
+
+    } else {
+      let params = {"api_id": request.id, "name": param.key, "type": "header" };
+      this.sharedService.addParam(params).subscribe((data: any) => {
+        this.sharedService.checkResponse(location, data);
+
+        if (data && data.code == 0 && data.data && data.data.detail) {
+          let detail = data.data.detail;
+          this.cdr.markForCheck();
+        }
+      })
     }
-    if (!this.isValidInput(event.keyCode)) {
-      return;
+  }
+
+  saveFormData(request, i) {
+    let param = request.form_data[i];
+    if (param.id && param.id != "") {
+      let params = {"id": param.id, "name": param.key, "type": "form" };
+      this.sharedService.updateParam(params).subscribe((data: any) => {
+        this.sharedService.checkResponse(location, data);
+
+        if (data && data.code == 0 && data.data && data.data.detail) {
+          let detail = data.data.detail;
+          this.cdr.markForCheck();
+        }
+      })
+
+
+    } else {
+      let params = {"api_id": request.id, "name": param.key, "type": "form" };
+      this.sharedService.addParam(params).subscribe((data: any) => {
+        this.sharedService.checkResponse(location, data);
+
+        if (data && data.code == 0 && data.data && data.data.detail) {
+          let detail = data.data.detail;
+          request.form_data[i].id = detail.id;
+          this.cdr.markForCheck();
+        }
+      })
     }
+  }
 
-
-
-    if (event.key && event.key != "") {
-      var param = { key: "", value: "", desc: "", disabled: false };
-
-      let parentName = "normal-param-item";
-      var childName = "field-key-input";
-      switch (type) {
-        case "key":
-          param[type] = event.key;
-          this.defaultFormUrlencodedKey = "";
-          childName = "field-" + type + "-input";
-          break;
-        case "value":
-          param[type] = event.key;
-          this.defaultFormUrlencodedValue = "";
-          childName = "field-" + type + "-input";
-          break;
-        case "desc":
-          param[type] = event.key;
-          this.defaultFormUrlencodedDesc = "";
-          childName = "field-" + type + "-input";
-          break;
-        default:
-          return;
-      }
-      param["enabled"] = true;
-      request.formUrlencoded.push(param);
-      this.cdr.markForCheck();
-      this.focusNode(parentName, childName);
+  changeContentType(event, request) {
+    switch (event.value) {
+      case "preview":
+        request.response.contentType = 'preview';
+        break;
+      case "html":
+        request.response.contentType = 'html';
+        break;
+      default:
     }
+    this.cdr.markForCheck();
+  }
+
+  changeRawContentType(event, request) {
+    switch (event.value) {
+      case "preview":
+        //request.response.contentType = 'preview';
+        break;
+      case "html":
+        //request.response.contentType = 'html';
+        break;
+      default:
+    }
+    this.cdr.markForCheck();
   }
 
 
@@ -1293,12 +1377,8 @@ addFormUrlencoded(event, request, type) {
         console.log("detail");
         console.log(detail);
         request.params = detail.get_params;
-        request.formData = detail.form_data_params;
-        request.formUrlencoded = detail.form_urlencoded_params;
-
-        var headers: HeaderElement[] = [];
-        headers.push({ id: "", key: "x", value: "y", desc: "", enabled: true });
-        request.headers = headers;
+        request.form_data = detail.form_params;
+        request.headers = detail.header_params;
         this.cdr.markForCheck();
       })
 
@@ -1631,29 +1711,35 @@ addFormUrlencoded(event, request, type) {
   }
 
 
+  changeEndpoint(event) {
+    if (event) {
+      this.currentEndpoint = event;
+    }
+  }
+
   Download() {
       window.open("https://restdoc.com/extension", "_target");
   }
 
+
   Send(request: APIElement) {
-
-
-    this.checkExtensionInstalled(0);
 
     if (!this.hasExtensionInstalled) {
       return
     }
 
-    let params = request.params;
 
     if (!this.currentEndpoint || this.currentEndpoint.value == "") {
-      //todo toast
+      let message = this.noEndpointFailure;
+      this.toastr.success(message)
       return
     }
+
     //url = this.projectEndpoints. request.
     let url = this.currentEndpoint.value + request.path;
     console.log(url);
 
+    let params = request.params;
     var ps = {};
     for (let param of params) {
       let k = param.key;
@@ -1661,25 +1747,46 @@ addFormUrlencoded(event, request, type) {
       ps[k] = v;
     }
 
+    var form = [];
+ 
 
-    var formData = [];
-    var config = { method: request.method, url: url, params: ps, formData: formData };
+    var config = { method: request.method, url: url, params: ps, formData: form, headers: headers };
 
+    console.log(request);
     if (request.method == "POST") {
-      for (let param of request.formData) {
-        let k = param.key;
-        let v = param.value;
-        formData.push({ key: k, value: v });
-      }
+     
+      console.log(request.post_type);
 
       switch (request.post_type) {
-        case "form_data":
-          config.formData = formData;
+        case PostType.FormData:
+          for (let param of request.form_data) {
+            let k = param.key;
+            let v = param.value;
+            form.push({ key: k, value: v });
+          }
+          config.formData = form;
+          request.headers.push({ id: "", desc: "", enabled: true, key: "Content-Type", value: "multipart/form-data"});
           break;
-        case "":
+        case PostType.FormUrlencoded:
+          for (let param of request.form_data) {
+            let k = param.key;
+            let v = param.value;
+            form.push({ key: k, value: v });
+          }
+          request.headers.push({ id: "", desc: "", enabled: true, key: "Content-Type", value: "application/x-www-form-urlencoded"});
+          config.formData = form;
         default:
       }
 
+    }
+
+
+    var headers = [];
+    for (let header of request.headers) {
+      let k = header.key;
+      let v = header.value;
+      //headers[k] = v;
+      headers.push({ key: v, value: v });
     }
 
     window.postMessage(
@@ -1798,6 +1905,8 @@ addFormUrlencoded(event, request, type) {
     this.sharedService.deleteAPI(params).subscribe((data: any) => {
       this.sharedService.checkResponse(location, data);
 
+      console.log("data");
+      console.log(data);
       if (data) {
         if (data.code == 0) {
           //
@@ -1805,6 +1914,7 @@ addFormUrlencoded(event, request, type) {
             let temp = board.apis[i];
             if (temp.id == item.id) {
               board.apis.splice(i, 1);
+              this.cdr.markForCheck();
               break;
             }
           }
@@ -2424,10 +2534,6 @@ addFormUrlencoded(event, request, type) {
   }
 
 
-  toggleDefaultFormUrlencodedStatus() {
-    this.defaultFormUrlencodedStatus = !this.defaultFormUrlencodedStatus;
-  }
-
   toggleDefaultFormDataStatus() {
     this.defaultFormDataStatus = !this.defaultFormDataStatus;
   }
@@ -2467,10 +2573,53 @@ addFormUrlencoded(event, request, type) {
 
   }
 
+  addContentType(request: APIElement, contentType: string) {
+    var hasContentType = false
+    var indexes = [];
+
+    var i = 0;
+    for (var header of request.headers) {
+      if (header.key.toLowerCase() == "content-type") {
+        hasContentType = true;
+        indexes.push(i);
+      }
+      i += 1;
+    }
+
+    console.log(indexes);
+    if (hasContentType) {
+      console.log(hasContentType)
+      let first = indexes.shift();
+      request.headers[first].value = contentType;
+      for (var i = indexes.length - 1; i >= 0; i--) {
+        let index = indexes[i];
+        request.headers.splice(index);
+      }
+      
+    } else {
+        let h = { id: "", key: "Content-Type", value: contentType, desc: "", enabled: true };
+        request.headers.push(h);
+    }
+    this.cdr.markForCheck();
+
+  }
+
   onPostTypeChanged(event, request: APIElement) {
     //console.log(event);
     let label = event.tab.textLabel;
     request.post_type = label;
+    console.log(label);
+    var h: HeaderElement
+    switch (label) {
+      case "x-www-form-urlencoded":
+        this.addContentType(request, label);
+      case "form-data":
+        this.addContentType(request, label);
+    case "none":
+    case "raw":
+    case "binary":
+    case "none":
+    }
   }
 
 }
