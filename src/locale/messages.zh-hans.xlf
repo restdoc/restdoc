@@ -180,6 +180,15 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2267984659249890070" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to remove project endpoint.</source>
+        <target>删除端点失败</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8106517399039682477" datatype="html">
         <trans-unit></trans-unit>
         <source>Failed to add endpoint.</source>
@@ -613,6 +622,24 @@
         <trans-unit></trans-unit>
         <source>Failed to update method.</source>
         <target>更新请求方式失败</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7201379829467213953" datatype="html">
+        <trans-unit></trans-unit>
+        <source>There is not any endpoints.</source>
+        <target>没有任何端点</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1779531468697871449" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Failed to delete param.</source>
+        <target>删除参数失败</target>
         <context-group purpose="location">
           <context context-type="sourcefile"></context>
           <context context-type="linenumber"></context>

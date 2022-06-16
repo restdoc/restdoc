@@ -99,7 +99,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.ts</context>
@@ -154,18 +154,25 @@
           <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2267984659249890070" datatype="html">
+        <source>Failed to remove project endpoint.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8106517399039682477" datatype="html">
         <source>Failed to add endpoint.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6747221987886772067" datatype="html">
         <source>Failed to rename the project</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.ts</context>
@@ -487,32 +494,46 @@
         <source>Endpoints</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">798</context>
+          <context context-type="linenumber">851</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8771153055553265972" datatype="html">
         <source>The path has been updated successfully.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7277976148877234389" datatype="html">
         <source>Failed to update path.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5424343859360860734" datatype="html">
         <source>The method has been updated successfully.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5944419812359756894" datatype="html">
         <source>Failed to update method.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7201379829467213953" datatype="html">
+        <source>There is not any endpoints.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1779531468697871449" datatype="html">
+        <source>Failed to delete param.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
           <context context-type="linenumber">131</context>
