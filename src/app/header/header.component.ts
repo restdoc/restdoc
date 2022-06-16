@@ -146,25 +146,6 @@ export class HeaderComponent implements OnInit {
           }
         }
 
-        let view = tree.queryParams["view"];
-        switch (view) {
-          case "overview":
-            this.viewType = view;
-            this.selectedIndex = 0;
-            this.headerService.selectStyle(view);
-            break;
-          case "list":
-            this.selectedIndex = 1;
-            this.viewType = view;
-            this.headerService.selectStyle(view);
-            break;
-          case "board":
-            this.viewType = view;
-            this.selectedIndex = 2;
-            this.headerService.selectStyle(view);
-            break;
-          default:
-        }
       }
     }
   }

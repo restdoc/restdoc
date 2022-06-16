@@ -12,21 +12,15 @@ export class HeaderService {
 
   private sidebarActive = new BehaviorSubject<boolean>(false);
   searchObserable = new Subject<string>();
-  styleObserable = new Subject<string>();
 
   constructor(private sharedService: SharedService) {
 
   }
 
   setSibarActive(active) {
-
     this.sidebarActive.next(active);
   }
 
-
-  selectStyle(style:string){
-    this.styleObserable.next(style);
-  }
 
   searchData(data) {
     this.searchObserable.next(data);
