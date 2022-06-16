@@ -196,6 +196,27 @@ export class SharedService {
     );
   }
 
+   deleteParam(data) {
+    let apiEndpoints = "api/restdoc/param/delete";
+    let params = this.formatParams(data);
+    return this.http.post(
+      this.baseurl + apiEndpoints,
+      params,
+      this.httpOptions
+    );
+  }
+
+  updateParam(data) {
+    let apiEndpoints = "api/restdoc/param/update";
+    let params = this.formatParams(data);
+    return this.http.post(
+      this.baseurl + apiEndpoints,
+      params,
+      this.httpOptions
+    );
+  }
+
+
 
   addGroupToProject(data) {
     let apiEndpoints = "api/restdoc/group/create";
@@ -283,6 +304,17 @@ export class SharedService {
       this.httpOptions
     );
   }
+
+  removeEndpoint(data) {
+    let apiEndpoints = "api/restdoc/endpoint/delete";
+    let params = this.formatParams(data);
+    return this.http.post(
+      this.baseurl + apiEndpoints,
+      params,
+      this.httpOptions
+    );
+  }
+
 
 
   patch(apiEndpoints, data) {
