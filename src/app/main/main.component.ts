@@ -7,13 +7,23 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Subscription, from } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DomSanitizer } from "@angular/platform-browser"; 
+import { Pipe, PipeTransform } from "@angular/core";
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 import { SidebarService } from "../sidebar/sidebar.service";
 import { Hotkey } from "./../third/angular2-hotkeys/hotkey.model";
 import { HotkeysService } from "./../third/angular2-hotkeys/hotkeys.service";
-import { Pipe, PipeTransform } from "@angular/core";
+
+
+export enum PostType {
+    FormData = "form-data",
+    FormUrlencoded = "form-url-encoded",
+    Raw = "raw",
+    Binary = "binary",
+    Nonte = "none",
+    Empty = "",
+}
 
 export interface Team {
   id: string;
@@ -71,11 +81,10 @@ export interface APIElement {
   desc: string;
   disabled: boolean;
   params: ParamElement[];
-  formData: ParamElement[];
-  formUrlencoded: ParamElement[];
+  form_data: ParamElement[];
   raw: string | "";
   binary: string | "";
-  post_type: string | "";
+  post_type: PostType | "";
   headers: HeaderElement[];
   response: ResponseElement | null;
 }
@@ -170,6 +179,19 @@ export class TruncatePipe implements PipeTransform {
     let length = value.length;
     return length > limit ? value.substring(length - limit, length) : value;
   }
+}
+
+
+
+@Pipe({ name: 'sanit' })
+export class SanitizeHtmlPipe implements PipeTransform {
+
+  constructor(private _sanitizer: DomSanitizer) { }
+
+  transform(value: string): SafeHtml {
+    return this._sanitizer.bypassSecurityTrustHtml(value);
+  }
+
 }
 
 @Component({

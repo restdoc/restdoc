@@ -65,13 +65,13 @@ export class UtilsService {
         console.log(method);
 
         var ps: ParamElement[] = [];
-        ps.push({ key: "x", value: "y", desc: "", enabled: false, required: true });
+        ps.push({ id: "", key: "x", value: "y", desc: "", enabled: false, required: true });
 
         var headers: HeaderElement[] = [];
-        headers.push({ key: "x", value: "y", desc: "" , enabled: true});
+        headers.push({ id: "", key: "x", value: "y", desc: "" , enabled: true});
 
       var formData: ParamElement[] = [];
-      formData.push({ key: "x", value: "j" , desc: "", enabled: true, required: true});
+      formData.push({ id: "", key: "x", value: "j" , desc: "", enabled: true, required: true});
 
         let resp: ResponseElement = { body: "", headers: [] , contentType: "", responseUrl: ""};
 
@@ -89,8 +89,7 @@ export class UtilsService {
           desc: desc,
           disabled: false,
           params: ps,
-          formData: formData,
-          formUrlencoded: [],
+          form_data: formData,
           raw: "",
           binary: "",
           post_type: post_type,
