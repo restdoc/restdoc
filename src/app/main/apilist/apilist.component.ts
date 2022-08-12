@@ -1012,33 +1012,32 @@ export class APIlistComponent implements OnInit, OnDestroy {
   }
 
 
-
-  addParam(event, request, type, page) {
-    if (event.keyCode) {
-      console.log(event.keyCode);
+  inputParam(event, request, type, page) {
+    if (!event) {
+      return
     }
-    if (!this.isValidInput(event.keyCode)) {
-      return;
-    }
+    console.log('input');
+    const data = event.data;
 
-    if (event.key && event.key != "") {
-      var param = { key: "", value: "", desc: "", disabled: false };
+    event.target.value = ""
+
+      //this.defaultParamKey = "";
+      let param = { key: "", value: "", desc: "", disabled: false };
 
       let parentName = "normal-param-item";
       var childName = "field-key-input";
       switch (type) {
         case "key":
-          param[type] = event.key;
-          this.defaultParamKey = "";
+          param[type] = data;
           childName = "field-" + type + "-input";
           break;
         case "value":
-          param[type] = event.key;
+          param[type] = data;
           this.defaultParamValue = "";
           childName = "field-" + type + "-input";
           break;
         case "desc":
-          param[type] = event.key;
+          param[type] = data;
           this.defaultParamDesc = "";
           childName = "field-" + type + "-input";
           break;
@@ -1061,7 +1060,6 @@ export class APIlistComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       }
 
-    }
   }
 
   deleteParam(request: APIElement, i: number) {
@@ -1134,112 +1132,108 @@ export class APIlistComponent implements OnInit, OnDestroy {
     }
   }
 
-  addHeader(event, request, type) {
-    if (!this.isValidInput(event.keyCode)) {
-      return;
-    }
+  inputHeader(event, request, type) {
 
-    if (event.key && event.key != "") {
-      var header = { key: "", value: "", desc: "", enabled: false };
-
-      let parentName = "normal-header-item";
-      var childName = "field-key-input";
-      switch (type) {
-        case "key":
-          header[type] = event.key;
-          this.defaultHeaderKey = "";
-          childName = "field-" + type + "-input";
-          break;
-        case "value":
-          header[type] = event.key;
-          this.defaultHeaderValue = "";
-          childName = "field-" + type + "-input";
-          break;
-        case "desc":
-          header[type] = event.key;
-          this.defaultHeaderDesc = "";
-          childName = "field-" + type + "-input";
-          break;
-        default:
-          return;
-      }
-      header.enabled = true;
-      request.headers.push(header);
-      this.cdr.markForCheck();
-      this.focusNode(parentName, childName);
+    if (!event) {
+      return
     }
+    const data = event.data;
+
+    event.target.value = ""
+
+    let header = { key: "", value: "", desc: "", enabled: false };
+
+    let parentName = "normal-header-item";
+    var childName = "field-key-input";
+    switch (type) {
+      case "key":
+        header[type] = data;
+        this.defaultHeaderKey = "";
+        childName = "field-" + type + "-input";
+        break;
+      case "value":
+        header[type] = data;
+        this.defaultHeaderValue = "";
+        childName = "field-" + type + "-input";
+        break;
+      case "desc":
+        header[type] = data;
+        this.defaultHeaderDesc = "";
+        childName = "field-" + type + "-input";
+        break;
+      default:
+        return;
+    }
+    header.enabled = true;
+    request.headers.push(header);
+    this.cdr.markForCheck();
+    this.focusNode(parentName, childName);
   }
 
-  addFormData(event, request, type, page) {
+  inputFormData(event, request, type, page) {
 
-      if (event.keyCode) {
-        console.log(event.keyCode);
-      }
+    if (!event) {
+      return
+    }
+    const data = event.data;
 
-    console.log(event.keyCode);
-      if (!this.isValidInput(event.keyCode)) {
+    event.target.value = ""
+
+    var param = { id: "", key: "", value: "", desc: "", disabled: false };
+
+    let parentName = "normal-param-item";
+    var childName = "field-key-input";
+    switch (type) {
+      case "key":
+        param[type] = data;
+        this.defaultFormDataKey = "";
+        childName = "field-" + type + "-input";
+        break;
+      case "value":
+        param[type] = data;
+        this.defaultFormDataValue = "";
+        childName = "field-" + type + "-input";
+        break;
+      case "desc":
+        param[type] = data;
+        this.defaultFormDataDesc = "";
+        childName = "field-" + type + "-input";
+        break;
+      default:
         return;
-      }
+    }
+    param["enabled"] = true;
 
-    console.log("add form data");
+    if (page == "document") {
 
-      if (event.key && event.key != "") {
-        var param = { id: "", key: "", value: "", desc: "", disabled: false };
+      if (type == "key") {
 
-        let parentName = "normal-param-item";
-        var childName = "field-key-input";
-        switch (type) {
-          case "key":
-            param[type] = event.key;
-            this.defaultFormDataKey = "";
-            childName = "field-" + type + "-input";
-            break;
-          case "value":
-            param[type] = event.key;
-            this.defaultFormDataValue = "";
-            childName = "field-" + type + "-input";
-            break;
-          case "desc":
-            param[type] = event.key;
-            this.defaultFormDataDesc = "";
-            childName = "field-" + type + "-input";
-            break;
-          default:
-            return;
-        }
-        param["enabled"] = true;
+        let params = {"api_id": request.id, "name": event.key };
+        /*
+        this.sharedService.addParam(params).subscribe((data: any) => {
+          this.sharedService.checkResponse(location, data);
 
-        if (page == "document") {
-
-          if (type == "key") {
-
-            let params = {"api_id": request.id, "name": event.key };
-            /*
-            this.sharedService.addParam(params).subscribe((data: any) => {
-              this.sharedService.checkResponse(location, data);
-
-              if (data && data.code == 0 && data.data && data.data.detail) {
-                let detail = data.data.detail;
-                request.form_data.push(param);
-                this.cdr.markForCheck();
-                this.focusNode(parentName, childName);
-              }
-            })
-            */
+          if (data && data.code == 0 && data.data && data.data.detail) {
+            let detail = data.data.detail;
             request.form_data.push(param);
             this.cdr.markForCheck();
             this.focusNode(parentName, childName);
-
           }
-
-        } else {
-          request.form_data.push(param);
-          this.cdr.markForCheck();
-          this.focusNode(parentName, childName);
-        }
+        })
+        */
+        request.form_data.push(param);
         this.cdr.markForCheck();
         this.focusNode(parentName, childName);
+
       }
+
+    } else {
+      request.form_data.push(param);
+      this.cdr.markForCheck();
+      this.focusNode(parentName, childName);
+    }
+    this.cdr.markForCheck();
+    this.focusNode(parentName, childName);
   }
 
   saveParam(request, param) {

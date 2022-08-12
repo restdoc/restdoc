@@ -567,13 +567,13 @@
                                 <i class="material-icons">save</i>
                             </div>
                             <div class="field-key">
-                                <input [(ngModel)]="defaultParamKey" (keydown)="addParam($event, request, 'key', 'document')" />
+                                <input (input)="inputParam($event, request, 'key', 'document')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultParamValue" (keydown)="addParam($event, request, 'value', 'document')" />
+                                <input (keydown)="inputParam($event, request, 'value', 'document')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultParamDesc" (keydown)="addParam($event, request, 'desc', 'document')" />
+                                <input (keydown)="inputParam($event, request, 'desc', 'document')" />
                             </div>
                         </div>
                     </div>
@@ -624,13 +624,13 @@
                                 <i class="material-icons">save</i>
                             </div>
                             <div class="field-key">
-                                <input [(ngModel)]="defaultHeaderKey" (keydown)="addHeader($event, request, 'key')" />
+                                <input (input)="inputHeader($event, request, 'key')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultHeaderValue" (keydown)="addHeader($event, request, 'value')" />
+                                <input (input)="inputHeader($event, request, 'value')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultHeaderDesc" (keydown)="addHeader($event, request, 'desc')" />
+                                <input (input)="inputHeader($event, request, 'desc')" />
                             </div>
                         </div>
                     </div>
@@ -682,13 +682,13 @@
                                         <i class="material-icons">save</i>
                                     </div>
                                     <div class="field-key">
-                                        <input [(ngModel)]="defaultFormDataKey" (keydown)="addFormData($event, request, 'key', 'document')" />
+                                        <input (input)="inputFormData($event, request, 'key', 'document')" />
                                     </div>
                                     <div class="field-value">
-                                        <input [(ngModel)]="defaultFormDataValue" (keydown)="addFormData($event, request, 'value', 'document')" />
+                                        <input (input)="inputFormData($event, request, 'value', 'document')" />
                                     </div>
                                     <div class="field-desc">
-                                        <input [(ngModel)]="defaultFormDataDesc" (keydown)="addFormData($event, request, 'desc', 'document')" />
+                                        <input (input)="inputFormData($event, request, 'desc', 'document')" />
                                     </div>
                                 </div>
                             </div>
@@ -736,13 +736,13 @@
                                         <i class="material-icons">save</i>
                                     </div>
                                     <div class="field-key">
-                                        <input [(ngModel)]="defaultFormDataKey" (keydown)="addFormData($event, request, 'key', 'document')" />
+                                        <input (input)="inputFormData($event, request, 'key', 'document')" />
                                     </div>
                                     <div class="field-value">
-                                        <input [(ngModel)]="defaultFormDataValue" (keydown)="addFormData($event, request, 'value', 'document')" />
+                                        <input (input)="inputFormData($event, request, 'value', 'document')" />
                                     </div>
                                     <div class="field-desc">
-                                        <input [(ngModel)]="defaultFormDataDesc" (keydown)="addFormData($event, request, 'desc', 'document')" />
+                                        <input (input)="inputFormData($event, request, 'desc', 'document')" />
                                     </div>
                                 </div>
                             </div>
@@ -894,13 +894,13 @@
                         </div>
                         <div class="param-item default-param-item">
                             <div class="field-key">
-                                <input [(ngModel)]="defaultParamKey" (keydown)="addParam($event, request, 'key', 'test')" />
+                                <input (input)="inputParam($event, request, 'key', 'test')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultParamValue" (keydown)="addParam($event, request, 'value', 'test')" />
+                                <input (input)="inputParam($event, request, 'value', 'test')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultParamDesc" (keydown)="addParam($event, request, 'desc', 'test')" />
+                                <input (input)="inputParam($event, request, 'desc', 'test')" />
                             </div>
                         </div>
                     </div>
@@ -984,13 +984,13 @@
                         </div>
                         <div class="param-item default-param-item">
                             <div class="field-key">
-                                <input [(ngModel)]="defaultParamKey" (keydown)="addParam($event, request, 'key', 'test')" />
+                                <input (input)="inputParam($event, request, 'key', 'test')" />
                             </div>
                             <div class="field-value">
-                                <input [(ngModel)]="defaultParamValue" (keydown)="addParam($event, request, 'value', 'test')" />
+                                <input (input)="inputParam($event, request, 'value', 'test')" />
                             </div>
                             <div class="field-desc">
-                                <input [(ngModel)]="defaultParamDesc" (keydown)="addParam($event, request, 'desc', 'test')" />
+                                <input (input)="inputParam($event, request, 'desc', 'test')" />
                             </div>
                         </div>
                     </div>
