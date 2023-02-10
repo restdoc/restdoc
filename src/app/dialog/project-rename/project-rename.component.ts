@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 
 import { ToastrService } from "ngx-toastr";
@@ -15,7 +15,7 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./project-rename.component.css"],
 })
 export class ProjectRenameComponent implements OnInit {
-  labelFrom: FormGroup;
+  labelFrom: UntypedFormGroup;
   labelName = "";
   projectId = "";
   theLabel = $localize`The label `;
@@ -28,7 +28,7 @@ export class ProjectRenameComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ProjectRenameComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private sharedService: SharedService,
     private sidebarService: SidebarService,
     private toastr: ToastrService

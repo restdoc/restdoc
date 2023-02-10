@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -14,10 +14,10 @@ export class SnoozeDateTimeComponent implements OnInit {
   timeString: string = null;
   minimunDate: Date = null;
 
-  datePickerFrom: FormGroup;
+  datePickerFrom: UntypedFormGroup;
 
   constructor(public dialogRef: MatDialogRef<SnoozeDateTimeComponent>,
-    @Inject(MAT_DIALOG_DATA) public data, private fb: FormBuilder) { }
+    @Inject(MAT_DIALOG_DATA) public data, private fb: UntypedFormBuilder) { }
 
 
   ngOnInit() {

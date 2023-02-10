@@ -44,7 +44,7 @@ import { MatListModule, MatListOption } from "@angular/material/list";
 import { MatMenuTrigger } from "@angular/material/menu";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { UntypedFormGroup, UntypedFormBuilder } from "@angular/forms";
 import { from, Subscription, Observable, of, Subject } from "rxjs";
 import { ajax } from "rxjs/ajax";
 import {
@@ -89,7 +89,6 @@ import {
   SanitizeHtmlPipe
 } from "../main.component";
 import { UtilsService  } from "../main.service";
-import { ValueConverter } from "@angular/compiler/src/render3/view/template";
 import { consoleTestResultsHandler } from "tslint/lib/test";
 
 
@@ -138,7 +137,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   detailId = "";
   composeId = "";
   menuopen = false;
-  searchForm: FormGroup;
+  searchForm: UntypedFormGroup;
   label: string;
   selectedDate: Date | null = null;
   cardColors = CardColors;
@@ -315,7 +314,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,

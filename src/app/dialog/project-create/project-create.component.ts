@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject,ChangeDetectorRef  } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { FormArray, FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormArray, UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 
 import { ToastrService } from "ngx-toastr";
@@ -18,7 +18,7 @@ import { I } from "@angular/cdk/keycodes";
   styleUrls: ["./project-create.component.css"],
 })
 export class ProjectCreateComponent implements OnInit {
-  labelForm: FormGroup;
+  labelForm: UntypedFormGroup;
   labelName = "";
   minutes = 0;
   theLabel = $localize`The label `;
@@ -34,7 +34,7 @@ export class ProjectCreateComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ProjectCreateComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private sharedService: SharedService,
     private sidebarService: SidebarService,
     private cdr: ChangeDetectorRef,
@@ -92,12 +92,12 @@ export class ProjectCreateComponent implements OnInit {
     this.selectedTeamId = team.id;
   }
 
-  getEndpoints() : FormArray {
-    return this.labelForm.get("endpoints") as FormArray
+  getEndpoints() : UntypedFormArray {
+    return this.labelForm.get("endpoints") as UntypedFormArray
   }
 
   removeEndpoint(i: number) {
-    var endpoints = this.labelForm.get("endpoints") as FormArray;
+    var endpoints = this.labelForm.get("endpoints") as UntypedFormArray;
     endpoints.removeAt(i)
     console.log(endpoints);
     this.labelForm.controls['endpoints'] = endpoints;

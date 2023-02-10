@@ -4,7 +4,7 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { Subscription, from } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Pipe, PipeTransform } from "@angular/core";
@@ -217,7 +217,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private sidebarService: SidebarService,
     private _hotkeysService: HotkeysService,
     private route: ActivatedRoute,

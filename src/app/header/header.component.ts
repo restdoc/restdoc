@@ -14,9 +14,9 @@ import {
 } from "@angular/router";
 import {
   FormGroup,
-  FormBuilder,
+  UntypedFormBuilder,
   Validators,
-  FormControl,
+  UntypedFormControl,
 } from "@angular/forms";
 import { DOCUMENT, DatePipe, NgLocalization } from "@angular/common";
 import { MatDialog } from "@angular/material/dialog";
@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
 
   version = environment.version;
   logoSrc = "";
-  myControl = new FormControl();
+  myControl = new UntypedFormControl();
   isOpen = false;
   projectName = "";
   projectId = "0";
@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private sharedService: SharedService,
     private sidebarService: SidebarService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private router: Router,

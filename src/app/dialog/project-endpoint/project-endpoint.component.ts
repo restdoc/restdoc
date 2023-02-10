@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject,ChangeDetectorRef  } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { FormArray, FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormArray, UntypedFormGroup, UntypedFormBuilder, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 
 import { ToastrService } from "ngx-toastr";
@@ -16,7 +16,7 @@ import { EndpointElement } from "../../main/main.component";
   styleUrls: ["./project-endpoint.component.css"],
 })
 export class ProjectEndpointComponent implements OnInit {
-  labelForm: FormGroup;
+  labelForm: UntypedFormGroup;
   labelName = "";
   projectId = "";
   theLabel = $localize`The label `;
@@ -35,7 +35,7 @@ export class ProjectEndpointComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ProjectEndpointComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private sharedService: SharedService,
     private sidebarService: SidebarService,
     private cdr: ChangeDetectorRef,
@@ -131,7 +131,7 @@ export class ProjectEndpointComponent implements OnInit {
 
 
   removeEndpoint(i: number) {
-    var endpoints = this.labelForm.get("endpoints") as FormArray;
+    var endpoints = this.labelForm.get("endpoints") as UntypedFormArray;
      let end = endpoints.controls[i];
     let id = end.get("id").value;
     let params = { "id": id};
@@ -153,7 +153,7 @@ export class ProjectEndpointComponent implements OnInit {
 
 
   updateEndpoint(i: number) {
-    var endpoints = this.labelForm.get("endpoints") as FormArray;
+    var endpoints = this.labelForm.get("endpoints") as UntypedFormArray;
     let end = endpoints.controls[i];
     console.log(end);
     //end.get('name').setValue(name);
@@ -184,7 +184,7 @@ export class ProjectEndpointComponent implements OnInit {
     //this.dialogRef.close();
 
     //this.dialogRef.close({event:this.action,data:this.local_data});
-    let items = this.labelForm.get("endpoints") as FormArray;
+    let items = this.labelForm.get("endpoints") as UntypedFormArray;
     var endpoints:EndpointElement[] = [];
     for (var i = 0; i < items.controls.length; i++){
       let item = items.controls[i].value;
@@ -196,8 +196,8 @@ export class ProjectEndpointComponent implements OnInit {
 
   }
 
-  getEndpoints() : FormArray {
-    return this.labelForm.get("endpoints") as FormArray
+  getEndpoints() : UntypedFormArray {
+    return this.labelForm.get("endpoints") as UntypedFormArray
   }
 
   addEndpoint() {

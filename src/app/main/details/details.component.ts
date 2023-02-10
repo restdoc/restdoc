@@ -17,9 +17,9 @@ import {
 } from "@angular/core";
 import { HttpClient, HttpEventType } from "@angular/common/http";
 import {
-  FormBuilder,
+  UntypedFormBuilder,
   FormControl,
-  FormGroup,
+  UntypedFormGroup,
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -63,7 +63,7 @@ export class DetailsComponent implements OnInit, OnChanges, AfterViewInit {
   private sidebarSubscription: Subscription;
   private readSub: Subscription;
   private listActionsSub: Subscription;
-  labelFrom: FormGroup;
+  labelFrom: UntypedFormGroup;
   labelName = "";
   minutes = 0;
   theLabel = $localize`The label `;
@@ -73,10 +73,10 @@ export class DetailsComponent implements OnInit, OnChanges, AfterViewInit {
   labelCreateFailed = $localize`Failed to create the label`;
   private labelSubscription: Subscription;
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   id = "";
   title = "hello";
-  searchForm: FormGroup;
+  searchForm: UntypedFormGroup;
   label: string;
   labels: LabelItem[] = [];
   labelMaps = {};
@@ -89,7 +89,7 @@ export class DetailsComponent implements OnInit, OnChanges, AfterViewInit {
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private elementRef: ElementRef,
