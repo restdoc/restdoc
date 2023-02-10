@@ -157,10 +157,8 @@ input:focus-visible {
   font-weight: 400;
   font-display: block;
   src: local("Material Icons"), local("MaterialIcons-Regular"),
-    url("https://fonts.gstatic.com/s/materialicons/v121/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2")
-      format("woff2"),
-    url("/restdoc/zh-hans/assets/fonts/MaterialIcons-Regular.woff2") format("woff2"),
-    url("/assets/fonts/MaterialIcons-Regular.woff2") format("woff2");
+    url("/restdoc/zh-hans/assets/fonts/MaterialIcons-Regular.woff") format("woff"),
+    url("/assets/fonts/MaterialIcons-Regular.woff") format("woff");
 }
 
 .material-icons {
