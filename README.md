@@ -6,4 +6,4 @@
     
 ## demo  
     
-![Image text](https://github.com/restdoc/restdoc/raw/main/src/assets/images/demo.png)
+![Image text](https://github.com/restdoc/restdoc/raw/main/src/assets/images/demo2.png)
