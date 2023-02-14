@@ -5,13 +5,10 @@ i18n:
 	cd src/locale && go run i18n.go && cd ../../
 
 pack:
-	#ng build --prod --aot --build-optimizer --localize --base-href=/mail/
-	ng build --prod --aot --optimization --build-optimizer --localize
+	ng build --aot --optimization --build-optimizer --localize
 	mv dist/restdoc/en-US dist/restdoc/en-us  # rename
 	rm -rf ../restdoc-server/restdoc/*
 	cp -r dist/restdoc/* ../restdoc-server/restdoc/
-	#rm -rf ../restdoc-server/static/restdoc/assets  && cp -r dist/restdoc/en-US/assets ../restdoc-server/static/restdoc/assets
-	#cp -r dist/restdoc/en-US/assets ../restdoc-server/static/restdoc/assets
 
 zh:
 	ng serve --live-reload --port=4208 --configuration=zh-hans
