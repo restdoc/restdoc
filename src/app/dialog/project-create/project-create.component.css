@@ -1,19 +1,51 @@
+.project-create-body {
+    padding: 25px 25px 0 25px;
+}
+
 .labelName {
     border: 1px solid gray;
     background-color: none;
     width: 100%;
     height:20px;
     margin-top: 5px;
+    box-sizing: border-box;
 }
+
+.endpoints {
+    padding: 10px 0 10px 0;
+}
+
+.endpoint {
+    padding: 5px 0 5px 0;
+}
+
+.teams {
+    padding: 10px 0 10px 0;
+}
+
+.team {
+    padding: 5px 0 5px 0;
+}
+
+.remove {
+    padding-left: 10px;
+}
+
+.add {
+    padding-left: 10px;
+}
+
 
 .actions {
     display: flex;
     justify-content: flex-end;
+    padding: 10px 0 10px 0;
+    margin-bottom: 20px;
 }
 
 .createButton {
-    background-color: #1a73e8;
-    color: white;
+    background-color: #1a73e8 !important;
+    color: white !important;
 }
 .title-bar {
     display: flex; 

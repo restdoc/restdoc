@@ -9,9 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
-import { MatTableModule } from "@angular/material/table";
 import { DragDropModule } from "@angular/cdk/drag-drop";
-import { MatInputModule } from "@angular/material/input";
 
 import { APP_BASE_HREF, DatePipe } from "@angular/common";
 import { from } from "rxjs";
@@ -77,9 +75,7 @@ var hotkeyOption: IHotkeyOptions = {
         HttpClientModule,
         AppRoutingModule,
         HotkeyModule.forRoot(hotkeyOption),
-        MatTableModule,
         DragDropModule,
-        MatInputModule,
         CodemirrorModule,
         // [RouterModule.forRoot(appRoutes)],
         ToastrModule.forRoot({

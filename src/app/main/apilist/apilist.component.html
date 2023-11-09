@@ -121,24 +121,18 @@
         <div class="menu-item" (click)="editTask(contextBoard, contextAPI)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">edit</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|edit">Edit</span>
             </div>
         </div>
         <div class="menu-item" *ngIf="contextAPI && contextAPI.status==0" (click)="updateAPIStatus(contextBoard, contextAPI, 1)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">radio_button_checked</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|apply">Mark complete</span>
             </div>
         </div>
         <div class="menu-item" *ngIf="contextAPI && contextAPI.status==1" (click)="updateAPIStatus(contextBoard, contextAPI, 0)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">radio_button_unchecked</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|apply">Mark incomplete</span>
             </div>
         </div>
@@ -146,16 +140,12 @@
         <div class="menu-item" (click)="detail(null, contextBoard, contextAPI)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">info</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|apply">View detail</span>
             </div>
         </div>
         <div class="menu-item" (click)="openInNewTab()" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">open_in_new</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|apply">Open in new tab</span>
             </div>
         </div>
@@ -163,8 +153,6 @@
         <div class="menu-item" (click)="copyLink(contextBoard, contextAPI)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">link</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|apply">Copy Link</span>
             </div>
         </div>
@@ -172,16 +160,12 @@
         <div class="menu-item" (click)="duplicateTask(contextBoard, contextAPI)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">content_copy</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|apply">Duplicate</span>
             </div>
         </div>
         <div class="menu-item" (click)="deleteTask(contextBoard, contextAPI)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">delete</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|apply">Delete</span>
             </div>
         </div>
@@ -190,64 +174,48 @@
         <div class="menu-item" (click)="editBoard(contextBoard)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">edit</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|edit">Edit</span>
             </div>
         </div>
         <div class="menu-item" (click)="addAPI(contextBoard.info.id, true)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">add</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|edit">Add task</span>
             </div>
         </div>
         <div *ngIf="contextBoard && tableFoldedList.has(contextBoard.info.id)" class="menu-item" (click)="FoldList(contextBoard.info.id)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">unfold_more</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|expand this board">Expand this board</span>
             </div>
         </div>
         <div *ngIf="contextBoard && !tableFoldedList.has(contextBoard.info.id)" class="menu-item" (click)="FoldList(contextBoard.info.id)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">unfold_less</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|fold this board">Fold this board</span>
             </div>
         </div>
         <div *ngIf="topHasExpanded" class="menu-item" (click)="foldTop(contextBoard.info.id)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">vertical_align_top</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|fold top">Fold top</span>
             </div>
         </div>
         <div *ngIf="topHasFolded" class="menu-item" (click)="expandTop(contextBoard.info.id)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">north</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|expand left">Expand top</span>
             </div>
         </div>
         <div *ngIf="bottomHasExpanded" class="menu-item" (click)="foldBottom(contextBoard.info.id)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">vertical_align_bottom</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|fold bottom">Fold bottom</span>
             </div>
         </div>
         <div *ngIf="bottomHasFolded" class="menu-item" (click)="expandBottom(contextBoard.info.id)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">south</i>
-            </div>
-            <div class="menu-item-line">
                 <span i18n="apilist|expand bottom board">Expand bottom</span>
             </div>
         </div>
@@ -257,24 +225,18 @@
             <div class="menu-item" (click)="editTask(board, item)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">edit</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|edit">Edit</span>
                 </div>
             </div>
             <div class="menu-item" *ngIf="item.status==0" (click)="updateAPIStatus(board, item, 1)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">radio_button_checked</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|mark-complete">Mark complete</span>
                 </div>
             </div>
             <div class="menu-item" *ngIf="item.status==1" (click)="updateAPIStatus(board, item, 0)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">radio_button_unchecked</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|mark-incomplete">Mark incomplete</span>
                 </div>
             </div>
@@ -282,16 +244,12 @@
             <div class="menu-item" (click)="detail(null, board, item)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">info</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|view-detail">View detail</span>
                 </div>
             </div>
             <div class="menu-item" (click)="openInNewTab()" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">open_in_new</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|open-in-new-tab">Open in new tab</span>
                 </div>
             </div>
@@ -299,8 +257,6 @@
             <div class="menu-item" (click)="copyLink(board, item)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">link</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|copy-link">Copy Link</span>
                 </div>
             </div>
@@ -308,16 +264,12 @@
             <div class="menu-item" (click)="duplicateTask(board, item)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">content_copy</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|duplicate">Duplicate</span>
                 </div>
             </div>
             <div class="menu-item" (click)="deleteTask(board, item)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">delete</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|delete">Delete</span>
                 </div>
             </div>
@@ -328,64 +280,48 @@
             <div class="menu-item" (click)="editBoard(board)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">edit</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|edit">Edit</span>
                 </div>
             </div>
             <div class="menu-item" (click)="addAPI(board.info.id, true)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">add</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|edit">Add task</span>
                 </div>
             </div>
             <div *ngIf="tableFoldedList.has(board.info.id)" class="menu-item" (click)="FoldList(board.info.id)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">unfold_more</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|expand this board">Expand this board</span>
                 </div>
             </div>
             <div *ngIf="!tableFoldedList.has(board.info.id)" class="menu-item" (click)="FoldList(board.info.id)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">unfold_less</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|fold this board">Fold this board</span>
                 </div>
             </div>
             <div *ngIf="leftHasExpanded" class="menu-item" (click)="foldLeft(board.info.id)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">first_page</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|fold left">Fold left</span>
                 </div>
             </div>
             <div *ngIf="leftHasFolded" class="menu-item" (click)="expandLeft(board.info.id)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">west</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|expand left">Expand left</span>
                 </div>
             </div>
             <div *ngIf="rightHasExpanded" class="menu-item" (click)="foldRight(board.info.id)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">last_page</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|fold right">Fold right</span>
                 </div>
             </div>
             <div *ngIf="rightHasFolded" class="menu-item" (click)="expandRight(board.info.id)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">east</i>
-                </div>
-                <div class="menu-item-line">
                     <span i18n="apilist|expand right">Expand right</span>
                 </div>
             </div>

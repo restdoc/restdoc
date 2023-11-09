@@ -1,41 +1,43 @@
-<div class="title-bar">
-	<span class="title-text" i18n="Edit endpoints">Edit endpoints</span>
-	<span cdkFocusInitial mat-dialog-close (click)="onNoClick()" class="close-btn">
-		<i class="material-icons">close</i>
-	</span>
-</div>
-<div mat-dialog-content>
-	<form class="label-form" [formGroup]="labelForm">
-		<div>
-			<div><span>API endpoints</span></div>
-			<div formArrayName="endpoints" class="endpoints">
-				<div class="endpoint-item " *ngFor="let endpoint of getEndpoints().controls; let i = index">
-					<div [formGroupName]="i">
-						<input formControlName="name" class="name-input" />
+<div class="endpoint-body">
+	<div class="title-bar">
+		<span class="title-text" i18n="Edit endpoints">Edit endpoints</span>
+		<span cdkFocusInitial mat-dialog-close (click)="onNoClick()" class="close-btn">
+			<i class="material-icons">close</i>
+		</span>
+	</div>
+	<div mat-dialog-content>
+		<form class="label-form" [formGroup]="labelForm">
+			<div>
+				<div><span>API endpoints</span></div>
+				<div formArrayName="endpoints" class="endpoints">
+					<div class="endpoint-item " *ngFor="let endpoint of getEndpoints().controls; let i = index">
+						<div [formGroupName]="i">
+							<input formControlName="name" class="name-input" />
+						</div>
+						<div [formGroupName]="i" class="value">
+							<input formControlName="value" class="value-input" />
+						</div>
+						<div class="actions">
+							<button (click)="updateEndpoint(i)">Update</button>
+							<button (click)="removeEndpoint(i)">Remove</button>
+						</div>
 					</div>
-					<div [formGroupName]="i" class="value">
-						<input formControlName="value" class="value-input" />
-					</div>
-					<div class="actions">
-						<button (click)="updateEndpoint(i)">Update</button>
-						<button (click)="removeEndpoint(i)">Remove</button>
+				</div>
+				<div class="adding endpoints">
+					<div class="endpoint-item">
+						<div class="name">
+							<input type="text" formControlName="newEndpointName" class="name-input" />
+						</div>
+						<div class="value">
+							<input type="text" formControlName="newEndpointValue" class="value-input" />
+						</div>
+						<div class="actions">
+							<button (click)="addEndpoint()">Add</button>
+							<button (click)="clearEndpoint()">Clear</button>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="adding endpoints">
-				<div class="endpoint-item">
-					<div class="name">
-						<input type="text" formControlName="newEndpointName" class="name-input" />
-					</div>
-					<div class="value">
-						<input type="text" formControlName="newEndpointValue" class="value-input" />
-					</div>
-					<div class="actions">
-						<button (click)="addEndpoint()">Add</button>
-						<button (click)="clearEndpoint()">Clear</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>

@@ -1071,8 +1071,8 @@ background-color
 
 .send-button {
   line-height: 28px;
-  background-color: var(--main-btn-bg-color);
-  color: var(--main-btn-text-color);
+  background-color: var(--main-btn-bg-color) !important;
+  color: var(--main-btn-text-color) !important;
 }
 
 .detail-body {

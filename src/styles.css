@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~ngx-toastr/toastr";
 @import "~codemirror/lib/codemirror";
 @import 'mdn-like.css';
@@ -10,6 +10,7 @@
 
 
 :root {
+  --main-color: #427fed;
   --request-method-color: #808080;
   --request-method-hover-color: #427fed;
   --caret-color: #000000;
@@ -59,6 +60,7 @@
   }
 	*/
   :root {
+    --main-color: #427fed;
     --request-method-color: #808080;
     --request-method-hover-color: #427fed;
     --caret-color: #000000;
@@ -285,4 +287,94 @@ input:focus-visible {
 
 ::ng-deep .mat-input-element {
   caret-color: #cccccc !important;
+}
+
+
+
+.mat-mdc-dialog-container {
+  background-color: #ffffff;
+}
+
+.mat-mdc-menu-content {
+  background-color: #ffffff;
+}
+
+.mat-mdc-outlined-button {
+    border: 1px solid #ececec !important;
+}
+
+
+.mat-mdc-form-field-infix {
+  min-height: 24px;
+}
+
+.mdc-text-field--no-label:not(.mdc-text-field--outlined):not(
+    .mdc-text-field--textarea
+  )
+  .mat-mdc-form-field-infix {
+  padding: 0;
+}
+
+.mdc-evolution-chip-set .mdc-evolution-chip {
+  margin: 0 !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.mat-mdc-chip.mdc-evolution-chip--with-trailing-action
+  .mat-mdc-chip-action-label {
+  display: flex;
+  align-items: center;
+}
+
+.mat-mdc-card-outlined {
+  border: none !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::before {
+  border-bottom-color: transparent !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent !important;
+  border: 1px solid #ececec !important;
+}
+
+
+.mdc-tab__text-label {
+  user-select: none;
+  color: #000000 !important;
+}
+
+.mdc-tab-indicator--active .mdc-tab__text-label {
+  user-select: none;
+  color: var(--main-color) !important;
+}
+
+.mdc-tab-indicator__content--underline {
+  border-color: var(--main-color) !important;
+}
+
+
+.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
+  flex-grow: 0 !important;
+}
+
+.mat-mdc-tab.mdc-tab {
+  height: 32px !important;
+}
+
+
+.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.mdc-dialog .mdc-dialog__content {
+  padding: 0px !important;
+  overflow: hidden;
 }
