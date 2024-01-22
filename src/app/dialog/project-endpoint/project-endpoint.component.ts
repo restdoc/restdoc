@@ -40,7 +40,9 @@ export class ProjectEndpointComponent implements OnInit {
     private sidebarService: SidebarService,
     private cdr: ChangeDetectorRef,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.projectId = data.id;
+  }
 
   ngOnInit() {
   
@@ -59,6 +61,10 @@ export class ProjectEndpointComponent implements OnInit {
 
 
     let projectId = this.projectId;
+    if (!projectId) {
+      const location = window.location;
+      projectId = this.sharedService.getProjectId(location)
+    }
     this.sharedService.getProjectDetail(projectId).subscribe((data: any) => {
       this.sharedService.checkResponse(location, data);
 
@@ -70,9 +76,7 @@ export class ProjectEndpointComponent implements OnInit {
 
       if (data.data && data.data.detail ) {
         let detail = data.data.detail;
-        console.log(detail);
         let ends = detail.endpoints;
-        console.log(ends);
 
         var endpoints = this.getEndpoints();  //ref 
         for (var end of ends) {
@@ -100,6 +104,12 @@ export class ProjectEndpointComponent implements OnInit {
   }
 
   onSave(): void {
+
+     let projectId = this.projectId;
+    if (!projectId) {
+      const location = window.location;
+      this.projectId = this.sharedService.getProjectId(location)
+    }
     var name = this.labelForm.get("name");
     var label = name.value;
     let params = { id: this.projectId, name: label };
@@ -155,7 +165,6 @@ export class ProjectEndpointComponent implements OnInit {
   updateEndpoint(i: number) {
     var endpoints = this.labelForm.get("endpoints") as UntypedFormArray;
     let end = endpoints.controls[i];
-    console.log(end);
     //end.get('name').setValue(name);
     let id = end.get("id").value;
     let name = end.get("name").value;
@@ -173,7 +182,6 @@ export class ProjectEndpointComponent implements OnInit {
       }
 
       const detail = data.data.detail;
-      console.log(data);
 
     });
     this.labelForm.controls['endpoints'] = endpoints;
@@ -188,7 +196,6 @@ export class ProjectEndpointComponent implements OnInit {
     var endpoints:EndpointElement[] = [];
     for (var i = 0; i < items.controls.length; i++){
       let item = items.controls[i].value;
-      console.log(item);
       let endpoint: EndpointElement = { id: item.id, name: item.name, value: item.value };
       endpoints.push(endpoint);
     }
@@ -232,7 +239,6 @@ export class ProjectEndpointComponent implements OnInit {
       }
 
       const detail = data.data.detail;
-      console.log(data);
 
     });
 

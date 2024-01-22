@@ -10,6 +10,7 @@ import { ajax } from "rxjs/ajax";
 import { filter, map, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 import { environment } from "./../../environments/environment";
+import { Router } from "@angular/router";
 
 class HttpUrlPercentEncodingCodec implements HttpParameterCodec {
   encodeKey(key: string): string {
@@ -47,7 +48,7 @@ export class SharedService {
     withCredentials: true,
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     if (!environment.baseurl.endsWith("/")) {
       alert("invalid environment baseurl");
     }
@@ -84,6 +85,22 @@ export class SharedService {
   get(apiEndpoints) {
     return this.http.get(this.baseurl + apiEndpoints, this.httpOptions);
   }
+
+  getProjectId(location: Location): string {
+    const u = location.pathname;
+    let parsed = this.router.parseUrl(u);
+    parsed.queryParams = {};
+    let path = parsed.toString();
+
+    path = decodeURIComponent(path);
+    const segments = path.split('/');
+    let docId = '';
+    if (segments.length > 1) {
+      docId = segments[segments.length - 1];
+    }
+    return docId;
+  }
+
 
   checkResponse(location: Location, data: any) {
     if (data.code == 403) {
