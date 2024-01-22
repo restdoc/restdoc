@@ -182,19 +182,19 @@
         <div class="menu-item" (click)="addAPI(contextBoard.info.id, true)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">add</i>
-                <span i18n>Add task</span>
+                <span i18n>Add api</span>
             </div>
         </div>
         <div *ngIf="contextBoard && tableFoldedList.has(contextBoard.info.id)" class="menu-item" (click)="FoldList(contextBoard.info.id)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">unfold_more</i>
-                <span i18n>Expand this board</span>
+                <span i18n>Expand this group</span>
             </div>
         </div>
         <div *ngIf="contextBoard && !tableFoldedList.has(contextBoard.info.id)" class="menu-item" (click)="FoldList(contextBoard.info.id)" mat-menu-item>
             <div class="menu-item-line">
                 <i class="material-icons">unfold_less</i>
-                <span i18n>Fold this board</span>
+                <span i18n>Fold this group</span>
             </div>
         </div>
         <div *ngIf="topHasExpanded" class="menu-item" (click)="foldTop(contextBoard.info.id)" mat-menu-item>
@@ -288,19 +288,19 @@
             <div class="menu-item" (click)="addAPI(board.info.id, true)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">add</i>
-                    <span i18n>Add task</span>
+                    <span i18n>Add api</span>
                 </div>
             </div>
             <div *ngIf="tableFoldedList.has(board.info.id)" class="menu-item" (click)="FoldList(board.info.id)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">unfold_more</i>
-                    <span i18n>Expand this board</span>
+                    <span i18n>Expand this group</span>
                 </div>
             </div>
             <div *ngIf="!tableFoldedList.has(board.info.id)" class="menu-item" (click)="FoldList(board.info.id)" mat-menu-item>
                 <div class="menu-item-line">
                     <i class="material-icons">unfold_less</i>
-                    <span i18n>Fold this board</span>
+                    <span i18n>Fold this group</span>
                 </div>
             </div>
             <div *ngIf="leftHasExpanded" class="menu-item" (click)="foldLeft(board.info.id)" mat-menu-item>

@@ -6,7 +6,7 @@
         <source>New Project</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-create/project-create.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">3</context>
         </context-group>
         <note priority="1" from="description">New-project</note>
       </trans-unit>
@@ -14,7 +14,7 @@
         <source>Please Enter a new project name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-create/project-create.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">8</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/details/details.component.html</context>
@@ -26,11 +26,19 @@
         <source>Cancel</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-create/project-create.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">44</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">111</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/details/details.component.html</context>
@@ -42,7 +50,7 @@
         <source>Create</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-create/project-create.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/details/details.component.html</context>
@@ -125,7 +133,7 @@
         <source>Edit endpoints</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">3</context>
         </context-group>
         <note priority="1" from="description">Edit endpoints</note>
       </trans-unit>
@@ -183,7 +191,7 @@
         <source>New name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">3</context>
         </context-group>
         <note priority="1" from="description">New-name</note>
       </trans-unit>
@@ -191,7 +199,7 @@
         <source>Please enter the new name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">8</context>
         </context-group>
         <note priority="1" from="description">Please-enter-the-new-name</note>
       </trans-unit>
@@ -199,7 +207,15 @@
         <source>Save</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">110</context>
         </context-group>
         <note priority="1" from="description">Save</note>
       </trans-unit>
@@ -214,7 +230,7 @@
         <source>All</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/header/header.component.html</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">63</context>
         </context-group>
         <note priority="1" from="description">All</note>
         <note priority="1" from="meaning">Headers</note>
@@ -232,7 +248,7 @@
         <source>Edit project endpoints</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/header/header.component.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">86</context>
         </context-group>
         <note priority="1" from="description">editProjectEndpoints</note>
         <note priority="1" from="meaning">Header</note>
@@ -241,7 +257,7 @@
         <source>Delete project</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/header/header.component.html</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">92</context>
         </context-group>
         <note priority="1" from="description">deleteProject</note>
         <note priority="1" from="meaning">Header</note>
@@ -250,7 +266,7 @@
         <source>Logout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/header/header.component.html</context>
-          <context context-type="linenumber">124</context>
+          <context context-type="linenumber">120</context>
         </context-group>
         <note priority="1" from="description">Logout</note>
         <note priority="1" from="meaning">Header</note>
@@ -259,45 +275,17 @@
         <source>Labels</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d390f7efe9746c2e5cb8b1c291325025f5273e0c" datatype="html">
-        <source>Save</source>
+      <trans-unit id="87d051648dbfd9d1397e24e230f2e710bed15394" datatype="html">
+        <source>Group name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">107</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">109</context>
-        </context-group>
-        <note priority="1" from="description">Save</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="d2897e5bf21784a9820fc6d13a036b8e56f749f0" datatype="html">
-        <source>Cancel</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">38</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">110</context>
-        </context-group>
-        <note priority="1" from="description">Cancel</note>
-        <note priority="1" from="meaning">apilist</note>
-      </trans-unit>
-      <trans-unit id="2500f65e4509b21647f82f27d139e239e2dde8d3" datatype="html">
-        <source>Board name</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">106</context>
-        </context-group>
-        <note priority="1" from="description">Board-name</note>
-        <note priority="1" from="meaning">boardlist</note>
-      </trans-unit>
-      <trans-unit id="f554000c451bfc89534229b6e472ea44b7eac6af" datatype="html">
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
         <source>Edit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
@@ -305,238 +293,201 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">195</context>
+          <context context-type="linenumber">179</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">262</context>
+          <context context-type="linenumber">230</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">333</context>
+          <context context-type="linenumber">285</context>
         </context-group>
-        <note priority="1" from="description">edit</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="e92ae1237fa3ea96136c0599cd4a08831b8dc8c2" datatype="html">
+      <trans-unit id="b96efbcc8bce6c4cadf12913004977c5db3fd642" datatype="html">
         <source>Mark complete</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">132</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">270</context>
+          <context context-type="linenumber">236</context>
         </context-group>
-        <note priority="1" from="description">apply</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="f9727b3194d6e19ec70806e303b719eb676d4a6b" datatype="html">
+      <trans-unit id="e901bb15393a8e9249a51a99842072e9ebc67999" datatype="html">
         <source>Mark incomplete</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">138</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">278</context>
+          <context context-type="linenumber">242</context>
         </context-group>
-        <note priority="1" from="description">apply</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="ab665d962ecf6da449a2edda3ff88a575a125732" datatype="html">
+      <trans-unit id="6311004001228073b829d6ab8dbfa8450289a1bd" datatype="html">
         <source>Duplicate</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">177</context>
+          <context context-type="linenumber">165</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">313</context>
+          <context context-type="linenumber">269</context>
         </context-group>
-        <note priority="1" from="description">apply</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="7ce3aec17fd613e8c975ca9e726d50ae5e16972e" datatype="html">
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
         <source>Delete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">171</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">275</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2957723ce8ff03e99fa70e3e0466f3eb39d7fed2" datatype="html">
+        <source>Add api</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
           <context context-type="linenumber">185</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">321</context>
+          <context context-type="linenumber">291</context>
         </context-group>
-        <note priority="1" from="description">apply</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="5769034b772035cb7f10d6902d1ac27a7de7b2f8" datatype="html">
-        <source>Add task</source>
+      <trans-unit id="a968b6f5470c0dc7151f5d64e21e49a33a0b952f" datatype="html">
+        <source>Expand this group</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">191</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">297</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0b2f3899e5c71acc1782decae58058d20b7664c9" datatype="html">
+        <source>Fold this group</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">197</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">303</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7dba919ecbc9324e428386640b257dd05ea23298" datatype="html">
+        <source>Fold top</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
           <context context-type="linenumber">203</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">341</context>
-        </context-group>
-        <note priority="1" from="description">edit</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="eb656bc01f771315d821d4807f16917a55128ba3" datatype="html">
-        <source>Expand this board</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">211</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">349</context>
-        </context-group>
-        <note priority="1" from="description">expand this board</note>
-        <note priority="1" from="meaning">apilist</note>
-      </trans-unit>
-      <trans-unit id="97777d99d68481096a9da009806f74e2d7d02afa" datatype="html">
-        <source>Fold this board</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">219</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">357</context>
-        </context-group>
-        <note priority="1" from="description">fold this board</note>
-        <note priority="1" from="meaning">apilist</note>
-      </trans-unit>
-      <trans-unit id="a9613d0f726ad1f99f099fd05cd23814e694c488" datatype="html">
-        <source>Fold top</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">227</context>
-        </context-group>
-        <note priority="1" from="description">fold top</note>
-        <note priority="1" from="meaning">apilist</note>
-      </trans-unit>
-      <trans-unit id="e0f974985ff11c6272293cdc45a5ae4b03b8ab35" datatype="html">
+      <trans-unit id="c45d18aa8a05bf38dca6ae65d07940361f51fece" datatype="html">
         <source>Expand top</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">235</context>
+          <context context-type="linenumber">209</context>
         </context-group>
-        <note priority="1" from="description">expand left</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="cd683084368e13236629ceca91d0eada06d8adf5" datatype="html">
+      <trans-unit id="80f4238d00cc3134d7a325efdbc8aae8f48c522e" datatype="html">
         <source>Fold bottom</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">243</context>
+          <context context-type="linenumber">215</context>
         </context-group>
-        <note priority="1" from="description">fold bottom</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="e6c9c278ab0db5ad4e18287cb52ebbb4bd694d7b" datatype="html">
+      <trans-unit id="6cdad7f7a5d173187361ec56b5c987b7323adddf" datatype="html">
         <source>Expand bottom</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">251</context>
+          <context context-type="linenumber">221</context>
         </context-group>
-        <note priority="1" from="description">expand bottom board</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="bff14f989562f47ebeb7b8ade2f890d278418727" datatype="html">
+      <trans-unit id="e65e9c6a5e33091ff3f9127d29a2088ac1674261" datatype="html">
         <source>Fold left</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">365</context>
+          <context context-type="linenumber">309</context>
         </context-group>
-        <note priority="1" from="description">fold left</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="50dbdbc45d50acd923747d78f7ea04baa0444546" datatype="html">
+      <trans-unit id="42f70268be6f83ac3df4e42dbf46888b0ce5523f" datatype="html">
         <source>Expand left</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">373</context>
+          <context context-type="linenumber">315</context>
         </context-group>
-        <note priority="1" from="description">expand left</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="834faae2907b3aacf37e0aa448e82a0dae4c1299" datatype="html">
+      <trans-unit id="486b8468f24246709547fbefdc9428f240e53a81" datatype="html">
         <source>Fold right</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">381</context>
+          <context context-type="linenumber">321</context>
         </context-group>
-        <note priority="1" from="description">fold right</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
-      <trans-unit id="fa06d33e919b5f7bf6125520c5f5dbff1f7ae33c" datatype="html">
+      <trans-unit id="d4ac51413630d14c7c1aaae8bcde709b4d4f2d56" datatype="html">
         <source>Expand right</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">389</context>
+          <context context-type="linenumber">327</context>
         </context-group>
-        <note priority="1" from="description">expand right</note>
-        <note priority="1" from="meaning">apilist</note>
-      </trans-unit>
-      <trans-unit id="28151553689ef01c353f046c64841f14d575ac69" datatype="html">
-        <source>Endpoints</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">496</context>
-        </context-group>
-        <note priority="1" from="description">endpoints</note>
-        <note priority="1" from="meaning">apilist</note>
       </trans-unit>
       <trans-unit id="35bc68bd793eed6ee0232bfa6c4d72bc8c07fe69" datatype="html">
         <source>Endpoints</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
-          <context context-type="linenumber">851</context>
+          <context context-type="linenumber">436</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/main/apilist/apilist.component.html</context>
+          <context context-type="linenumber">791</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8771153055553265972" datatype="html">
         <source>The path has been updated successfully.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7277976148877234389" datatype="html">
         <source>Failed to update path.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
-          <context context-type="linenumber">127</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5424343859360860734" datatype="html">
         <source>The method has been updated successfully.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5944419812359756894" datatype="html">
         <source>Failed to update method.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7201379829467213953" datatype="html">
         <source>There is not any endpoints.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1779531468697871449" datatype="html">
         <source>Failed to delete param.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/main/apilist/apilist.component.ts</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">107</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8553291d04c4cbd53ce5158a831a8bbd1ac8e6ad" datatype="html">
@@ -552,11 +503,11 @@
         <source>All</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">40</context>
         </context-group>
         <note priority="1" from="description">all</note>
         <note priority="1" from="meaning">sidebar</note>
@@ -565,7 +516,7 @@
         <source>Less</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <note priority="1" from="description">less</note>
         <note priority="1" from="meaning">sidebar</note>
@@ -574,7 +525,7 @@
         <source>More</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">59</context>
         </context-group>
         <note priority="1" from="description">more</note>
         <note priority="1" from="meaning">sidebar</note>
@@ -583,7 +534,7 @@
         <source>Trash</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">67</context>
         </context-group>
         <note priority="1" from="description">Trash</note>
         <note priority="1" from="meaning">sidebar</note>
@@ -592,7 +543,7 @@
         <source>Manage project</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">75</context>
         </context-group>
         <note priority="1" from="description">manager-project</note>
         <note priority="1" from="meaning">sidebar</note>
@@ -601,7 +552,7 @@
         <source>Create new label</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/sidebar/sidebar.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">83</context>
         </context-group>
         <note priority="1" from="description">create-new-label</note>
         <note priority="1" from="meaning">sidebar</note>

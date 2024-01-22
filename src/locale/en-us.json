@@ -1,4 +1,9 @@
 {
+    "0b2f3899e5c71acc1782decae58058d20b7664c9": {
+        "id": "0b2f3899e5c71acc1782decae58058d20b7664c9",
+        "source": "Fold this group",
+        "target": "Fold this group"
+    },
     "1779531468697871449": {
         "id": "1779531468697871449",
         "source": "Failed to delete param.",
@@ -24,20 +29,20 @@
         "source": "Failed to remove project endpoint.",
         "target": "Failed to remove project endpoint."
     },
-    "2500f65e4509b21647f82f27d139e239e2dde8d3": {
-        "id": "2500f65e4509b21647f82f27d139e239e2dde8d3",
-        "source": "Board name",
-        "target": "Board name"
-    },
-    "28151553689ef01c353f046c64841f14d575ac69": {
-        "id": "28151553689ef01c353f046c64841f14d575ac69",
-        "source": "Endpoints",
-        "target": "Endpoints"
-    },
     "2840102566590804226": {
         "id": "2840102566590804226",
         "source": "the label ",
         "target": "the label "
+    },
+    "28f86ffd419b869711aa13f5e5ff54be6d70731c": {
+        "id": "28f86ffd419b869711aa13f5e5ff54be6d70731c",
+        "source": "Edit",
+        "target": "Edit"
+    },
+    "2957723ce8ff03e99fa70e3e0466f3eb39d7fed2": {
+        "id": "2957723ce8ff03e99fa70e3e0466f3eb39d7fed2",
+        "source": "Add api",
+        "target": "Add api"
     },
     "2af7efecfae8d7fed3b07f718a623eca1ad8163f": {
         "id": "2af7efecfae8d7fed3b07f718a623eca1ad8163f",
@@ -64,15 +69,20 @@
         "source": "Trash",
         "target": "Trash"
     },
+    "42f70268be6f83ac3df4e42dbf46888b0ce5523f": {
+        "id": "42f70268be6f83ac3df4e42dbf46888b0ce5523f",
+        "source": "Expand left",
+        "target": "Expand left"
+    },
+    "486b8468f24246709547fbefdc9428f240e53a81": {
+        "id": "486b8468f24246709547fbefdc9428f240e53a81",
+        "source": "Fold right",
+        "target": "Fold right"
+    },
     "4879437342633482392": {
         "id": "4879437342633482392",
         "source": "The label ",
         "target": "The label "
-    },
-    "50dbdbc45d50acd923747d78f7ea04baa0444546": {
-        "id": "50dbdbc45d50acd923747d78f7ea04baa0444546",
-        "source": "Expand left",
-        "target": "Expand left"
     },
     "52c9a103b812f258bcddc3d90a6e3f46871d25fe": {
         "id": "52c9a103b812f258bcddc3d90a6e3f46871d25fe",
@@ -89,15 +99,15 @@
         "source": "Delete project",
         "target": "Delete project"
     },
-    "5769034b772035cb7f10d6902d1ac27a7de7b2f8": {
-        "id": "5769034b772035cb7f10d6902d1ac27a7de7b2f8",
-        "source": "Add task",
-        "target": "Add task"
-    },
     "5944419812359756894": {
         "id": "5944419812359756894",
         "source": "Failed to update method.",
         "target": "Failed to update method."
+    },
+    "6311004001228073b829d6ab8dbfa8450289a1bd": {
+        "id": "6311004001228073b829d6ab8dbfa8450289a1bd",
+        "source": "Duplicate",
+        "target": "Duplicate"
     },
     "6469924bbf31d442a5573b9b2493eaa0469914b2": {
         "id": "6469924bbf31d442a5573b9b2493eaa0469914b2",
@@ -124,6 +134,11 @@
         "source": "The project has been renamed successfully.",
         "target": "The project has been renamed successfully."
     },
+    "6cdad7f7a5d173187361ec56b5c987b7323adddf": {
+        "id": "6cdad7f7a5d173187361ec56b5c987b7323adddf",
+        "source": "Expand bottom",
+        "target": "Expand bottom"
+    },
     "70a67e04629f6d412db0a12d51820b480788d795": {
         "id": "70a67e04629f6d412db0a12d51820b480788d795",
         "source": "Create",
@@ -144,10 +159,15 @@
         "source": "Please enter the new name",
         "target": "Please enter the new name"
     },
-    "7ce3aec17fd613e8c975ca9e726d50ae5e16972e": {
-        "id": "7ce3aec17fd613e8c975ca9e726d50ae5e16972e",
-        "source": "Delete",
-        "target": "Delete"
+    "7dba919ecbc9324e428386640b257dd05ea23298": {
+        "id": "7dba919ecbc9324e428386640b257dd05ea23298",
+        "source": "Fold top",
+        "target": "Fold top"
+    },
+    "80f4238d00cc3134d7a325efdbc8aae8f48c522e": {
+        "id": "80f4238d00cc3134d7a325efdbc8aae8f48c522e",
+        "source": "Fold bottom",
+        "target": "Fold bottom"
     },
     "8106517399039682477": {
         "id": "8106517399039682477",
@@ -159,10 +179,10 @@
         "source": "Failed to get project endpoints.",
         "target": "Failed to get project endpoints."
     },
-    "834faae2907b3aacf37e0aa448e82a0dae4c1299": {
-        "id": "834faae2907b3aacf37e0aa448e82a0dae4c1299",
-        "source": "Fold right",
-        "target": "Fold right"
+    "826b25211922a1b46436589233cb6f1a163d89b7": {
+        "id": "826b25211922a1b46436589233cb6f1a163d89b7",
+        "source": "Delete",
+        "target": "Delete"
     },
     "848488385451394868": {
         "id": "848488385451394868",
@@ -179,6 +199,11 @@
         "source": "The path has been updated successfully.",
         "target": "The path has been updated successfully."
     },
+    "87d051648dbfd9d1397e24e230f2e710bed15394": {
+        "id": "87d051648dbfd9d1397e24e230f2e710bed15394",
+        "source": "Group name",
+        "target": "Group name"
+    },
     "8a6b1fd18712b06ff2b943fe0d0f78f7860cf51b": {
         "id": "8a6b1fd18712b06ff2b943fe0d0f78f7860cf51b",
         "source": "Less",
@@ -189,105 +214,65 @@
         "source": "More",
         "target": "More"
     },
-    "97777d99d68481096a9da009806f74e2d7d02afa": {
-        "id": "97777d99d68481096a9da009806f74e2d7d02afa",
-        "source": "Fold this board",
-        "target": "Fold this board"
+    "a968b6f5470c0dc7151f5d64e21e49a33a0b952f": {
+        "id": "a968b6f5470c0dc7151f5d64e21e49a33a0b952f",
+        "source": "Expand this group",
+        "target": "Expand this group"
     },
-    "a9613d0f726ad1f99f099fd05cd23814e694c488": {
-        "id": "a9613d0f726ad1f99f099fd05cd23814e694c488",
-        "source": "Fold top",
-        "target": "Fold top"
-    },
-    "ab665d962ecf6da449a2edda3ff88a575a125732": {
-        "id": "ab665d962ecf6da449a2edda3ff88a575a125732",
-        "source": "Duplicate",
-        "target": "Duplicate"
+    "b96efbcc8bce6c4cadf12913004977c5db3fd642": {
+        "id": "b96efbcc8bce6c4cadf12913004977c5db3fd642",
+        "source": "Mark complete",
+        "target": "Mark complete"
     },
     "bd15b8d5c0fa160161728eefbbb585710414d471": {
         "id": "bd15b8d5c0fa160161728eefbbb585710414d471",
         "source": "New name",
         "target": "New name"
     },
-    "bff14f989562f47ebeb7b8ade2f890d278418727": {
-        "id": "bff14f989562f47ebeb7b8ade2f890d278418727",
-        "source": "Fold left",
-        "target": "Fold left"
+    "c45d18aa8a05bf38dca6ae65d07940361f51fece": {
+        "id": "c45d18aa8a05bf38dca6ae65d07940361f51fece",
+        "source": "Expand top",
+        "target": "Expand top"
     },
     "cd07003d9e88253e7d5cd85545f126a744daa5db": {
         "id": "cd07003d9e88253e7d5cd85545f126a744daa5db",
         "source": "Edit project name",
         "target": "Edit project name"
     },
-    "cd683084368e13236629ceca91d0eada06d8adf5": {
-        "id": "cd683084368e13236629ceca91d0eada06d8adf5",
-        "source": "Fold bottom",
-        "target": "Fold bottom"
-    },
     "cdef4d43a66ae78a643a3a3998f002eb1ed8b433": {
         "id": "cdef4d43a66ae78a643a3a3998f002eb1ed8b433",
         "source": "Edit project endpoints",
         "target": "Edit project endpoints"
     },
-    "d2897e5bf21784a9820fc6d13a036b8e56f749f0": {
-        "id": "d2897e5bf21784a9820fc6d13a036b8e56f749f0",
-        "source": "Cancel",
-        "target": "Cancel"
-    },
-    "d390f7efe9746c2e5cb8b1c291325025f5273e0c": {
-        "id": "d390f7efe9746c2e5cb8b1c291325025f5273e0c",
-        "source": "Save",
-        "target": "Save"
+    "d4ac51413630d14c7c1aaae8bcde709b4d4f2d56": {
+        "id": "d4ac51413630d14c7c1aaae8bcde709b4d4f2d56",
+        "source": "Expand right",
+        "target": "Expand right"
     },
     "d7b35c384aecd25a516200d6921836374613dfe7": {
         "id": "d7b35c384aecd25a516200d6921836374613dfe7",
         "source": "Cancel",
         "target": "Cancel"
     },
-    "e0f974985ff11c6272293cdc45a5ae4b03b8ab35": {
-        "id": "e0f974985ff11c6272293cdc45a5ae4b03b8ab35",
-        "source": "Expand top",
-        "target": "Expand top"
+    "e65e9c6a5e33091ff3f9127d29a2088ac1674261": {
+        "id": "e65e9c6a5e33091ff3f9127d29a2088ac1674261",
+        "source": "Fold left",
+        "target": "Fold left"
     },
-    "e6c9c278ab0db5ad4e18287cb52ebbb4bd694d7b": {
-        "id": "e6c9c278ab0db5ad4e18287cb52ebbb4bd694d7b",
-        "source": "Expand bottom",
-        "target": "Expand bottom"
-    },
-    "e92ae1237fa3ea96136c0599cd4a08831b8dc8c2": {
-        "id": "e92ae1237fa3ea96136c0599cd4a08831b8dc8c2",
-        "source": "Mark complete",
-        "target": "Mark complete"
-    },
-    "eb656bc01f771315d821d4807f16917a55128ba3": {
-        "id": "eb656bc01f771315d821d4807f16917a55128ba3",
-        "source": "Expand this board",
-        "target": "Expand this board"
+    "e901bb15393a8e9249a51a99842072e9ebc67999": {
+        "id": "e901bb15393a8e9249a51a99842072e9ebc67999",
+        "source": "Mark incomplete",
+        "target": "Mark incomplete"
     },
     "f3ec1c0205f71708b4e079b18d21a16a3b80e899": {
         "id": "f3ec1c0205f71708b4e079b18d21a16a3b80e899",
         "source": "All",
         "target": "All"
     },
-    "f554000c451bfc89534229b6e472ea44b7eac6af": {
-        "id": "f554000c451bfc89534229b6e472ea44b7eac6af",
-        "source": "Edit",
-        "target": "Edit"
-    },
     "f7859e8dd4c571a9d6f47aaf669468f598ec09d4": {
         "id": "f7859e8dd4c571a9d6f47aaf669468f598ec09d4",
         "source": "Please Enter a new project name",
         "target": "Please Enter a new project name"
-    },
-    "f9727b3194d6e19ec70806e303b719eb676d4a6b": {
-        "id": "f9727b3194d6e19ec70806e303b719eb676d4a6b",
-        "source": "Mark incomplete",
-        "target": "Mark incomplete"
-    },
-    "fa06d33e919b5f7bf6125520c5f5dbff1f7ae33c": {
-        "id": "fa06d33e919b5f7bf6125520c5f5dbff1f7ae33c",
-        "source": "Expand right",
-        "target": "Expand right"
     },
     "fe027a3d85214af3d076540bcdd87a56161a333c": {
         "id": "fe027a3d85214af3d076540bcdd87a56161a333c",
