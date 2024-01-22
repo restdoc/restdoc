@@ -11,8 +11,8 @@
 
 :root {
   --main-color: #427fed;
-  --request-method-color: #808080;
-  --request-method-hover-color: #427fed;
+  --request-method-color: #ffffff;
+  --request-method-hover-color: #ffffff;
   --caret-color: #000000;
   --logo-grey-color: #808080;
   --line-br-color: #ddd;
@@ -61,8 +61,8 @@
 	*/
   :root {
     --main-color: #427fed;
-    --request-method-color: #808080;
-    --request-method-hover-color: #427fed;
+    --request-method-color: #ffffff;
+    --request-method-hover-color: #ffffff;
     --caret-color: #000000;
     --logo-grey-color: #808080;
     --line-br-color: #ddd;
