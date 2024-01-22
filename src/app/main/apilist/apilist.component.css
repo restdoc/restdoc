@@ -471,11 +471,23 @@
 }
 
 .card-title-table .api-method {
-  padding: 0 10px 0 0;
-  width: 40px;
-  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  width: 32px;
+  font-size: 10px !important;
   color: var(--request-method-color);
+  background-color: var(--main-btn-bg-color);
+
 }
+
+.api-name {
+      display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+
 
 .group-more {
   display: flex;

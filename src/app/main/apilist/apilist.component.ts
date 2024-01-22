@@ -1,19 +1,7 @@
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { DOCUMENT, PlatformLocation, DatePipe } from "@angular/common";
-import {
-  Router,
-  UrlTree,
-  UrlSegment,
-  UrlSegmentGroup,
-  ActivatedRoute,
-  PRIMARY_OUTLET,
-  DefaultUrlSerializer,
-  Resolve,
-  ActivatedRouteSnapshot,
-  NavigationStart,
-  NavigationEnd,
-  UrlSerializer,
-} from "@angular/router";
+import { Router, UrlTree, ActivatedRoute, } from "@angular/router";
+import { NavigationStart, NavigationEnd, } from "@angular/router";
 import { HttpParams } from "@angular/common/http";
 import {
   Component,
@@ -74,20 +62,9 @@ import { APIlistService } from "./apilist.service";
 import { DetailsComponent } from "../details/details.component";
 import { ProjectRenameComponent } from "src/app/dialog/project-rename/project-rename.component";
 import { ProjectEndpointComponent } from "../../dialog/project-endpoint/project-endpoint.component";
-
-import {
-  CardColors,
-  LabelItem,
-  ProjectElement,
-  BoardElement,
-  EndpointElement,
-  APIElement,
-  ParamElement,
-  HeaderElement,
-  ResponseElement,
-  PostType,
-  SanitizeHtmlPipe
-} from "../main.component";
+import { CardColors, LabelItem, ProjectElement, BoardElement } from "../main.component";
+import { EndpointElement, APIElement, ParamElement } from "../main.component";
+import { HeaderElement, ResponseElement, PostType, SanitizeHtmlPipe } from "../main.component";
 import { UtilsService  } from "../main.service";
 import { consoleTestResultsHandler } from "tslint/lib/test";
 
@@ -149,6 +126,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   currentProject: ProjectElement = null;
   currentLabel: string = "";
   currentProjectId: string = "0";
+  currentEndpoint: EndpointElement;
   newBottomAPI: string = "";
   newTopAPI: string = "";
   newBoard: string = "";
@@ -199,7 +177,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   code: string = 'function x() {\nconsole.log("Hello world!");\n}';
   originalCode: string = "function x() { // TODO }";
   projectEndpoints: EndpointElement[] = [];
-  currentEndpoint: EndpointElement;
+  showGroups = true
   methods = [
     "GET",
     "POST",
@@ -327,7 +305,8 @@ export class APIlistComponent implements OnInit, OnDestroy {
     private datepipe: DatePipe,
     private toastr: ToastrService
   ) {
-
+    const location = window.location;
+    this.currentProjectId = this.sharedService.getProjectId(location);
   }
 
   ngOnInit() {
@@ -355,7 +334,6 @@ export class APIlistComponent implements OnInit, OnDestroy {
     this.getData();
 
 
-
     this.searchForm = this.fb.group({
       search: [""],
     });
@@ -363,7 +341,9 @@ export class APIlistComponent implements OnInit, OnDestroy {
     this.initUserInfo();
 
     this.sidebarLabelSubscription = this.sidebarService.labelChange.subscribe(
-      (res) => {}
+      (res) => {
+        console.log(res)
+      }
     );
 
     this.sidebarSubscription = this.sidebarService.leftMenuActive.subscribe(
@@ -387,8 +367,21 @@ export class APIlistComponent implements OnInit, OnDestroy {
           return;
         }
 
-        this.getCurrentState(res);
-        this.getData();
+        try {
+          let data = JSON.parse(decodeURIComponent(res));
+          console.log(data)
+          this.handleCommand(data);
+          return
+        } catch {
+
+        }
+
+
+
+
+
+
+
         //this.cdr.markForCheck();
       }
     );
@@ -666,6 +659,26 @@ export class APIlistComponent implements OnInit, OnDestroy {
     });
   }
 
+  handleCommand(command: any) {
+    console.log(command)
+    const cmd = command['cmd'];
+    switch (cmd) {
+      case 'showgroups':
+        this.showGroups = true 
+        this.cdr.markForCheck();
+        break;
+      case 'hidegroups':
+        this.showGroups = false 
+        this.cdr.markForCheck();
+        break;
+      case 'changeproject':
+        this.getProjectInfo(command);
+        this.getData();
+        break;
+      default:
+    }
+  }
+
   getProjectEndpoints() {
 
     /*
@@ -690,9 +703,9 @@ export class APIlistComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(ProjectEndpointComponent, {
       width: "800px",
       height: "600px",
+      data: {id: this.currentProjectId},
       scrollStrategy: new NoopScrollStrategy()
     });
-    dialogRef.componentInstance.projectId = this.currentProjectId;
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
@@ -1336,6 +1349,8 @@ export class APIlistComponent implements OnInit, OnDestroy {
       case "html":
         //request.response.contentType = 'html';
         break;
+      case "json":
+        break;
       default:
     }
     this.cdr.markForCheck();
@@ -1411,6 +1426,72 @@ export class APIlistComponent implements OnInit, OnDestroy {
     this.sidebarService.newCompose(body);
     */
   }
+
+  replaceDetail(event: any, board: BoardElement, request: APIElement) {
+    if (event) {
+      event.stopPropagation();
+    }
+
+    console.log("replace detail");
+
+    this.updateAPIContextMenu(false);
+
+
+    let apiId = request.id;
+    this.sharedService.getAPIDetail(apiId).subscribe((data: any) => {
+        this.sharedService.checkResponse(location, data);
+        console.log(data);
+        if (!data || data.code != 0) {
+          return
+        }
+        console.log(data);
+
+         //var ps: ParamElement[] = [];
+    //ps.push({ key: "x", value: "y", desc: "", enabled: false, required: true });
+        let detail = data.data.detail;
+        console.log("detail");
+        console.log(detail);
+        request.params = detail.get_params;
+        request.form_data = detail.form_params;
+        request.headers = detail.header_params;
+        this.cdr.markForCheck();
+      })
+
+
+    var exist = false;
+    for (var i = 0; i < this.requests.length; i++) {
+      let r = this.requests[i];
+      if (r.id == request.id) {
+        exist = true;
+        this.composeId = request.id;
+        this.selectedRequestIndex = i;
+        break;
+      }
+    }
+
+    if (!exist) {
+
+      //replace current
+
+      this.requests.splice(this.selectedRequestIndex, 1,request);
+      this.composeId = request.id;
+      //this.selectedRequestIndex = this.requests.length - 1;
+    }
+
+    /*
+    this.cdr.markForCheck();
+
+    var info = new Map();
+    //todo i18n
+    info["id"] = mailId;
+
+    info["action"] = "forward";
+    var body = JSON.stringify(info);
+    //get detail
+    this.sidebarService.newCompose(body);
+    */
+  }
+
 
   closeRequest(request: APIElement) {
     //
@@ -2022,53 +2103,53 @@ export class APIlistComponent implements OnInit, OnDestroy {
     this.cdr.markForCheck();
   }
 
+  getProjectInfo(data: any) {
+    try {
+      this.currentLabel = data["name"];
+      this.currentProjectId = data["id"];
+      if (this.currentProjectId == "0") {
+        this.listMode = false;
+      } else {
+        this.listMode = true;
+      }
+    } catch {
+    }
+
+
+  }
+
   getCurrentState(data: string) {
-    if (data) {
-      let decoded = decodeURIComponent(data);
-      try {
-        let dt = JSON.parse(decoded);
-
-        this.currentLabel = dt["name"];
-        this.currentProjectId = dt["id"];
-        if (this.currentProjectId == "0") {
-          this.listMode = false;
-        } else {
-          this.listMode = true;
-        }
-      } catch {
-        var projectId = "0";
-        const tree = this.router.parseUrl(data);
-        let children = tree.root.children["primary"];
-        if (children) {
-          let segments = children.segments;
-          for (var i = 0; i < segments.length; i++) {
-            if (i == 1) {
-              projectId = segments[i].path;
-              this.listMode = true;
-              if (this.currentProjectId != projectId) {
-                this.currentProjectId = projectId;
-                this.selectedRequestIndex = 0;
-                this.requests = [];
-              }
-              break;
+      var projectId = "0";
+      const tree = this.router.parseUrl(data);
+      let children = tree.root.children["primary"];
+      if (children) {
+        let segments = children.segments;
+        for (var i = 0; i < segments.length; i++) {
+          if (i == 1) {
+            projectId = segments[i].path;
+            this.listMode = true;
+            if (this.currentProjectId != projectId) {
+              this.currentProjectId = projectId;
+              this.selectedRequestIndex = 0;
+              this.requests = [];
             }
-          }
-          if (projectId == "0") {
-            this.listMode = false;
+            break;
           }
         }
-
-        let view = tree.queryParams["view"];
-        switch (view) {
-          case "overview":
-            this.viewType = view;
-            break;
-          case "list":
-            this.viewType = view;
-            break;
+        if (projectId == "0") {
+          this.listMode = false;
         }
       }
-    }
+
+      let view = tree.queryParams["view"];
+      switch (view) {
+        case "overview":
+          this.viewType = view;
+          break;
+        case "list":
+          this.viewType = view;
+          break;
+      }
   }
 
   initUserInfo() {}
@@ -2119,10 +2200,9 @@ export class APIlistComponent implements OnInit, OnDestroy {
   }
 
   getCurrentEndpoint() {
+    //if get from localstorage 
     if (this.projectEndpoints && this.projectEndpoints.length > 0) {
-      if (this.currentEndpoint == null) {
-        this.currentEndpoint = this.projectEndpoints[0];
-      }
+      this.currentEndpoint = this.projectEndpoints[0];
     }
   }
 
@@ -2398,6 +2478,8 @@ export class APIlistComponent implements OnInit, OnDestroy {
     return nextId;
   }
   handleChanges(data) {
+    console.log('handle change data');
+    console.log(data);
     let action = data["action"];
     let state = data["state"];
     let name = data["name"];
@@ -2595,6 +2677,14 @@ export class APIlistComponent implements OnInit, OnDestroy {
     }
     this.cdr.markForCheck();
 
+  }
+
+  showAPIGroups() {
+    this.showGroups = true;
+  }
+
+  hideAPIGroups() {
+    this.showGroups = false;
   }
 
   onPostTypeChanged(event, request: APIElement) {

@@ -247,9 +247,10 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(ProjectEndpointComponent, {
       width: "800px",
       height: "600px",
+      data: { id: this.projectId },
       scrollStrategy: new NoopScrollStrategy()
     });
-    dialogRef.componentInstance.projectId = this.projectId;
+    //dialogRef.componentInstance.projectId = this.projectId;
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result.name && result.name != "") {
