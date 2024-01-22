@@ -33,6 +33,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   cOpenClose = false;
   hovered = false;
+  showGroups = true
 
   labelsRows: any = [];
   labels: LabelItem[] = [];
@@ -96,6 +97,18 @@ export class SidebarComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+
+  showAPIGroups() {
+    const cmd = JSON.stringify({"cmd": "showgroups"})
+    this.sidebarService.onCommand(cmd)
+    this.showGroups = true;
+  }
+
+  hideAPIGroups() {
+    const cmd = JSON.stringify({"cmd": "hidegroups"})
+    this.sidebarService.onCommand(cmd);
+    this.showGroups = false;
   }
 
   composeBox(body) {
@@ -181,6 +194,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   onLabel(lab) {
+    console.log(lab)
     var lb = "/project/" + lab.id;
     this.selectedLabel = lab.name;
     this.selectedId = lab.id;

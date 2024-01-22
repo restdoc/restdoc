@@ -21,7 +21,8 @@
 }
 
 #compose-button {
-  padding: 5px 10px 5px 10px;
+  display: flex;
+  padding: 5px 5px 5px 10px;
   box-sizing: border-box;
 }
 
@@ -319,4 +320,14 @@ nav#sidebar {
 .sidebar {
   height: 100%;
   background-color: var(--panel-bg-color);
+}
+
+.show-groups {
+  display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin-left: 5px;
 }

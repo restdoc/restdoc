@@ -6,6 +6,14 @@
             </span>
             <span class="compose" id="create-text" [class.hide]="activeSidebar" i18n="siderbar|new-project">New Project</span>
         </div>
+        <div class="show-groups" *ngIf="!activeSidebar">
+            <div *ngIf="showGroups" (click)="hideAPIGroups()">
+                <i class=" material-icons">keyboard_arrow_down</i>
+            </div>
+            <div *ngIf="!showGroups" (click)="showAPIGroups()">
+                <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+        </div>
     </div>
     <div class="nav">
         <nav id="sidebar" [class.active]="activeSidebar" (mouseenter)="hoverSidebar(true)" (mouseleave)="hoverSidebar(false)">

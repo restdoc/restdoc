@@ -48,15 +48,20 @@ export class SidebarService {
 
   onAll() {
     this.currentLabel = 'all';
-    let dt = JSON.stringify({ "name": 'all', "id": '0' });
+    let dt = JSON.stringify({ 'cmd': 'changeproject', "name": 'all', "id": '0' });
     let encoded = encodeURIComponent(dt);
     this.leftMenuActive.next(encoded);
   }
 
   onLabel(label: LabelItem) {
     this.currentLabel = label.name;
-    let dt = JSON.stringify({ "name": label.name, "id": label.id });
+    let dt = JSON.stringify({ 'cmd': 'changeproject', "name": label.name, "id": label.id });
     let encoded = encodeURIComponent(dt);
+    this.leftMenuActive.next(encoded);
+  }
+
+  onCommand(command: string) {
+    let encoded = encodeURIComponent(command);
     this.leftMenuActive.next(encoded);
   }
 
