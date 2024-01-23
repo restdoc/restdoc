@@ -5,6 +5,10 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
 
+import { CdkDragDrop } from "@angular/cdk/drag-drop";
+import { moveItemInArray } from "@angular/cdk/drag-drop";
+
+
 import { SidebarService } from "./sidebar.service";
 import { ProjectCreateComponent } from "../dialog/project-create/project-create.component";
 import { MainService } from "../main/main.service";
@@ -240,5 +244,51 @@ export class SidebarComponent implements OnInit, OnDestroy {
       str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
     }
     return str.join("&");
+  }
+
+  dropProject(evt: CdkDragDrop<string[]>) {
+    console.log(evt)
+    console.log(this.labels)
+    moveItemInArray(this.labels, evt.previousIndex, evt.currentIndex);
+
+    var params = {};
+    var afterId = "";
+    var beforeId = "";
+
+    var currentIndex = evt.currentIndex;
+
+    var prev = currentIndex - 1;
+    var next = currentIndex + 1;
+
+    if (prev >= 0 && prev < this.labels.length) {
+      afterId = this.labels[prev].id;
+      params["after_id"] = afterId;
+    }
+    if (next >= 0 && next < this.labels.length) {
+      beforeId = this.labels[next].id;
+      params["before_id"] = beforeId;
+    }
+
+    var cardId = this.labels[currentIndex].id;
+    params["project_id"] = cardId;
+
+    this.sharedService.moveProject(params).subscribe((data: any) => {
+      this.sharedService.checkResponse(location, data);
+      console.log(data)
+
+      if (data && data.code == 0) {
+        // notice compose
+        /*
+        if (cardId == this.composeId) {
+          var info = {
+            changes: { action: "changelist", id: cardId, list_id: newListId },
+          };
+          var body = JSON.stringify(info);
+          this.sidebarService.newCompose(body);
+        }
+        */
+      }
+    });
+    //this.cdr.markForCheck();
   }
 }

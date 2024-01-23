@@ -18,7 +18,7 @@
     <div class="nav">
         <nav id="sidebar" [class.active]="activeSidebar" (mouseenter)="hoverSidebar(true)" (mouseleave)="hoverSidebar(false)">
             <div class="planner" [ngClass]="{'noscroll': !hovered}">
-                <ul *ngIf="activeSidebar">
+                <ul *ngIf="activeSidebar" cdkDropList cdkDropListOrientation="vertical" [cdkDropListData]="labels" (cdkDropListDropped)="dropProject($event)">
                     <li (click)="onAll()">
                         <a [class.restdoc-nav-active]="selectedId == '0'">
                             <i class="material-icons">view_list</i>
@@ -26,14 +26,14 @@
                         </a>
                     </li>
                     <!-- <mat-divider></mat-divider> -->
-                    <li (click)="onLabel(lab)" *ngFor="let lab of labels" class="">
+                    <li (click)="onLabel(lab)" *ngFor="let lab of labels" class="" cdkDrag>
                         <a [class.restdoc-nav-active]="selectedId == lab.id">
                             <i class="material-icons">label</i>
                             <span class="hide"> {{lab.name}} </span>
                         </a>
                     </li>
                 </ul>
-                <ul *ngIf="!activeSidebar">
+                <ul *ngIf="!activeSidebar" cdkDropList cdkDropListOrientation="vertical" [cdkDropListData]="labels" (cdkDropListDropped)="dropProject($event)">
                     <li (click)="onAll()">
                         <a [class.restdoc-nav-active]="selectedId == '0'">
                             <i class="material-icons">view_list</i>
@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <!-- <mat-divider></mat-divider> -->
-                    <li (click)="onLabel(lab)" *ngFor="let lab of labels" class="">
+                    <li (click)="onLabel(lab)" *ngFor="let lab of labels" class="" cdkDrag>
                         <a [class.restdoc-nav-active]="selectedId == lab.id">
                             <i class="material-icons">label</i>
                             <span> {{lab.name}} </span>

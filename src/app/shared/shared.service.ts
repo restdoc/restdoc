@@ -129,6 +129,11 @@ export class SharedService {
     );
   }
 
+  moveProject(data) {
+    let apiEndpoints = "api/restdoc/project/move";
+    return this.post(apiEndpoints, data);
+  }
+
   createEndpoint(data) {
     let apiEndpoints = "api/restdoc/endpoint/create";
     let params = this.formatParams(data);
@@ -139,6 +144,11 @@ export class SharedService {
     );
   }
 
+
+   moveEndpoint(data) {
+    let apiEndpoints = "api/restdoc/endpoint/move";
+    return this.post(apiEndpoints, data);
+  }
 
 
   getAPIs(params: Map<string, string>) {
