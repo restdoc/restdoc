@@ -440,9 +440,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
     var that = this;
     setTimeout(function () {
       let hook = window["__RESTDOC_EXTENSION_HOOK__"];
-      console.log(hook);
       if (hook !== undefined) {
-        console.log('true');
         that.hasExtensionInstalled = true;
       } else {
         console.log('false');

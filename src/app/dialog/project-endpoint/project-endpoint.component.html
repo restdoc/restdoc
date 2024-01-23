@@ -5,13 +5,14 @@
 			<i class="material-icons">close</i>
 		</span>
 	</div>
-	<div mat-dialog-content>
+	<div mat-dialog-content class="main-content">
 		<form class="label-form" [formGroup]="labelForm">
 			<div>
 				<div><span>API endpoints</span></div>
-				<div formArrayName="endpoints" class="endpoints">
-					<div class="endpoint-item " *ngFor="let endpoint of getEndpoints().controls; let i = index">
-						<div [formGroupName]="i">
+				<div formArrayName="endpoints" class="endpoints" cdkDropList cdkDropListOrientation="vertical" [cdkDropListData]="endpoints" (cdkDropListDropped)="dropEndpoint($event)">
+					<div class="endpoint-item " *ngFor="let endpoint of getEndpoints().controls; let i = index" cdkDrag>
+						<div class="reorder"> <i class="material-icons">reorder</i> </div>
+						<div [formGroupName]=" i">
 							<input formControlName="name" class="name-input" />
 						</div>
 						<div [formGroupName]="i" class="value">
@@ -25,11 +26,12 @@
 				</div>
 				<div class="adding endpoints">
 					<div class="endpoint-item">
+						<div class="reorder"> <i class="material-icons">reorder</i> </div>
 						<div class="name">
-							<input type="text" formControlName="newEndpointName" class="name-input" />
+							<input type="text" formControlName="newEndpointName" i18n-placeholder placeholder="Name" class="name-input" />
 						</div>
 						<div class="value">
-							<input type="text" formControlName="newEndpointValue" class="value-input" />
+							<input type="text" formControlName="newEndpointValue" i18n-placeholder placeholder="Endpoint address" class="value-input" />
 						</div>
 						<div class="actions">
 							<button (click)="addEndpoint()">Add</button>
