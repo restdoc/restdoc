@@ -154,6 +154,11 @@
         "source": "Failed to update path.",
         "target": "更新路径失败"
     },
+    "76b1448eaf19fb5636b0c1d101dc7886d1eab026": {
+        "id": "76b1448eaf19fb5636b0c1d101dc7886d1eab026",
+        "source": "Endpoint address",
+        "target": "端点地址"
+    },
     "78a3d563dba654a956f35d4bed5d12dbc572d139": {
         "id": "78a3d563dba654a956f35d4bed5d12dbc572d139",
         "source": "Please enter the new name",
@@ -243,6 +248,11 @@
         "id": "cdef4d43a66ae78a643a3a3998f002eb1ed8b433",
         "source": "Edit project endpoints",
         "target": "编辑项目端点"
+    },
+    "cff1428d10d59d14e45edec3c735a27b5482db59": {
+        "id": "cff1428d10d59d14e45edec3c735a27b5482db59",
+        "source": "Name",
+        "target": "名称"
     },
     "d4ac51413630d14c7c1aaae8bcde709b4d4f2d56": {
         "id": "d4ac51413630d14c7c1aaae8bcde709b4d4f2d56",

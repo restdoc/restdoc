@@ -157,6 +157,24 @@
           <context context-type="linenumber"></context>
         </context-group>
       </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Name</source>
+        <target>名称</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="76b1448eaf19fb5636b0c1d101dc7886d1eab026" datatype="html">
+        <trans-unit></trans-unit>
+        <source>Endpoint address</source>
+        <target>端点地址</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile"></context>
+          <context context-type="linenumber"></context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6799392314344997033" datatype="html">
         <trans-unit></trans-unit>
         <source>The project has been renamed successfully.</source>

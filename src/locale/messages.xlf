@@ -66,7 +66,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.ts</context>
@@ -107,7 +107,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">30</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.ts</context>
@@ -137,11 +137,25 @@
         </context-group>
         <note priority="1" from="description">Edit endpoints</note>
       </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="76b1448eaf19fb5636b0c1d101dc7886d1eab026" datatype="html">
+        <source>Endpoint address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6799392314344997033" datatype="html">
         <source>The project has been renamed successfully.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.ts</context>
@@ -152,35 +166,35 @@
         <source>Failed to get project endpoints.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3580103974439627927" datatype="html">
         <source>Failed to update project endpoints.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2267984659249890070" datatype="html">
         <source>Failed to remove project endpoint.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8106517399039682477" datatype="html">
         <source>Failed to add endpoint.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6747221987886772067" datatype="html">
         <source>Failed to rename the project</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-endpoint/project-endpoint.component.ts</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">31</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/dialog/project-rename/project-rename.component.ts</context>
