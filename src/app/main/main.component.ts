@@ -60,6 +60,10 @@ export interface User {
 export interface ProjectElement {
   id: string;
   name: string;
+  color: string;
+  icon: string;
+  name_color: string;
+  icon_color: string;
 }
 
 
@@ -129,7 +133,10 @@ export interface BoardElement {
 
 export interface LabelItem {
   name: string;
+  name_color: string;
   id: string;
+  icon: string;
+  icon_color: string;
 }
 
 export interface Compose {

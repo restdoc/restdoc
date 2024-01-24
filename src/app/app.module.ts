@@ -33,6 +33,7 @@ import { HotkeyModule } from "./third/angular2-hotkeys/hotkey.module";
 import { IHotkeyOptions } from "./third/angular2-hotkeys/hotkey.options";
 import { ProjectRenameComponent } from "./dialog/project-rename/project-rename.component";
 import { ProjectEndpointComponent } from "./dialog/project-endpoint/project-endpoint.component";
+import { ColorCustomComponent } from "./dialog/color-custom/color-custom.component";
 
 
 var hotkeyOption: IHotkeyOptions = {
@@ -65,6 +66,7 @@ var hotkeyOption: IHotkeyOptions = {
         SanitizeHtmlPipe,
         ProjectRenameComponent,
         ProjectEndpointComponent,
+        ColorCustomComponent,
     ],
     imports: [
         BrowserModule,

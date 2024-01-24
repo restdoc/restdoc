@@ -12,6 +12,13 @@ export class HeaderService {
 
   private sidebarActive = new BehaviorSubject<boolean>(false);
   searchObserable = new Subject<string>();
+  styleObserable = new Subject<string>();
+  color = "#FFFFFF";
+  icon = "list";
+  name_color = "#000000";
+  icon_color = "#000000";
+  name = "";
+  id = "";
 
   constructor(private sharedService: SharedService) {
 
@@ -22,7 +29,13 @@ export class HeaderService {
   }
 
 
-  searchData(data) {
+ searchData(data) {
+    this.icon = data.icon;
+    this.icon_color = data.icon_color;
+    this.name_color = data.name_color;
+    this.color = data.color;
+    this.name = data.name;
+    this.id = data.id;
     this.searchObserable.next(data);
   }
 

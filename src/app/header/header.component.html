@@ -47,14 +47,14 @@
         </div>
         <div class="menu-panel">
             <div class="project-logo">
-                <ng-container>
+                <ng-container *ngIf="projectId == '0'">
                     <span>
                         <i class="material-icons">list</i>
                     </span>
                 </ng-container>
                 <ng-container *ngIf="projectId != '0'">
                     <span>
-                        <i class="material-icons">list</i>
+                        <i class="material-icons" [ngStyle]="{'color': icon_color}">{{icon}}</i>
                     </span>
                 </ng-container>
             </div>
@@ -64,11 +64,11 @@
                 </ng-container>
                 <ng-container *ngIf="projectId != '0'">
                     <div class="project-name">
-                        <div class="project-icon" [matMenuTriggerFor]="projectMenu">
+                        <div class="project-icon" [matMenuTriggerFor]="projectMenu" [ngStyle]="{'color': name_color}">
                             <i class="material-icons">more_vert</i>
                         </div>
                         <div>
-                            <span>{{ projectName }}</span>
+                            <span [ngStyle]="{'color': name_color}">{{projectName}}</span>
                         </div>
                     </div>
                 </ng-container>
@@ -84,6 +84,12 @@
                     <div class="menu-item-line">
                         <i class="material-icons">edit</i>
                         <span i18n="Header|editProjectEndpoints">Edit project endpoints</span>
+                    </div>
+                </div>
+                <div class="menu-item" mat-menu-item (click)="customColor()">
+                    <div class="menu-item-line">
+                        <i class="material-icons">palette</i>
+                        <span i18n="Header|custom icon & color">Custome icon & color</span>
                     </div>
                 </div>
                 <div class="menu-item" mat-menu-item (click)="deleteProject(projectId)">

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { LabelItem } from './sidebar.component';
+import { LabelItem } from '../main/main.component';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +55,14 @@ export class SidebarService {
 
   onLabel(label: LabelItem) {
     this.currentLabel = label.name;
-    let dt = JSON.stringify({ 'cmd': 'changeproject', "name": label.name, "id": label.id });
+    let dt = JSON.stringify({
+      cmd: 'changeproject',
+      name: label.name,
+      id: label.id,
+      icon: label.icon,
+      icon_color: label.icon_color,
+      name_color: label.name_color,
+    });
     let encoded = encodeURIComponent(dt);
     this.leftMenuActive.next(encoded);
   }

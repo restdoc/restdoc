@@ -1,0 +1,148 @@
+.labelName {
+  border: 1px solid gray;
+  background-color: none;
+  width: 100%;
+  height: 20px;
+  margin-top: 5px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.createButton {
+  background-color: #1a73e8;
+  color: white;
+}
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.title-text {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-size: 1.375rem;
+  color: #212121;
+  line-height: 24px;
+  padding: 0;
+}
+
+.close-btn {
+  cursor: pointer;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-btn:hover {
+  background-color: rgba(128, 128, 128, 0.116);
+}
+
+.label-form {
+  width: 100%;
+}
+
+.mat-mdc-dialog-content {
+  overflow: hidden !important;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 !important;
+}
+
+.mat-mdc-dialog-actions {
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.tilte {
+  margin-bottom: 5px;
+}
+
+.color-parts {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.color-item {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  border: 1px solid #ececec;
+}
+
+.icon-parts {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.icon-item {
+  cursor: pointer;
+  padding: 4px;
+}
+
+.icon-item i {
+  font-size: 24px;
+}
+
+.project-item {
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.project {
+  box-sizing: border-box;
+  border: 1px solid #f1f1f1;
+  min-height: 60px;
+  box-shadow: 2px 2px 2px #ececec;
+  width: 160px;
+  height: 82px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--panel-bg-color);
+}
+
+.project i {
+  font-size: 80px;
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+
+.project-name {
+  padding: 5px;
+  max-width: 160px;
+  overflow: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title {
+  margin-bottom: 5px;
+}
+
+.color-custom-body {
+  padding: 10px 20px 10px 20px;
+}
+
+.actions button {
+  border: 1px solid #ececec;
+  margin-left: 10px;
+}

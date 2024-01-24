@@ -15,11 +15,8 @@ import { MainService } from "../main/main.service";
 import { HeaderService } from "./../header/header.service";
 import { SharedService } from "./../shared/shared.service";
 import { environment } from "src/environments/environment";
+import { LabelItem } from "../main/main.component";
 
-export interface LabelItem {
-  name: string;
-  id: string;
-}
 
 @Component({
   selector: "app-sidebar",
@@ -72,10 +69,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
               const body = JSON.parse(result);
               let id = body["id"];
               let name = body["name"];
+              let name_color = body["name_color"];
+              let icon = body["icon"];
+              let icon_color = body["icon_color"];
               if (id && name) {
                 let label: LabelItem = {
                   name: name,
                   id: id,
+                  name_color: name_color,
+                  icon: icon,
+                  icon_color: icon_color,
                 };
                 this.onLabel(label);
               }
@@ -198,7 +201,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   onLabel(lab) {
-    console.log(lab)
     var lb = "/project/" + lab.id;
     this.selectedLabel = lab.name;
     this.selectedId = lab.id;
@@ -206,13 +208,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.sidebarService.onLabel(lab);
   }
 
-  onSelect(label: LabelItem) {
-    var lb = "/project/" + label.id;
-    this.selectedLabel = label.name;
-    this.selectedId = label.id;
-    this.router.navigate([lb]);
-    this.sidebarService.onSelect(lb);
-  }
+  
 
   manageProject() {
     let label = "_manageLabel";

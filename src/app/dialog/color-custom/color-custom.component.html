@@ -1,0 +1,43 @@
+<div class="color-custom-body">
+	<div class="title-bar">
+		<span class="title-text" i18n="Custom">Custom</span>
+		<span [mat-dialog-close] cdkFocusInitial class="close-btn"><i class="material-icons">close</i></span>
+	</div>
+	<div class="title icon-title" i18n="Icon">Icon</div>
+	<div class="icon-parts">
+		<ng-container *ngFor="let icon of icons">
+			<div class="icon-item" (click)="selectIcon(icon)">
+				<i class="material-icons">{{icon}}</i>
+			</div>
+		</ng-container>
+	</div>
+	<div class="title" i18n="Icon color">Icon color</div>
+	<div class="color-parts">
+		<ng-container *ngFor="let color of iconColors">
+			<div class="color-item" [ngStyle]="{'background-color': color}" (click)="selectIconColor(color)"></div>
+		</ng-container>
+	</div>
+	<div class="title" i18n="Text color">Text color</div>
+	<div class="color-parts">
+		<ng-container *ngFor="let color of colors">
+			<div class="color-item" [ngStyle]="{'background-color': color}" (click)="selectNameColor(color)"></div>
+		</ng-container>
+	</div>
+	<div mat-dialog-content>
+		<form class="label-form" [formGroup]="labelFrom" (submit)="onSave()">
+			<div class="title" i18n="Preview">Preview</div>
+			<div class="project-item">
+				<div class="project" [ngStyle]="{'background-color': selected_color}">
+					<i class="material-icons" [ngStyle]="{'color': selected_icon_color}">{{selected_icon}}</i>
+				</div>
+				<div class="project-name">
+					<span [ngStyle]="{'color': selected_name_color}" i18n="Name">name</span>
+				</div>
+			</div>
+			<div mat-dialog-actions class="actions">
+				<button mat-button (click)="onNoClick($event)" class="cancelButton" i18n="Cancel">Cancel</button>
+				<button mat-button type="submit" (click)="onSave()" class="btn btn-primary" class="createButton" i18n="Save">Save</button>
+			</div>
+		</form>
+	</div>
+</div>

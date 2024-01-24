@@ -416,10 +416,10 @@
     <div class="project-list">
         <div *ngFor="let project of projects" class="project-item">
             <div class="project" (click)="enterProject(project)">
-                <i class="material-icons">list</i>
+                <i class="material-icons" [ngStyle]="{'color': project.icon_color}">{{project.icon}}</i>
             </div>
             <div class="project-name">
-                <span>{{project.name}}</span>
+                <span [ngStyle]="{'color': project.name_color}">{{project.name}}</span>
             </div>
         </div>
     </div>

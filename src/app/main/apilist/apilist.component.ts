@@ -658,7 +658,6 @@ export class APIlistComponent implements OnInit, OnDestroy {
   }
 
   handleCommand(command: any) {
-    console.log(command)
     const cmd = command['cmd'];
     switch (cmd) {
       case 'showgroups':
@@ -2110,9 +2109,10 @@ export class APIlistComponent implements OnInit, OnDestroy {
       } else {
         this.listMode = true;
       }
-    } catch {
-    }
 
+    } catch {
+
+    }
 
   }
 
@@ -2156,9 +2156,15 @@ export class APIlistComponent implements OnInit, OnDestroy {
     let id = project.id;
     var lb = "/project/" + id;
     this.listMode = false;
-    let label: LabelItem = { name: project.name, id: project.id };
     this.router.navigate([lb]);
-    let data = JSON.stringify({ name: project.name, id: project.id });
+    let data = JSON.stringify({
+      name: project.name,
+      id: project.id,
+      color: project.color,
+      icon: project.icon,
+      icon_color: project.icon_color,
+      name_color: project.name_color,
+    });
     this.headerService.searchData(data);
   }
 
