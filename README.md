@@ -8,7 +8,14 @@
 
     npm i 
 
+
+
 ## 运行
+
+    如果只是需要使用，不需要调试，可以运行服务端项目 https://github.com/restdoc/restdoc-server
+    默认端口 8803
+
+    restdoc-server项目已经包含编译后的前端文件，可以直接运行。如果需要调试前端，可以运行restdoc-server之后再执行以下命令运行前端。
 
     ng serve --live-reload --port=4208
     
