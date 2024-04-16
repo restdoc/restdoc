@@ -3,6 +3,7 @@ import { Subject, Observable, BehaviorSubject } from 'rxjs';
 
 
 import { SharedService } from './../shared/shared.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,6 +11,7 @@ import { SharedService } from './../shared/shared.service';
 })
 export class HeaderService {
 
+  environment = environment;
   private sidebarActive = new BehaviorSubject<boolean>(false);
   searchObserable = new Subject<string>();
   styleObserable = new Subject<string>();
@@ -28,6 +30,23 @@ export class HeaderService {
     this.sidebarActive.next(active);
   }
 
+
+  getSidebarState(): boolean {
+    const key = this.environment.projectName + "-sidebar";
+    const status = localStorage.getItem(key);
+
+    if (status == "true") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  setSidebarState(value: boolean) {
+    let state = String(value);
+    const key = this.environment.projectName + "-sidebar";
+    localStorage.setItem(key, state);
+  }
 
  searchData(data) {
     this.icon = data.icon;

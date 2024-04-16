@@ -74,6 +74,10 @@ export class HeaderComponent implements OnInit {
     var path = parsed.toString();
     this.getCurrentState(path);
 
+        const state = this.headerService.getSidebarState();
+    this.isOpen = state;
+    this.headerService.setSibarActive(this.isOpen);
+
     if (this.projectName == "") {
       let project = this.labelMaps[this.projectId];
       if (project) {
@@ -254,6 +258,7 @@ export class HeaderComponent implements OnInit {
   toggleSideNav() {
     this.isOpen = !this.isOpen;
     this.headerService.setSibarActive(this.isOpen);
+    this.headerService.setSidebarState(this.isOpen);
   }
 
   openSnackBar(message: string, action: string) {

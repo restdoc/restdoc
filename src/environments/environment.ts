@@ -6,6 +6,7 @@ export const environment = {
   version: "2.0",
   baseurl: "http://127.0.0.1:8803/",
   production: false,
+  projectName: "restdoc",
   logo: "assets/images/logo.png",
   projectsKey: "test-restdoc-projects",
 };
