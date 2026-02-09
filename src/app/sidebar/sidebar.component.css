@@ -2,14 +2,15 @@
 
 .fab {
   user-select: none;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: var(--radius-md);
   width: 100%;
   height: 40px;
-  background-color: var(--panel-bg-color);
-  transition: 0.1s;
+  background-color: var(--main-btn-bg-color);
+  color: var(--main-btn-text-color);
+  transition: all 0.2s ease;
   display: flex;
   flex-direction: row;
   align-items: center !important;
@@ -17,7 +18,9 @@
   text-align: center;
   flex-wrap: nowrap;
   overflow: hidden;
-  border: 1px solid var(--panel-br-color);
+  border: none;
+  box-shadow: var(--shadow-sm);
+  font-weight: 500;
 }
 
 #compose-button {
@@ -37,7 +40,9 @@
 
 .fab:hover {
   opacity: 1;
-  box-shadow: 1px 1px 1px 1px var(--panel-br-color);
+  background-color: var(--main-color-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .fab:hover .fab-buttons {
@@ -53,22 +58,20 @@
 }
 
 .fab-action-button {
-  /* border-radius: 50px; */
-  transition: 0.2s;
+  transition: all 0.2s ease;
   position: relative;
   display: inline;
-  position: relative;
   padding-left: 5px;
-  color: #666666;
+  color: var(--main-btn-text-color);
 }
 
 .compose {
   cursor: pointer;
-  padding-left: 5px;
+  padding-left: 8px;
   font-size: 0.875rem;
-  font-family: "Google Sans", "Roboto,RobotoDraft", Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
-  color: #3c4043;
+  color: var(--main-btn-text-color);
   opacity: 1;
 }
 
@@ -120,12 +123,11 @@
 
 #sidebar {
   flex: 1 100%;
-  background: transparent;
-  transition: all 0.3s;
-  /* height: 100%; */
+  background: var(--panel-bg-color);
+  transition: all 0.3s ease;
   width: 250px;
-  /* margin-top: 78px; */
   overflow: hidden;
+  border-right: 1px solid var(--panel-br-color);
 }
 
 .planner {
@@ -210,16 +212,16 @@
 
 .planner ul li a {
   display: flex;
-  /*
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-     */
+  border-radius: var(--radius-md);
   letter-spacing: 0;
-  font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: #202124;
+  color: var(--text-primary);
   align-items: center;
+  padding: 0 12px;
+  margin: 2px 8px;
+  transition: all 0.2s ease;
 }
 
 .planner ul li a:hover span {
@@ -242,38 +244,37 @@ ul li a {
   text-decoration: none;
 }
 .planner ul li a span {
-  color: #141414;
+  color: var(--text-primary);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .planner ul li a i {
-  color: #666666;
-  padding: 0px 18px;
+  color: var(--text-secondary);
+  padding: 0px 12px;
   letter-spacing: 0;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.25rem;
-  margin-left: 8px;
+  margin-left: 0;
 }
 
 .planner ul li a:hover {
-  background: #20212418;
+  background: var(--hover-bg-color);
 }
 
 .restdoc-nav-active {
-  /* background: #e8f0fe; */
-  background-color: transparent;
+  background-color: var(--selected-bg-color) !important;
+  border-left: 3px solid var(--main-btn-bg-color);
 }
 
 .restdoc-nav-active span {
-  /* color: #1a73e8 !important; */
   color: var(--main-btn-bg-color) !important;
-  font-weight: bold;
+  font-weight: 600;
 }
 .restdoc-nav-active small {
-  /* color: #1a73e8 !important; */
+  color: var(--main-btn-bg-color) !important;
 }
 
 .restdoc-nav-active i {
@@ -320,6 +321,7 @@ nav#sidebar {
 .sidebar {
   height: 100%;
   background-color: var(--panel-bg-color);
+  transition: background-color 0.3s ease;
 }
 
 .show-groups {

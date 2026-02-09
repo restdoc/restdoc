@@ -53,11 +53,12 @@ a#logo img {
 }
 
 .navbar {
-  padding: 0 10px 0 10px;
+  padding: 0 16px 0 16px;
   background-color: var(--panel-bg-color);
   border: none;
   border-radius: 0;
-  font-size: 13px/27px Roboto, RobotoDraft, Arial, sans-serif !important;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -65,10 +66,12 @@ a#logo img {
   min-width: 100%;
   width: 100%;
   height: 100%;
-  max-height: 65px;
-  min-height: 65px;
+  max-height: 64px;
+  min-height: 64px;
   box-sizing: border-box;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.24);
+  border-bottom: 1px solid var(--panel-br-color);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .nav-left {
@@ -85,12 +88,13 @@ a#logo img {
   box-shadow: none;
   outline: none !important;
   border: none;
-  padding: 12px;
+  padding: 8px;
   align-content: center;
-  border-radius: 50%;
+  border-radius: var(--radius-md);
   margin-left: 4px;
-  transition: 0.3s;
+  transition: all 0.2s ease;
   background-color: transparent;
+  color: var(--text-secondary);
 }
 
 .navbar-btn.active.focus,
@@ -155,13 +159,24 @@ a#logo img {
   box-shadow: none;
   outline: none !important;
   border: none;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  transition: 0.1s;
-  color: #5f6368;
-  margin: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+  margin: 4px;
   background: transparent;
+}
+
+#left-arrow:hover,
+#right-arrow:hover,
+#searchbtn:hover,
+#supportbtn:hover,
+#settingsbtn:hover,
+#appsbtn:hover,
+#profilebtn:hover {
+  background: var(--hover-bg-color);
+  color: var(--text-primary);
 }
 
 #settingsbtn {
@@ -352,7 +367,8 @@ mat-select {
 
 .navbar-btn:hover {
   cursor: pointer;
-  background: rgb(240, 238, 238);
+  background: var(--hover-bg-color);
+  color: var(--text-primary);
 }
 
 .navbar-active {
@@ -415,10 +431,13 @@ mat-select {
 .project-name {
   user-select: none;
   display: flex;
-  font-size: 24px;
+  font-size: 16px;
+  font-weight: 500;
   line-height: 1.5;
   height: 100%;
   align-items: center;
+  color: var(--text-primary);
+  gap: 8px;
 }
 
 .project-icon {

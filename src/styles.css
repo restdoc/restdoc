@@ -10,97 +10,115 @@
 
 
 :root {
-  --main-color: #427fed;
+  /* Hoppscotch-inspired color scheme */
+  --main-color: #6366f1;
+  --main-color-hover: #4f46e5;
   --request-method-color: #ffffff;
   --request-method-hover-color: #ffffff;
-  --caret-color: #000000;
-  --logo-grey-color: #808080;
-  --line-br-color: #ddd;
-  --main-bg-color: #427fed;
-  --panel-bg-color: #ffffff; /* 面板背景色 */
-  --panel-br-color: #80808040; /* #e5e5e5; 面板边框色 */
-  --main-btn-bg-color: #427fed; /* 主按钮背景色 */
-  --main-btn-text-color: #ffffff; /* 主按钮文本颜色*/
-  --selected-bg-color: #f1f1f1; /*  */
-  --selected-text-color: #000000; /*  */
-  --selected-br-color: #dd9e9e; /*  */
-  --clicked-bg-color: #427fed; /*  */
-  --panel-btn-color: #f8f8f8; /*  */
-  --mat-icon-color: #606060; /*  */
-  --hovered-icon-color: #adadad; /*  */
-  --normal-btn-bg-color: #f8f8f8; /*  */
-  --normal-btn-color: #808080; /*  */
-  --chkbox-color: #66666660; /*  */
-  --chkbox-border-color: #66666660; /*  */
-  --chkbox-selected-color: #666666cc; /*  */
-  --toast-bg-color: #202020; /*  */
-  --toast-text-color: #808080; /*  */
-  --star-color: #ffca7a; /*  */
-  --star-hover-color: #ffb84b; /*  */
-  --select-icon-color: #66666660; /*  */
-  --select-icon-hover-color: #00000060; /*  */
-  --menu-bg-color: #ffffff; /*  */
-  --menu-selected-bg-color: #ececec; /*  */
-  --input-underline-br-color: #427fed;
-  --input-br-color: #80808040;
-  --input-hover-br-color: #808080;
-  --hover-bg-color: #3c40431a;
-  --card-br-color: #c3c3c3; /*  */
-  --fold-br-color: #e5e5e5;
-  --fold-bg-color: #fbfbfb;
-  --color-br-color: #939393;
-  --group-bg-color: #f9f9f9;
-  --active-panel-bg-color: #f9f9f9;
+  --caret-color: #1e293b;
+  --logo-grey-color: #64748b;
+  --line-br-color: #e2e8f0;
+  --main-bg-color: #6366f1;
+  --panel-bg-color: #ffffff;
+  --panel-br-color: #e2e8f0;
+  --main-btn-bg-color: #6366f1;
+  --main-btn-text-color: #ffffff;
+  --selected-bg-color: #f1f5f9;
+  --selected-text-color: #0f172a;
+  --selected-br-color: #cbd5e1;
+  --clicked-bg-color: #6366f1;
+  --panel-btn-color: #f8fafc;
+  --mat-icon-color: #475569;
+  --hovered-icon-color: #94a3b8;
+  --normal-btn-bg-color: #f8fafc;
+  --normal-btn-color: #64748b;
+  --chkbox-color: #cbd5e160;
+  --chkbox-border-color: #cbd5e160;
+  --chkbox-selected-color: #6366f1cc;
+  --toast-bg-color: #1e293b;
+  --toast-text-color: #cbd5e1;
+  --star-color: #fbbf24;
+  --star-hover-color: #f59e0b;
+  --select-icon-color: #cbd5e160;
+  --select-icon-hover-color: #475569;
+  --menu-bg-color: #ffffff;
+  --menu-selected-bg-color: #f1f5f9;
+  --input-underline-br-color: #6366f1;
+  --input-br-color: #e2e8f0;
+  --input-hover-br-color: #cbd5e1;
+  --hover-bg-color: #f1f5f9;
+  --card-br-color: #e2e8f0;
+  --fold-br-color: #e2e8f0;
+  --fold-bg-color: #f8fafc;
+  --color-br-color: #cbd5e1;
+  --group-bg-color: #f8fafc;
+  --active-panel-bg-color: #f1f5f9;
+  
+  /* Text colors */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 @media (prefers-color-scheme: dark) {
-  /*
-  * {
-    filter: invert(1) hue-rotate(180deg);
-  }
-	*/
   :root {
-    --main-color: #427fed;
+    --main-color: #818cf8;
+    --main-color-hover: #6366f1;
     --request-method-color: #ffffff;
     --request-method-hover-color: #ffffff;
-    --caret-color: #000000;
-    --logo-grey-color: #808080;
-    --line-br-color: #ddd;
-    --main-bg-color: #427fed;
-    --panel-bg-color: #ffffff;
-    --panel-br-color: #80808040;
-    --main-btn-bg-color: #427fed;
+    --caret-color: #f1f5f9;
+    --logo-grey-color: #94a3b8;
+    --line-br-color: #334155;
+    --main-bg-color: #818cf8;
+    --panel-bg-color: #1e293b;
+    --panel-br-color: #334155;
+    --main-btn-bg-color: #818cf8;
     --main-btn-text-color: #ffffff;
-    --selected-bg-color: #f1f1f1;
-    --selected-text-color: #000000;
-    --selected-br-color: #dd9e9e;
-    --clicked-bg-color: #427fed;
-    --panel-btn-color: #f8f8f8;
-    --mat-icon-color: #606060;
-    --hovered-icon-color: #adadad; /*  */
-    --normal-btn-bg-color: #f8f8f8;
-    --normal-btn-color: #808080;
-    --chkbox-color: #66666660;
-    --chkbox-border-color: #66666660;
-    --chkbox-selected-color: #666666cc;
-    --toast-bg-color: #202020;
-    --toast-text-color: #808080;
-    --star-color: #ffca7a;
-    --star-hover-color: #ffb84b;
-    --select-icon-color: #66666660;
-    --select-icon-hover-color: #00000060;
-    --menu-bg-color: #ffffff;
-    --menu-selected-bg-color: #ececec;
-    --input-underline-br-color: #427fed;
-    --input-br-color: #80808040;
-    --input-hover-br-color: #808080;
-    --hover-bg-color: #3c40431a;
-    --card-br-color: #c3c3c3; /*  */
-    --fold-br-color: #e5e5e5;
-    --fold-bg-color: #fbfbfb;
-    --color-br-color: #939393;
-    --group-bg-color: #f9f9f9;
-    --active-panel-bg-color: #f9f9f9;
+    --selected-bg-color: #334155;
+    --selected-text-color: #f1f5f9;
+    --selected-br-color: #475569;
+    --clicked-bg-color: #818cf8;
+    --panel-btn-color: #334155;
+    --mat-icon-color: #94a3b8;
+    --hovered-icon-color: #cbd5e1;
+    --normal-btn-bg-color: #334155;
+    --normal-btn-color: #cbd5e1;
+    --chkbox-color: #47556960;
+    --chkbox-border-color: #47556960;
+    --chkbox-selected-color: #818cf8cc;
+    --toast-bg-color: #0f172a;
+    --toast-text-color: #cbd5e1;
+    --star-color: #fbbf24;
+    --star-hover-color: #f59e0b;
+    --select-icon-color: #47556960;
+    --select-icon-hover-color: #94a3b8;
+    --menu-bg-color: #1e293b;
+    --menu-selected-bg-color: #334155;
+    --input-underline-br-color: #818cf8;
+    --input-br-color: #334155;
+    --input-hover-br-color: #475569;
+    --hover-bg-color: #334155;
+    --card-br-color: #334155;
+    --fold-br-color: #334155;
+    --fold-bg-color: #1e293b;
+    --color-br-color: #475569;
+    --group-bg-color: #1e293b;
+    --active-panel-bg-color: #334155;
+    
+    /* Text colors for dark mode */
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
   }
 }
 
@@ -112,7 +130,10 @@ body {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--panel-bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 input:focus-visible {
