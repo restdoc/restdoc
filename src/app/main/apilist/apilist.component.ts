@@ -1032,17 +1032,59 @@ export class APIlistComponent implements OnInit, OnDestroy {
     else return false;
   }
 
-  focusNode(parentName: string, childName: string) {
-    setTimeout(function () {
-      let els = this.document.getElementsByClassName(parentName);
-      if (els.length > 0) {
-        let last = els[els.length - 1] as HTMLElement;
-        let inputs = last.getElementsByClassName(childName);
-        if (inputs.length > 0) {
-          let input = inputs[0] as HTMLElement;
-          input.focus();
-        }
+  /** Focus the field on the row that just received the first typed character (Hoppscotch KV UI). */
+  private focusHoppLastDataRowInput(
+    originInput: HTMLInputElement | null,
+    field: "key" | "value" | "desc"
+  ) {
+    setTimeout(() => {
+      const rowsRoot = originInput?.closest(".hopp-kv-rows");
+      if (!rowsRoot) {
+        return;
       }
+      const dataRows = rowsRoot.querySelectorAll(".hopp-kv-row:not(.hopp-kv-row-new)");
+      if (!dataRows.length) {
+        return;
+      }
+      const lastRow = dataRows[dataRows.length - 1];
+      const inputs = lastRow.querySelectorAll("input.hopp-kv-input");
+      const index = field === "key" ? 0 : field === "value" ? 1 : 2;
+      const input = inputs[index] as HTMLInputElement | undefined;
+      if (!input) {
+        return;
+      }
+      input.focus();
+      const len = input.value?.length ?? 0;
+      input.setSelectionRange(len, len);
+    }, 0);
+  }
+
+  /** Focus the matching field on the last data row in legacy `.param-item` / `.header-item` lists. */
+  private focusLegacyKvLastRow(
+    originInput: HTMLInputElement | null,
+    field: "key" | "value" | "desc",
+    containerSelector: string,
+    rowClass: string
+  ) {
+    setTimeout(() => {
+      const container = originInput?.closest(containerSelector);
+      if (!container) {
+        return;
+      }
+      const rows = container.querySelectorAll("." + rowClass);
+      if (!rows.length) {
+        return;
+      }
+      const lastRow = rows[rows.length - 1] as HTMLElement;
+      const input = lastRow.querySelector(
+        ".field-" + field + "-input"
+      ) as HTMLInputElement | null;
+      if (!input) {
+        return;
+      }
+      input.focus();
+      const len = input.value?.length ?? 0;
+      input.setSelectionRange(len, len);
     }, 0);
   }
 
@@ -1051,6 +1093,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
     if (!event) {
       return
     }
+    const addRowInput = event.target as HTMLInputElement | null;
     console.log('input');
     const data = event.data;
 
@@ -1059,22 +1102,17 @@ export class APIlistComponent implements OnInit, OnDestroy {
       //this.defaultParamKey = "";
       let param = { key: "", value: "", desc: "", disabled: false };
 
-      let parentName = "normal-param-item";
-      var childName = "field-key-input";
       switch (type) {
         case "key":
           param[type] = data;
-          childName = "field-" + type + "-input";
           break;
         case "value":
           param[type] = data;
           this.defaultParamValue = "";
-          childName = "field-" + type + "-input";
           break;
         case "desc":
           param[type] = data;
           this.defaultParamDesc = "";
-          childName = "field-" + type + "-input";
           break;
         default:
           return;
@@ -1086,13 +1124,18 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
         if (type == "key") {
           request.params.push(param);
-          this.focusNode(parentName, childName);
           this.cdr.markForCheck();
+          this.focusHoppLastDataRowInput(addRowInput, type);
         }
       } else {
         request.params.push(param);
-        this.focusNode(parentName, childName);
         this.cdr.markForCheck();
+        this.focusLegacyKvLastRow(
+          addRowInput,
+          type,
+          ".params",
+          "normal-param-item"
+        );
       }
 
   }
@@ -1172,29 +1215,25 @@ export class APIlistComponent implements OnInit, OnDestroy {
     if (!event) {
       return
     }
+    const addRowInput = event.target as HTMLInputElement | null;
     const data = event.data;
 
     event.target.value = ""
 
     let header = { key: "", value: "", desc: "", enabled: false };
 
-    let parentName = "normal-header-item";
-    var childName = "field-key-input";
     switch (type) {
       case "key":
         header[type] = data;
         this.defaultHeaderKey = "";
-        childName = "field-" + type + "-input";
         break;
       case "value":
         header[type] = data;
         this.defaultHeaderValue = "";
-        childName = "field-" + type + "-input";
         break;
       case "desc":
         header[type] = data;
         this.defaultHeaderDesc = "";
-        childName = "field-" + type + "-input";
         break;
       default:
         return;
@@ -1202,7 +1241,16 @@ export class APIlistComponent implements OnInit, OnDestroy {
     header.enabled = true;
     request.headers.push(header);
     this.cdr.markForCheck();
-    this.focusNode(parentName, childName);
+    if (addRowInput?.closest(".hopp-kv-rows")) {
+      this.focusHoppLastDataRowInput(addRowInput, type);
+    } else {
+      this.focusLegacyKvLastRow(
+        addRowInput,
+        type,
+        ".headers",
+        "normal-header-item"
+      );
+    }
   }
 
   inputFormData(event, request, type, page) {
@@ -1210,29 +1258,25 @@ export class APIlistComponent implements OnInit, OnDestroy {
     if (!event) {
       return
     }
+    const addRowInput = event.target as HTMLInputElement | null;
     const data = event.data;
 
     event.target.value = ""
 
     var param = { id: "", key: "", value: "", desc: "", disabled: false };
 
-    let parentName = "normal-param-item";
-    var childName = "field-key-input";
     switch (type) {
       case "key":
         param[type] = data;
         this.defaultFormDataKey = "";
-        childName = "field-" + type + "-input";
         break;
       case "value":
         param[type] = data;
         this.defaultFormDataValue = "";
-        childName = "field-" + type + "-input";
         break;
       case "desc":
         param[type] = data;
         this.defaultFormDataDesc = "";
-        childName = "field-" + type + "-input";
         break;
       default:
         return;
@@ -1252,23 +1296,26 @@ export class APIlistComponent implements OnInit, OnDestroy {
             let detail = data.data.detail;
             request.form_data.push(param);
             this.cdr.markForCheck();
-            this.focusNode(parentName, childName);
+            this.focusHoppLastDataRowInput(addRowInput, type);
           }
         })
         */
         request.form_data.push(param);
         this.cdr.markForCheck();
-        this.focusNode(parentName, childName);
+        this.focusHoppLastDataRowInput(addRowInput, type);
 
       }
 
     } else {
       request.form_data.push(param);
       this.cdr.markForCheck();
-      this.focusNode(parentName, childName);
+      this.focusLegacyKvLastRow(
+        addRowInput,
+        type,
+        ".form-data",
+        "normal-param-item"
+      );
     }
-    this.cdr.markForCheck();
-    this.focusNode(parentName, childName);
   }
 
   saveParam(request, param) {
