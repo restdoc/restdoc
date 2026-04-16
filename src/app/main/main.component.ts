@@ -73,6 +73,14 @@ export interface EndpointElement {
   value: string;
 }
 
+export interface AuthElement {
+  type: string; // "none" | "basic" | "bearer" | "oauth2"
+  username?: string;
+  password?: string;
+  token?: string;
+  prefix?: string; // for bearer token prefix
+}
+
 export interface APIElement {
   id: string;
   principal_id: string;
@@ -91,6 +99,11 @@ export interface APIElement {
   post_type: PostType | "";
   headers: HeaderElement[];
   response: ResponseElement | null;
+  auth?: AuthElement;
+  preRequestScript?: string;
+  testScript?: string;
+  timeout?: number;
+  followRedirects?: boolean;
 }
 
 
@@ -117,6 +130,10 @@ export interface ResponseElement {
   contentType: string;
   headers: HeaderElement[];
   responseUrl: string;
+  statusCode?: number;
+  statusText?: string;
+  responseTime?: number;
+  size?: number;
 }
 
 export interface BoardInfo {

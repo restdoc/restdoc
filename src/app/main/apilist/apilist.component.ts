@@ -63,7 +63,7 @@ import { DetailsComponent } from "../details/details.component";
 import { ProjectRenameComponent } from "src/app/dialog/project-rename/project-rename.component";
 import { ProjectEndpointComponent } from "../../dialog/project-endpoint/project-endpoint.component";
 import { CardColors, LabelItem, ProjectElement, BoardElement } from "../main.component";
-import { EndpointElement, APIElement, ParamElement } from "../main.component";
+import { EndpointElement, APIElement, ParamElement, AuthElement } from "../main.component";
 import { HeaderElement, ResponseElement, PostType, SanitizeHtmlPipe } from "../main.component";
 import { UtilsService  } from "../main.service";
 import { consoleTestResultsHandler } from "tslint/lib/test";
@@ -178,9 +178,20 @@ export class APIlistComponent implements OnInit, OnDestroy {
   originalCode: string = "function x() { // TODO }";
   projectEndpoints: EndpointElement[] = [];
   showGroups = true
+  authTypes = ["none", "basic", "bearer"];
+  authTypeLabels = {
+    "none": "No Auth",
+    "basic": "Basic Auth",
+    "bearer": "Bearer Token"
+  };
   methods = [
     "GET",
     "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "HEAD",
+    "OPTIONS",
   ];
 
 
@@ -238,6 +249,21 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
         let respUrl = event.data.response.responseURL;
         resp.responseUrl = respUrl;
+        
+        // Add status code and response time
+        if (event.data.response.status) {
+          resp.statusCode = event.data.response.status;
+        }
+        if (event.data.response.statusText) {
+          resp.statusText = event.data.response.statusText;
+        }
+        if (event.data.response.responseTime) {
+          resp.responseTime = event.data.response.responseTime;
+        }
+        if (event.data.response.size) {
+          resp.size = event.data.response.size;
+        }
+        
         console.log(resp);
         console.log(respUrl);
 
@@ -1384,6 +1410,11 @@ export class APIlistComponent implements OnInit, OnDestroy {
         request.params = detail.get_params;
         request.form_data = detail.form_params;
         request.headers = detail.header_params;
+        
+        // Initialize auth and settings if not present
+        this.initAuth(request);
+        this.initRequestSettings(request);
+        
         this.cdr.markForCheck();
       })
 
@@ -1451,6 +1482,11 @@ export class APIlistComponent implements OnInit, OnDestroy {
         request.params = detail.get_params;
         request.form_data = detail.form_params;
         request.headers = detail.header_params;
+        
+        // Initialize auth and settings if not present
+        this.initAuth(request);
+        this.initRequestSettings(request);
+        
         this.cdr.markForCheck();
       })
 
@@ -1819,45 +1855,83 @@ export class APIlistComponent implements OnInit, OnDestroy {
     }
 
     var form = [];
- 
+    var headers = [];
 
-    var config = { method: request.method, url: url, params: ps, formData: form, headers: headers };
+    // Collect enabled headers first
+    for (let header of request.headers) {
+      if (header.enabled) {
+        let k = header.key;
+        let v = header.value;
+        headers.push({ key: k, value: v });
+      }
+    }
+
+    var config: any = { method: request.method, url: url, params: ps, formData: form, headers: headers };
 
     console.log(request);
-    if (request.method == "POST") {
+    if (request.method == "POST" || request.method == "PUT" || request.method == "PATCH") {
      
       console.log(request.post_type);
 
       switch (request.post_type) {
         case PostType.FormData:
           for (let param of request.form_data) {
-            let k = param.key;
-            let v = param.value;
-            form.push({ key: k, value: v });
+            if (param.enabled) {
+              let k = param.key;
+              let v = param.value;
+              form.push({ key: k, value: v });
+            }
           }
           config.formData = form;
-          request.headers.push({ id: "", desc: "", enabled: true, key: "Content-Type", value: "multipart/form-data"});
+          // Only add Content-Type if not already present
+          let hasContentType = headers.some(h => h.key.toLowerCase() === "content-type");
+          if (!hasContentType) {
+            headers.push({ key: "Content-Type", value: "multipart/form-data"});
+          }
           break;
         case PostType.FormUrlencoded:
           for (let param of request.form_data) {
-            let k = param.key;
-            let v = param.value;
-            form.push({ key: k, value: v });
+            if (param.enabled) {
+              let k = param.key;
+              let v = param.value;
+              form.push({ key: k, value: v });
+            }
           }
-          request.headers.push({ id: "", desc: "", enabled: true, key: "Content-Type", value: "application/x-www-form-urlencoded"});
+          let hasContentType2 = headers.some(h => h.key.toLowerCase() === "content-type");
+          if (!hasContentType2) {
+            headers.push({ key: "Content-Type", value: "application/x-www-form-urlencoded"});
+          }
           config.formData = form;
+          break;
+        case PostType.Raw:
+          if (request.raw) {
+            (config as any).body = request.raw;
+          }
+          break;
         default:
       }
 
     }
 
+    // Handle authentication
+    if (request.auth && request.auth.type !== "none") {
+      if (request.auth.type === "basic" && request.auth.username && request.auth.password) {
+        const credentials = btoa(`${request.auth.username}:${request.auth.password}`);
+        headers.push({ key: "Authorization", value: `Basic ${credentials}` });
+      } else if (request.auth.type === "bearer" && request.auth.token) {
+        const prefix = request.auth.prefix || "Bearer";
+        headers.push({ key: "Authorization", value: `${prefix} ${request.auth.token}` });
+      }
+    }
 
-    var headers = [];
-    for (let header of request.headers) {
-      let k = header.key;
-      let v = header.value;
-      //headers[k] = v;
-      headers.push({ key: v, value: v });
+    config.headers = headers;
+
+    // Add timeout and other settings
+    if (request.timeout) {
+      (config as any).timeout = request.timeout;
+    }
+    if (request.followRedirects !== undefined) {
+      (config as any).followRedirects = request.followRedirects;
     }
 
     window.postMessage(
@@ -2699,14 +2773,65 @@ export class APIlistComponent implements OnInit, OnDestroy {
     var h: HeaderElement
     switch (label) {
       case "x-www-form-urlencoded":
-        this.addContentType(request, label);
+        this.addContentType(request, "application/x-www-form-urlencoded");
+        break;
       case "form-data":
-        this.addContentType(request, label);
-    case "none":
-    case "raw":
-    case "binary":
-    case "none":
+        this.addContentType(request, "multipart/form-data");
+        break;
+      case "none":
+      case "raw":
+      case "binary":
+        break;
     }
+  }
+
+  initAuth(request: APIElement) {
+    if (!request.auth) {
+      request.auth = { type: "none" };
+    }
+  }
+
+  initRequestSettings(request: APIElement) {
+    if (request.timeout === undefined) {
+      request.timeout = 30000; // 30 seconds default
+    }
+    if (request.followRedirects === undefined) {
+      request.followRedirects = true;
+    }
+    if (!request.preRequestScript) {
+      request.preRequestScript = "";
+    }
+    if (!request.testScript) {
+      request.testScript = "";
+    }
+  }
+
+  formatResponseSize(size: number): string {
+    if (!size) return "0 B";
+    if (size < 1024) return size + " B";
+    if (size < 1024 * 1024) return (size / 1024).toFixed(2) + " KB";
+    return (size / (1024 * 1024)).toFixed(2) + " MB";
+  }
+
+  getStatusColor(statusCode: number): string {
+    if (!statusCode) return "";
+    if (statusCode >= 200 && statusCode < 300) return "#4caf50";
+    if (statusCode >= 300 && statusCode < 400) return "#ff9800";
+    if (statusCode >= 400 && statusCode < 500) return "#f44336";
+    if (statusCode >= 500) return "#9c27b0";
+    return "";
+  }
+
+  getAuthType(request: APIElement): string {
+    if (!request.auth || !request.auth.type) {
+      return "none";
+    }
+    return request.auth.type;
+  }
+
+  setAuthType(request: APIElement, authType: string) {
+    this.initAuth(request);
+    request.auth.type = authType;
   }
 
 }

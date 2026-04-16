@@ -425,12 +425,460 @@
     </div>
 </div>
 <ng-template #documentMode let-request='request'>
-    <div class="">
-        <div class="name-parts">
-            <div class="request-name">
-                <input mat-input [(ngModel)]="request.name" (ngModelChange)="updateAPIName(request)" [ngModelOptions]="{updateOn: 'blur'}" spellcheck="false" />
+    <div class="hopp-pane-layout">
+        <!-- ═══ PRIMARY: Request Section ═══ -->
+        <div class="hopp-pane-primary">
+            <!-- Sticky top bar: Method + URL + Send (Hoppscotch Request.vue style) -->
+            <div class="hopp-request-bar">
+                <div class="hopp-url-row">
+                    <div class="hopp-method-select">
+                        <mat-form-field appearance="fill" class="methods-form hopp-method-field">
+                            <mat-select [(value)]="request.method" (selectionChange)="updateAPIMethod(request, $event.value)" panelClass="hopp-method-panel">
+                                <mat-option *ngFor="let method of methods" [value]="method">
+                                    <span [class]="'method-label method-' + method.toLowerCase()">{{method}}</span>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="hopp-url-input">
+                        <input [(ngModel)]="request.path" (ngModelChange)="updateAPIPath(request)" [ngModelOptions]="{updateOn: 'blur'}" spellcheck="false" placeholder="Enter URL or paste cURL" />
+                    </div>
+                    <button *ngIf="!hasExtensionInstalled" mat-flat-button class="hopp-send-btn" (click)="Download()">
+                        <i class="material-icons">download</i>
+                        <span>Download</span>
+                    </button>
+                    <button *ngIf="hasExtensionInstalled" mat-flat-button class="hopp-send-btn" (click)="Send(request)">
+                        <i class="material-icons">send</i>
+                        <span>Send</span>
+                    </button>
+                </div>
+                <div class="hopp-meta-row">
+                    <div class="hopp-name-input">
+                        <input mat-input [(ngModel)]="request.name" (ngModelChange)="updateAPIName(request)" [ngModelOptions]="{updateOn: 'blur'}" spellcheck="false" placeholder="Request name" />
+                    </div>
+                    <div class="hopp-endpoints-row">
+                        <mat-button-toggle-group name="endpoints" aria-label="endpoints" [value]="currentEndpoint" class="hopp-endpoint-toggles">
+                            <mat-button-toggle *ngFor="let endpoint of projectEndpoints" [value]="endpoint" (change)="changeEndpoint($event.value)">{{ endpoint.name }}</mat-button-toggle>
+                        </mat-button-toggle-group>
+                        <button mat-icon-button class="hopp-icon-btn" (click)="updateEndpoints()">
+                            <i class="material-icons">settings</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Request options tabs (Hoppscotch RequestOptions.vue style) -->
+            <div class="hopp-request-options">
+                <mat-tab-group class="hopp-options-tabs" [selectedIndex]="0" animationDuration="0ms">
+                    <mat-tab label="Params">
+                        <div class="hopp-kv-panel">
+                            <div class="hopp-kv-header">
+                                <span class="hopp-kv-title">Parameter List</span>
+                            </div>
+                            <div class="hopp-kv-rows">
+                                <div class="hopp-kv-row" *ngFor="let param of request.params; let i = index">
+                                    <div class="hopp-kv-check">
+                                        <div *ngIf="param.enabled" (click)="toggleParam(param)">
+                                            <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                        </div>
+                                        <div *ngIf="!param.enabled" (click)="toggleParam(param)">
+                                            <mat-pseudo-checkbox></mat-pseudo-checkbox>
+                                        </div>
+                                    </div>
+                                    <input class="hopp-kv-input" [(ngModel)]="param.key" placeholder="Key" />
+                                    <input class="hopp-kv-input" [(ngModel)]="param.value" placeholder="Value" />
+                                    <input class="hopp-kv-input hopp-kv-desc" [(ngModel)]="param.desc" placeholder="Description" />
+                                    <button mat-icon-button class="hopp-kv-action" (click)="saveParam(request, param)">
+                                        <i class="material-icons">save</i>
+                                    </button>
+                                    <button mat-icon-button class="hopp-kv-action hopp-kv-delete" (click)="deleteParam(request, i)">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                </div>
+                                <!-- Empty row for adding -->
+                                <div class="hopp-kv-row hopp-kv-row-new">
+                                    <div class="hopp-kv-check">
+                                        <div *ngIf="defaultParamStatus" (click)="toggleDefaultParamStatus()">
+                                            <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                        </div>
+                                        <div *ngIf="!defaultParamStatus" (click)="toggleDefaultParamStatus()">
+                                            <mat-pseudo-checkbox></mat-pseudo-checkbox>
+                                        </div>
+                                    </div>
+                                    <input class="hopp-kv-input" (input)="inputParam($event, request, 'key', 'document')" placeholder="Key" />
+                                    <input class="hopp-kv-input" (keydown)="inputParam($event, request, 'value', 'document')" placeholder="Value" />
+                                    <input class="hopp-kv-input hopp-kv-desc" (keydown)="inputParam($event, request, 'desc', 'document')" placeholder="Description" />
+                                    <span class="hopp-kv-action-placeholder"></span>
+                                    <span class="hopp-kv-action-placeholder"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Auth">
+                        <div class="hopp-kv-panel">
+                            <div class="hopp-kv-header">
+                                <span class="hopp-kv-title">Authorization</span>
+                            </div>
+                            <div class="auth-section">
+                                <div class="auth-type-selector">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Auth Type</mat-label>
+                                        <mat-select [value]="getAuthType(request)" (selectionChange)="setAuthType(request, $event.value)">
+                                            <mat-option *ngFor="let authType of authTypes" [value]="authType">
+                                                {{ authTypeLabels[authType] }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="request.auth?.type === 'basic'" class="auth-basic">
+                                    <div class="auth-field">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Username</mat-label>
+                                            <input matInput [(ngModel)]="request.auth.username" placeholder="Username" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="auth-field">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Password</mat-label>
+                                            <input matInput type="password" [(ngModel)]="request.auth.password" placeholder="Password" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div *ngIf="request.auth?.type === 'bearer'" class="auth-bearer">
+                                    <div class="auth-field">
+                                        <mat-form-field appearance="fill" style="width: 100px;">
+                                            <mat-label>Prefix</mat-label>
+                                            <input matInput [(ngModel)]="request.auth.prefix" placeholder="Bearer" />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="auth-field" style="flex: 1;">
+                                        <mat-form-field appearance="fill" style="width: 100%;">
+                                            <mat-label>Token</mat-label>
+                                            <input matInput [(ngModel)]="request.auth.token" placeholder="Enter token" />
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Headers">
+                        <div class="hopp-kv-panel">
+                            <div class="hopp-kv-header">
+                                <span class="hopp-kv-title">Header List</span>
+                            </div>
+                            <div class="hopp-kv-rows">
+                                <div class="hopp-kv-row" *ngFor="let header of request.headers; let i = index">
+                                    <div class="hopp-kv-check">
+                                        <div *ngIf="header.enabled" (click)="toggleHeader(header)">
+                                            <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                        </div>
+                                        <div *ngIf="!header.enabled" (click)="toggleHeader(header)">
+                                            <mat-pseudo-checkbox></mat-pseudo-checkbox>
+                                        </div>
+                                    </div>
+                                    <input class="hopp-kv-input" [(ngModel)]="header.key" placeholder="Key" />
+                                    <input class="hopp-kv-input" [(ngModel)]="header.value" placeholder="Value" />
+                                    <input class="hopp-kv-input hopp-kv-desc" [(ngModel)]="header.desc" placeholder="Description" />
+                                    <button mat-icon-button class="hopp-kv-action" (click)="saveHeader(request, header)">
+                                        <i class="material-icons">save</i>
+                                    </button>
+                                    <button mat-icon-button class="hopp-kv-action hopp-kv-delete" (click)="deleteHeader(request, i)">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                </div>
+                                <div class="hopp-kv-row hopp-kv-row-new">
+                                    <div class="hopp-kv-check">
+                                        <div *ngIf="defaultHeaderStatus" (click)="toggleDefaultHeaderStatus()">
+                                            <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                        </div>
+                                        <div *ngIf="!defaultHeaderStatus" (click)="toggleDefaultHeaderStatus()">
+                                            <mat-pseudo-checkbox></mat-pseudo-checkbox>
+                                        </div>
+                                    </div>
+                                    <input class="hopp-kv-input" (input)="inputHeader($event, request, 'key')" placeholder="Key" />
+                                    <input class="hopp-kv-input" (input)="inputHeader($event, request, 'value')" placeholder="Value" />
+                                    <input class="hopp-kv-input hopp-kv-desc" (input)="inputHeader($event, request, 'desc')" placeholder="Description" />
+                                    <span class="hopp-kv-action-placeholder"></span>
+                                    <span class="hopp-kv-action-placeholder"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Body">
+                        <div class="hopp-kv-panel">
+                            <mat-tab-group class="hopp-body-subtabs" [selectedIndex]="0" (selectedTabChange)="onPostTypeChanged($event, request);" animationDuration="0ms">
+                                <mat-tab label="none"></mat-tab>
+                                <mat-tab label="form-data">
+                                    <div class="hopp-kv-rows">
+                                        <div class="hopp-kv-row" *ngFor="let param of request.form_data; let i = index">
+                                            <div class="hopp-kv-check">
+                                                <div *ngIf="param.enabled" (click)="toggleParam(param)">
+                                                    <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                </div>
+                                                <div *ngIf="!param.enabled" (click)="toggleParam(param)">
+                                                    <mat-pseudo-checkbox></mat-pseudo-checkbox>
+                                                </div>
+                                            </div>
+                                            <input class="hopp-kv-input" [(ngModel)]="param.key" placeholder="Key" />
+                                            <input class="hopp-kv-input" [(ngModel)]="param.value" placeholder="Value" />
+                                            <input class="hopp-kv-input hopp-kv-desc" [(ngModel)]="param.desc" placeholder="Description" />
+                                            <button mat-icon-button class="hopp-kv-action" (click)="saveFormData(request, i)">
+                                                <i class="material-icons">save</i>
+                                            </button>
+                                            <button mat-icon-button class="hopp-kv-action hopp-kv-delete" (click)="deleteFormData(request, i)">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </div>
+                                        <div class="hopp-kv-row hopp-kv-row-new">
+                                            <div class="hopp-kv-check">
+                                                <div *ngIf="defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
+                                                    <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                </div>
+                                                <div *ngIf="!defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
+                                                    <mat-pseudo-checkbox></mat-pseudo-checkbox>
+                                                </div>
+                                            </div>
+                                            <input class="hopp-kv-input" (input)="inputFormData($event, request, 'key', 'document')" placeholder="Key" />
+                                            <input class="hopp-kv-input" (input)="inputFormData($event, request, 'value', 'document')" placeholder="Value" />
+                                            <input class="hopp-kv-input hopp-kv-desc" (input)="inputFormData($event, request, 'desc', 'document')" placeholder="Description" />
+                                            <span class="hopp-kv-action-placeholder"></span>
+                                            <span class="hopp-kv-action-placeholder"></span>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="x-www-form-urlencoded">
+                                    <div class="hopp-kv-rows">
+                                        <div class="hopp-kv-row" *ngFor="let param of request.form_data; let i = index">
+                                            <div class="hopp-kv-check">
+                                                <div *ngIf="param.enabled" (click)="toggleParam(param)">
+                                                    <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                </div>
+                                                <div *ngIf="!param.enabled" (click)="toggleParam(param)">
+                                                    <mat-pseudo-checkbox></mat-pseudo-checkbox>
+                                                </div>
+                                            </div>
+                                            <input class="hopp-kv-input" [(ngModel)]="param.key" placeholder="Key" />
+                                            <input class="hopp-kv-input" [(ngModel)]="param.value" placeholder="Value" />
+                                            <input class="hopp-kv-input hopp-kv-desc" [(ngModel)]="param.desc" placeholder="Description" />
+                                            <button mat-icon-button class="hopp-kv-action" (click)="saveFormData(request, i)">
+                                                <i class="material-icons">save</i>
+                                            </button>
+                                            <button mat-icon-button class="hopp-kv-action hopp-kv-delete" (click)="deleteFormData(request, i)">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </div>
+                                        <div class="hopp-kv-row hopp-kv-row-new">
+                                            <div class="hopp-kv-check">
+                                                <div *ngIf="defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
+                                                    <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+                                                </div>
+                                                <div *ngIf="!defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
+                                                    <mat-pseudo-checkbox></mat-pseudo-checkbox>
+                                                </div>
+                                            </div>
+                                            <input class="hopp-kv-input" (input)="inputFormData($event, request, 'key', 'document')" placeholder="Key" />
+                                            <input class="hopp-kv-input" (input)="inputFormData($event, request, 'value', 'document')" placeholder="Value" />
+                                            <input class="hopp-kv-input hopp-kv-desc" (input)="inputFormData($event, request, 'desc', 'document')" placeholder="Description" />
+                                            <span class="hopp-kv-action-placeholder"></span>
+                                            <span class="hopp-kv-action-placeholder"></span>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="raw">
+                                    <div class="post-raw-format-type">
+                                        <mat-button-toggle-group name="content-type" value="request.post_type" (change)="onPostTypeChanged($event, request)">
+                                            <mat-button-toggle value="json">JSON</mat-button-toggle>
+                                            <mat-button-toggle value="xml">XML</mat-button-toggle>
+                                            <mat-button-toggle value="text">Text</mat-button-toggle>
+                                            <mat-button-toggle value="raw">Raw</mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </div>
+                                    <div class="post-raw">
+                                        <ngx-codemirror [(ngModel)]="request.raw" [options]="{
+                                            lineNumbers: true,
+                                            lineWrapping: true,
+                                            styleActiveLine: true,
+                                            gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                            foldGutter: true,
+                                            theme: 'mdn-like',
+                                            mode: 'javascript'
+                                        }"></ngx-codemirror>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="binary">
+                                    <div class="binary-section">
+                                        <p>Binary file upload not yet implemented</p>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Pre-Request">
+                        <div class="hopp-kv-panel">
+                            <div class="script-section">
+                                <ngx-codemirror [(ngModel)]="request.preRequestScript" [options]="{
+                                    lineNumbers: true,
+                                    lineWrapping: true,
+                                    theme: 'mdn-like',
+                                    mode: 'javascript'
+                                }" placeholder="// Pre-request scripts run before sending the request"></ngx-codemirror>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Tests">
+                        <div class="hopp-kv-panel">
+                            <div class="script-section">
+                                <ngx-codemirror [(ngModel)]="request.testScript" [options]="{
+                                    lineNumbers: true,
+                                    lineWrapping: true,
+                                    theme: 'mdn-like',
+                                    mode: 'javascript'
+                                }" placeholder="// Test scripts run after receiving the response"></ngx-codemirror>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Settings">
+                        <div class="hopp-kv-panel">
+                            <div class="settings-section">
+                                <div class="setting-item">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Timeout (ms)</mat-label>
+                                        <input matInput type="number" [(ngModel)]="request.timeout" placeholder="30000" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="setting-item">
+                                    <mat-checkbox [(ngModel)]="request.followRedirects">Follow Redirects</mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
             </div>
         </div>
+
+        <!-- ═══ Divider between request & response ═══ -->
+        <div class="hopp-pane-divider"></div>
+
+        <!-- ═══ SECONDARY: Response Section ═══ -->
+        <div class="hopp-pane-secondary">
+            <mat-tab-group class="hopp-response-tabs" [selectedIndex]="0" animationDuration="0ms">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="hopp-response-tab-label">Response</span>
+                    </ng-template>
+                    <div class="hopp-response-container">
+                        <!-- Response meta bar (Hoppscotch ResponseMeta.vue style) -->
+                        <div class="hopp-response-meta" *ngIf="request.response">
+                            <div class="hopp-status-row">
+                                <span class="hopp-status-badge" [ngStyle]="{'color': getStatusColor(request.response.statusCode)}">
+                                    <span *ngIf="request.response.statusCode">{{ request.response.statusCode }}</span>
+                                    <span *ngIf="request.response.statusText"> &bull; {{ request.response.statusText }}</span>
+                                </span>
+                                <span class="hopp-meta-item" *ngIf="request.response.responseTime">
+                                    <i class="material-icons">timer</i> {{ request.response.responseTime }}ms
+                                </span>
+                                <span class="hopp-meta-item" *ngIf="request.response.size">
+                                    <i class="material-icons">data_usage</i> {{ formatResponseSize(request.response.size) }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="hopp-response-meta hopp-response-empty" *ngIf="!request.response">
+                            <span class="hopp-empty-hint">Send a request to see the response</span>
+                        </div>
+                        <!-- Format toggles -->
+                        <div class="hopp-format-bar" *ngIf="request.response">
+                            <mat-button-toggle-group name="content-type" value="request.response.contentType" (change)="changeContentType($event, request)" class="hopp-format-toggles">
+                                <mat-button-toggle value="preview">Preview</mat-button-toggle>
+                                <mat-button-toggle value="html">HTML</mat-button-toggle>
+                                <mat-button-toggle value="json">JSON</mat-button-toggle>
+                                <mat-button-toggle value="xml">XML</mat-button-toggle>
+                                <mat-button-toggle value="raw">Raw</mat-button-toggle>
+                            </mat-button-toggle-group>
+                        </div>
+                        <!-- Response body -->
+                        <div class="hopp-response-body">
+                            <ng-container *ngIf="request.response != null">
+                                <ng-container *ngIf="request.response.contentType == 'json'">
+                                    <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
+                                        lineNumbers: true,
+                                        lineWrapping: true,
+                                        styleActiveLine: true,
+                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                        foldGutter: true,
+                                        theme: 'mdn-like',
+                                        mode: 'javascript' }"></ngx-codemirror>
+                                </ng-container>
+                                <ng-container *ngIf="request.response.contentType == 'xml'">
+                                    <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
+                                        lineNumbers: true,
+                                        lineWrapping: true,
+                                        styleActiveLine: true,
+                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                        foldGutter: true,
+                                        theme: 'mdn-like',
+                                        mode: 'xml' }"></ngx-codemirror>
+                                </ng-container>
+                                <ng-container *ngIf="request.response.contentType == 'preview'">
+                                    <iframe class="response-html" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" [src]="request.response.responseUrl | safe"></iframe>
+                                </ng-container>
+                                <ng-container *ngIf="request.response.contentType == 'html'">
+                                    <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
+                                        lineNumbers: true,
+                                        lineWrapping: true,
+                                        styleActiveLine: true,
+                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                        foldGutter: true,
+                                        theme: 'mdn-like',
+                                        mode: 'html'
+                                    }"></ngx-codemirror>
+                                </ng-container>
+                                <ng-container *ngIf="request.response.contentType == 'raw' || (!request.response.contentType && request.response.body)">
+                                    <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
+                                        lineNumbers: true,
+                                        lineWrapping: true,
+                                        styleActiveLine: true,
+                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                        foldGutter: true,
+                                        theme: 'mdn-like'
+                                    }"></ngx-codemirror>
+                                </ng-container>
+                            </ng-container>
+                            <div *ngIf="!request.response" class="hopp-no-response">
+                                <i class="material-icons">cloud_off</i>
+                                <p>No response yet. Click Send to make a request.</p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span class="hopp-response-tab-label">Headers</span>
+                    </ng-template>
+                    <div class="hopp-response-container">
+                        <ng-container *ngIf="request.response != null">
+                            <div class="hopp-response-headers">
+                                <div class="hopp-resp-header-row hopp-resp-header-head">
+                                    <span class="hopp-resp-header-key">Key</span>
+                                    <span class="hopp-resp-header-val">Value</span>
+                                </div>
+                                <div class="hopp-resp-header-row" *ngFor="let h of request.response.headers">
+                                    <span class="hopp-resp-header-key">{{ h.key }}</span>
+                                    <span class="hopp-resp-header-val">{{ h.value }}</span>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div *ngIf="!request.response" class="hopp-no-response">
+                            <i class="material-icons">cloud_off</i>
+                            <p>No response yet. Click Send to make a request.</p>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</ng-template>
+<ng-template #testMode let-request='request'>
+    <div class="test-body">
         <div class="endpoints">
             <div class="icon">
                 <span i18n>Endpoints</span>
@@ -462,7 +910,7 @@
                 <button *ngIf="hasExtensionInstalled" mat-button class="send-button" (click)="Send(request)">Send</button>
             </div>
         </div>
-        <div class="request-option-parts">
+        <div class="">
             <mat-tab-group class="request-option" [selectedIndex]="0" animationDuration="0ms">
                 <mat-tab label="params">
                     <div class="params">
@@ -507,20 +955,59 @@
                                 <i class="material-icons">save</i>
                             </div>
                             <div class="field-key">
-                                <input (input)="inputParam($event, request, 'key', 'document')" />
+                                <input (input)="inputParam($event, request, 'key', 'test')" placeholder="key" />
                             </div>
                             <div class="field-value">
-                                <input (keydown)="inputParam($event, request, 'value', 'document')" />
+                                <input (input)="inputParam($event, request, 'value', 'test')" placeholder="value" />
                             </div>
                             <div class="field-desc">
-                                <input (keydown)="inputParam($event, request, 'desc', 'document')" />
+                                <input (input)="inputParam($event, request, 'desc', 'test')" placeholder="description" />
                             </div>
                         </div>
                     </div>
                 </mat-tab>
-                <!--
-                                        <mat-tab label="auth"> </mat-tab>
-                                        -->
+                <mat-tab label="auth">
+                    <div class="auth-section">
+                        <div class="auth-type-selector">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Auth Type</mat-label>
+                                <mat-select [value]="getAuthType(request)" (selectionChange)="setAuthType(request, $event.value)">
+                                    <mat-option *ngFor="let authType of authTypes" [value]="authType">
+                                        {{ authTypeLabels[authType] }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div *ngIf="request.auth?.type === 'basic'" class="auth-basic">
+                            <div class="auth-field">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Username</mat-label>
+                                    <input matInput [(ngModel)]="request.auth.username" placeholder="Username" />
+                                </mat-form-field>
+                            </div>
+                            <div class="auth-field">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="password" [(ngModel)]="request.auth.password" placeholder="Password" />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div *ngIf="request.auth?.type === 'bearer'" class="auth-bearer">
+                            <div class="auth-field">
+                                <mat-form-field appearance="fill" style="width: 100px;">
+                                    <mat-label>Prefix</mat-label>
+                                    <input matInput [(ngModel)]="request.auth.prefix" placeholder="Bearer" />
+                                </mat-form-field>
+                            </div>
+                            <div class="auth-field" style="flex: 1;">
+                                <mat-form-field appearance="fill" style="width: 100%;">
+                                    <mat-label>Token</mat-label>
+                                    <input matInput [(ngModel)]="request.auth.token" placeholder="Enter token" />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
                 <mat-tab label="headers">
                     <div class="headers">
                         <div class="header-item normal-header-item" *ngFor="let header of request.headers; let i = index">
@@ -535,17 +1022,11 @@
                             <div class="delete-param" (click)="deleteHeader(request, i)">
                                 <i class="material-icons">delete_outline</i>
                             </div>
-                            <div class="delete-param" (click)="saveHeader(request, header)">
-                                <i class="material-icons">save</i>
-                            </div>
                             <div class="field-key">
                                 <input [(ngModel)]="header.key" class="field-key-input" />
                             </div>
                             <div class="field-value">
                                 <input [(ngModel)]="header.value" class="field-value-input" />
-                            </div>
-                            <div class="field-desc">
-                                <input [(ngModel)]="header.desc" class="field-desc-input" />
                             </div>
                         </div>
                         <div class="header-item default-header-item">
@@ -557,11 +1038,8 @@
                                     <mat-pseudo-checkbox> </mat-pseudo-checkbox>
                                 </div>
                             </div>
-                            <div class="delete-param">
-                                <i class="material-icons">delete_outline</i>
-                            </div>
                             <div class="delete-param disabled">
-                                <i class="material-icons">save</i>
+                                <i class="material-icons">delete_outline</i>
                             </div>
                             <div class="field-key">
                                 <input (input)="inputHeader($event, request, 'key')" />
@@ -569,16 +1047,12 @@
                             <div class="field-value">
                                 <input (input)="inputHeader($event, request, 'value')" />
                             </div>
-                            <div class="field-desc">
-                                <input (input)="inputHeader($event, request, 'desc')" />
-                            </div>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="body">
                     <mat-tab-group class="request-form-params" [selectedIndex]="0" (selectedTabChange)="onPostTypeChanged($event, request);" animationDuration="0ms">
-                        <mat-tab label="none">
-                        </mat-tab>
+                        <mat-tab label="none"></mat-tab>
                         <mat-tab label="form-data">
                             <div class="form-data">
                                 <div class="param-item normal-param-item" *ngFor="let param of request.form_data; let i = index">
@@ -593,17 +1067,11 @@
                                     <div class="delete-param" (click)="deleteFormData(request, i)">
                                         <i class="material-icons">delete_outline</i>
                                     </div>
-                                    <div class="delete-param" (click)="saveFormData(request, i)">
-                                        <i class="material-icons">save</i>
-                                    </div>
                                     <div class="field-key">
                                         <input [(ngModel)]="param.key" class="field-key-input" />
                                     </div>
                                     <div class="field-value">
                                         <input [(ngModel)]="param.value" class="field-value-input" />
-                                    </div>
-                                    <div class="field-desc">
-                                        <input [(ngModel)]="param.desc" class="field-desc-input" />
                                     </div>
                                 </div>
                                 <div class="param-item default-param-item">
@@ -618,105 +1086,99 @@
                                     <div class="delete-param disabled">
                                         <i class="material-icons">delete_outline</i>
                                     </div>
-                                    <div class="delete-param">
-                                        <i class="material-icons">save</i>
-                                    </div>
                                     <div class="field-key">
-                                        <input (input)="inputFormData($event, request, 'key', 'document')" />
+                                        <input (input)="inputFormData($event, request, 'key', 'test')" />
                                     </div>
                                     <div class="field-value">
-                                        <input (input)="inputFormData($event, request, 'value', 'document')" />
-                                    </div>
-                                    <div class="field-desc">
-                                        <input (input)="inputFormData($event, request, 'desc', 'document')" />
-                                    </div>
-                                </div>
-                            </div>
-                        </mat-tab>
-                        <mat-tab label="x-www-form-urlencoded">
-                            <div class="form-urlencoded">
-                                <div class="param-item normal-param-item" *ngFor="let param of request.form_data; let i = index">
-                                    <div class="field-enabled">
-                                        <div *ngIf="param.enabled" (click)="toggleParam(param)">
-                                            <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
-                                        </div>
-                                        <div *ngIf="!param.enabled" (click)="toggleParam(param)">
-                                            <mat-pseudo-checkbox> </mat-pseudo-checkbox>
-                                        </div>
-                                    </div>
-                                    <div class="delete-param" (click)="deleteFormData(request, i)">
-                                        <i class="material-icons">delete_outline</i>
-                                    </div>
-                                    <div class="delete-param" (click)="saveFormData(request, i)">
-                                        <i class="material-icons">save</i>
-                                    </div>
-                                    <div class="field-key">
-                                        <input [(ngModel)]="param.key" class="field-key-input" />
-                                    </div>
-                                    <div class="field-value">
-                                        <input [(ngModel)]="param.value" class="field-value-input" />
-                                    </div>
-                                    <div class="field-desc">
-                                        <input [(ngModel)]="param.desc" class="field-desc-input" />
-                                    </div>
-                                </div>
-                                <div class="param-item default-param-item">
-                                    <div class="field-enabled">
-                                        <div *ngIf="defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
-                                            <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
-                                        </div>
-                                        <div *ngIf="!defaultFormDataStatus" (click)="toggleDefaultFormDataStatus()">
-                                            <mat-pseudo-checkbox> </mat-pseudo-checkbox>
-                                        </div>
-                                    </div>
-                                    <div class="delete-param disabled">
-                                        <i class="material-icons">delete_outline</i>
-                                    </div>
-                                    <div class="delete-param disabled">
-                                        <i class="material-icons">save</i>
-                                    </div>
-                                    <div class="field-key">
-                                        <input (input)="inputFormData($event, request, 'key', 'document')" />
-                                    </div>
-                                    <div class="field-value">
-                                        <input (input)="inputFormData($event, request, 'value', 'document')" />
-                                    </div>
-                                    <div class="field-desc">
-                                        <input (input)="inputFormData($event, request, 'desc', 'document')" />
+                                        <input (input)="inputFormData($event, request, 'value', 'test')" />
                                     </div>
                                 </div>
                             </div>
                         </mat-tab>
                         <mat-tab label="raw">
                             <div class="post-raw-format-type">
-                                <mat-button-toggle-group name="content-type" value="request.response.contentType" (change)="changeRawContentType($event, request)">
-                                    <mat-button-toggle value="html">HTML</mat-button-toggle>
+                                <mat-button-toggle-group name="content-type" value="request.post_type" (change)="onPostTypeChanged($event, request)">
                                     <mat-button-toggle value="json">JSON</mat-button-toggle>
                                     <mat-button-toggle value="xml">XML</mat-button-toggle>
-                                    <mat-button-toggle value="raw">Raw</mat-button-toggle>
+                                    <mat-button-toggle value="text">Text</mat-button-toggle>
                                 </mat-button-toggle-group>
                             </div>
                             <div class="post-raw">
-                                <ngx-codemirror [(ngModel)]="request.raw" [options]="
-                            { 
-                                lineWrapping: true,
-                                theme: 'mdn-like'
-                            }"></ngx-codemirror>
+                                <ngx-codemirror [(ngModel)]="request.raw" [options]="{
+                                    lineNumbers: true,
+                                    lineWrapping: true,
+                                    styleActiveLine: true,
+                                    gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                    foldGutter: true,
+                                    theme: 'mdn-like',
+                                    mode: 'javascript'
+                                }"></ngx-codemirror>
                             </div>
                         </mat-tab>
                         <mat-tab label="binary">
+                            <div class="binary-section">
+                                <p>Binary file upload not yet implemented</p>
+                            </div>
                         </mat-tab>
                     </mat-tab-group>
                 </mat-tab>
-                <mat-tab label="settings"> </mat-tab>
+                <mat-tab label="pre-request">
+                    <div class="script-section">
+                        <ngx-codemirror [(ngModel)]="request.preRequestScript" [options]="{
+                            lineNumbers: true,
+                            lineWrapping: true,
+                            styleActiveLine: true,
+                            gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                            foldGutter: true,
+                            theme: 'mdn-like',
+                            mode: 'javascript'
+                        }" placeholder="// Pre-request scripts run before sending the request"></ngx-codemirror>
+                    </div>
+                </mat-tab>
+                <mat-tab label="test">
+                    <div class="script-section">
+                        <ngx-codemirror [(ngModel)]="request.testScript" [options]="{
+                            lineNumbers: true,
+                            lineWrapping: true,
+                            styleActiveLine: true,
+                            gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                            foldGutter: true,
+                            theme: 'mdn-like',
+                            mode: 'javascript'
+                        }" placeholder="// Test scripts run after receiving the response"></ngx-codemirror>
+                    </div>
+                </mat-tab>
+                <mat-tab label="settings">
+                    <div class="settings-section">
+                        <div class="setting-item">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Timeout (ms)</mat-label>
+                                <input matInput type="number" [(ngModel)]="request.timeout" placeholder="30000" />
+                            </mat-form-field>
+                        </div>
+                        <div class="setting-item">
+                            <mat-checkbox [(ngModel)]="request.followRedirects">Follow Redirects</mat-checkbox>
+                        </div>
+                    </div>
+                </mat-tab>
             </mat-tab-group>
         </div>
         <div class="response-parts">
             <mat-tab-group class="request-response" [selectedIndex]="0" animationDuration="0ms">
                 <mat-tab label="response" class="response-tab">
                     <div class="response-container">
+                        <div class="response-header" *ngIf="request.response">
+                            <div class="response-status" [ngStyle]="{'color': getStatusColor(request.response.statusCode)}">
+                                <span *ngIf="request.response.statusCode">{{ request.response.statusCode }}</span>
+                                <span *ngIf="request.response.statusText"> {{ request.response.statusText }}</span>
+                            </div>
+                            <div class="response-meta" *ngIf="request.response.responseTime || request.response.size">
+                                <span *ngIf="request.response.responseTime">{{ request.response.responseTime }}ms</span>
+                                <span *ngIf="request.response.size"> • {{ formatResponseSize(request.response.size) }}</span>
+                            </div>
+                        </div>
                         <div class="format-type">
-                            <mat-button-toggle-group name="content-type" value="request.response.contentType" (change)="changeContentType($event, request)">
+                            <mat-button-toggle-group name="content-type" value="request.response?.contentType" (change)="changeContentType($event, request)">
                                 <mat-button-toggle value="preview">Preview</mat-button-toggle>
                                 <mat-button-toggle value="html">HTML</mat-button-toggle>
                                 <mat-button-toggle value="json">JSON</mat-button-toggle>
@@ -728,164 +1190,72 @@
                             <ng-container *ngIf="request.response != null">
                                 <ng-container *ngIf="request.response.contentType == 'json'">
                                     <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
-                                                        lineNumbers: true,
-                                                        lineWrapping: true,
-                                                        styleActiveLine: true,
-                                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-                                                        foldGutter: true,
-                                                        theme: 'mdn-like',
-                                                        mode: 'javascript' }"></ngx-codemirror>
+                                        lineNumbers: true,
+                                        lineWrapping: true,
+                                        styleActiveLine: true,
+                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                        foldGutter: true,
+                                        theme: 'mdn-like',
+                                        mode: 'javascript'
+                                    }"></ngx-codemirror>
                                 </ng-container>
                                 <ng-container *ngIf="request.response.contentType == 'xml'">
                                     <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
-                                                        lineNumbers: true,
-                                                        lineWrapping: true,
-                                                        styleActiveLine: true,
-                                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-                                                        foldGutter: true,
-                                                        theme: 'mdn-like',
-                                                        mode: 'xml' }"></ngx-codemirror>
+                                        lineNumbers: true,
+                                        lineWrapping: true,
+                                        styleActiveLine: true,
+                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                        foldGutter: true,
+                                        theme: 'mdn-like',
+                                        mode: 'xml'
+                                    }"></ngx-codemirror>
                                 </ng-container>
                                 <ng-container *ngIf="request.response.contentType == 'preview'">
                                     <iframe class="response-html" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" [src]="request.response.responseUrl | safe"></iframe>
-                                    <!--
-                                    <div [innerHTML]="request.response.body"></div>
-                                    -->
-                                    <!--
-                                    <iframe [src]="request.response.responseUrl | safe" [srcdoc]="request.response.body | sanit"></iframe>
-                                    -->
                                 </ng-container>
                                 <ng-container *ngIf="request.response.contentType == 'html'">
                                     <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
-                                                        lineNumbers: true,
-                                                        lineWrapping: true,
-                                                        styleActiveLine: true,
-                                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-                                                        foldGutter: true,
-                                                        theme: 'mdn-like',
-                                                        mode: 'html' }"></ngx-codemirror>
+                                        lineNumbers: true,
+                                        lineWrapping: true,
+                                        styleActiveLine: true,
+                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                        foldGutter: true,
+                                        theme: 'mdn-like',
+                                        mode: 'html'
+                                    }"></ngx-codemirror>
+                                </ng-container>
+                                <ng-container *ngIf="request.response.contentType == 'raw' || !request.response.contentType">
+                                    <ngx-codemirror [(ngModel)]="request.response.body" [options]="{
+                                        lineNumbers: true,
+                                        lineWrapping: true,
+                                        styleActiveLine: true,
+                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                                        foldGutter: true,
+                                        theme: 'mdn-like'
+                                    }"></ngx-codemirror>
                                 </ng-container>
                             </ng-container>
+                            <div *ngIf="!request.response" class="no-response">
+                                <p>No response yet. Click Send to make a request.</p>
+                            </div>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="headers">
                     <ng-container *ngIf="request.response != null">
-                        <ul>
-                            <li *ngFor="let h of request.response.headers">
-                                <div>
-                                    {{ h.key}} - {{ h.value}}
-                                </div>
-                            </li>
-                        </ul>
+                        <div class="response-headers">
+                            <div class="header-item" *ngFor="let h of request.response.headers">
+                                <div class="header-key">{{ h.key }}</div>
+                                <div class="header-value">{{ h.value }}</div>
+                            </div>
+                        </div>
                     </ng-container>
-                </mat-tab>
-            </mat-tab-group>
-        </div>
-    </div>
-</ng-template>
-<ng-template #testMode let-request='request'>
-    <div class="test-body">
-        <div class="endpoints">
-            <div class="icon">
-                <span i18n>Endpoints</span>
-            </div>
-            <div class="endpoints-select">
-                <mat-button-toggle-group name="endpoints" aria-label="endpoints" [value]="currentEndpoint">
-                    <mat-button-toggle *ngFor="let endpoint of projectEndpoints" [value]="endpoint" (change)="changeEndpoint($event.value)">{{ endpoint.name }}</mat-button-toggle>
-                </mat-button-toggle-group>
-            </div>
-            <div class="endpoints-update" (click)="updateEndpoints()">
-                <i class="material-icons">settings</i>
-            </div>
-        </div>
-        <div class="url-parts">
-            <div class="methods">
-                <mat-form-field appearance="fill" class="methods-form">
-                    <mat-select [(value)]="request.method" (selectionChange)="updateAPIMethod(request, $event.value)">
-                        <mat-option *ngFor="let method of methods" [value]="method">
-                            {{method}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="path">
-                <input [(ngModel)]="request.path" (ngModelChange)="updateAPIPath(request)" [ngModelOptions]="{updateOn: 'blur'}" spellcheck="false" />
-            </div>
-            <div class="send">
-                <button *ngIf="!hasExtensionInstalled" mat-button class="send-button" (click)="Download()">Download</button>
-                <button *ngIf="hasExtensionInstalled" mat-button class="send-button" (click)="Send(request)">Send</button>
-            </div>
-        </div>
-        <div class="">
-            <mat-tab-group class="request-option" [selectedIndex]="0" animationDuration="0ms">
-                <mat-tab label="params">
-                    <div class="params">
-                        <div class="param-item normal-param-item" *ngFor="let param of request.params">
-                            <div class="field-key">
-                                <input [(ngModel)]="param.key" class="field-key-input" />
-                            </div>
-                            <div class="field-value">
-                                <input [(ngModel)]="param.value" class="field-value-input" />
-                            </div>
-                            <div class="field-desc">
-                                <input [(ngModel)]="param.desc" class="field-desc-input" />
-                            </div>
-                        </div>
-                        <div class="param-item default-param-item">
-                            <div class="field-key">
-                                <input (input)="inputParam($event, request, 'key', 'test')" />
-                            </div>
-                            <div class="field-value">
-                                <input (input)="inputParam($event, request, 'value', 'test')" />
-                            </div>
-                            <div class="field-desc">
-                                <input (input)="inputParam($event, request, 'desc', 'test')" />
-                            </div>
-                        </div>
+                    <div *ngIf="!request.response" class="no-response">
+                        <p>No response yet. Click Send to make a request.</p>
                     </div>
                 </mat-tab>
-                <!--
-                                        <mat-tab label="auth"> </mat-tab>
-                                        -->
-                <mat-tab label="headers"> </mat-tab>
-                <mat-tab label="body"> </mat-tab>
-                <mat-tab label="pre-req"> </mat-tab>
-                <mat-tab label="test"> </mat-tab>
-                <mat-tab label="settings"> </mat-tab>
             </mat-tab-group>
         </div>
-        <div class="response">
-            <mat-tab-group class="request-response" [selectedIndex]="0" animationDuration="0ms">
-                <mat-tab label="params">
-                    <div class="params">
-                        <div class="param-item" *ngFor="let param of request.params">
-                            <div class="field-key">
-                                {{ param.key }}
-                            </div>
-                            <div class="field-value">
-                                {{ param.value }}
-                            </div>
-                            <div class="field-desc"> desc </div>
-                        </div>
-                        <div class="adding">
-                            <button>add</button>
-                        </div>
-                    </div>
-                </mat-tab>
-                <!--
-                                        <mat-tab label="auth"> </mat-tab>
-                                        -->
-                <mat-tab label="headers"> </mat-tab>
-                <mat-tab label="body"> </mat-tab>
-                <mat-tab label="pre-req"> </mat-tab>
-                <mat-tab label="test"> </mat-tab>
-                <mat-tab label="settings"> </mat-tab>
-            </mat-tab-group>
-        </div>
-        <div> content </div>
-        <div> content </div>
-        <div> content </div>
     </div>
 </ng-template>
 <ng-template #testcaseMode let-request='request'>

@@ -54,6 +54,23 @@
   --group-bg-color: #f8fafc;
   --active-panel-bg-color: #f1f5f9;
   
+  /* HTTP Method colors (Hoppscotch-style) */
+  --method-get-color: #10b981;
+  --method-post-color: #f59e0b;
+  --method-put-color: #3b82f6;
+  --method-patch-color: #a855f7;
+  --method-delete-color: #ef4444;
+  --method-head-color: #84cc16;
+  --method-options-color: #ec4899;
+  --method-default-color: #6b7280;
+  
+  /* Status colors */
+  --status-info-color: #3b82f6;
+  --status-success-color: #10b981;
+  --status-redirect-color: #f59e0b;
+  --status-error-color: #ef4444;
+  --status-server-error-color: #f43f5e;
+  
   /* Text colors */
   --text-primary: #0f172a;
   --text-secondary: #475569;
@@ -114,6 +131,23 @@
     --color-br-color: #475569;
     --group-bg-color: #1e293b;
     --active-panel-bg-color: #334155;
+    
+    /* HTTP Method colors (Hoppscotch-style dark) */
+    --method-get-color: #34d399;
+    --method-post-color: #fbbf24;
+    --method-put-color: #38bdf8;
+    --method-patch-color: #a78bfa;
+    --method-delete-color: #fb7185;
+    --method-head-color: #2dd4bf;
+    --method-options-color: #818cf8;
+    --method-default-color: #9ca3af;
+    
+    /* Status colors dark */
+    --status-info-color: #3b82f6;
+    --status-success-color: #10b981;
+    --status-redirect-color: #f59e0b;
+    --status-error-color: #ef4444;
+    --status-server-error-color: #f43f5e;
     
     /* Text colors for dark mode */
     --text-primary: #f1f5f9;

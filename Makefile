@@ -11,7 +11,7 @@ pack:
 	cp -r dist/restdoc/* ../restdoc-server/restdoc/
 
 zh:
-	ng serve --live-reload --port=4208 --configuration=zh-hans
+	ng serve --live-reload --port=4208 --host 0.0.0.0 --disable-host-check --configuration=zh-hans
 
 run:
-	ng serve --live-reload --port=4208
+	ng serve --live-reload --host 0.0.0.0  --disable-host-check --port=4208

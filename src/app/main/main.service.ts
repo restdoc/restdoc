@@ -95,6 +95,11 @@ export class UtilsService {
           post_type: post_type,
           headers: headers,
           response: resp,
+          auth: { type: "none" },
+          timeout: 30000,
+          followRedirects: true,
+          preRequestScript: "",
+          testScript: "",
         };
         return card
   }

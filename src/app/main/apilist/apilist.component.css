@@ -1601,3 +1601,568 @@ iframe.response-html {
   border: 1px solid var(--card-br-color);
   padding: 0;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Hoppscotch-style layout for the document mode (request detail)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* --- Pane layout: primary (request) / divider / secondary (response) --- */
+.hopp-pane-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.hopp-pane-primary {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 45%;
+  min-height: 200px;
+  overflow: auto;
+}
+
+.hopp-pane-divider {
+  flex: 0 0 3px;
+  background: var(--panel-br-color);
+  cursor: row-resize;
+  position: relative;
+}
+
+.hopp-pane-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--card-br-color);
+}
+
+.hopp-pane-secondary {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 55%;
+  min-height: 200px;
+  overflow: auto;
+}
+
+/* --- Sticky request bar (Method + URL + Send) --- */
+.hopp-request-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  flex-shrink: 0;
+  background: var(--panel-bg-color);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--panel-br-color);
+}
+
+.hopp-url-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--panel-br-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.hopp-url-row:focus-within {
+  border-color: var(--main-btn-bg-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+/* Method selector inside URL bar */
+.hopp-method-select {
+  flex: 0 0 auto;
+  background: var(--fold-bg-color);
+  border-right: 1px solid var(--panel-br-color);
+}
+
+:host ::ng-deep .hopp-method-field .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+  margin: 0;
+}
+
+:host ::ng-deep .hopp-method-field .mat-form-field-infix {
+  padding: 6px 8px !important;
+  width: 80px;
+  border-top: 0;
+}
+
+:host ::ng-deep .hopp-method-field .mat-form-field-underline {
+  display: none;
+}
+
+:host ::ng-deep .hopp-method-field .mat-select-value-text {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+:host ::ng-deep .hopp-method-field .mat-form-field-flex {
+  padding: 0;
+}
+
+/* Method color classes */
+.method-label { font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.method-get { color: var(--method-get-color); }
+.method-post { color: var(--method-post-color); }
+.method-put { color: var(--method-put-color); }
+.method-patch { color: var(--method-patch-color); }
+.method-delete { color: var(--method-delete-color); }
+.method-head { color: var(--method-head-color); }
+.method-options { color: var(--method-options-color); }
+
+/* URL input */
+.hopp-url-input {
+  flex: 1;
+  display: flex;
+}
+
+.hopp-url-input input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px 14px;
+  font-family: 'Roboto Mono', 'SF Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.hopp-url-input input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Send button (primary accent) */
+.hopp-send-btn {
+  flex: 0 0 auto;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 0 20px !important;
+  height: 100%;
+  min-height: 40px;
+  border: none;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0 !important;
+  background-color: var(--main-btn-bg-color) !important;
+  color: var(--main-btn-text-color) !important;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.hopp-send-btn:hover {
+  background-color: var(--main-color-hover) !important;
+}
+
+.hopp-send-btn i {
+  font-size: 18px;
+}
+
+/* Meta row (name + endpoints) */
+.hopp-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.hopp-name-input {
+  flex: 1;
+}
+
+.hopp-name-input input {
+  width: 100%;
+  border: 1px solid var(--panel-br-color);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  font-size: 13px;
+  background: var(--fold-bg-color);
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+}
+
+.hopp-name-input input:focus {
+  outline: none;
+  border-color: var(--main-btn-bg-color);
+}
+
+.hopp-endpoints-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+:host ::ng-deep .hopp-endpoint-toggles .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 28px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.hopp-icon-btn {
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+}
+
+.hopp-icon-btn i {
+  font-size: 18px;
+  color: var(--text-tertiary);
+}
+
+/* --- Request options tabs (Hoppscotch sticky tab bar) --- */
+.hopp-request-options {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+:host ::ng-deep .hopp-options-tabs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+:host ::ng-deep .hopp-options-tabs > .mat-tab-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--panel-bg-color);
+  border-bottom: 1px solid var(--panel-br-color);
+  flex-shrink: 0;
+}
+
+:host ::ng-deep .hopp-options-tabs .mat-tab-label {
+  height: 36px;
+  min-width: 80px;
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  opacity: 1;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+}
+
+:host ::ng-deep .hopp-options-tabs .mat-tab-label-active {
+  color: var(--main-btn-bg-color);
+  border-bottom: 2px solid var(--main-btn-bg-color);
+}
+
+:host ::ng-deep .hopp-options-tabs .mat-ink-bar {
+  display: none;
+}
+
+:host ::ng-deep .hopp-options-tabs .mat-tab-body-wrapper {
+  flex: 1;
+}
+
+/* --- Key-Value panel (card-like, light bg) --- */
+.hopp-kv-panel {
+  background: var(--panel-bg-color);
+  min-height: 120px;
+}
+
+.hopp-kv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--panel-br-color);
+  background: var(--fold-bg-color);
+}
+
+.hopp-kv-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hopp-kv-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.hopp-kv-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid var(--panel-br-color);
+  min-height: 36px;
+}
+
+.hopp-kv-row:hover {
+  background: var(--hover-bg-color);
+}
+
+.hopp-kv-row-new {
+  opacity: 0.6;
+}
+
+.hopp-kv-row-new:focus-within {
+  opacity: 1;
+}
+
+.hopp-kv-check {
+  flex: 0 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--panel-br-color);
+  height: 100%;
+  min-height: 36px;
+}
+
+.hopp-kv-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: 'Roboto Mono', 'SF Mono', monospace;
+  background: transparent;
+  color: var(--text-primary);
+  border-right: 1px solid var(--panel-br-color);
+  min-width: 0;
+}
+
+.hopp-kv-input::placeholder {
+  color: var(--text-tertiary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.hopp-kv-desc {
+  flex: 0.7;
+}
+
+.hopp-kv-action {
+  flex: 0 0 28px;
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+  padding: 0 !important;
+}
+
+.hopp-kv-action i {
+  font-size: 16px;
+  color: var(--text-tertiary);
+}
+
+.hopp-kv-action:hover i {
+  color: var(--text-primary);
+}
+
+.hopp-kv-delete:hover i {
+  color: var(--method-delete-color);
+}
+
+.hopp-kv-action-placeholder {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+}
+
+/* --- Body sub-tabs --- */
+:host ::ng-deep .hopp-body-subtabs .mat-tab-label {
+  height: 32px;
+  min-width: 60px;
+  padding: 0 10px;
+  font-size: 11px;
+  opacity: 1;
+}
+
+:host ::ng-deep .hopp-body-subtabs .mat-tab-label-active {
+  color: var(--main-btn-bg-color);
+}
+
+/* --- Response section --- */
+:host ::ng-deep .hopp-response-tabs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+:host ::ng-deep .hopp-response-tabs > .mat-tab-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--panel-bg-color);
+  border-bottom: 1px solid var(--panel-br-color);
+  flex-shrink: 0;
+}
+
+:host ::ng-deep .hopp-response-tabs .mat-tab-label {
+  height: 36px;
+  min-width: 80px;
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  opacity: 1;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+}
+
+:host ::ng-deep .hopp-response-tabs .mat-tab-label-active {
+  color: var(--main-btn-bg-color);
+  border-bottom: 2px solid var(--main-btn-bg-color);
+}
+
+:host ::ng-deep .hopp-response-tabs .mat-ink-bar {
+  display: none;
+}
+
+:host ::ng-deep .hopp-response-tabs .mat-tab-body-wrapper {
+  flex: 1;
+  overflow: auto;
+}
+
+.hopp-response-tab-label {
+  font-weight: 600;
+}
+
+/* Response meta bar */
+.hopp-response-meta {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--fold-bg-color);
+  border-bottom: 1px solid var(--panel-br-color);
+  min-height: 20px;
+}
+
+.hopp-response-empty {
+  justify-content: center;
+}
+
+.hopp-empty-hint {
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+.hopp-status-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.hopp-status-badge {
+  font-weight: 700;
+}
+
+.hopp-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.hopp-meta-item i {
+  font-size: 14px;
+}
+
+/* Format bar */
+.hopp-format-bar {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--panel-br-color);
+}
+
+:host ::ng-deep .hopp-format-toggles .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 26px;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Response body */
+.hopp-response-body {
+  flex: 1;
+  min-height: 200px;
+}
+
+.hopp-response-body ngx-codemirror,
+.hopp-response-body iframe {
+  display: block;
+  width: 100%;
+  min-height: 300px;
+}
+
+.hopp-response-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* No response placeholder */
+.hopp-no-response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  color: var(--text-tertiary);
+  gap: 8px;
+}
+
+.hopp-no-response i {
+  font-size: 48px;
+  opacity: 0.3;
+}
+
+.hopp-no-response p {
+  font-size: 13px;
+}
+
+/* Response headers table */
+.hopp-response-headers {
+  display: flex;
+  flex-direction: column;
+}
+
+.hopp-resp-header-row {
+  display: flex;
+  border-bottom: 1px solid var(--panel-br-color);
+  font-size: 12px;
+  font-family: 'Roboto Mono', 'SF Mono', monospace;
+}
+
+.hopp-resp-header-head {
+  background: var(--fold-bg-color);
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+}
+
+.hopp-resp-header-key {
+  flex: 1;
+  padding: 8px 12px;
+  border-right: 1px solid var(--panel-br-color);
+  word-break: break-all;
+}
+
+.hopp-resp-header-val {
+  flex: 2;
+  padding: 8px 12px;
+  word-break: break-all;
+  color: var(--text-secondary);
+}
