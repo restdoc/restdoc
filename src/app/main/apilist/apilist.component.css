@@ -1131,7 +1131,9 @@ background-color
   flex-direction: column;
   width: 100%;
   padding: 16px;
-  overflow-y: scroll;
+  /* prevent outer container from scrolling the whole view */
+  overflow: hidden;
+  min-height: 0;
   background-color: var(--panel-bg-color);
   transition: background-color 0.3s ease;
 }
@@ -1293,13 +1295,18 @@ background-color
 }
 
 :host ::ng-deep .request-tabs {
-  overflow-y: overlay;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
   scrollbar-gutter: stable;    
 }
 
 :host ::ng-deep .request-tabs > .mat-tab-body-content {
   padding: 0 10px 0 0;
-  overflow-y: overlay;
+  overflow: hidden;
+  min-height: 0;
 }
 
 :host ::ng-deep .request-funcs {
@@ -1868,10 +1875,29 @@ iframe.response-html {
   flex: 1;
 }
 
+::host ::ng-deep .hopp-options-tabs .mat-tab-body-wrapper {
+  min-height: 0;
+}
+
+::host ::ng-deep .hopp-options-tabs .mat-tab-body {
+  flex: 1;
+}
+
+::host ::ng-deep .hopp-options-tabs .mat-tab-body-content {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+}
+
 /* --- Key-Value panel (card-like, light bg) --- */
 .hopp-kv-panel {
   background: var(--panel-bg-color);
   min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  /* let inner rows scroll instead of growing the whole panel */
+  min-height: 0;
+  height: 100%;
 }
 
 .hopp-kv-header {
@@ -1881,6 +1907,7 @@ iframe.response-html {
   padding: 8px 16px;
   border-bottom: 1px solid var(--panel-br-color);
   background: var(--fold-bg-color);
+  flex-shrink: 0;
 }
 
 .hopp-kv-title {
@@ -1894,6 +1921,10 @@ iframe.response-html {
 .hopp-kv-rows {
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .hopp-kv-row {
@@ -2165,4 +2196,39 @@ iframe.response-html {
   padding: 8px 12px;
   word-break: break-all;
   color: var(--text-secondary);
+}
+
+/* --- Scroll behavior fixes: keep tab + headers fixed --- */
+::host ::ng-deep .request-tabs {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+::host ::ng-deep .request-tabs .mat-tab-body-wrapper {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+::host ::ng-deep .request-tabs .mat-tab-body-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+::host ::ng-deep .hopp-options-tabs .mat-tab-body-wrapper {
+  min-height: 0;
+  overflow: hidden;
+}
+
+::host ::ng-deep .hopp-options-tabs .mat-tab-body-content {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.hopp-kv-panel {
+  overflow: hidden;
 }
