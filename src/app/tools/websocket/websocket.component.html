@@ -1,0 +1,30 @@
+<div class="tool-page">
+  <h3>WebSocket</h3>
+
+  <div class="row">
+    <mat-form-field appearance="fill" class="full">
+      <mat-label>URL</mat-label>
+      <input matInput [(ngModel)]="url" />
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="connect()" [disabled]="connected">Connect</button>
+    <button mat-stroked-button (click)="disconnect()" [disabled]="!connected">Disconnect</button>
+    <button mat-stroked-button (click)="clear()">Clear</button>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="fill" class="full">
+      <mat-label>Message</mat-label>
+      <input matInput [(ngModel)]="message" (keydown.enter)="send()" />
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="send()" [disabled]="!connected">Send</button>
+  </div>
+
+  <div class="logs">
+    <div class="log" *ngFor="let l of logs">
+      <span class="t">{{ fmt(l.at) }}</span>
+      <span class="k">{{ l.type }}</span>
+      <span class="d" *ngIf="l.data">{{ l.data }}</span>
+    </div>
+  </div>
+</div>
+

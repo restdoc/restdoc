@@ -34,6 +34,11 @@ import { IHotkeyOptions } from "./third/angular2-hotkeys/hotkey.options";
 import { ProjectRenameComponent } from "./dialog/project-rename/project-rename.component";
 import { ProjectEndpointComponent } from "./dialog/project-endpoint/project-endpoint.component";
 import { ColorCustomComponent } from "./dialog/color-custom/color-custom.component";
+import { EnvSettingsComponent } from "./main/settings/env-settings/env-settings.component";
+import { HistoryComponent } from "./main/history/history.component";
+import { GraphqlComponent } from "./tools/graphql/graphql.component";
+import { WebsocketComponent } from "./tools/websocket/websocket.component";
+import { SseComponent } from "./tools/sse/sse.component";
 
 
 var hotkeyOption: IHotkeyOptions = {
@@ -67,6 +72,11 @@ var hotkeyOption: IHotkeyOptions = {
         ProjectRenameComponent,
         ProjectEndpointComponent,
         ColorCustomComponent,
+        EnvSettingsComponent,
+        HistoryComponent,
+        GraphqlComponent,
+        WebsocketComponent,
+        SseComponent,
     ],
     imports: [
         BrowserModule,

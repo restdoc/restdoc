@@ -1,0 +1,29 @@
+<div class="tool-page">
+  <h3>GraphQL</h3>
+  <div class="row">
+    <mat-form-field appearance="fill" class="full">
+      <mat-label>Endpoint</mat-label>
+      <input matInput [(ngModel)]="endpoint" placeholder="https://example.com/graphql" />
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="send()" [disabled]="loading || !endpoint">
+      Send
+    </button>
+  </div>
+
+  <div class="grid">
+    <div class="col">
+      <h4>Query</h4>
+      <textarea [(ngModel)]="query" rows="10"></textarea>
+      <h4>Variables (JSON)</h4>
+      <textarea [(ngModel)]="variables" rows="6"></textarea>
+      <h4>Headers (one per line)</h4>
+      <textarea [(ngModel)]="headersText" rows="6" placeholder="Authorization: Bearer ..."></textarea>
+    </div>
+    <div class="col">
+      <h4>Response</h4>
+      <div class="status" *ngIf="status">{{ status }}</div>
+      <textarea [value]="response" rows="24" readonly></textarea>
+    </div>
+  </div>
+</div>
+

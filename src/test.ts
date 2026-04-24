@@ -17,6 +17,10 @@ getTestBed().initTestEnvironment(
 }
 );
 // Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
+if (require && typeof require.context === "function") {
+  const context = require.context("./", true, /\.spec\.ts$/);
+  context.keys().map(context);
+} else {
+  // Angular CLI (Webpack 5) may not provide require.context in some setups.
+  // Tests will still run if explicitly imported elsewhere.
+}

@@ -66,9 +66,24 @@ import { CardColors, LabelItem, ProjectElement, BoardElement } from "../main.com
 import { EndpointElement, APIElement, ParamElement, AuthElement } from "../main.component";
 import { HeaderElement, ResponseElement, PostType, SanitizeHtmlPipe } from "../main.component";
 import { UtilsService  } from "../main.service";
+import { RestClientService } from "../rest-client.service";
 import { consoleTestResultsHandler } from "tslint/lib/test";
+import { TemplateService } from "../template.service";
+import { HistoryService } from "../history.service";
+import { ScriptRunnerService } from "../script-runner.service";
+import { CodegenService } from "../codegen.service";
+import { EnvService } from "../env.service";
 
-
+function stripQuotes(x: string): string {
+  const t = (x ?? "").trim();
+  if (
+    (t.startsWith('"') && t.endsWith('"')) ||
+    (t.startsWith("'") && t.endsWith("'"))
+  ) {
+    return t.slice(1, -1);
+  }
+  return t;
+}
 
 @Component({
   selector: "app-apilist",
@@ -169,6 +184,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   defaultFormDataValue = "";
   defaultFormDataDesc = "";
   defaultFormDataStatus = false;
+  defaultRequestVariableStatus = false;
   defaultHeaderKey = "";
   defaultHeaderValue = "";
   defaultHeaderDesc = "";
@@ -194,6 +210,20 @@ export class APIlistComponent implements OnInit, OnDestroy {
     "OPTIONS",
   ];
 
+  /** Hoppscotch-style primary pane height (% of column), 22–78. */
+  primaryPanePercent = 45;
+  private paneResizeActive = false;
+  private paneResizeStartY = 0;
+  private paneResizeStartPct = 45;
+  private readonly panePctStorageKey = "restdoc.hopp.primaryPct";
+  /** Shown in URL field; literal {{var}} is intentional. */
+  readonly urlEnvPlaceholder =
+    "Path — use {{var}} (Variables tab overrides project env for same key)";
+  readonly variablesTabSubtitle =
+    "Request variables: same keys override project env when resolving {{var}} in this tab.";
+  private readonly extensionIgnoreResponse = new Set<string>();
+  private fetchAbortByRequestId = new Map<string, AbortController>();
+  private requestBaselineJson = new Map<string, string>();
 
   @HostListener("window:message", ["$event"])
   messages(event) {
@@ -220,6 +250,13 @@ export class APIlistComponent implements OnInit, OnDestroy {
         let request = this.requests[index];
         console.log("current request");
         console.log(request);
+
+        if (request && this.extensionIgnoreResponse.has(request.id)) {
+          this.extensionIgnoreResponse.delete(request.id);
+          request.sending = false;
+          this.cdr.markForCheck();
+          return;
+        }
 
         var resp: ResponseElement = { body: "", headers: [] , contentType: "", responseUrl: ""};
         console.log(event.data);
@@ -280,7 +317,10 @@ export class APIlistComponent implements OnInit, OnDestroy {
         console.log(resp);
         resp.headers = headers;
         request.response = resp;
-        //this.cdr.markForCheck();
+        if (request) {
+          request.sending = false;
+        }
+        this.cdr.markForCheck();
       }
 
       if (event.data.type == "__RESTDOC_EXTENSION_ERROR__") {
@@ -291,6 +331,13 @@ export class APIlistComponent implements OnInit, OnDestroy {
         let request = this.requests[index];
         console.log("current request");
         console.log(request);
+
+        if (request && this.extensionIgnoreResponse.has(request.id)) {
+          this.extensionIgnoreResponse.delete(request.id);
+          request.sending = false;
+          this.cdr.markForCheck();
+          return;
+        }
 
         let response = event.data.error;
         
@@ -306,6 +353,9 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
         console.log(resp);
         request.response = resp;
+        if (request) {
+          request.sending = false;
+        }
 
         this.cdr.markForCheck();
 
@@ -328,8 +378,14 @@ export class APIlistComponent implements OnInit, OnDestroy {
     private sharedService: SharedService,
     private cdr: ChangeDetectorRef,
     private utilsService: UtilsService,
+    private restClient: RestClientService,
+    private templateService: TemplateService,
+    private historyService: HistoryService,
+    private scriptRunner: ScriptRunnerService,
+    private codegen: CodegenService,
     private datepipe: DatePipe,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private envService: EnvService
   ) {
     const location = window.location;
     this.currentProjectId = this.sharedService.getProjectId(location);
@@ -359,12 +415,59 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
     this.getData();
 
+    this.loadTabsFromStorage();
+
+    try {
+      const v = sessionStorage.getItem(this.panePctStorageKey);
+      if (v) {
+        const n = parseInt(v, 10);
+        if (!Number.isNaN(n) && n >= 22 && n <= 78) {
+          this.primaryPanePercent = n;
+        }
+      }
+    } catch {
+      /* ignore */
+    }
+
+    // Restore request from share link (?share=base64json)
+    try {
+      const urlTree = this.router.parseUrl(this.router.url);
+      const share = urlTree.queryParams["share"];
+      if (share) {
+        const json = decodeURIComponent(escape(atob(String(share))));
+        const snapshot = JSON.parse(json);
+        if (snapshot) {
+          // open as new tab
+          this.requests = [...this.requests, snapshot];
+          this.selectedRequestIndex = this.requests.length - 1;
+          this.composeId = snapshot.id || "";
+          this.cdr.markForCheck();
+        }
+      }
+    } catch {}
+
 
     this.searchForm = this.fb.group({
       search: [""],
     });
 
     this.initUserInfo();
+
+    // Replay from History if present
+    try {
+      const raw = sessionStorage.getItem("restdoc.history.replay");
+      if (raw) {
+        sessionStorage.removeItem("restdoc.history.replay");
+        const entry = JSON.parse(raw);
+        const snapshot = entry?.requestSnapshot;
+        if (snapshot && snapshot.id) {
+          // open request by id; details() will fetch latest params from backend,
+          // but we also want to restore client-only fields
+          const req = snapshot as any;
+          this.detail(null, null as any, req);
+        }
+      }
+    } catch {}
 
     this.sidebarLabelSubscription = this.sidebarService.labelChange.subscribe(
       (res) => {
@@ -436,6 +539,48 @@ export class APIlistComponent implements OnInit, OnDestroy {
         this.getCurrentState(url);
       }
     });
+  }
+
+  private tabsStorageKey(): string {
+    return `restdoc.tabs.v1.${this.currentProjectId || "0"}`;
+  }
+
+  private saveTabsToStorage() {
+    try {
+      const snapshot = {
+        selectedRequestIndex: this.selectedRequestIndex,
+        requests: (this.requests ?? []).map((r) => {
+          const copy: any = { ...r };
+          delete copy.response;
+          delete copy.binaryFile;
+          return copy;
+        }),
+      };
+      localStorage.setItem(this.tabsStorageKey(), JSON.stringify(snapshot));
+    } catch {}
+  }
+
+  private loadTabsFromStorage() {
+    try {
+      const raw = localStorage.getItem(this.tabsStorageKey());
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed.requests)) {
+        this.requests = parsed.requests;
+        this.selectedRequestIndex = Math.max(
+          0,
+          Math.min(Number(parsed.selectedRequestIndex || 0), this.requests.length - 1)
+        );
+        const sel = this.requests[this.selectedRequestIndex];
+        if (sel?.id) this.composeId = sel.id;
+        for (const r of this.requests) {
+          this.initAuth(r);
+          this.initRequestSettings(r);
+          this.refreshRequestBaseline(r);
+        }
+        this.cdr.markForCheck();
+      }
+    } catch {}
   }
 
   ngAfterViewInit() {
@@ -1127,6 +1272,21 @@ export class APIlistComponent implements OnInit, OnDestroy {
           this.cdr.markForCheck();
           this.focusHoppLastDataRowInput(addRowInput, type);
         }
+      } else if (page == "reqvars") {
+        this.ensureRequestVariables(request);
+        if (type == "key") {
+          const row: ParamElement = {
+            id: "",
+            key: param.key,
+            value: param.value,
+            desc: "",
+            enabled: true,
+            required: false,
+          };
+          request.requestVariables.push(row);
+          this.cdr.markForCheck();
+          this.focusHoppLastDataRowInput(addRowInput, type);
+        }
       } else {
         request.params.push(param);
         this.cdr.markForCheck();
@@ -1461,7 +1621,8 @@ export class APIlistComponent implements OnInit, OnDestroy {
         // Initialize auth and settings if not present
         this.initAuth(request);
         this.initRequestSettings(request);
-        
+        this.refreshRequestBaseline(request);
+
         this.cdr.markForCheck();
       })
 
@@ -1487,6 +1648,10 @@ export class APIlistComponent implements OnInit, OnDestroy {
       this.composeId = request.id;
       this.selectedRequestIndex = this.requests.length - 1;
     }
+    this.initAuth(request);
+    this.initRequestSettings(request);
+    this.refreshRequestBaseline(request);
+    this.saveTabsToStorage();
 
     /*
     this.cdr.markForCheck();
@@ -1533,7 +1698,8 @@ export class APIlistComponent implements OnInit, OnDestroy {
         // Initialize auth and settings if not present
         this.initAuth(request);
         this.initRequestSettings(request);
-        
+        this.refreshRequestBaseline(request);
+
         this.cdr.markForCheck();
       })
 
@@ -1557,6 +1723,9 @@ export class APIlistComponent implements OnInit, OnDestroy {
       this.composeId = request.id;
       //this.selectedRequestIndex = this.requests.length - 1;
     }
+    this.initAuth(request);
+    this.initRequestSettings(request);
+    this.refreshRequestBaseline(request);
 
     /*
     this.cdr.markForCheck();
@@ -1582,6 +1751,10 @@ export class APIlistComponent implements OnInit, OnDestroy {
         break;
       }
     }
+    if (this.selectedRequestIndex >= this.requests.length) {
+      this.selectedRequestIndex = Math.max(0, this.requests.length - 1);
+    }
+    this.saveTabsToStorage();
   }
 
   mouseDownBoard(board: BoardElement, event) {
@@ -1876,12 +2049,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
   }
 
 
-  Send(request: APIElement) {
-
-    if (!this.hasExtensionInstalled) {
-      return
-    }
-
+  async Send(request: APIElement) {
 
     if (!this.currentEndpoint || this.currentEndpoint.value == "") {
       let message = this.noEndpointFailure;
@@ -1889,15 +2057,127 @@ export class APIlistComponent implements OnInit, OnDestroy {
       return
     }
 
-    //url = this.projectEndpoints. request.
-    let url = this.currentEndpoint.value + request.path;
+    const projectId = this.currentProjectId || "0";
+
+    // Run pre-request script (can patch headers/params)
+    try {
+      const pre = await this.scriptRunner.runPreRequest(projectId, request);
+      request.scriptLogs = pre.logs ?? [];
+      if (pre.requestPatch?.headers?.length) {
+        request.headers = [...(request.headers ?? []), ...(pre.requestPatch.headers as any)];
+      }
+      if (pre.requestPatch?.params?.length) {
+        request.params = [...(request.params ?? []), ...(pre.requestPatch.params as any)];
+      }
+      this.cdr.markForCheck();
+    } catch (e: any) {
+      request.testResults = [{ ok: false, name: "pre-request", message: e?.message || String(e) }];
+      this.cdr.markForCheck();
+    }
+
+    // Apply template rendering before sending ({{var}}, {{$uuid}}, etc.)
+    const missingKeys = new Set<string>();
+    const render = (s: string) => {
+      const r = this.templateService.renderString(s ?? "", projectId, request.requestVariables);
+      r.missing.forEach((k) => missingKeys.add(k));
+      return r.output;
+    };
+
+    const rendered = {
+      path: render(request.path),
+      params: (request.params ?? []).map((p) => ({
+        ...p,
+        key: render(p.key),
+        value: render(p.value),
+      })),
+      headers: (request.headers ?? []).map((h) => ({
+        ...h,
+        key: render(h.key),
+        value: render(h.value),
+      })),
+      raw: render(request.raw ?? ""),
+      auth: request.auth
+        ? {
+            ...request.auth,
+            username: request.auth.username != null ? render(request.auth.username) : request.auth.username,
+            password: request.auth.password != null ? render(request.auth.password) : request.auth.password,
+            token: request.auth.token != null ? render(request.auth.token) : request.auth.token,
+            prefix: request.auth.prefix != null ? render(request.auth.prefix) : request.auth.prefix,
+          }
+        : request.auth,
+      form_data: (request.form_data ?? []).map((p) => ({
+        ...p,
+        key: render(p.key),
+        value: render(p.value),
+      })),
+    };
+
+    if (missingKeys.size > 0) {
+      this.toastr.warning(`Missing env vars: ${Array.from(missingKeys).join(", ")}`);
+    }
+
+    // If the extension is available, keep existing flow.
+    // Otherwise fall back to the built-in fetch sender.
+    if (!this.hasExtensionInstalled) {
+      this.abortInflightFetch(request);
+      const reqForSend: APIElement = {
+        ...request,
+        path: rendered.path,
+        params: rendered.params as any,
+        headers: rendered.headers as any,
+        raw: rendered.raw,
+        auth: rendered.auth as any,
+        form_data: rendered.form_data as any,
+      };
+
+      const ac = new AbortController();
+      this.fetchAbortByRequestId.set(request.id, ac);
+      request.sending = true;
+      request.response = null;
+      this.cdr.markForCheck();
+
+      try {
+        const resp = await this.restClient.send(reqForSend, this.currentEndpoint, {
+          signal: ac.signal,
+        });
+        if (this.fetchAbortByRequestId.get(request.id) !== ac) {
+          return;
+        }
+        request.response = resp;
+        const fullUrl = (this.currentEndpoint?.value ?? "") + rendered.path;
+        this.historyService.add(projectId, reqForSend, this.currentEndpoint, fullUrl, resp);
+        try {
+          const t = await this.scriptRunner.runTests(projectId, reqForSend, resp);
+          request.scriptLogs = [...(request.scriptLogs ?? []), ...(t.logs ?? [])];
+          request.testResults = t.tests ?? [];
+        } catch (e: any) {
+          request.testResults = [{ ok: false, name: "tests", message: e?.message || String(e) }];
+        }
+      } finally {
+        if (this.fetchAbortByRequestId.get(request.id) === ac) {
+          this.fetchAbortByRequestId.delete(request.id);
+        }
+        request.sending = false;
+        this.cdr.markForCheck();
+      }
+      return;
+    }
+
+    // url = endpoint + path
+    let url = this.currentEndpoint.value + rendered.path;
     console.log(url);
 
-    let params = request.params;
+    let params = rendered.params as any;
     var ps = {};
     for (let param of params) {
+      if (!param || param.enabled === false) {
+        continue;
+      }
       let k = param.key;
       let v = param.value;
+      if (!k || ("" + k).trim() === "") {
+        continue;
+      }
       ps[k] = v;
     }
 
@@ -1905,7 +2185,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
     var headers = [];
 
     // Collect enabled headers first
-    for (let header of request.headers) {
+    for (let header of (rendered.headers as any)) {
       if (header.enabled) {
         let k = header.key;
         let v = header.value;
@@ -1922,7 +2202,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
 
       switch (request.post_type) {
         case PostType.FormData:
-          for (let param of request.form_data) {
+          for (let param of (rendered.form_data as any)) {
             if (param.enabled) {
               let k = param.key;
               let v = param.value;
@@ -1937,7 +2217,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
           }
           break;
         case PostType.FormUrlencoded:
-          for (let param of request.form_data) {
+          for (let param of (rendered.form_data as any)) {
             if (param.enabled) {
               let k = param.key;
               let v = param.value;
@@ -1951,8 +2231,14 @@ export class APIlistComponent implements OnInit, OnDestroy {
           config.formData = form;
           break;
         case PostType.Raw:
-          if (request.raw) {
-            (config as any).body = request.raw;
+          if (rendered.raw) {
+            (config as any).body = rendered.raw;
+          }
+          break;
+        case PostType.Binary:
+          // Extension sender may not support binary; keep placeholder.
+          if (request.binary) {
+            (config as any).body = request.binary;
           }
           break;
         default:
@@ -1961,13 +2247,14 @@ export class APIlistComponent implements OnInit, OnDestroy {
     }
 
     // Handle authentication
-    if (request.auth && request.auth.type !== "none") {
-      if (request.auth.type === "basic" && request.auth.username && request.auth.password) {
-        const credentials = btoa(`${request.auth.username}:${request.auth.password}`);
+    const auth = rendered.auth as any;
+    if (auth && auth.type !== "none") {
+      if (auth.type === "basic" && auth.username && auth.password) {
+        const credentials = btoa(`${auth.username}:${auth.password}`);
         headers.push({ key: "Authorization", value: `Basic ${credentials}` });
-      } else if (request.auth.type === "bearer" && request.auth.token) {
-        const prefix = request.auth.prefix || "Bearer";
-        headers.push({ key: "Authorization", value: `${prefix} ${request.auth.token}` });
+      } else if (auth.type === "bearer" && auth.token) {
+        const prefix = auth.prefix || "Bearer";
+        headers.push({ key: "Authorization", value: `${prefix} ${auth.token}` });
       }
     }
 
@@ -1980,6 +2267,14 @@ export class APIlistComponent implements OnInit, OnDestroy {
     if (request.followRedirects !== undefined) {
       (config as any).followRedirects = request.followRedirects;
     }
+    if (request.withCredentials !== undefined) {
+      (config as any).withCredentials = request.withCredentials;
+    }
+
+    this.extensionIgnoreResponse.delete(request.id);
+    request.sending = true;
+    request.response = null;
+    this.cdr.markForCheck();
 
     window.postMessage(
       {
@@ -1989,6 +2284,332 @@ export class APIlistComponent implements OnInit, OnDestroy {
       },
       "*"
     );
+  }
+
+  cancelSend(request: APIElement) {
+    const ac = this.fetchAbortByRequestId.get(request.id);
+    if (ac) {
+      ac.abort();
+      this.fetchAbortByRequestId.delete(request.id);
+    }
+    this.extensionIgnoreResponse.add(request.id);
+    request.sending = false;
+    this.cdr.markForCheck();
+  }
+
+  private abortInflightFetch(request: APIElement) {
+    const prev = this.fetchAbortByRequestId.get(request.id);
+    if (prev) {
+      prev.abort();
+    }
+    this.fetchAbortByRequestId.delete(request.id);
+  }
+
+  onPaneResizeStart(event: MouseEvent) {
+    event.preventDefault();
+    this.paneResizeActive = true;
+    this.paneResizeStartY = event.clientY;
+    this.paneResizeStartPct = this.primaryPanePercent;
+  }
+
+  @HostListener("document:mousemove", ["$event"])
+  onPaneResizeMove(event: MouseEvent) {
+    if (!this.paneResizeActive) {
+      return;
+    }
+    const layout = (event.target as Node)?.ownerDocument?.getElementById("restdoc-hopp-pane-root");
+    const el =
+      layout ??
+      document.querySelector(".mat-tab-body-active .hopp-pane-layout") ??
+      document.querySelector(".hopp-pane-layout");
+    if (!el) {
+      return;
+    }
+    const rect = el.getBoundingClientRect();
+    const dy = event.clientY - this.paneResizeStartY;
+    const deltaPct = rect.height > 0 ? (dy / rect.height) * 100 : 0;
+    this.primaryPanePercent = Math.round(
+      Math.min(78, Math.max(22, this.paneResizeStartPct + deltaPct))
+    );
+    this.cdr.markForCheck();
+  }
+
+  @HostListener("document:mouseup")
+  onPaneResizeEnd() {
+    if (!this.paneResizeActive) {
+      return;
+    }
+    this.paneResizeActive = false;
+    try {
+      sessionStorage.setItem(this.panePctStorageKey, String(this.primaryPanePercent));
+    } catch {
+      /* ignore */
+    }
+    this.cdr.markForCheck();
+  }
+
+  openRequestHistory() {
+    const pid = this.currentProjectId || "0";
+    this.sidebarService.onSelect("_history");
+    this.router.navigate(["/history"], { queryParams: { project: pid } });
+    this.cdr.markForCheck();
+  }
+
+  async importCurl(request: APIElement) {
+    let text = "";
+    try {
+      text = (await navigator.clipboard.readText()) ?? "";
+    } catch {
+      /* ignore */
+    }
+    if (!text || !/\bcurl\b/i.test(text)) {
+      text = window.prompt("Paste a cURL command") ?? "";
+    }
+    if (!text?.trim()) {
+      return;
+    }
+    const ok = this.applyCurlToRequest(request, text);
+    if (ok) {
+      this.toastr.success("Imported cURL");
+      this.refreshRequestBaseline(request);
+      this.cdr.markForCheck();
+    } else {
+      this.toastr.warning("Could not parse cURL");
+    }
+  }
+
+  clearRequestEditor(request: APIElement) {
+    if (!window.confirm("Clear all request fields for this tab?")) {
+      return;
+    }
+    request.method = "GET";
+    request.path = "";
+    request.params = [];
+    request.headers = [];
+    request.form_data = [];
+    request.raw = "";
+    request.post_type = PostType.None;
+    request.rawContentType = "json";
+    request.binaryFile = null;
+    request.auth = { type: "none" };
+    request.preRequestScript = "";
+    request.testScript = "";
+    request.requestVariables = [];
+    request.testResults = [];
+    request.scriptLogs = [];
+    this.initRequestSettings(request);
+    this.refreshRequestBaseline(request);
+    this.cdr.markForCheck();
+  }
+
+  /** Minimal cURL parser: method, URL, -H headers, -d / --data / --data-raw body. */
+  applyCurlToRequest(request: APIElement, raw: string): boolean {
+    let s = raw.replace(/\\\r?\n/g, " ").replace(/\s+/g, " ").trim();
+    if (!/^\s*curl\b/i.test(s)) {
+      return false;
+    }
+    s = s.replace(/^\s*curl\b/i, "").trim();
+
+    let method = "GET";
+    const mX = s.match(/\s-(?:X|request)\s+(\w+)/i);
+    if (mX) {
+      method = mX[1].toUpperCase();
+    }
+
+    let urlStr = "";
+    const mUrlFlag = s.match(/\s--url\s+(\S+)/i);
+    if (mUrlFlag) {
+      urlStr = stripQuotes(mUrlFlag[1]);
+    }
+    if (!urlStr) {
+      const mQ = s.match(/\s(['"])((?:https?:\/\/|\/)[^'"]+)\1/);
+      if (mQ) {
+        urlStr = mQ[2];
+      }
+    }
+    if (!urlStr) {
+      return false;
+    }
+
+    try {
+      const u = new URL(urlStr, window.location.origin);
+      request.path = u.pathname + (u.search || "") + (u.hash || "");
+    } catch {
+      request.path = urlStr;
+    }
+
+    request.method = method;
+    const headers: HeaderElement[] = [];
+    const pushHeaderLines = (re: RegExp) => {
+      let m: RegExpExecArray | null;
+      const r = new RegExp(re.source, "gi");
+      while ((m = r.exec(s))) {
+        const line = m[1].replace(/\\(.)/g, "$1");
+        const idx = line.indexOf(":");
+        if (idx > 0) {
+          headers.push({
+            id: "",
+            key: line.slice(0, idx).trim(),
+            value: line.slice(idx + 1).trim(),
+            desc: "",
+            enabled: true,
+          });
+        }
+      }
+    };
+    pushHeaderLines(/-H\s+"((?:\\.|[^"\\])*)"/);
+    pushHeaderLines(/-H\s+'((?:\\.|[^'\\])*)'/);
+    pushHeaderLines(/--header\s+"((?:\\.|[^"\\])*)"/);
+    pushHeaderLines(/--header\s+'((?:\\.|[^'\\])*)'/);
+    if (headers.length) {
+      request.headers = headers;
+    }
+
+    let body: string | undefined;
+    const dRe =
+      /\s(?:--data-raw|--data-binary|--data|-d)\s+(['"])([\s\S]*?)\1/i.exec(s) ||
+      /\s(?:--data-raw|--data-binary|--data|-d)\s+(\S+)/i.exec(s);
+    if (dRe) {
+      body = dRe[2] != null ? dRe[2].replace(/\\(.)/g, "$1") : stripQuotes(dRe[1]);
+    }
+
+    if (body != null && body.length > 0 && ["POST", "PUT", "PATCH", "DELETE"].includes(method)) {
+      request.post_type = PostType.Raw;
+      request.raw = body;
+      const low = s.toLowerCase();
+      if (low.includes("application/json")) {
+        request.rawContentType = "json";
+      } else if (low.includes("application/xml") || low.includes("text/xml")) {
+        request.rawContentType = "xml";
+      } else {
+        request.rawContentType = "text";
+      }
+    }
+
+    this.initAuth(request);
+    return true;
+  }
+
+  envKeySuggestions(): string[] {
+    const pid = this.currentProjectId || "0";
+    return this.envService
+      .getVarsForProject(pid)
+      .filter((v) => v.enabled !== false && (v.key ?? "").trim() !== "")
+      .map((v) => v.key);
+  }
+
+  activeParamCount(request: APIElement): number {
+    return (request.params ?? []).filter((p) => p && p.enabled !== false && (p.key ?? "").trim() !== "")
+      .length;
+  }
+
+  activeHeaderCount(request: APIElement): number {
+    return (request.headers ?? []).filter((p) => p && p.enabled !== false && (p.key ?? "").trim() !== "")
+      .length;
+  }
+
+  activeRequestVariableCount(request: APIElement): number {
+    this.ensureRequestVariables(request);
+    return (request.requestVariables ?? []).filter(
+      (p) => p && p.enabled !== false && (p.key ?? "").trim() !== ""
+    ).length;
+  }
+
+  bodyTabHasIndicator(request: APIElement): boolean {
+    if (request.post_type && request.post_type !== PostType.None && request.post_type !== ("" as any)) {
+      return true;
+    }
+    if ((request.raw ?? "").trim().length > 0) {
+      return true;
+    }
+    if ((request.form_data ?? []).some((p) => p && (p.key ?? "").trim() !== "")) {
+      return true;
+    }
+    if (request.binaryFile) {
+      return true;
+    }
+    return false;
+  }
+
+  methodTabClass(method: string): string {
+    const m = (method || "get").toLowerCase();
+    return "hopp-tab-method method-label method-" + m;
+  }
+
+  refreshRequestBaseline(request: APIElement) {
+    this.requestBaselineJson.set(request.id, this.serializeRequestBaseline(request));
+  }
+
+  isRequestDirty(request: APIElement): boolean {
+    const b = this.requestBaselineJson.get(request.id);
+    if (b === undefined) {
+      return false;
+    }
+    return b !== this.serializeRequestBaseline(request);
+  }
+
+  private serializeRequestBaseline(r: APIElement): string {
+    const snap = {
+      name: r.name,
+      method: r.method,
+      path: r.path,
+      params: r.params,
+      headers: r.headers,
+      form_data: r.form_data,
+      raw: r.raw,
+      post_type: r.post_type,
+      rawContentType: r.rawContentType,
+      auth: r.auth,
+      preRequestScript: r.preRequestScript,
+      testScript: r.testScript,
+      requestVariables: r.requestVariables,
+      timeout: r.timeout,
+      followRedirects: r.followRedirects,
+      withCredentials: r.withCredentials,
+    };
+    return JSON.stringify(snap);
+  }
+
+  async copyText(text: string) {
+    try {
+      await navigator.clipboard.writeText(text);
+      this.toastr.success("Copied");
+    } catch {
+      // fallback
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      this.toastr.success("Copied");
+    }
+  }
+
+  copyCurl(request: APIElement) {
+    const txt = this.codegen.generateCurl(this.currentEndpoint, request);
+    this.copyText(txt);
+  }
+
+  copyFetch(request: APIElement) {
+    const txt = this.codegen.generateFetch(this.currentEndpoint, request);
+    this.copyText(txt);
+  }
+
+  copyAxios(request: APIElement) {
+    const txt = this.codegen.generateAxios(this.currentEndpoint, request);
+    this.copyText(txt);
+  }
+
+  copyShareLink(request: APIElement) {
+    const snapshot: any = { ...request };
+    delete snapshot.response;
+    delete snapshot.binaryFile;
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(snapshot))));
+    const url = `${window.location.origin}${window.location.pathname}#/project/${this.currentProjectId}?share=${encodeURIComponent(
+      encoded
+    )}`;
+    this.copyText(url);
   }
 
   taskDetail(board: BoardElement, card: APIElement) {}
@@ -2251,6 +2872,7 @@ export class APIlistComponent implements OnInit, OnDestroy {
               this.currentProjectId = projectId;
               this.selectedRequestIndex = 0;
               this.requests = [];
+              this.loadTabsFromStorage();
             }
             break;
           }
@@ -2815,7 +3437,25 @@ export class APIlistComponent implements OnInit, OnDestroy {
   onPostTypeChanged(event, request: APIElement) {
     //console.log(event);
     let label = event.tab.textLabel;
-    request.post_type = label;
+    switch (label) {
+      case "none":
+        request.post_type = PostType.None;
+        break;
+      case "form-data":
+        request.post_type = PostType.FormData;
+        break;
+      case "x-www-form-urlencoded":
+        request.post_type = PostType.FormUrlencoded;
+        break;
+      case "raw":
+        request.post_type = PostType.Raw;
+        break;
+      case "binary":
+        request.post_type = PostType.Binary;
+        break;
+      default:
+        request.post_type = PostType.Empty;
+    }
     console.log(label);
     var h: HeaderElement
     switch (label) {
@@ -2832,6 +3472,13 @@ export class APIlistComponent implements OnInit, OnDestroy {
     }
   }
 
+  onBinaryFileSelected(event: Event, request: APIElement) {
+    const input = event.target as HTMLInputElement | null;
+    const file = input?.files?.[0] ?? null;
+    request.binaryFile = file;
+    this.cdr.markForCheck();
+  }
+
   initAuth(request: APIElement) {
     if (!request.auth) {
       request.auth = { type: "none" };
@@ -2845,12 +3492,43 @@ export class APIlistComponent implements OnInit, OnDestroy {
     if (request.followRedirects === undefined) {
       request.followRedirects = true;
     }
+    if (request.withCredentials === undefined) {
+      request.withCredentials = false;
+    }
     if (!request.preRequestScript) {
       request.preRequestScript = "";
     }
     if (!request.testScript) {
       request.testScript = "";
     }
+    if (!request.rawContentType) {
+      request.rawContentType = "json";
+    }
+    if (request.binaryFile === undefined) {
+      request.binaryFile = null;
+    }
+    this.ensureRequestVariables(request);
+  }
+
+  ensureRequestVariables(request: APIElement) {
+    if (!request.requestVariables) {
+      request.requestVariables = [];
+    }
+  }
+
+  toggleDefaultRequestVariableStatus() {
+    this.defaultRequestVariableStatus = !this.defaultRequestVariableStatus;
+  }
+
+  deleteRequestVariable(request: APIElement, i: number) {
+    this.ensureRequestVariables(request);
+    request.requestVariables.splice(i, 1);
+    this.cdr.markForCheck();
+  }
+
+  saveRequestVariable(_request: APIElement, _row: ParamElement) {
+    /* Tab-local only; persist via project save if added later */
+    this.cdr.markForCheck();
   }
 
   formatResponseSize(size: number): string {

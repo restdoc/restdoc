@@ -15,6 +15,7 @@ import {
   ParamElement,
   HeaderElement,
   ResponseElement,
+  PostType,
 
 } from "./main.component";
 import { SidebarService } from "./../sidebar/sidebar.service";
@@ -49,7 +50,7 @@ export class UtilsService {
         let host = detail.host;
       var post_type = detail.post_type;
       if (!post_type) {
-        post_type = "form_data";
+        post_type = PostType.Empty;
       }
 
         let principal_id = detail.principal_id;
@@ -92,12 +93,15 @@ export class UtilsService {
           form_data: formData,
           raw: "",
           binary: "",
+          binaryFile: null,
           post_type: post_type,
+          rawContentType: "json",
           headers: headers,
           response: resp,
           auth: { type: "none" },
           timeout: 30000,
           followRedirects: true,
+          withCredentials: false,
           preRequestScript: "",
           testScript: "",
         };

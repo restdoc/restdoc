@@ -14,6 +14,11 @@ import * as Sentry from "@sentry/angular";
 import { MainComponent } from "./main/main.component";
 import { LabelSettingsComponent } from "./main/settings/label-settings/label-settings.component";
 import { GeneralSettingsComponent } from "./main/settings/general-settings/general-settings.component";
+import { EnvSettingsComponent } from "./main/settings/env-settings/env-settings.component";
+import { HistoryComponent } from "./main/history/history.component";
+import { GraphqlComponent } from "./tools/graphql/graphql.component";
+import { WebsocketComponent } from "./tools/websocket/websocket.component";
+import { SseComponent } from "./tools/sse/sse.component";
 import { LabelsResolver } from "./main/main.service";
 import { SearchResolver } from "./main/main.service";
 //import { AuthGuardService as AuthGuard } from './auth-guard.service';
@@ -47,6 +52,12 @@ const routes: Routes = [
         runGuardsAndResolvers: "always",
         resolve: {},
       },
+      {
+        path: "env",
+        component: EnvSettingsComponent,
+        runGuardsAndResolvers: "always",
+        resolve: {},
+      },
     ],
   },
   {
@@ -69,6 +80,29 @@ const routes: Routes = [
     canActivate: [],
     runGuardsAndResolvers: "always",
     component: ManageLabelComponent,
+  },
+  {
+    path: "history",
+    component: MainComponent,
+    canActivate: [],
+    runGuardsAndResolvers: "always",
+    children: [
+      {
+        path: "",
+        component: HistoryComponent,
+      },
+    ],
+  },
+  {
+    path: "tools",
+    component: MainComponent,
+    canActivate: [],
+    children: [
+      { path: "", redirectTo: "graphql", pathMatch: "full" },
+      { path: "graphql", component: GraphqlComponent },
+      { path: "ws", component: WebsocketComponent },
+      { path: "sse", component: SseComponent },
+    ],
   },
 ];
 
