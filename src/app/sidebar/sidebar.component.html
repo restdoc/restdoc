@@ -59,6 +59,14 @@
                             <span *ngIf="!lable" [class.hide]="activeSidebar" i18n="sidebar|more">More</span>
                         </a>
                     </li>
+                    <li (click)="openHistory()">
+                        <a style="display: flex; justify-content: space-between;" [class.restdoc-nav-active]="selectedLabel == '_history'">
+                            <span>
+                                <i style="position: relative; top: 5px;" class="material-icons">history</i>
+                                <span [class.hide]="activeSidebar">History</span>
+                            </span>
+                        </a>
+                    </li>
                     <ng-container *ngIf="lable">
                         <li>
                             <a style="display: flex; justify-content: space-between;" [class.restdoc-nav-active]="selectedLabel == 'trash'">
@@ -73,6 +81,38 @@
                                 <span>
                                     <i style="position: relative; top: 5px;" class="material-icons">settings</i>
                                     <span [class.hide]="activeSidebar" i18n="sidebar|manager-project">Manage project</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li (click)="openEnvSettings()">
+                            <a style="display: flex; justify-content: space-between;" [class.restdoc-nav-active]="selectedLabel == '_envSettings'">
+                                <span>
+                                    <i style="position: relative; top: 5px;" class="material-icons">tune</i>
+                                    <span [class.hide]="activeSidebar">Environments</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li (click)="openTool('graphql')">
+                            <a style="display: flex; justify-content: space-between;" [class.restdoc-nav-active]="selectedLabel == '_tool_graphql'">
+                                <span>
+                                    <i style="position: relative; top: 5px;" class="material-icons">hub</i>
+                                    <span [class.hide]="activeSidebar">GraphQL</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li (click)="openTool('ws')">
+                            <a style="display: flex; justify-content: space-between;" [class.restdoc-nav-active]="selectedLabel == '_tool_ws'">
+                                <span>
+                                    <i style="position: relative; top: 5px;" class="material-icons">sync_alt</i>
+                                    <span [class.hide]="activeSidebar">WebSocket</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li (click)="openTool('sse')">
+                            <a style="display: flex; justify-content: space-between;" [class.restdoc-nav-active]="selectedLabel == '_tool_sse'">
+                                <span>
+                                    <i style="position: relative; top: 5px;" class="material-icons">rss_feed</i>
+                                    <span [class.hide]="activeSidebar">SSE</span>
                                 </span>
                             </a>
                         </li>

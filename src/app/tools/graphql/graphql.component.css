@@ -1,0 +1,13 @@
+.tool-page { padding: 16px; }
+.row { display: flex; gap: 12px; align-items: center; }
+.full { flex: 1; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.col textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+}
+.status { color: #666; margin-bottom: 8px; font-size: 12px; }

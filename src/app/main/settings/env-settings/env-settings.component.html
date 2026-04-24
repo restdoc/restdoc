@@ -1,0 +1,72 @@
+<div class="env-page">
+  <h3>Environments</h3>
+
+  <div class="env-meta">
+    <span>Project: {{ projectId }}</span>
+  </div>
+
+  <div class="env-add">
+    <mat-button-toggle-group [(ngModel)]="scope" aria-label="scope">
+      <mat-button-toggle value="project">Project</mat-button-toggle>
+      <mat-button-toggle value="global">Global</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="env-add-row">
+      <mat-form-field appearance="fill" class="env-field">
+        <mat-label>Key</mat-label>
+        <input matInput [(ngModel)]="newKey" placeholder="token" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="env-field">
+        <mat-label>Value</mat-label>
+        <input matInput [(ngModel)]="newValue" placeholder="secret value" />
+      </mat-form-field>
+      <mat-checkbox [(ngModel)]="newSecret">Secret</mat-checkbox>
+      <button mat-flat-button color="primary" (click)="add()">Add</button>
+    </div>
+  </div>
+
+  <div class="env-section">
+    <h4>Project Variables</h4>
+    <div class="env-table">
+      <div class="env-row env-head">
+        <div>On</div>
+        <div>Key</div>
+        <div>Value</div>
+        <div>Secret</div>
+        <div></div>
+      </div>
+      <div class="env-row" *ngFor="let v of projectVars; let i = index">
+        <div><mat-checkbox [checked]="v.enabled" (change)="toggleEnabled(v)"></mat-checkbox></div>
+        <div><input [(ngModel)]="v.key" (blur)="save()" /></div>
+        <div>
+          <input [(ngModel)]="v.value" (blur)="save()" [type]="v.secret ? 'password' : 'text'" />
+        </div>
+        <div><mat-checkbox [checked]="v.secret" (change)="toggleSecret(v)"></mat-checkbox></div>
+        <div><button mat-icon-button (click)="remove('project', i)"><i class="material-icons">delete</i></button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="env-section">
+    <h4>Global Variables</h4>
+    <div class="env-table">
+      <div class="env-row env-head">
+        <div>On</div>
+        <div>Key</div>
+        <div>Value</div>
+        <div>Secret</div>
+        <div></div>
+      </div>
+      <div class="env-row" *ngFor="let v of globalVars; let i = index">
+        <div><mat-checkbox [checked]="v.enabled" (change)="toggleEnabled(v)"></mat-checkbox></div>
+        <div><input [(ngModel)]="v.key" (blur)="save()" /></div>
+        <div>
+          <input [(ngModel)]="v.value" (blur)="save()" [type]="v.secret ? 'password' : 'text'" />
+        </div>
+        <div><mat-checkbox [checked]="v.secret" (change)="toggleSecret(v)"></mat-checkbox></div>
+        <div><button mat-icon-button (click)="remove('global', i)"><i class="material-icons">delete</i></button></div>
+      </div>
+    </div>
+  </div>
+</div>
+

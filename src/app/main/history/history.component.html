@@ -1,0 +1,31 @@
+<div class="history-page">
+  <div class="history-head">
+    <h3>History</h3>
+    <div class="history-actions">
+      <mat-form-field appearance="fill" class="history-search">
+        <mat-label>Search</mat-label>
+        <input matInput [(ngModel)]="q" (input)="reload()" placeholder="url / method / name" />
+      </mat-form-field>
+      <button mat-stroked-button (click)="clearProject()">Clear</button>
+    </div>
+  </div>
+
+  <div class="history-list">
+    <div class="history-item" *ngFor="let e of items">
+      <div class="history-top">
+        <span class="method">{{ methodBadge(e.method) }}</span>
+        <span class="url">{{ e.url }}</span>
+      </div>
+      <div class="history-bottom">
+        <span class="meta">{{ formatTime(e.createdAt) }}</span>
+        <span class="meta" *ngIf="e.requestName">• {{ e.requestName }}</span>
+        <span class="meta" *ngIf="e.endpointName">• {{ e.endpointName }}</span>
+      </div>
+      <div class="history-buttons">
+        <button mat-flat-button color="primary" (click)="replay(e)">Replay</button>
+        <button mat-icon-button (click)="remove(e.id)"><i class="material-icons">delete</i></button>
+      </div>
+    </div>
+  </div>
+</div>
+

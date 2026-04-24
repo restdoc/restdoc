@@ -18,10 +18,10 @@ import { HotkeysService } from "./../third/angular2-hotkeys/hotkeys.service";
 
 export enum PostType {
     FormData = "form-data",
-    FormUrlencoded = "form-url-encoded",
+    FormUrlencoded = "x-www-form-urlencoded",
     Raw = "raw",
     Binary = "binary",
-    Nonte = "none",
+    None = "none",
     Empty = "",
 }
 
@@ -96,7 +96,9 @@ export interface APIElement {
   form_data: ParamElement[];
   raw: string | "";
   binary: string | "";
+  binaryFile?: File | null;
   post_type: PostType | "";
+  rawContentType?: "json" | "xml" | "text" | "raw";
   headers: HeaderElement[];
   response: ResponseElement | null;
   auth?: AuthElement;
@@ -104,6 +106,13 @@ export interface APIElement {
   testScript?: string;
   timeout?: number;
   followRedirects?: boolean;
+  withCredentials?: boolean;
+  scriptLogs?: string[];
+  testResults?: { ok: boolean; name: string; message?: string }[];
+  /** In-flight request (UI); not persisted. */
+  sending?: boolean;
+  /** Tab-local variables; resolved before project env in {{var}} substitution. */
+  requestVariables?: ParamElement[];
 }
 
 

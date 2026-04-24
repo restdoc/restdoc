@@ -1252,46 +1252,39 @@ background-color
 
 
 :host ::ng-deep .request-tabs .mat-tab-labels {
-  border-bottom: 1px solid var(--card-br-color);
+  border-bottom: 1px solid var(--panel-br-color);
   box-sizing: border-box;
-  margin-bottom: 1px;
 }
 
 :host ::ng-deep .request-tabs .mat-tab-label {
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
-  min-width: 150px;
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 120px;
   opacity: 1;
-  margin: 0 2px 0 2px;
-  border-radius: 0px;
-  border-bottom: none;
-  border-left: 1px solid var(--card-br-color);
-  border-right: 1px solid var(--card-br-color);
-  border-top: 2px solid var(--card-br-color);
+  margin: 0 4px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: var(--text-secondary);
   box-sizing: border-box;
 }
 
 :host ::ng-deep .request-tabs .mat-tab-label-active {
-  /* 
-  background-color: var(--main-btn-bg-color);
-  color: var(--main-btn-text-color);
-  */
-  /* border-left: none; */
-  border-top: 2px solid var(--main-btn-bg-color);
-  border-bottom: none;
-  /*
-  background-color: var(--main-btn-bg-color);
-  */
+  border-bottom: 2px solid var(--main-btn-bg-color);
   color: var(--main-btn-bg-color);
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
 }
 
-
 :host ::ng-deep .request-tabs .mat-tab-header {
   border-bottom: none;
+}
+
+:host ::ng-deep .request-tabs .mat-ink-bar {
+  display: none;
 }
 
 :host ::ng-deep .request-tabs {
@@ -1304,13 +1297,13 @@ background-color
 }
 
 :host ::ng-deep .request-tabs > .mat-tab-body-content {
-  padding: 0 10px 0 0;
+  padding: 0;
   overflow: hidden;
   min-height: 0;
 }
 
 :host ::ng-deep .request-funcs {
-  padding: 20px 0 0 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -1318,29 +1311,28 @@ background-color
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  min-width: 150px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  min-width: 100px;
   opacity: 1;
-  margin: 0 2px 0 2px;
-  border-radius: 0px;
-  /* border-bottom: 1px solid var(--card-br-color); */
-  /*
-  border-top: 1px solid var(--card-br-color);
-  border-left: 1px solid var(--card-br-color);
-  border-right: 1px solid var(--card-br-color);
-  */
-  border-top:none;
-  border-right:none;
-  border-left:none;
+  margin: 0 6px;
+  border-radius: 0;
+  border: none;
   border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
   box-sizing: border-box;
 }
-
 
 :host ::ng-deep .request-funcs .mat-tab-label-active {
   border-bottom: 2px solid var(--main-btn-bg-color);
   color: var(--main-btn-bg-color);
   box-sizing: border-box;
+}
+
+:host ::ng-deep .request-funcs .mat-ink-bar {
+  display: none;
 }
 
 :host ::ng-deep .request-funcs .mat-tab-header {
@@ -1609,6 +1601,42 @@ iframe.response-html {
   padding: 0;
 }
 
+.test-results {
+  border-top: 1px solid var(--panel-br-color);
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+.test-result {
+  display: flex;
+  gap: 8px;
+  padding: 3px 0;
+}
+
+.test-result .ok {
+  color: #2e7d32;
+  font-weight: 700;
+}
+
+.test-result .fail {
+  color: #c62828;
+  font-weight: 700;
+}
+
+.script-logs {
+  border-top: 1px solid var(--panel-br-color);
+  padding: 10px 16px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.log-line {
+  padding: 2px 0;
+  word-break: break-all;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    Hoppscotch-style layout for the document mode (request detail)
    ═══════════════════════════════════════════════════════════════ */
@@ -1624,16 +1652,18 @@ iframe.response-html {
 .hopp-pane-primary {
   display: flex;
   flex-direction: column;
-  flex: 1 1 45%;
-  min-height: 200px;
+  flex: 0 0 auto;
+  min-height: 120px;
+  max-height: 78%;
   overflow: auto;
 }
 
 .hopp-pane-divider {
-  flex: 0 0 3px;
+  flex: 0 0 6px;
   background: var(--panel-br-color);
   cursor: row-resize;
   position: relative;
+  touch-action: none;
 }
 
 .hopp-pane-divider::after {
@@ -1651,9 +1681,11 @@ iframe.response-html {
 .hopp-pane-secondary {
   display: flex;
   flex-direction: column;
-  flex: 1 1 55%;
-  min-height: 200px;
+  flex: 1 1 auto;
+  min-height: 120px;
   overflow: auto;
+  background: var(--fold-bg-color);
+  position: relative;
 }
 
 /* --- Sticky request bar (Method + URL + Send) --- */
@@ -1662,9 +1694,10 @@ iframe.response-html {
   top: 0;
   z-index: 20;
   flex-shrink: 0;
-  background: var(--panel-bg-color);
+  background: var(--fold-bg-color);
   padding: 12px 16px;
   border-bottom: 1px solid var(--panel-br-color);
+  box-shadow: var(--shadow-sm);
 }
 
 .hopp-url-row {
@@ -1687,6 +1720,34 @@ iframe.response-html {
   flex: 0 0 auto;
   background: var(--fold-bg-color);
   border-right: 1px solid var(--panel-br-color);
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  overflow: hidden;
+}
+
+:host ::ng-deep .hopp-method-select .mat-select-value-text {
+  color: var(--method-default-color);
+}
+
+:host ::ng-deep .hopp-method-select[data-method="get"] .mat-select-value-text {
+  color: var(--method-get-color);
+}
+:host ::ng-deep .hopp-method-select[data-method="post"] .mat-select-value-text {
+  color: var(--method-post-color);
+}
+:host ::ng-deep .hopp-method-select[data-method="put"] .mat-select-value-text {
+  color: var(--method-put-color);
+}
+:host ::ng-deep .hopp-method-select[data-method="patch"] .mat-select-value-text {
+  color: var(--method-patch-color);
+}
+:host ::ng-deep .hopp-method-select[data-method="delete"] .mat-select-value-text {
+  color: var(--method-delete-color);
+}
+:host ::ng-deep .hopp-method-select[data-method="head"] .mat-select-value-text {
+  color: var(--method-head-color);
+}
+:host ::ng-deep .hopp-method-select[data-method="options"] .mat-select-value-text {
+  color: var(--method-options-color);
 }
 
 :host ::ng-deep .hopp-method-field .mat-form-field-wrapper {
@@ -1847,6 +1908,7 @@ iframe.response-html {
   background: var(--panel-bg-color);
   border-bottom: 1px solid var(--panel-br-color);
   flex-shrink: 0;
+  padding: 0 8px;
 }
 
 :host ::ng-deep .hopp-options-tabs .mat-tab-label {
@@ -1875,15 +1937,15 @@ iframe.response-html {
   flex: 1;
 }
 
-::host ::ng-deep .hopp-options-tabs .mat-tab-body-wrapper {
+:host ::ng-deep .hopp-options-tabs .mat-tab-body-wrapper {
   min-height: 0;
 }
 
-::host ::ng-deep .hopp-options-tabs .mat-tab-body {
+:host ::ng-deep .hopp-options-tabs .mat-tab-body {
   flex: 1;
 }
 
-::host ::ng-deep .hopp-options-tabs .mat-tab-body-content {
+:host ::ng-deep .hopp-options-tabs .mat-tab-body-content {
   height: 100%;
   min-height: 0;
   display: flex;
@@ -1895,9 +1957,13 @@ iframe.response-html {
   min-height: 120px;
   display: flex;
   flex-direction: column;
-  /* let inner rows scroll instead of growing the whole panel */
   min-height: 0;
   height: 100%;
+  overflow: hidden;
+  margin: 12px 16px 16px;
+  border: 1px solid var(--panel-br-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .hopp-kv-header {
@@ -1908,6 +1974,7 @@ iframe.response-html {
   border-bottom: 1px solid var(--panel-br-color);
   background: var(--fold-bg-color);
   flex-shrink: 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 
 .hopp-kv-title {
@@ -2096,6 +2163,10 @@ iframe.response-html {
 
 .hopp-status-badge {
   font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--selected-bg-color);
+  font-variant-numeric: tabular-nums;
 }
 
 .hopp-meta-item {
@@ -2199,7 +2270,7 @@ iframe.response-html {
 }
 
 /* --- Scroll behavior fixes: keep tab + headers fixed --- */
-::host ::ng-deep .request-tabs {
+:host ::ng-deep .request-tabs {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -2207,28 +2278,143 @@ iframe.response-html {
   overflow: hidden;
 }
 
-::host ::ng-deep .request-tabs .mat-tab-body-wrapper {
+:host ::ng-deep .request-tabs .mat-tab-body-wrapper {
   flex: 1 1 auto;
   min-height: 0;
 }
 
-::host ::ng-deep .request-tabs .mat-tab-body-content {
+:host ::ng-deep .request-tabs .mat-tab-body-content {
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-::host ::ng-deep .hopp-options-tabs .mat-tab-body-wrapper {
+:host ::ng-deep .hopp-options-tabs .mat-tab-body-wrapper {
   min-height: 0;
   overflow: hidden;
 }
 
-::host ::ng-deep .hopp-options-tabs .mat-tab-body-content {
+:host ::ng-deep .hopp-options-tabs .mat-tab-body-content {
   height: 100%;
   min-height: 0;
   display: flex;
   overflow: hidden;
 }
 
-.hopp-kv-panel {
-  overflow: hidden;
+/* Send split + tab chrome */
+.hopp-send-split {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.hopp-send-chev {
+  border: 1px solid var(--panel-br-color);
+  border-left: none;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-right: 4px;
+}
+
+.hopp-cancel-btn {
+  background-color: var(--mat-warn-color, #c62828) !important;
+  color: #fff !important;
+}
+
+.hopp-tab-badge {
+  display: inline-block;
+  min-width: 1.1rem;
+  margin-left: 6px;
+  padding: 0 5px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.25rem;
+  text-align: center;
+  border-radius: 8px;
+  background: var(--panel-br-color);
+  color: var(--text-secondary);
+}
+
+.hopp-tab-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--main-btn-bg-color);
+  vertical-align: middle;
+}
+
+.hopp-tab-dirty {
+  color: var(--main-btn-bg-color);
+  font-size: 10px;
+  margin-left: 4px;
+  line-height: 1;
+}
+
+.hopp-request-tab-method {
+  font-size: 11px;
+  font-weight: 700;
+  margin-right: 6px;
+  letter-spacing: 0.3px;
+}
+
+.hopp-request-tab-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Response loading skeleton */
+.hopp-response-loading {
+  padding: 16px 20px 8px;
+  border-bottom: 1px solid var(--panel-br-color);
+}
+
+.hopp-skel-line {
+  height: 10px;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--panel-br-color) 0%,
+    var(--fold-bg-color) 50%,
+    var(--panel-br-color) 100%
+  );
+  background-size: 200% 100%;
+  animation: hopp-shimmer 1.2s ease-in-out infinite;
+  margin-bottom: 10px;
+}
+
+.hopp-skel-line.short {
+  width: 40%;
+}
+
+.hopp-skel-block {
+  height: 120px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--panel-br-color) 0%,
+    var(--fold-bg-color) 45%,
+    var(--panel-br-color) 100%
+  );
+  background-size: 220% 100%;
+  animation: hopp-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes hopp-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.hopp-loading-caption {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.hopp-response-body-muted {
+  opacity: 0.35;
+  pointer-events: none;
 }

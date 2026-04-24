@@ -1,0 +1,52 @@
+.env-page {
+  padding: 16px;
+}
+
+.env-meta {
+  margin: 8px 0 16px 0;
+  color: #666;
+}
+
+.env-add-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.env-field {
+  width: 280px;
+}
+
+.env-section {
+  margin-top: 24px;
+}
+
+.env-table {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.env-row {
+  display: grid;
+  grid-template-columns: 60px 240px 1fr 80px 60px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.env-head {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.env-row input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+

@@ -1,0 +1,8 @@
+.tool-page { padding: 16px; }
+.row { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+.full { flex: 1; }
+.logs { border: 1px solid #e5e5e5; border-radius: 10px; padding: 10px; }
+.log { display: flex; gap: 10px; padding: 4px 0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; }
+.t { color: #666; width: 90px; flex: 0 0 auto; }
+.k { font-weight: 700; width: 80px; flex: 0 0 auto; }
+.d { word-break: break-all; }

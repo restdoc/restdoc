@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HotkeysCheatsheetComponent } from './hotkeys-cheatsheet.component';
+import { HotkeyOptions } from '../hotkey.options';
 
 describe('HotkeysCheatsheetComponent', () => {
     let component: HotkeysCheatsheetComponent;
@@ -7,7 +8,8 @@ describe('HotkeysCheatsheetComponent', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [HotkeysCheatsheetComponent]
+            declarations: [HotkeysCheatsheetComponent],
+            providers: [{ provide: HotkeyOptions, useValue: {} }],
         })
             .compileComponents();
     }));

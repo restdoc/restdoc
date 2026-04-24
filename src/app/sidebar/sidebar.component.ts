@@ -217,6 +217,28 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.sidebarService.onSelect(label);
   }
 
+  openEnvSettings() {
+    const label = "_envSettings";
+    this.selectedLabel = label;
+    this.router.navigate(["/settings/env"]);
+    this.sidebarService.onSelect(label);
+  }
+
+  openHistory() {
+    const label = "_history";
+    this.selectedLabel = label;
+    const pid = this.selectedId || "0";
+    this.router.navigate(["/history"], { queryParams: { project: pid } });
+    this.sidebarService.onSelect(label);
+  }
+
+  openTool(tool: "graphql" | "ws" | "sse") {
+    const label = `_tool_${tool}`;
+    this.selectedLabel = label;
+    this.router.navigate([`/tools/${tool}`]);
+    this.sidebarService.onSelect(label);
+  }
+
   createProject() {
     let label = "_createLabel";
     this.selectedLabel = label;
